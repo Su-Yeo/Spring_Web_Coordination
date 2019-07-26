@@ -1,7 +1,5 @@
 package com.coordination.admin;
 
-import com.coordination.admin.*;
-
 public class Jython {
 
 	public static void main(String[] args) {
@@ -17,10 +15,24 @@ public class Jython {
 				
 		Tensorflow tf = new Tensorflow();
 		
-		//String image = "C:\\Users\\sangw\\OneDrive\\Desktop\\data\\6.jpg";
-		//String image = "C:\\Users\\sangw\\OneDrive\\Desktop\\data\\10.jpg";
-		//String image = "C:\\Users\\sangw\\OneDrive\\Desktop\\data\\18.jpg";
-		String image = "C:\\Users\\sangw\\OneDrive\\Desktop\\data\\14.jpg";
+		//T-Shirt
+		//String image = "C:\\Users\\sangw\\OneDrive\\Desktop\\data\\117.jpg";
+		//String image = "C:\\Users\\sangw\\OneDrive\\Desktop\\data\\130.jpg";
+		//String image = "C:\\Users\\sangw\\OneDrive\\Desktop\\data\\133.jpg";
+
+		//Harf-Tshirt
+		//String image = "C:\\Users\\sangw\\OneDrive\\Desktop\\data\\2.jpg";
+		//String image = "C:\\Users\\sangw\\OneDrive\\Desktop\\data\\12.jpg";
+
+		//Shirt
+		//String image = "C:\\Users\\sangw\\OneDrive\\Desktop\\data\\46.jpg";
+		//String image = "C:\\Users\\sangw\\OneDrive\\Desktop\\data\\52.jpg";
+		//String image = "C:\\Users\\sangw\\OneDrive\\Desktop\\data\\54.jpg";
+		//String image = "C:\\Users\\sangw\\OneDrive\\Desktop\\data\\50.jpg";
+		
+		//Harf-Shirt
+		//String image = "C:\\Users\\sangw\\OneDrive\\Desktop\\data\\8.jpg";
+		String image = "C:\\Users\\sangw\\OneDrive\\Desktop\\data\\9.jpg";
 		
 		//상의 분석
 		tf.Upper_Tensorflow(image);

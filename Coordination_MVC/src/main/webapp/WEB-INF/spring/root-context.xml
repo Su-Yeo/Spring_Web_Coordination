@@ -20,7 +20,7 @@
         <property name="url"
             value="jdbc:log4jdbc:mysql://127.0.0.1:3309/man?useSSL=false&amp;serverTimezone=UTC"></property>
         <property name="username" value="test"></property>
-        <property name="password" value="test123"></property>
+        <property name="password" value="test1234"></property>
     </bean>
     
 	<!-- DB와의 연결과 SQL의 실행에 대한 모든 것을 가진 객체 -->

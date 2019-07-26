@@ -2,9 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@page import="com.google.gson.JsonArray"%>
 <%@page import="java.util.Map"%>
-<%
-	request.setCharacterEncoding("utf-8");
-%>    
+<%request.setCharacterEncoding("utf-8");%>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,20 +12,19 @@
 <meta charset="UTF-8">
 <title>Man & Coordination</title>
 
-<style>
-		
-      #iframe{
-         margin-left:100px;
-         overflow:hidden;
-      }
-      #div_top{
-      	 <!-- background-color:#000000; -->
-         text-align: center;
-         width: 100%;
-         padding-top:50px;
-      }
+<style>	
+	#iframe{
+	   margin-left:100px;
+	   overflow:hidden;
+	}
+	#div_top{
+		 <!-- background-color:#000000; -->
+	   text-align: center;
+	   width: 100%;
+	   padding-top:50px;
+	}
 
-		.menubar{
+	.menubar{
 		width:100%;
 		background-color:#f0f0f0;
 		border:none;
@@ -37,9 +34,9 @@
 		font: 67.5% "Lucida Sans Unicode", "Bitstream Vera Sans", "Trebuchet Unicode MS", "Lucida Grande", Verdana, Helvetica, sans-serif;
 		font-size:14px;
 		font-weight:bold;
-		}
+	}
 
-		.menubar ul{
+	.menubar ul{
 		background: rgb(102,255,153);
 		height:50px;
 		list-style:none;
@@ -47,23 +44,22 @@
 		display:table;
 		margin-left:auto;
 		margin-right:auto;
-
+		
 		/*가운데 정렬 해주기
 		display:table;
 		margin-left:auto;
-		margin-right:auto; */
-
+		margin-right:auto; */	
 		padding:0;
-		}
-		.menubar li{
+	}
+	
+	.menubar li{
 		width:150px;
 		float:left;
-		padding-left:75px;
-
+		padding-left:75px;	
 		margin:0px;
-		}
+	}
 
-		.menubar li a{
+	.menubar li a{
 		background: rgb(102,255,153);
 		color:#120384;
 		display:block;
@@ -73,15 +69,15 @@
 		padding:0px 25px;
 		text-align:center;
 		text-decoration:none;
-		}
+	}
 
-		.menubar li a:hover, .menubar ul li:hover a{
+	.menubar li a:hover, .menubar ul li:hover a{
 		background: rgb(051,204,133);
 		color:#FFFFFF;
 		text-decoration:none;
-		}
+	}
 
-		.menubar li ul{
+	.menubar li ul{
 		background: rgb(102,255,153);
 		display:none; /* 평상시에는 드랍메뉴가 안보이게 하기 */
 		height:auto;
@@ -93,26 +89,26 @@
 		z-index:200;
 		/*top:1em;
 		/*left:0;*/
-		}
+	}
 
-		.menubar li:hover ul{
+	.menubar li:hover ul{
 		display:block; /* 마우스 커서 올리면 드랍메뉴 보이게 하기 */
-		}
+	}
 
-		.menubar li li {
+	.menubar li li {
 		background: rgb(051,204,133);
 		display:block;
 		float:none;
 		margin:0px;
 		padding:0px;
 		width:200px;
-		}
-
-		.menubar li:hover li a{
+	}
+	
+	.menubar li:hover li a{
 		background:none;
-		}
-
-		.menubar li ul a{
+	}
+	
+	.menubar li ul a{
 		display:block;
 		height:50px;
 		font-size:12px;
@@ -120,204 +116,217 @@
 		margin:0px;
 		padding:0px 10px 0px 15px;
 		text-align:left;
-		}
+	}
 
-		.menubar li ul a:hover, .menubar li ul li:hover a{
+	.menubar li ul a:hover, .menubar li ul li:hover a{
 		background: rgb(051,153,133);
 		border:0px;
 		color:#ffffff;
 		text-decoration:none;
-		}
-
-		.menubar p{
+	}
+	
+	.menubar p{
 		clear:left;
-		}	  
-      #div_right{
-         float: left;
-         text-align: center;
-         width: 100%;
-      }  
-      #div_left{
-         float: left;
-         position: fixed;
-         left: 5%;
-         top: 40%;
-         margin-left: 85%;
-         text-align: center;
-         width: 117px;
-      }
-		/*모달창 뜨면 보이는 div 부분*/
-		/*jssor slider loading skin spin css*/
-        .jssorl-009-spin img {
-            animation-name: jssorl-009-spin;
-            animation-duration: 1.6s;
-            animation-iteration-count: infinite;
-            animation-timing-function: linear;
-        }
-
-        @keyframes jssorl-009-spin {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        /*jssor slider arrow skin 093 css*/
-        .jssora093 {display:block;position:absolute;cursor:pointer;}
-        .jssora093 .c {fill:none;stroke:#fff;stroke-width:400;stroke-miterlimit:10;}
-        .jssora093 .a {fill:none;stroke:#fff;stroke-width:400;stroke-miterlimit:10;}
-        .jssora093:hover {opacity:.8;}
-        .jssora093.jssora093dn {opacity:.6;}
-        .jssora093.jssora093ds {opacity:.3;pointer-events:none;}
-
-        /*jssor slider thumbnail skin 101 css*/
-        .jssort101 .p {position: absolute;top:0;left:0;box-sizing:border-box;background:#000;}
-        .jssort101 .p .cv {position:relative;top:0;left:0;width:100%;height:100%;border:2px solid #000;box-sizing:border-box;z-index:1;}
-        .jssort101 .a {fill:none;stroke:#fff;stroke-width:400;stroke-miterlimit:10;visibility:hidden;}
-        .jssort101 .p:hover .cv, .jssort101 .p.pdn .cv {border:none;border-color:transparent;}
-        .jssort101 .p:hover{padding:2px;}
-        .jssort101 .p:hover .cv {background-color:rgba(0,0,0,6);opacity:.35;}
-        .jssort101 .p:hover.pdn{padding:0;}
-        .jssort101 .p:hover.pdn .cv {border:2px solid #fff;background:none;opacity:.35;}
-        .jssort101 .pav .cv {border-color:#fff;opacity:.35;}
-        .jssort101 .pav .a, .jssort101 .p:hover .a {visibility:visible;}
-        .jssort101 .t {position:absolute;top:0;left:0;width:100%;height:100%;border:none;opacity:.6;}
-        .jssort101 .pav .t, .jssort101 .p:hover .t{opacity:1;}
-
-      #div_main{
-	    background: linear-gradient(180deg, #FFFFFF , #DDDDDD);
-        text-align: center;
-        float: left;
-        width:100%;
-        height: auto;
-        margin-left: -2%;
-        padding-left: 45px;
-      }
-      #div_bottom{
-		 float: left;
-		 background-color:#DDDDDD;
-		 text-align:left;
-         width: 100%;
-		 border-top:1px solid #C3C3C3;
-		 padding:30px;
-		 margin-left:-1%;
-      }
-
-      #div_img{
-         text-align: center;
-         background-color: white;
-         display: inline-block;
-         width: 80%;
-
-         display: -webkit-box;
-         display: -ms-flexbox;
-         display: -webkit-flex;
-         display: flex;
-         -webkit-box-pack: center;
-         -ms-flex-pack: center;
-         -webkit-justify-content: center;
-         justify-content: center;
-         -webkit-box-align: center;
-         -ms-flex-align: center;
-         -webkit-align-items: center;
-         align-items: center;
-      }
-      #div_img:nth-child(2n){
-         width: 60%;
-      }
-      #div_img:nth-child(3n){
-         width: 40%;
-      }
-      #div_banner1{
-         float: left;
-         width:100%;
-         margin: 2px 2px;
-      }
-      .p1{
-	  	margin-top:-5px;
-        position: relative;
-        display: inline-block;
-        background:#ffffff;
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        white-space: nowrap;
-      }
-      .p2{
-      clear:left;
-        position: relative;
-        display: inline-block;
-        background: linear-gradient(45deg, #000000 , #888888, #000000);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        white-space: nowrap;
-        margin-top:50px;
-      }
-      .p3{
-        position: relative;
-        display: inline-block;
-        background: linear-gradient(-45deg, #FFBF00 , #FF00BF , #5858FA);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        white-space: nowrap;
-      }
-      a:link { color: black; text-decoration: none; }
-      a:visited { color: black; text-decoration: none;}
-      a:hover { color: black; text-decoration: none;}
-      a:active { color: black; text-decoration: none;}
-	  
-      #div_button1,#div_button2,#div_button3{
-        background: #222222;
-        color: #fff;
-        border: none;
-        position: relative;
-        height: 40px;
-        width: 100%;
-        font-size: 15px;
-        cursor: pointer;
-        transition: 800ms ease all;
-        outline: none;
-      }
-      #div_button1:hover,#div_button2:hover,#div_button3:hover{
-        background: #fff;
-        color: #222222;
-      }
-      #div_button1:before,#div_button1:after,#div_button2:before,#div_button2:after,#div_button3:before,#div_button3:after{
-        content: '';
-        position: absolute;
-        top: 0;
-        right: 0;
-        height: 2px;
-        width: 0;
-        background: #ffffff;
-        transition: 600ms ease all;
-      }
-      #div_button1:after,#div_button2:after,#div_button3:after{
-        right: inherit;
-        top: inherit;
-        left: 0;
-        bottom: 0;
-      }
-      #div_button1:hover:before,#div_button1:hover:after,#div_button2:hover:before,#div_button2:hover:after,#div_button3:hover:before,#div_button3:hover:after{
-        width: 100%;
-        transition: 8
-      }
-
-    .swiper-container {
-      width: 60%;
-      height: 40%;
-      padding-top: 40px;
-	  margin-left: auto;
-      margin-right: auto;
-	  
+	}
+	 
+    #div_right{
+       float: left;
+       text-align: center;
+       width: 100%;
     }
-    .swiper-slide {
-      text-align: center;
-      font-size: 18px;
-      background: #fff;
-	  
-      background-position: center;
-      background-size: cover;
-      width: 300px;
-      height: 300px;
+    
+    #div_left{
+       float: left;
+       position: fixed;
+       left: 5%;
+       top: 40%;
+       margin-left: 85%;
+       text-align: center;
+       width: 117px;
     }
+    
+	/*모달창 뜨면 보이는 div 부분*/
+	/*jssor slider loading skin spin css*/
+    .jssorl-009-spin img {
+        animation-name: jssorl-009-spin;
+        animation-duration: 1.6s;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+    }
+
+    @keyframes jssorl-009-spin {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+    }
+
+    /*jssor slider arrow skin 093 css*/
+    .jssora093 {display:block;position:absolute;cursor:pointer;}
+    .jssora093 .c {fill:none;stroke:#fff;stroke-width:400;stroke-miterlimit:10;}
+    .jssora093 .a {fill:none;stroke:#fff;stroke-width:400;stroke-miterlimit:10;}
+    .jssora093:hover {opacity:.8;}
+    .jssora093.jssora093dn {opacity:.6;}
+    .jssora093.jssora093ds {opacity:.3;pointer-events:none;}
+
+    /*jssor slider thumbnail skin 101 css*/
+    .jssort101 .p {position: absolute;top:0;left:0;box-sizing:border-box;background:#000;}
+    .jssort101 .p .cv {position:relative;top:0;left:0;width:100%;height:100%;border:2px solid #000;box-sizing:border-box;z-index:1;}
+    .jssort101 .a {fill:none;stroke:#fff;stroke-width:400;stroke-miterlimit:10;visibility:hidden;}
+    .jssort101 .p:hover .cv, .jssort101 .p.pdn .cv {border:none;border-color:transparent;}
+    .jssort101 .p:hover{padding:2px;}
+    .jssort101 .p:hover .cv {background-color:rgba(0,0,0,6);opacity:.35;}
+    .jssort101 .p:hover.pdn{padding:0;}
+    .jssort101 .p:hover.pdn .cv {border:2px solid #fff;background:none;opacity:.35;}
+    .jssort101 .pav .cv {border-color:#fff;opacity:.35;}
+    .jssort101 .pav .a, .jssort101 .p:hover .a {visibility:visible;}
+    .jssort101 .t {position:absolute;top:0;left:0;width:100%;height:100%;border:none;opacity:.6;}
+    .jssort101 .pav .t, .jssort101 .p:hover .t{opacity:1;}
+
+	#div_main{
+		background: linear-gradient(180deg, #FFFFFF , #DDDDDD);
+		text-align: center;
+		float: left;
+		width:100%;
+		height: auto;
+		margin-left: -2%;
+		padding-left: 45px;
+	}
+	
+	#div_bottom{
+		float: left;
+		background-color:#DDDDDD;
+		text-align:left;
+		      width: 100%;
+		border-top:1px solid #C3C3C3;
+		padding:30px;
+		margin-left:-1%;
+	}
+
+  	#div_img{
+	    text-align: center;
+	    background-color: white;
+	    display: inline-block;
+	    width: 80%;
+	
+	    display: -webkit-box;
+	    display: -ms-flexbox;
+	    display: -webkit-flex;
+	    display: flex;
+	    -webkit-box-pack: center;
+	    -ms-flex-pack: center;
+	    -webkit-justify-content: center;
+	    justify-content: center;
+	    -webkit-box-align: center;
+	    -ms-flex-align: center;
+	    -webkit-align-items: center;
+	    align-items: center;
+  	}
+  	
+	#div_img:nth-child(2n){
+	   	width: 60%;
+	}
+	
+	#div_img:nth-child(3n){
+	   	width: 40%;
+	}
+	
+	#div_banner1{
+		float: left;
+		width:100%;
+		margin: 2px 2px;
+	}
+	
+  	.p1{
+		margin-top:-5px;
+	    position: relative;
+	    display: inline-block;
+	    background:#ffffff;
+	    -webkit-background-clip: text;
+	    -webkit-text-fill-color: transparent;
+	    white-space: nowrap;
+  	}
+  	
+	.p2{
+		clear:left;
+		position: relative;
+		display: inline-block;
+		background: linear-gradient(45deg, #000000 , #888888, #000000);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		white-space: nowrap;
+		margin-top:50px;
+	}
+	.p3{
+		position: relative;
+		display: inline-block;
+		background: linear-gradient(-45deg, #FFBF00 , #FF00BF , #5858FA);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		white-space: nowrap;
+	}
+	
+	a:link { color: black; text-decoration: none; }
+	a:visited { color: black; text-decoration: none;}
+	a:hover { color: black; text-decoration: none;}
+	a:active { color: black; text-decoration: none;}
+
+	#div_button1,#div_button2,#div_button3{
+		background: #222222;
+		color: #fff;
+		border: none;
+		position: relative;
+		height: 40px;
+		width: 100%;
+		font-size: 15px;
+		cursor: pointer;
+		transition: 800ms ease all;
+		outline: none;
+	}
+  
+	#div_button1:hover,#div_button2:hover,#div_button3:hover{
+		background: #fff;
+		color: #222222;
+	}
+  
+  #div_button1:before,#div_button1:after,#div_button2:before,#div_button2:after,#div_button3:before,#div_button3:after{
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 2px;
+    width: 0;
+    background: #ffffff;
+    transition: 600ms ease all;
+  }
+  
+  #div_button1:after,#div_button2:after,#div_button3:after{
+    right: inherit;
+    top: inherit;
+    left: 0;
+    bottom: 0;
+  }
+  
+  #div_button1:hover:before,#div_button1:hover:after,#div_button2:hover:before,#div_button2:hover:after,#div_button3:hover:before,#div_button3:hover:after{
+    width: 100%;
+    transition: 8
+  }
+
+.swiper-container {
+	width: 60%;
+	height: 40%;
+	padding-top: 40px;
+	margin-left: auto;
+	margin-right: auto;
+}
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+
+  background-position: center;
+  background-size: cover;
+  width: 300px;
+  height: 300px;
+}
 /*모달창 뜨면 보이는 div 부분*/
 /*jssor slider loading skin spin css*/
       .jssorl-009-spin img {
@@ -383,71 +392,6 @@
           cursor: pointer;
       }
 </style>
-<script type="text/javascript">
-function sel(s){
-	var sel = encodeURI(s);
-    $.ajax({
-        type : "GET",
-        url : "test2.jsp?loc="+sel,
-        dataType: "text",
-        async:false,
-        error : function(){
-            alert('통신실패!!');
-        },
-        success : function(data){
-        	$("#selectDiv").html(data);
-        	$("#selectBox").val(s).attr("selected","selected");
-        	$("#selectBox2").prepend('<option value="선택">--선택--</option>');
-        	$("#selectBox2").val("선택").attr("selected","selected");
-        	$("#selectBox3").prepend('<option value="선택">--선택--</option>');
-        	$("#selectBox3").val("선택").attr("selected","selected");
-        	loc=sel;
-        }   
-    });
-}
-
-function sel2(s){
-	var sel2 = encodeURI(s);
-    $.ajax({
-        type : "GET",
-        url : "test2.jsp?loc="+loc+"&loc2="+sel2,
-        dataType: "text",
-        error : function(){
-            alert('통신실패!!');
-        },
-        success : function(data){
-        	$("#selectDiv").html(data);
-        	$("#selectBox").val(decodeURI(loc)).attr("selected","selected");
-        	$("#selectBox2").val(s).attr("selected","selected");
-        	$("#selectBox3").prepend('<option value="선택">--선택--</option>');
-        	$("#selectBox3").val("선택").attr("selected","selected");
-        	loc2=sel2;
-        }   
-    });
-}
-
-function sel3(s){
-	var sel3 = encodeURI(s);
-    $.ajax({
-        type : "GET",
-        url : "test2.jsp?loc="+loc+"&loc2="+loc2+"&loc3="+sel3,
-        dataType: "text",
-        error : function(){
-            alert('통신실패!!');
-        },
-        success : function(data){
-        	$("#weatherDiv").html(data);
-        	$("#selectBox").val(decodeURI(loc)).attr("selected","selected");
-        	$("#selectBox2").val(decodeURI(loc2)).attr("selected","selected");
-        	$("#selectBox3").val(s).attr("selected","selected");
-        }   
-    });
-}
-
-function init(){
-	$("#selectBox option:eq(0)").replaceWith('<option value="선택">--선택--</option>');
-}
-</script>
 </head>
 <body>
    <div style="text-align:center;">

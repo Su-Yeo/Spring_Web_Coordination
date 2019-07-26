@@ -61,6 +61,31 @@ public class CoordFetcher{
 		return mapTop;
 	}
 	
+	public Map<String, String> getMapMdlInit(String location){
+		JSONArray jsonArrTop = null;
+		JSONArray jsonArrMdl = null;
+		
+		jsonArrTop = getRemoteJSONArray(getStrUrl("top"));
+		mapTop = getJsonSubMap(jsonArrTop);
+		jsonArrMdl = getRemoteJSONArray(getStrUrl("mdl", mapTop.get(location)));
+		mapMdl = getJsonSubMap(jsonArrMdl);
+		return mapMdl;
+	}
+	
+	public Map<String, Coord> getMapLeafInit(String top, String mdl){
+		JSONArray jsonArrTop = null;
+		JSONArray jsonArrMdl = null;
+		JSONArray jsonArrLeaf = null;
+
+		jsonArrTop = getRemoteJSONArray(getStrUrl("top"));
+		mapTop = getJsonSubMap(jsonArrTop);
+		jsonArrMdl = getRemoteJSONArray(getStrUrl("mdl", mapTop.get(top)));
+		mapMdl = getJsonSubMap(jsonArrMdl);
+		jsonArrLeaf = getRemoteJSONArray(getStrUrl("leaf", mapMdl.get(mdl)));
+		mapLeaf = getJsonLeafMap(jsonArrLeaf);
+		return mapLeaf;
+	}
+	
 	public JSONArray getMapMdl(String location){
 		JSONArray jsonArrTop = null;
 		JSONArray jsonArrMdl = null;

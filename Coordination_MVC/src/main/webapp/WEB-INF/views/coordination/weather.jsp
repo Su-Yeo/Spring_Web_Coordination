@@ -1,3 +1,4 @@
+<%@page import="com.coordination.weather.Coord"%>
 <%@page import="java.util.Map"%>
 <%@page import="com.coordination.weather.CoordFetcher"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -65,8 +66,22 @@ function selLeaf(s3){
       			function (item) { 
       				return item.category == 'TMN' || item.category == 'TMX'
       		}); 
-      		text.innerHTML += '최저-'+arr1[0].fcstValue+'℃<br>'; 
-      		text.innerHTML += '최고-'+arr1[1].fcstValue+'℃<br>'; 
+      		//text.innerHTML += '최저-'+arr1[0].fcstValue+'℃<br>'; 
+      		//text.innerHTML += '최고-'+arr1[1].fcstValue+'℃<br>';
+      		
+      		$.ajax({
+      		    type : "POST",
+      		  	async : true,
+      		    url : "/main/style",
+      		    data : {"tmn" : arr1[0].fcstValue, "tmx" : arr1[1].fcstValue},
+      		    dataType: "text",
+      		    error : function(){
+      		        alert('통신실패!!');
+      		    },
+      		    success : function(data){
+      		    	$("div#div_include").html(data);
+      		    }   
+      		});
       		
       		//3시간마다 구하기
       		var today = new Date();
@@ -157,12 +172,36 @@ for(Map.Entry<String,String> entry : mapTop.entrySet()){
 <%}%>
 </select>
 
-<select id="selectBox2" onchange="selMdl(this.value)"></select>
+<select id="selectBox2" onchange="selMdl(this.value)">
+<%
+Map<String, String> mapMdl = coord.getMapMdlInit("경기도");
+for(Map.Entry<String,String> entry : mapMdl.entrySet()){
+%>
+  <option value=<%=entry.getKey()%>><%=entry.getKey()%></option>
+<%}%>
+</select>
 
-<select id="selectBox3" onchange="selLeaf(this.value)"></select>
+<select id="selectBox3" onchange="selLeaf(this.value)">
+<%
+Map<String, Coord> mapLeaf = coord.getMapLeafInit("경기도", "부천시소사구");
+for(Map.Entry<String,Coord> entry : mapLeaf.entrySet()){
+%>
+  <option value=<%=entry.getKey()%>><%=entry.getKey()%></option>
+<%}%>
+</select>
+
+<script>
+	$("#selectBox").val("경기도").attr("selected","selected");
+	$("#selectBox2").val("부천시소사구").attr("selected","selected");
+	$("#selectBox3").val("괴안동").attr("selected","selected");
+	selLeaf("괴안동");
+</script>
+
 </div>
+
 <div id="text"></div>
 
 </div>
 </body>
+
 </html>

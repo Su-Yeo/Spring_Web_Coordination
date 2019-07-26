@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="com.coordination.mapper.styleMapper">
+    
+    <select id="selectShop" resultType="shopVO">
+    	SELECT * FROM SHOP
+    </select>
+    
+    <insert id="insertShop">
+    	INSERT INTO SHOP
+    		VALUES(
+    		#{shopcode}, #{shopname}, #{little}
+    		)
+    </insert>
+    
+    <update id="updateShop">
+    	UPDATE SHOP
+    		SET
+    		shopname=#{shopname},
+    		little=#{little}
+    		WHERE shopcode=#{shopcode}
+    </update>
+    
+    <delete id="deleteShop">
+    	DELETE FROM SHOP WHERE shopcode=#{shopcode}
+    </delete>
+    
+</mapper>

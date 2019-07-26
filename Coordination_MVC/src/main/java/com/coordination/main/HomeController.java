@@ -1,19 +1,23 @@
 package com.coordination.main;
 
-import java.text.DateFormat;
-import java.util.Date;
+import java.util.List;
 import java.util.Locale;
+
+import javax.inject.Inject;
 
 import org.json.simple.JSONArray;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.coordination.dao.StyleDAO;
+import com.coordination.dto.StyleVO;
 import com.coordination.weather.ApiExplorerWeather;
 import com.coordination.weather.CoordFetcher;
 import com.google.gson.JsonArray;
@@ -26,39 +30,29 @@ public class HomeController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
+	@Inject
+	private StyleDAO styleDAO;
+	
 	private String top="경기도";
-	private String mdl="부천시";
-	private String leaf="소사구";
+	private String mdl="부천시소사구";
 	
 	/**
 	 * Simply selects the home view to render by returning its name.
+	 * @throws Exception 
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Locale locale, Model model) {
-		logger.info("Welcome home! The client locale is {}.", locale);
+	public String home(@ModelAttribute StyleVO vo, Locale locale, Model model) throws Exception {
+		logger.info("Welcome Man & Coordination!!");
 		
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-		
-		String formattedDate = dateFormat.format(date);
-		
-		model.addAttribute("serverTime", formattedDate );
+		List<StyleVO> selectStyle = styleDAO.selectStyle(vo);
+		model.addAttribute("selectStyle", selectStyle);
 		
 		return "coordination/index";
+		//return "home";
 	}
 	
 	// Ajax 지역선택 처리 매핑
-    @ResponseBody // view가 아닌 data리턴
-    @RequestMapping(value="/weather/selInit", method=RequestMethod.POST, produces="text/plain;charset=utf-8")
-    public String selInit() throws Exception {
-        logger.info("selInit");
-        CoordFetcher coord = new CoordFetcher();
-        ApiExplorerWeather api = new ApiExplorerWeather(coord.fetchCoord(top,mdl,leaf));
-    	JsonArray js = api.getJArray();
-    	return js.toString();
-    }
-    
-    @ResponseBody // view가 아닌 data리턴
+	@ResponseBody // view가 아닌 data리턴
     @RequestMapping(value="/weather/selTop", method=RequestMethod.POST, produces="text/plain;charset=utf-8")
     public String selTop(@RequestParam("selTop")String selTop) throws Exception {
         logger.info("selTop : "+selTop);
@@ -90,4 +84,70 @@ public class HomeController {
         //System.out.println(mapleaf.toJSONString());
         return js.toString();
     }
+    
+    @RequestMapping(value="/style", method=RequestMethod.POST, produces="text/plain;charset=utf-8")
+    public String style(@ModelAttribute StyleVO vo, Model model, @RequestParam("tmn")String tmn, @RequestParam("tmx")String tmx) throws Exception {
+		logger.info("Welcome Man & Coordination!!");
+		
+		List<StyleVO> selectStyle = styleDAO.selectStyle(vo);
+		model.addAttribute("selectStyle", selectStyle);
+		
+		System.out.println("tmn : "+tmn);
+		System.out.println("tmx : "+tmx);
+		
+		int avgTemp = (Integer.parseInt(tmn) + Integer.parseInt(tmx)) / 2;
+		String[] Data = new String[4];
+
+		if(avgTemp <= 4)
+		{
+			//패딩, 두꺼운코트
+			Data[0] = "padding";
+			Data[1] = "coat";
+		}
+		else if(avgTemp >= 5 && avgTemp <= 8)
+		{
+			//코트, 가죽자켓
+			Data[0] = "coat";
+			Data[1] = "leather-jacket";
+		}
+		else if(avgTemp >= 9 && avgTemp <= 11)
+		{
+			//자켓, 트렌치코트
+			Data[0] = "coat";
+			Data[1] = "jacket";
+		}
+		else if(avgTemp >= 12 && avgTemp <= 16)
+		{
+			//자켓, 가디건
+			Data[0] = "jacket";
+		}
+		else if(avgTemp >= 17 && avgTemp <= 19)
+		{
+			//자켓, 가디건, 티셔츠
+			Data[0] = "jacket";
+			Data[1] = "t-shirt";
+		}
+		else if(avgTemp >= 20 && avgTemp <= 22)
+		{
+			//가디건, 티셔츠
+			Data[0] = "t-shirt";
+		}
+		else if(avgTemp >= 23 && avgTemp <= 27)
+		{
+			//반팔, 티셔츠, 셔츠, 반팔셔츠
+			Data[0] = "t-shirt";
+			Data[1] = "harf-tshirt";
+			Data[2] = "shirt";
+			Data[3] = "harf-shirt";			
+		}
+		else if(avgTemp >= 28)
+		{
+			//반팔, 민소매
+			Data[0] = "harf-tshirt";
+			Data[1] = "harf-shirt";
+		}
+		
+		//return "coordination/index";
+		return "coordination/imageView";
+	}
 }
