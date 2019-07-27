@@ -5,14 +5,23 @@
  
 <mapper namespace="com.coordination.mapper.styleMapper">
 
-    <select id="selectStyle" resultType="styleVO">
+    <!-- <select id="selectStyle" resultType="styleVO">
     	SELECT * 
     	FROM STYLE
     	WHERE 1=1
     	<if test="data != null">
     		AND data=#{data} OR data=#{color} OR data=#{shopcode} OR data=#{url}
     	</if>
-    </select>
+    </select> -->
+    
+    <select id="selectStyle" resultType="styleVO" parameterType="hashmap">
+    	SELECT * 
+    	FROM STYLE
+    	where
+        <foreach collection="data" item="item" index="index" separator="or">
+            data = #{item}
+        </foreach>
+	</select>
     
     <insert id="insertStyle">
     	INSERT INTO STYLE(

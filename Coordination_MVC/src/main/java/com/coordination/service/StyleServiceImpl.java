@@ -1,5 +1,6 @@
 package com.coordination.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -17,9 +18,9 @@ public class StyleServiceImpl implements StyleService {
 	
 	//이미지 불러오기
 	@Override
-	public List<StyleVO> selectStyle(StyleVO vo) throws Exception {
+	public List<StyleVO> selectStyle(HashMap<String, String[]> data) throws Exception {
 		
-		return dao.selectStyle(vo);
+		return dao.selectStyle(data);
 	}
 
 	//이미지 저장(관리자)

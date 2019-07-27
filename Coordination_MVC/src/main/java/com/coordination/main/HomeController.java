@@ -1,5 +1,6 @@
 package com.coordination.main;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
@@ -44,11 +45,7 @@ public class HomeController {
 	public String home(@ModelAttribute StyleVO vo, Locale locale, Model model) throws Exception {
 		logger.info("Welcome Man & Coordination!!");
 		
-		List<StyleVO> selectStyle = styleDAO.selectStyle(vo);
-		model.addAttribute("selectStyle", selectStyle);
-		
 		return "coordination/index";
-		//return "home";
 	}
 	
 	// Ajax 지역선택 처리 매핑
@@ -87,67 +84,69 @@ public class HomeController {
     
     @RequestMapping(value="/style", method=RequestMethod.POST, produces="text/plain;charset=utf-8")
     public String style(@ModelAttribute StyleVO vo, Model model, @RequestParam("tmn")String tmn, @RequestParam("tmx")String tmx) throws Exception {
-		logger.info("Welcome Man & Coordination!!");
-		
-		List<StyleVO> selectStyle = styleDAO.selectStyle(vo);
-		model.addAttribute("selectStyle", selectStyle);
+		logger.info("style");
 		
 		System.out.println("tmn : "+tmn);
 		System.out.println("tmx : "+tmx);
 		
 		int avgTemp = (Integer.parseInt(tmn) + Integer.parseInt(tmx)) / 2;
-		String[] Data = new String[4];
+		String[] data = new String[4];
 
 		if(avgTemp <= 4)
 		{
 			//패딩, 두꺼운코트
-			Data[0] = "padding";
-			Data[1] = "coat";
+			data[0] = "padding";
+			data[1] = "coat";
 		}
 		else if(avgTemp >= 5 && avgTemp <= 8)
 		{
 			//코트, 가죽자켓
-			Data[0] = "coat";
-			Data[1] = "leather-jacket";
+			data[0] = "coat";
+			data[1] = "leather-jacket";
 		}
 		else if(avgTemp >= 9 && avgTemp <= 11)
 		{
 			//자켓, 트렌치코트
-			Data[0] = "coat";
-			Data[1] = "jacket";
+			data[0] = "coat";
+			data[1] = "jacket";
 		}
 		else if(avgTemp >= 12 && avgTemp <= 16)
 		{
 			//자켓, 가디건
-			Data[0] = "jacket";
+			data[0] = "jacket";
 		}
 		else if(avgTemp >= 17 && avgTemp <= 19)
 		{
 			//자켓, 가디건, 티셔츠
-			Data[0] = "jacket";
-			Data[1] = "t-shirt";
+			data[0] = "jacket";
+			data[1] = "t-shirt";
 		}
 		else if(avgTemp >= 20 && avgTemp <= 22)
 		{
 			//가디건, 티셔츠
-			Data[0] = "t-shirt";
+			data[0] = "t-shirt";
 		}
 		else if(avgTemp >= 23 && avgTemp <= 27)
 		{
 			//반팔, 티셔츠, 셔츠, 반팔셔츠
-			Data[0] = "t-shirt";
-			Data[1] = "harf-tshirt";
-			Data[2] = "shirt";
-			Data[3] = "harf-shirt";			
+			data[0] = "t-shirt";
+			data[1] = "harf-tshirt";
+			data[2] = "shirt";
+			data[3] = "harf-shirt";			
 		}
 		else if(avgTemp >= 28)
 		{
 			//반팔, 민소매
-			Data[0] = "harf-tshirt";
-			Data[1] = "harf-shirt";
+			data[0] = "harf-tshirt";
+			data[1] = "harf-shirt";
 		}
 		
-		//return "coordination/index";
+		HashMap<String, String[]> hm = new HashMap<String, String[]>();
+		hm.put("data", data) ;
+		
+		List<StyleVO> selectStyle = styleDAO.selectStyle(hm);
+		model.addAttribute("selectStyle", selectStyle);
+
 		return "coordination/imageView";
 	}
 }

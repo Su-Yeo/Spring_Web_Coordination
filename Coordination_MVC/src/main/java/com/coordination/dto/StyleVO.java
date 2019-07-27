@@ -2,20 +2,14 @@ package com.coordination.dto;
 
 public class StyleVO {
 
-	//사진번호
-	//이미지명
-	//상의종류 (하의종류 추가할지 고민중)
-	//색상
-	//조회 수
-	//쇼핑몰코드
-	//쇼핑몰 URL
-	private int num;
-	private String img_name;
-	private String data;
-	private String color;
-	private int ref;
-	private String shopcode;
-	private String url;
+	
+	private int num; //사진번호	
+	private String img_name; //이미지명	
+	private String data; //상의종류 (하의종류 추가할지 고민중)
+	private String color; //색상	
+	private int ref; //조회 수	
+	private String shopcode; //쇼핑몰코드
+	private String url; //쇼핑몰 URL
 	
 	
 	public int getNum() {
