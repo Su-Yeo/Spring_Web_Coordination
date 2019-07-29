@@ -6,13 +6,15 @@ colors.each(function (color) {
     '<div class="square" style="background: #' + color + '"></div>'
   );
 });
-
+/*
 $$('.color-picker')[0].on('click', '.square', function(event, square) {
   background = square.getStyle('background');
   $$('.custom-dropdown select').each(function (dropdown) {
     dropdown.setStyle({'background' : background});
   });
 });
+*/
+
 
 /*
  * Original version at

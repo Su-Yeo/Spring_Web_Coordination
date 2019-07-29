@@ -59,15 +59,18 @@ function selLeaf(s3){
             alert(xhr+", "+status+", "+error);
         },
         success : function(data){
-        	alert('통신성공!!');
         	text.innerHTML ="";
+        	weather.innerHTML ="";
+        	weather1.innerHTML ="";
         	var obj = JSON.parse(data);
         	var arr1 =obj.filter( 
       			function (item) { 
       				return item.category == 'TMN' || item.category == 'TMX'
-      		}); 
-      		//text.innerHTML += '최저-'+arr1[0].fcstValue+'℃<br>'; 
-      		//text.innerHTML += '최고-'+arr1[1].fcstValue+'℃<br>';
+      		});
+        	//위젯 최저온도
+      		weather.innerHTML += arr1[0].fcstValue+'℃ / ';
+        	//위젯 최고온도
+      		weather.innerHTML += arr1[1].fcstValue+'℃';
       		
       		$.ajax({
       		    type : "POST",
@@ -126,8 +129,9 @@ function selLeaf(s3){
       		var arr = obj.filter( 
       		function (item) { 
       			return item.category == 'T3H' && item.fcstTime == time2;
-      		} ); 
-      		text.innerHTML += arr[0].fcstValue+'℃';
+      		} );
+      		//위젯 현재 온도
+      		weather1.innerHTML += arr[0].fcstValue+'℃';
 
       		//3시간 날씨
       		var arr = obj.filter( 
@@ -158,50 +162,53 @@ function selLeaf(s3){
 </script>
 </head>
 <body>
-<div id="weatherDiv">
-<div id="selectDiv">
-<%
-CoordFetcher coord = new CoordFetcher();
-%>
-<select id="selectBox" onchange="selTop(this.value)">
-<%
-Map<String, String> mapTop = coord.getMap();
-for(Map.Entry<String,String> entry : mapTop.entrySet()){
-%>
-  <option value=<%=entry.getKey()%>><%=entry.getKey()%></option>
-<%}%>
-</select>
-
-<select id="selectBox2" onchange="selMdl(this.value)">
-<%
-Map<String, String> mapMdl = coord.getMapMdlInit("경기도");
-for(Map.Entry<String,String> entry : mapMdl.entrySet()){
-%>
-  <option value=<%=entry.getKey()%>><%=entry.getKey()%></option>
-<%}%>
-</select>
-
-<select id="selectBox3" onchange="selLeaf(this.value)">
-<%
-Map<String, Coord> mapLeaf = coord.getMapLeafInit("경기도", "부천시소사구");
-for(Map.Entry<String,Coord> entry : mapLeaf.entrySet()){
-%>
-  <option value=<%=entry.getKey()%>><%=entry.getKey()%></option>
-<%}%>
-</select>
-
-<script>
-	$("#selectBox").val("경기도").attr("selected","selected");
-	$("#selectBox2").val("부천시소사구").attr("selected","selected");
-	$("#selectBox3").val("괴안동").attr("selected","selected");
-	selLeaf("괴안동");
-</script>
-
-</div>
-
-<div id="text"></div>
-
+<div id="weatherDiv" style="width:700px;background:#222222;color:#FFFFFF;border-radius:20px;margin:0 auto;">
+	<div id="selectDiv" style="text-align:right">
+		<%
+		CoordFetcher coord = new CoordFetcher();
+		%>
+		<span class="custom-dropdown">
+		<select id="selectBox" onchange="selTop(this.value)">
+		<%
+		Map<String, String> mapTop = coord.getMap();
+		for(Map.Entry<String,String> entry : mapTop.entrySet()){
+		%>
+		  <option value=<%=entry.getKey()%>><%=entry.getKey()%></option>
+		<%}%>
+		</select>
+		</span>
+		<span class="custom-dropdown">
+		<select id="selectBox2" onchange="selMdl(this.value)">
+		<%
+		Map<String, String> mapMdl = coord.getMapMdlInit("경기도");
+		for(Map.Entry<String,String> entry : mapMdl.entrySet()){
+		%>
+		  <option value=<%=entry.getKey()%>><%=entry.getKey()%></option>
+		<%}%>
+		</select>
+		</span>
+		<span class="custom-dropdown">
+		<select id="selectBox3" onchange="selLeaf(this.value)">
+		<%
+		Map<String, Coord> mapLeaf = coord.getMapLeafInit("경기도", "부천시소사구");
+		for(Map.Entry<String,Coord> entry : mapLeaf.entrySet()){
+		%>
+		  <option value=<%=entry.getKey()%>><%=entry.getKey()%></option>
+		<%}%>
+		</select>
+		</span>
+		<script>
+			$("#selectBox").val("경기도").attr("selected","selected");
+			$("#selectBox2").val("부천시소사구").attr("selected","selected");
+			$("#selectBox3").val("괴안동").attr("selected","selected");
+			selLeaf("괴안동");
+		</script>
+	</div>
+	<div style="height:350px;">
+		<div id="text" style="margin-left:16%;float:left;"></div>
+		<div id="weather1" style="width:100%;height:250px;font-size:90px;padding-top:80px;margin-left:-90px;"></div>
+		<div id="weather" style="font-size:25px;margin-top:-70px;"></div>
+	</div>
 </div>
 </body>
-
 </html>
