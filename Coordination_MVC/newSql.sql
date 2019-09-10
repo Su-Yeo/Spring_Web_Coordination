@@ -1,6 +1,7 @@
 --2019.09.10 변경 사항
 --data Table에 img속성 추가
 --closet Table에 class속성 추가
+--data / closet Table auto_increment속성 추가
 
 --데이터셋으로 사용하기 위한 데이터베이스 생성
 create database dataset;
@@ -58,7 +59,7 @@ primary key(id)
 -- 상의 / 하의 구분하는 속성 추가(class)
 -- 상의면 Top의 t, 하의면 Pants의 p
 create table closet(
-num int(11) not null,
+num int(11) not null auto_increment,
 id varchar(30),
 class varchar(1),
 data varchar(30),
