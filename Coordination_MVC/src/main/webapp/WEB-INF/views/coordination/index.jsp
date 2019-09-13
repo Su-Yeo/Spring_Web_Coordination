@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@page import="com.google.gson.JsonArray"%>
 <%@page import="java.util.Map"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%request.setCharacterEncoding("utf-8");%>    
 <!DOCTYPE html>
 <html>
@@ -26,13 +27,11 @@
     }
     
     #div_left{
-       float: left;
-       position: fixed;
-       left: 5%;
-       top: 40%;
-       margin-left: 85%;
-       text-align: center;
-       width: 117px;
+		position: absolute;
+		top: 300px;
+		right: 50%;
+		width: 117px;
+		margin-right: -720px;
     }
     
 	#div_main{
@@ -225,6 +224,13 @@
     #btn_group button:hover{
         color:white;
     }
+    
+    img {
+		align:center;
+		margin:0 auto;
+		width: 275px;
+		height: 400px;
+	}
 </style>
 </head>
 <body>
@@ -249,6 +255,30 @@
     	</div>
 	</div>
 <script>
+	//오른쪽 리모콘 Animation
+	$(document).ready(function() {
+	
+		// 기존 css에서 플로팅 배너 위치(top)값을 가져와 저장한다.
+		var floatPosition = parseInt($("#div_left").css('top'));
+		// 250px 이런식으로 가져오므로 여기서 숫자만 가져온다. parseInt( 값 );
+	
+		$(window).scroll(function() {
+			// 현재 스크롤 위치를 가져온다.
+			var scrollTop = $(window).scrollTop();
+			var newPosition = scrollTop + floatPosition + "px";
+	
+			/* 애니메이션 없이 바로 따라감
+			 $("#div_left").css('top', newPosition);
+			 */
+	
+			$("#div_left").stop().animate({
+				"top" : newPosition
+			}, 500);
+	
+		}).scroll();
+	
+	});
+
 	function openNav() {
 			document.getElementById("mySidenav").style.width = "400px";
 	}
@@ -272,7 +302,10 @@
     <!-- weather select start -->
     	<div style="width:100%;margin-top:30px;text-align:center;">
 		    <div id="div_include3">
-		    	<jsp:include page="weather.jsp" flush="true"></jsp:include>
+		    	<c:forEach items="${image}" var="image">
+		    		${image}
+		    	</c:forEach>
+		    	<!--<jsp:include page="weather.jsp" flush="true"></jsp:include> -->
 		    </div>
 	    </div>
     <!-- weather select end -->
@@ -320,5 +353,18 @@
 		</div>
 	</div>
 	<!-- bottom end -->
+	
+<!--
+	//원래 리모콘 CSS 
+	#div_left{
+       float: left;
+       position: fixed;
+       left: 5%;
+       top: 40%;
+       margin-left: 85%;
+       text-align: center;
+       width: 117px;
+    }
+ -->
 </body>
 </html>

@@ -44,11 +44,9 @@
 	<div style="display: table; margin: 0 auto;">
 		<c:forEach items="${selectStyle}" var="style">
 			<div class="polaroid">
-				<a href="${style.url}">
+				<a href="${style.url}" target="_blank">
 					<img src="/main/resources/style/${style.img_name}" alt="이미지 링크">
-					<div class="container">
-						<p>${style.img_name}</p>
-					</div>
+					<p></p>
 				</a>
 			</div>
 		</c:forEach>	
