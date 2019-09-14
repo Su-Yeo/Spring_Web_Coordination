@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.json.simple.JSONArray;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -57,13 +58,21 @@ public class HomeController {
 		//id 이름 가져오기 : select("#id명")
 		//속성 가져오기 : attr("alt")
 		String url = "http://under70.kr/product/list.html?cate_no=25";
+		String url2 = "http://www.flyday.co.kr/shop/shopbrand.html?xcode=044&type=O";
 		
 		//Connect
 		Document doc = Jsoup.connect(url).get();
+		Document doc2 = Jsoup.connect(url2).get();
 		
 		//상품리스트의 상품사진 class명
-		Elements titles = doc.select("div.box a img.thumb");				
+		Elements titles = doc.select("div.box a img.thumb");
+		Elements titles2 = doc2.select("dt.thumb a img.MS_prod_img_s");
+	
+		//2019.09.14
+		//현재 문제점: 이미지가 날라오면서 주소가 잘리는 바람에 앞에 사이트 주소를 붙여줘야 엑박X
+
 		model.addAttribute("image", titles);
+		model.addAttribute("image2", titles2);
 		
 		return "coordination/index";
 	}
