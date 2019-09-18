@@ -305,9 +305,6 @@
 		    	<c:forEach items="${image}" var="image">
 		    		${image}
 		    	</c:forEach>
-		    	<c:forEach items="${image2}" var="image2">
-		    		${image2}
-		    	</c:forEach>
 		    	<!--<jsp:include page="weather.jsp" flush="true"></jsp:include> -->
 		    </div>
 	    </div>

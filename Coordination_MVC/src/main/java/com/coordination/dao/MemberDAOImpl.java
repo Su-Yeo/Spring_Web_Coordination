@@ -5,9 +5,12 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
+import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 import com.coordination.dto.MemberVO;
 
+@Service
 public class MemberDAOImpl implements MemberDAO {
 
 	@Inject
@@ -16,18 +19,18 @@ public class MemberDAOImpl implements MemberDAO {
 	private static final String Namespace = "com.coordination.mapper.memberMapper";
 	
 	//회원목록 전체 조회
-	@Override
-	public List<MemberVO> memberList() throws Exception {
-		
-		return sqlSession.selectList(Namespace+".memberList");
-	}
-
-	//특정 회원 정보 조회
-	@Override
-	public List<MemberVO> selectMember(MemberVO vo) throws Exception {
-		
-		return sqlSession.selectList(Namespace+".selectMember", vo);
-	}
+//	@Override
+//	public List<MemberVO> memberList() throws Exception {
+//		
+//		return sqlSession.selectList(Namespace+".memberList");
+//	}
+//
+//	//특정 회원 정보 조회
+//	@Override
+//	public List<MemberVO> selectMember(MemberVO vo) throws Exception {
+//		
+//		return sqlSession.selectList(Namespace+".selectMember", vo);
+//	}
 
 	//회원가입
 	@Override

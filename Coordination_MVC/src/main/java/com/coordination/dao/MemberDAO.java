@@ -7,10 +7,10 @@ import com.coordination.dto.MemberVO;
 public interface MemberDAO {
 
 	//회원목록 전체 조회
-	public List<MemberVO> memberList() throws Exception;
+	//public List<MemberVO> memberList() throws Exception;
 	
 	//특정 회원 정보 조회
-	public List<MemberVO> selectMember(MemberVO vo) throws Exception;
+	//public List<MemberVO> selectMember(MemberVO vo) throws Exception;
 	
 	//회원가입
 	public void insertMember(MemberVO vo);

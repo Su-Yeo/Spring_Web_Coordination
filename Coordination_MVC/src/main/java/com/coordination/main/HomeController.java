@@ -1,12 +1,16 @@
 package com.coordination.main;
 
+import java.io.PrintWriter;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
+
+import javax.inject.Inject;
+import javax.servlet.http.HttpServletResponse;
 
 import org.json.simple.JSONArray;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,7 +21,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
+import com.coordination.admin.Tensorflow;
+import com.coordination.dao.StyleDAO;
+import com.coordination.dto.StyleVO;
 import com.coordination.weather.ApiExplorerWeather;
 import com.coordination.weather.CoordFetcher;
 import com.google.gson.JsonArray;
@@ -30,10 +38,9 @@ public class HomeController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
-	/*
 	@Inject
 	private StyleDAO styleDAO;
-	*/
+	
 	private String top="경기도";
 	private String mdl="부천시소사구";
 	
@@ -42,40 +49,21 @@ public class HomeController {
 	 * @throws Exception 
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(@ModelAttribute /* StyleVO vo, */ Locale locale, Model model) throws Exception {
+	public String home(@ModelAttribute StyleVO vo, Locale locale, Model model) throws Exception {
 		logger.info("Welcome Man & Coordination!!");
-
-		//2019.09.14
-		//현재 문제점: 이미지가 날라오면서 주소가 잘리는 바람에 앞에 사이트 주소를 붙여줘야 엑박X
-		//2019.09.16
-		//14일에 발생한 주소붙이는 부분 해결 완료
-
 		
 		//이미지 링크 가져오기
 		//클래스 이름 가져오기 : select("클래스명")
 		//id 이름 가져오기 : select("#id명")
 		//속성 가져오기 : attr("alt")
 		String url = "http://under70.kr/product/list.html?cate_no=25";
-		String url2 = "http://www.flyday.co.kr/shop/shopbrand.html?xcode=044&type=O";
 		
 		//Connect
 		Document doc = Jsoup.connect(url).get();
-		Document doc2 = Jsoup.connect(url2).get();
 		
 		//상품리스트의 상품사진 class명
-		Elements titles = doc.select("div.box a img.thumb");
-		Elements titles2 = doc2.select("dt.thumb a img.MS_prod_img_s");
-	
-		String[] str = new String[titles2.size()];
-		for(int i=0; i<str.length; i++)
-		{
-			titles2.attr("src");
-			titles2.text();
-			System.out.println(titles2);
-		}
-
+		Elements titles = doc.select("div.box a img.thumb");				
 		model.addAttribute("image", titles);
-		model.addAttribute("image2", titles2);
 		
 		return "coordination/index";
 	}
@@ -115,7 +103,7 @@ public class HomeController {
     }
     
     @RequestMapping(value="/style", method=RequestMethod.POST, produces="text/plain;charset=utf-8")
-	public String style(@ModelAttribute /* StyleVO vo, */ Model model, @RequestParam("tmn")String tmn, @RequestParam("tmx")String tmx) throws Exception {
+    public String style(@ModelAttribute StyleVO vo, Model model, @RequestParam("tmn")String tmn, @RequestParam("tmx")String tmx) throws Exception {
 		logger.info("style");
 		
 		System.out.println("tmn : "+tmn);
@@ -176,10 +164,9 @@ public class HomeController {
 		HashMap<String, String[]> hm = new HashMap<String, String[]>();
 		hm.put("data", data) ;
 		
-		/*
-		 * List<StyleVO> selectStyle = styleDAO.selectStyle(hm);
-		 * model.addAttribute("selectStyle", selectStyle);
-		 */
+		List<StyleVO> selectStyle = styleDAO.selectStyle(hm);
+		model.addAttribute("selectStyle", selectStyle);
+
 		return "coordination/imageView";
 	}
 }
