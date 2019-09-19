@@ -6,6 +6,8 @@
     
         <typeAliases>
             <typeAlias type="com.coordination.dto.StyleVO" alias="styleVO"/>
+            <typeAlias type="com.coordination.dto.MemberVO" alias="memberVO"/>
+                        
             <typeAlias type="com.coordination.dto.ShopVO" alias="shopVO"/>
         </typeAliases>
    

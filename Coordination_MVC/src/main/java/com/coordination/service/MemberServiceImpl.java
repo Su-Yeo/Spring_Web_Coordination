@@ -1,9 +1,11 @@
 package com.coordination.service;
 
+import java.io.PrintWriter;
 import java.util.List;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -58,13 +60,16 @@ public class MemberServiceImpl implements MemberService {
 	
 	//로그인 처리
 	@Override
-	public MemberVO loginCheck(MemberVO vo, HttpSession session, HttpServletRequest request) throws Exception {
+	public MemberVO loginCheck(MemberVO vo, HttpSession session, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter out = response.getWriter();
 		
 		vo = dao.loginCheck(vo);
 		
-		//로그인 성공
-		if(vo != null)
-		{
+		//로그인 성공 AND 회원을 탈퇴하지 않은 회원(ghost='n')
+		if(vo != null && vo.getGhost().equals("n"))
+		{	
 			logger.info(vo.getName() + "회원 Login Success");
 			
 			//Test 
@@ -79,9 +84,32 @@ public class MemberServiceImpl implements MemberService {
 			//이름의 경우 사이트에 OOO님 환영합니다 문구 시 필요 [추후 필요없을 경우 삭제]
 			session.setAttribute("userID", vo.getId());
 			session.setAttribute("userName", vo.getName());
+			
+			return vo;
 		}
-		
-		return vo;
+		//탈퇴한 회원이 로그인을 시도할 경우
+		//Controller에서 vo.getGhost()가 y일 경우 처리해줌
+		else if(vo != null && vo.getGhost().equals("y"))
+		{
+			logger.info("Error!!, 탈퇴한 회원 로그인");
+            
+			out.println("<script>"
+					+ "alert('탈퇴한 회원입니다');"
+        			+ "</script>");
+            out.flush();
+			
+            return vo;
+		}
+		else
+		{
+			logger.info("Error!!, 아이디 또는 비밀번호 오류");
+			
+			out.println("<script>"
+					+ "alert('아이디 또는 비밀번호가 틀렸습니다.');"
+        			+ "</script>");
+            out.flush();
+            
+            return new MemberVO();
+		}
 	}
-
 }

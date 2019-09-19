@@ -6,6 +6,7 @@ public class MemberVO {
 	private String password;
 	private String name;
 	private String phone;
+	private String ghost;
 	
 	//Getter, Setter
 	public String getId() {
@@ -31,5 +32,11 @@ public class MemberVO {
 	}
 	public void setPhone(String phone) {
 		this.phone = phone;
+	}
+	public String getGhost() {
+		return ghost;
+	}
+	public void setGhost(String ghost) {
+		this.ghost = ghost;
 	}
 }

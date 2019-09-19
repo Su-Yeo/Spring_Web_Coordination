@@ -3,6 +3,7 @@ package com.coordination.service;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.coordination.dto.MemberVO;
@@ -25,6 +26,6 @@ public interface MemberService {
 	public void deleteMember(MemberVO vo);
 		
 	//로그인 처리
-	public MemberVO loginCheck(MemberVO vo, HttpSession session, HttpServletRequest request) throws Exception;
+	public MemberVO loginCheck(MemberVO vo, HttpSession session, HttpServletRequest request, HttpServletResponse response) throws Exception;
 
 }

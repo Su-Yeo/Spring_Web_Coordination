@@ -7,15 +7,17 @@ IDENTIFIED BY 'man01';
 
 /* 회원정보를 저장하는 테이블
  * 아이디(PK)
- * 비밀번호
+ * 비밀번호(비밀번호 암호화)
  * 이름
  * 전화번호(01000000000)
+ * 회원 탈퇴 여부 (삭제 요청 시 y로 변경 후 비밀번호를 암호화 시킬 예정)
  * */
 create table member(
 id varchar(30) not null,
-password varchar(16),
+password varchar(50),
 name varchar(30),
 phone varchar(11),
+ghost varchar(1) default 'n',
 primary key(id)
 );
 

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.coordination.mapper.memberMapper">
+      
+<!--   
+    <select id="memberList" resultType="memberVO">
+    	SELECT * FROM member
+    </select>
+    
+    <select id="selectMember" resultType="memberVO">
+    	SELECT * FROM member WHERE id=#{id}
+    </select>
+-->
+    
+    <!-- 회원가입 -->
+    <insert id="insertMember">
+    	INSERT INTO member(
+    		id,
+    		password,
+    		name,
+    		phone
+    		)
+    		VALUES(
+    		#{id},
+    		PASSWORD(#{password}),
+    		#{name},
+    		#{phone}
+    		)
+    </insert>
+    
+    <!-- 회원정보 수정 -->
+    <update id="updateMember">
+    	UPDATE member
+    		SET
+    		password=PASSWORD(#{password}),
+    		phone=#{phone}
+    		WHERE
+    		id=#{id}
+    </update>
+    
+    <!-- 회원정보 삭제 -->
+    <!-- closet Table에 Foreign Key로 걸려있기 때문에 해당 비밀번호를 변경 -->
+    <delete id="deleteMember">
+    	UPDATE member
+    		SET
+    		password=PASSWORD(#{password})
+    		WHERE
+    		id=#{id}
+    </delete>
+    
+    <!-- 로그인 처리 -->
+    <select id="loginCheck" resultType="memberVO">
+    	SELECT * FROM member WHERE id=#{id} AND password=#{password}
+    </select>
+    
+</mapper>
