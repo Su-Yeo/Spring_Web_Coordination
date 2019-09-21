@@ -26,6 +26,6 @@ public interface MemberService {
 	public void deleteMember(MemberVO vo);
 		
 	//로그인 처리
-	public MemberVO loginCheck(MemberVO vo, HttpSession session, HttpServletRequest request, HttpServletResponse response) throws Exception;
+	public String loginCheck(MemberVO vo, HttpSession session, HttpServletRequest request) throws Exception;
 
 }

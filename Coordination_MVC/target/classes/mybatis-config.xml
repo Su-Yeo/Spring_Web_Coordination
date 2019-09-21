@@ -7,7 +7,8 @@
         <typeAliases>
             <typeAlias type="com.coordination.dto.StyleVO" alias="styleVO"/>
             <typeAlias type="com.coordination.dto.MemberVO" alias="memberVO"/>
-                        
+            
+            <!-- 지워야하는 부분 -->          
             <typeAlias type="com.coordination.dto.ShopVO" alias="shopVO"/>
         </typeAliases>
    

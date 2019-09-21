@@ -7,11 +7,11 @@
       
 <!--   
     <select id="memberList" resultType="memberVO">
-    	SELECT * FROM member
+    	SELECT * FROM member WHERE ghost='n'
     </select>
     
     <select id="selectMember" resultType="memberVO">
-    	SELECT * FROM member WHERE id=#{id}
+    	SELECT * FROM member WHERE id=#{id} AND ghost='n'
     </select>
 -->
     
@@ -46,7 +46,8 @@
     <delete id="deleteMember">
     	UPDATE member
     		SET
-    		password=PASSWORD(#{password})
+    		password=PASSWORD(#{password}),
+    		ghost=#{ghost}
     		WHERE
     		id=#{id}
     </delete>

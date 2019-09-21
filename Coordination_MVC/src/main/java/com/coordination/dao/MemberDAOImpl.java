@@ -37,7 +37,7 @@ public class MemberDAOImpl implements MemberDAO {
 	public void insertMember(MemberVO vo) {
 		
 		sqlSession.insert(Namespace+".insertMember", vo);
-		System.out.println("---Data Insert Completion---");
+		System.out.println("*****Member Data Insert Completion*****");
 	}
 
 	//회원정보 수정
@@ -45,7 +45,7 @@ public class MemberDAOImpl implements MemberDAO {
 	public void updateMember(MemberVO vo) {
 		
 		sqlSession.insert(Namespace+".updateMember", vo);
-		System.out.println("---Data Update Completion---");
+		System.out.println("*****Member Data Update Completion*****");
 	}
 
 	//회원정보 삭제
@@ -53,7 +53,7 @@ public class MemberDAOImpl implements MemberDAO {
 	public void deleteMember(MemberVO vo) {
 		
 		sqlSession.insert(Namespace+".deleteMember", vo);
-		System.out.println("---Data Delete Completion---");
+		System.out.println("*****Member Data Delete Completion*****");
 	}
 
 	//로그인 처리

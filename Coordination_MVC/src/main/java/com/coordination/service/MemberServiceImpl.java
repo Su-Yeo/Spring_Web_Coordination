@@ -60,16 +60,16 @@ public class MemberServiceImpl implements MemberService {
 	
 	//로그인 처리
 	@Override
-	public MemberVO loginCheck(MemberVO vo, HttpSession session, HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public String loginCheck(MemberVO vo, HttpSession session, HttpServletRequest request) throws Exception {
 		
-		response.setContentType("text/html; charset=UTF-8");
-		PrintWriter out = response.getWriter();
+		//결과를 반환해줄 변수
+		String result = "";
 		
 		vo = dao.loginCheck(vo);
 		
-		//로그인 성공 AND 회원을 탈퇴하지 않은 회원(ghost='n')
+		//로그인 성공
 		if(vo != null && vo.getGhost().equals("n"))
-		{	
+		{
 			logger.info(vo.getName() + "회원 Login Success");
 			
 			//Test 
@@ -85,31 +85,23 @@ public class MemberServiceImpl implements MemberService {
 			session.setAttribute("userID", vo.getId());
 			session.setAttribute("userName", vo.getName());
 			
-			return vo;
+			result = "success";
 		}
-		//탈퇴한 회원이 로그인을 시도할 경우
-		//Controller에서 vo.getGhost()가 y일 경우 처리해줌
+		//탈퇴한 회원
 		else if(vo != null && vo.getGhost().equals("y"))
 		{
 			logger.info("Error!!, 탈퇴한 회원 로그인");
-            
-			out.println("<script>"
-					+ "alert('탈퇴한 회원입니다');"
-        			+ "</script>");
-            out.flush();
 			
-            return vo;
+			result = "ghost";
 		}
+		//로그인 실패
 		else
 		{
 			logger.info("Error!!, 아이디 또는 비밀번호 오류");
 			
-			out.println("<script>"
-					+ "alert('아이디 또는 비밀번호가 틀렸습니다.');"
-        			+ "</script>");
-            out.flush();
-            
-            return new MemberVO();
+			result = "fail";
 		}
+		
+		return result;
 	}
 }
