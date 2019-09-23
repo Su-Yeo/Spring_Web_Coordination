@@ -3,7 +3,14 @@ package com.coordination.admin;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class Tensorflow {
+	
+	private static final Logger logger = LoggerFactory.getLogger(Tensorflow.class);
+	
+	//상의 이미지 분석
 	public void Upper_Tensorflow(String image)
 	{
 		String s = null;
@@ -20,14 +27,14 @@ public class Tensorflow {
 			upper[2] = image;
 			//추론 이미지 경로와 동일해야함
 			
-			Process upper_process = Runtime.getRuntime().exec(upper);
+			Runtime.getRuntime().exec(upper);
 			System.out.println("----상의 이미지 자르기 완료----");
 			System.out.println();
 			System.out.println("----이미지 추론 시작----");
 			
 			//이미지 추론
 			String PythonScriptPath = "C:\\Python\\Lib\\site-packages\\tensorflow"
-					+ "\\examples\\label_image\\upper_image.py";
+					+ "\\examples\\label_image\\admin_upper.py";
 			String[] cmd = new String[7];
 			cmd[0] = "Python";
 			cmd[1] = PythonScriptPath;
@@ -36,7 +43,6 @@ public class Tensorflow {
 			cmd[4] = "--labels=C:\\tmp\\top\\retrain_labels.txt";
 			cmd[5] = "--graph=C:\\tmp\\top\\retrain_graph.pb";
 			cmd[6] = "--image=" + image;
-			//현재 색상구분 추론가능
 			
 			Process process = Runtime.getRuntime().exec(cmd);
 			
@@ -57,16 +63,20 @@ public class Tensorflow {
 			}
 			
 		}catch(Exception e){
-			System.out.println("분석하는 과정에서 에러가 발생했습니다.");
+			logger.info("**********Error!! (Upper_Tensorflow())**********");
+			System.out.println("**********Error!! (Upper_Tensorflow())**********");
 			e.printStackTrace();
+			
 			System.exit(-1);
 		}
 	}
 	
+	//하의 이미지 분석
 	public void Lower_Tensorflow(String image)
 	{
 		System.out.println();
 		
+		//이미지명 → 이미지명-1.jpg
 		image = image.substring(0, image.length()-4);
 		image += "-1.jpg";
 		String s = null;
@@ -83,14 +93,14 @@ public class Tensorflow {
 			lower[2] = image;
 			//추론 이미지 경로와 동일해야함
 			
-			Process lower_process = Runtime.getRuntime().exec(lower);
+			Runtime.getRuntime().exec(lower);
 			System.out.println("----하의 이미지 자르기 완료----");
 			System.out.println();
 			System.out.println("----이미지 추론 시작----");
 			
 			//이미지 추론
 			String PythonScriptPath = "C:\\Python\\Lib\\site-packages\\tensorflow"
-					+ "\\examples\\label_image\\lower_image.py";
+					+ "\\examples\\label_image\\admin_lower.py";
 			String[] cmd = new String[7];
 			cmd[0] = "Python";
 			cmd[1] = PythonScriptPath;
@@ -99,7 +109,6 @@ public class Tensorflow {
 			cmd[4] = "--labels=C:\\tmp\\top\\retrain_labels.txt";
 			cmd[5] = "--graph=C:\\tmp\\top\\retrain_graph.pb";
 			cmd[6] = "--image=" + image;
-			//현재 색상구분 추론가능
 			
 			Process process = Runtime.getRuntime().exec(cmd);
 			
@@ -120,18 +129,20 @@ public class Tensorflow {
 			}
 			
 		}catch(Exception e){
-			System.out.println("분석하는 과정에서 에러가 발생했습니다.");
+			logger.info("**********Error!! (Upper_Tensorflow())**********");
+			System.out.println("**********Error!! (Upper_Tensorflow())**********");
 			e.printStackTrace();
+			
 			System.exit(-1);
 		}
 	}
 	
-	
+	//이미지 복구
 	public void restore(String image)
 	{
 
 		try {
-			//이미지 복구작업
+			
 			String restore = image.substring(0, image.length()-4);
 			restore += "-2.jpg";
 			System.out.println(restore);
@@ -146,8 +157,10 @@ public class Tensorflow {
 			
 			System.out.println("----이미지 복구 완료----");
 		}catch(Exception e) {
-			System.out.println("복구하는 과정에서 에러가 발생했습니다.");
+			logger.info("**********Error!! (restore())**********");
+			System.out.println("**********Error!! (restore())**********");
 			e.printStackTrace();
+			
 			System.exit(-1);
 		}
 	}
