@@ -23,4 +23,7 @@ public interface MemberDAO {
 	
 	//로그인 처리
 	public MemberVO loginCheck(MemberVO vo) throws Exception;
+	
+	//회원가입 시, ID 중복체크
+	public MemberVO signUpCheck(MemberVO vo) throws Exception;
 }
