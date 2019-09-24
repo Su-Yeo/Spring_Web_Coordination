@@ -1,18 +1,15 @@
 package com.coordination.dao;
 
-import java.util.List;
-
-import javax.inject.Inject;
-
 import org.apache.ibatis.session.SqlSession;
-import org.springframework.stereotype.Service;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import com.coordination.dto.MemberVO;
 
-@Service
+@Repository
 public class MemberDAOImpl implements MemberDAO {
 
-	@Inject
+	@Autowired
 	private SqlSession sqlSession;
 	
 	private static final String Namespace = "com.coordination.mapper.memberMapper";
@@ -65,12 +62,4 @@ public class MemberDAOImpl implements MemberDAO {
 		
 		return vo;
 	}
-	
-	//회원가입 시, ID 중복체크
-	@Override
-	public MemberVO signUpCheck(MemberVO vo) throws Exception{
-		
-		return sqlSession.selectOne(Namespace+".signUpCheck", vo);
-	}
-
 }

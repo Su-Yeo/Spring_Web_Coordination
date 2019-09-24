@@ -25,7 +25,7 @@ th, td {
 	<tr>
 <c:forEach items="${selectStyle}" var="style">
 		<td>
-			<img src="/main/resources/style/${style.img_name}" width="200">
+			<img src="/resources/style/${style.img_name}" width="200">
 		</td>
 </c:forEach>
 	</tr>

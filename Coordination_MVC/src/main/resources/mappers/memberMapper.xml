@@ -60,9 +60,4 @@
     	SELECT * FROM member WHERE id=#{id} AND password=#{password}
     </select>
     
-    <!-- 회원가입 시, ID중복 체크 -->
-    <select id="signUpCheck" resultType="memberVO">
-    	SELECT id FROM member WHERE id=#{id}
-    </select>
-    
 </mapper>

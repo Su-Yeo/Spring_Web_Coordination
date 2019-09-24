@@ -1,13 +1,11 @@
 package com.coordination.member;
 
-import java.io.IOException;
 import java.io.PrintWriter;
 
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -22,32 +20,21 @@ public class InsertMember {
 	private MemberService service;
 	
 	@RequestMapping(value = "inserMember", method = RequestMethod.POST)
-	public String insert(MemberVO vo, HttpServletResponse response) throws IOException {
+	public ModelAndView insert(MemberVO vo, HttpServletResponse response) throws Exception {
 		
-		//ModelAndView mav = new ModelAndView();
+		ModelAndView mav = new ModelAndView();
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		
 		try {
-
-			//service.insertMember(vo);
-			vo = service.signUpCheck(vo);
-			if(vo != null)
-			{
-				System.out.println(vo.getId());
-				System.out.println(vo.getName());
-			}
-			else
-			{
-				System.out.println("사용가능한 아이디입니다.");
-			}
+			service.insertMember(vo);
 			
 			out.println("<script>"
 					+ "alert('가입완료! 로그인 페이지로 이동합니다.');"
         			+ "</script>");
             out.flush();
             
-            //mav.setViewName("coordination/member/signUpOK");
+            mav.setViewName("coordination/member/signUpOK");
 		}catch(Exception e) {
 			e.printStackTrace();
 			out.println("<script>"
@@ -55,9 +42,10 @@ public class InsertMember {
         			+ "</script>");
             out.flush();
             
-            //mav.setViewName("coordination/member/signUpFail");
+            mav.setViewName("coordination/member/signUpFail");
 		}
 		
-		return null;
+		return mav;
 	}
+
 }

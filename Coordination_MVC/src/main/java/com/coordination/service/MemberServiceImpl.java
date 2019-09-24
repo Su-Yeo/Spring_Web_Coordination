@@ -1,11 +1,7 @@
 package com.coordination.service;
 
-import java.io.PrintWriter;
-import java.util.List;
-
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -103,12 +99,5 @@ public class MemberServiceImpl implements MemberService {
 		}
 		
 		return result;
-	}
-	
-	//회원가입 시, ID 중복체크
-	@Override
-	public MemberVO signUpCheck(MemberVO vo) throws Exception{
-		
-		return dao.signUpCheck(vo);
 	}
 }
