@@ -157,11 +157,11 @@ public class HomeController {
 			data[1] = "harf-shirt";
 		}
 		
-		HashMap<String, String[]> hm = new HashMap<String, String[]>();
-		hm.put("data", data) ;
-		
-		List<StyleVO> selectStyle = styleDAO.selectStyle(hm);
-		model.addAttribute("selectStyle", selectStyle);
+//		HashMap<String, String[]> hm = new HashMap<String, String[]>();
+//		hm.put("data", data) ;
+//		
+//		List<StyleVO> selectStyle = styleDAO.selectStyle(hm);
+//		model.addAttribute("selectStyle", selectStyle);
 
 		return "coordination/imageView";
 	}
