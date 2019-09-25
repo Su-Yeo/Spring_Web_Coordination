@@ -24,4 +24,8 @@ public interface MemberService {
 		
 	//로그인 처리
 	public String loginCheck(MemberVO vo, HttpSession session, HttpServletRequest request) throws Exception;
+<<<<<<< HEAD
+
+=======
+>>>>>>> 73a35b5546b450e0985e8c97b4a8377eb71019a0
 }

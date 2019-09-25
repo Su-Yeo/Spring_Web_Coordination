@@ -1,8 +1,13 @@
 package com.coordination.dao;
 
 import org.apache.ibatis.session.SqlSession;
+<<<<<<< HEAD
+import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
+=======
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+>>>>>>> 73a35b5546b450e0985e8c97b4a8377eb71019a0
 
 import com.coordination.dto.MemberVO;
 
@@ -40,17 +45,15 @@ public class MemberDAOImpl implements MemberDAO {
 	@Override
 	public void updateMember(MemberVO vo) {
 		
-		sqlSession.update(Namespace+".updateMember", vo);
+		sqlSession.insert(Namespace+".updateMember", vo);
 		System.out.println("*****Member Data Update Completion*****");
 	}
 
 	//회원정보 삭제
-	//member + closet Foreign Key로 인해 삭제가 불가능하므로
-	//삭제를 원하는 회원의 비밀번호를 랜덤으로 암호화하여 접속이 불가능하게끔 변경
 	@Override
 	public void deleteMember(MemberVO vo) {
 		
-		sqlSession.update(Namespace+".deleteMember", vo);
+		sqlSession.insert(Namespace+".deleteMember", vo);
 		System.out.println("*****Member Data Delete Completion*****");
 	}
 
@@ -62,4 +65,8 @@ public class MemberDAOImpl implements MemberDAO {
 		
 		return vo;
 	}
+<<<<<<< HEAD
+
+=======
+>>>>>>> 73a35b5546b450e0985e8c97b4a8377eb71019a0
 }
