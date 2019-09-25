@@ -1,40 +1,40 @@
-package com.coordination.member;
+package com.coordination.style;
 
 import java.io.PrintWriter;
 
-import javax.inject.Inject;
 import javax.servlet.http.HttpServletResponse;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
 
-import com.coordination.dto.MemberVO;
-import com.coordination.service.MemberService;
+import com.coordination.dto.StyleVO;
+import com.coordination.service.StyleService;
 
 @Controller
-public class UpdateMember {
-
-	@Inject
-	private MemberService service;
+public class UpdateStyle {
 	
-	@RequestMapping(value = "updateMember", method = RequestMethod.POST)
-	public ModelAndView insert(MemberVO vo, HttpServletResponse response)throws Exception {
+	@Autowired
+	private StyleService service;
 	
-		ModelAndView mav = new ModelAndView();
+	@RequestMapping(value = "updateStyle", method = RequestMethod.POST)
+	public String update(StyleVO vo, HttpServletResponse response) throws Exception {
 		
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		
 		try {
-			service.updateMember(vo);
-			mav.setViewName("");
+			vo.setNum(1);
+			service.updateStyle(vo);
 			
 			out.println("<script>"
-					+ "alert('회원정보가 정상적으로 변경되었습니다.');"
+					+ "alert('이미지의 정보가 수정되었습니다.');"
         			+ "</script>");
             out.flush();
+			
 		}catch(Exception e) {
 			e.printStackTrace();
 			
@@ -44,6 +44,7 @@ public class UpdateMember {
         			+ "</script>");
             out.flush();
 		}
-		return mav;
+		
+		return null;
 	}
 }

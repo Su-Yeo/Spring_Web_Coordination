@@ -45,12 +45,13 @@ public class DeleteMember {
 					+ "alert('회원정보가 정상적으로 삭제되었습니다.');"
         			+ "</script>");
             out.flush();
+            
 		}catch(Exception e) {
-			//예외처리
-			mav.setViewName("");
+			e.printStackTrace();
 			
 			out.println("<script>"
-					+ "alert('Error!!! 다시 한 번 시도해주세요.');"
+					+ "alert('Error!!!');"
+					+ "history.back();"
         			+ "</script>");
             out.flush();
 		}

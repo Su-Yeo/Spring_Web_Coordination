@@ -42,12 +42,10 @@
 	</div>
 	
 	<div style="display: table; margin: 0 auto;">
-		<%-- <c:forEach items="${selectStyle}" var="style">
+		<%-- <c:forEach items="${StyleList}" var="style">
 			<div class="polaroid">
-				<a href="${style.url}" target="_blank">
-					<img src="/resources/style/${style.img_name}" alt="이미지 링크">
+					<img src="/resources/style/${style.img}" alt="이미지 링크">
 					<p></p>
-				</a>
 			</div>
 		</c:forEach> --%>	
 	</div>
