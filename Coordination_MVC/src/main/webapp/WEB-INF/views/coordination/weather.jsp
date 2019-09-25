@@ -22,9 +22,12 @@ function selTop(s){
         success : function(data){
         	var obj = JSON.parse(data);
     		$("#selectBox2").find("option").remove();
+    		$("#selectBox3").find("option").remove();
+    		$('#selectBox2').append("<option>선택해주세요</option>");
+    		$('#selectBox3').append("<option>선택해주세요</option>");
         	$.each(obj, function(index,entry){
                 $('#selectBox2').append("<option value='" + entry.value+ "'>" + entry.value + "</option>");
-     	   });
+     	    });
         }   
     });
 }
@@ -40,6 +43,7 @@ function selMdl(s2){
         },
         success : function(data){
         	var obj = JSON.parse(data);
+        	$("#selectBox2 option:first").remove();
     		$("#selectBox3").find("option").remove();
         	$.each(obj, function(index,entry){
                 //alert("code : "+ entry.code +", value : "+ entry.value);

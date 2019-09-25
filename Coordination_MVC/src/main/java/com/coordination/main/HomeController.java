@@ -1,10 +1,12 @@
 package com.coordination.main;
 
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletResponse;
 
 import org.json.simple.JSONArray;
 import org.jsoup.Jsoup;
@@ -19,7 +21,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
+import com.coordination.admin.Tensorflow;
 import com.coordination.dao.StyleDAO;
 import com.coordination.dto.StyleVO;
 import com.coordination.weather.ApiExplorerWeather;
@@ -157,11 +161,11 @@ public class HomeController {
 			data[1] = "harf-shirt";
 		}
 		
-		HashMap<String, String[]> hm = new HashMap<String, String[]>();
-		hm.put("data", data) ;
-		
-		List<StyleVO> selectStyle = styleDAO.selectStyle(hm);
-		model.addAttribute("selectStyle", selectStyle);
+//		HashMap<String, String[]> hm = new HashMap<String, String[]>();
+//		hm.put("data", data) ;
+//		
+//		List<StyleVO> selectStyle = styleDAO.selectStyle(hm);
+//		model.addAttribute("selectStyle", selectStyle);
 
 		return "coordination/imageView";
 	}

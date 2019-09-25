@@ -104,11 +104,4 @@ public class MemberServiceImpl implements MemberService {
 		
 		return result;
 	}
-	
-	//회원가입 시, ID 중복체크
-	@Override
-	public MemberVO signUpCheck(MemberVO vo) throws Exception{
-		
-		return dao.signUpCheck(vo);
-	}
 }

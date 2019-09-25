@@ -299,17 +299,22 @@
       </div>
       
       <div id="div_right">
-    <!-- weather select start -->
+    	<!-- weather select start -->
     	<div style="width:100%;margin-top:30px;text-align:center;">
 		    <div id="div_include3">
-		    	<c:forEach items="${image}" var="image">
-		    		${image}
-		    	</c:forEach>
-		    	<!--<jsp:include page="weather.jsp" flush="true"></jsp:include> -->
+		    	<jsp:include page="weather.jsp" flush="true"></jsp:include>
 		    </div>
 	    </div>
-    <!-- weather select end -->
+    	<!-- weather select end -->
+    	<!-- image select start -->
+    	<div>
+    		<c:forEach items="${image}" var="image">
+    			${image}
+		    </c:forEach>
+    	</div>
+    	<!-- image select end -->
       </div>
+      
       <div id="div_left">
          <div id="div_banner1">
             <button id="div_button1" onclick="location.href='#div_top'">▲</button>

@@ -28,6 +28,4 @@ public interface MemberService {
 	//로그인 처리
 	public String loginCheck(MemberVO vo, HttpSession session, HttpServletRequest request) throws Exception;
 
-	//회원가입 시, ID 중복체크
-	public MemberVO signUpCheck(MemberVO vo) throws Exception;
 }
