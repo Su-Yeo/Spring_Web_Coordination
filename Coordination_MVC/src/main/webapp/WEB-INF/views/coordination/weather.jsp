@@ -13,7 +13,7 @@
 function selTop(s){
     $.ajax({
         type : "POST",
-        url : "/main/weather/selTop",
+        url : "/weather/selTop",
         data: "selTop="+s,
         dataType: "text",
         error : function(data,xhr,status,error){
@@ -35,7 +35,7 @@ function selTop(s){
 function selMdl(s2){
     $.ajax({
         type : "POST",
-        url : "/main/weather/selMdl",
+        url : "/weather/selMdl",
         data: "selMdl="+s2,
         dataType: "text",
         error : function(data,xhr,status,error){
@@ -56,7 +56,7 @@ function selMdl(s2){
 function selLeaf(s3){
     $.ajax({
         type : "POST",
-        url : "/main/weather/selLeaf",
+        url : "/weather/selLeaf",
         data: "selLeaf="+s3,
         dataType: "text",
         error : function(data,xhr,status,error){
@@ -79,7 +79,7 @@ function selLeaf(s3){
       		$.ajax({
       		    type : "POST",
       		  	async : true,
-      		    url : "/main/style",
+      		    url : "/style",
       		    data : {"tmn" : arr1[0].fcstValue, "tmx" : arr1[1].fcstValue},
       		    dataType: "text",
       		    error : function(){
