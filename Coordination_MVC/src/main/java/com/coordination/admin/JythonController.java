@@ -34,6 +34,8 @@ public class JythonController {
 		//4 : Hood
 		String[] img = Parsing(1);
 		
+		//파싱해서 온 이미지를 /resources/admin 폴더 안에 저장한 후,
+		//해당 파일들을 순차적으로 이미지 분석 → DB등록
 		//이미지 Path
 		String image = "C:\\Users\\sangw\\OneDrive\\Desktop\\Coordination_MVC"
 				+ "\\src\\main\\webapp\\resources\\admin\\"
