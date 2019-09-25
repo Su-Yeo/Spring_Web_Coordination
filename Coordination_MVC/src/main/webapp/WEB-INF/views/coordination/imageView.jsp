@@ -42,14 +42,14 @@
 	</div>
 	
 	<div style="display: table; margin: 0 auto;">
-		<%-- <c:forEach items="${selectStyle}" var="style">
+		<c:forEach items="${selectStyle}" var="style">
 			<div class="polaroid">
 				<a href="${style.url}" target="_blank">
 					<img src="/resources/style/${style.img_name}" alt="이미지 링크">
 					<p></p>
 				</a>
 			</div>
-		</c:forEach> --%>	
+		</c:forEach>	
 	</div>
 </body>
 </html>

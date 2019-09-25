@@ -71,9 +71,10 @@
 					<div class="container-login100-form-btn">
 						<div class="wrap-login100-form-btn">
 							<div class="login100-form-bgbtn"></div>
-							<button class="login100-form-btn" onclick="document.getElementById('frm').submit();">
+							<!-- <button class="login100-form-btn" onclick="document.getElementById('frm').submit();">
 								등록하기
-							</button>
+							</button> -->
+							<input type="submit" value="등록하기" class="login100-form-btn" />
 						</div>
 						<a href="<c:url value='/'/>" class="dis-block txt3 hov1 p-r-30 p-t-10 p-b-10 p-l-30">
 							홈으로
