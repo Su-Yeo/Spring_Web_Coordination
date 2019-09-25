@@ -8,9 +8,9 @@
 <html>
 <head>
 <script src="http://code.jquery.com/jquery-2.2.2.min.js"></script>
-<link rel="stylesheet" href="resources/css/style.css">
-<link rel="stylesheet" href="resources/css/style2.css">
-<link rel="stylesheet" href="resources/css/swiper.min.css">
+<link rel="stylesheet" href="/resources/css/style.css">
+<link rel="stylesheet" href="/resources/css/style2.css">
+<link rel="stylesheet" href="/resources/css/swiper.min.css">
 <meta charset="UTF-8">
 <title>Man & Coordination</title>
 <style>	
@@ -294,7 +294,7 @@
       	 -->
       	<p class="p1" style="font-size:50px;weight:bold;">
      	<a href="#">
-     		<img src="resources/img/logo.jpg" style="width:700px;height:130px">
+     		<img src="/resources/img/logo.jpg" style="width:700px;height:130px">
 		</a></p><hr/>
       </div>
       

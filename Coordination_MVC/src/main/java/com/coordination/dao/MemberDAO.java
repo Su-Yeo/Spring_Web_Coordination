@@ -1,7 +1,5 @@
 package com.coordination.dao;
 
-import java.util.List;
-
 import com.coordination.dto.MemberVO;
 
 public interface MemberDAO {

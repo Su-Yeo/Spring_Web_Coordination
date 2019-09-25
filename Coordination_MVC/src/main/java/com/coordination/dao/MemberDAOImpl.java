@@ -1,19 +1,20 @@
 package com.coordination.dao;
 
-import java.util.List;
-
-import javax.inject.Inject;
-
 import org.apache.ibatis.session.SqlSession;
+<<<<<<< HEAD
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
+=======
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+>>>>>>> 73a35b5546b450e0985e8c97b4a8377eb71019a0
 
 import com.coordination.dto.MemberVO;
 
-@Service
+@Repository
 public class MemberDAOImpl implements MemberDAO {
 
-	@Inject
+	@Autowired
 	private SqlSession sqlSession;
 	
 	private static final String Namespace = "com.coordination.mapper.memberMapper";
@@ -64,5 +65,8 @@ public class MemberDAOImpl implements MemberDAO {
 		
 		return vo;
 	}
+<<<<<<< HEAD
 
+=======
+>>>>>>> 73a35b5546b450e0985e8c97b4a8377eb71019a0
 }
