@@ -1,11 +1,11 @@
 package com.coordination.service;
 
-import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.coordination.dao.MemberDAO;
@@ -14,7 +14,7 @@ import com.coordination.dto.MemberVO;
 @Service
 public class MemberServiceImpl implements MemberService {
 
-	@Inject
+	@Autowired
 	private MemberDAO dao;
 	
 	private static final Logger logger = LoggerFactory.getLogger(MemberServiceImpl.class);

@@ -4,45 +4,31 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  
 <mapper namespace="com.coordination.mapper.styleMapper">
-
-    <!-- <select id="selectStyle" resultType="styleVO">
-    	SELECT * 
-    	FROM STYLE
-    	WHERE 1=1
-    	<if test="data != null">
-    		AND data=#{data} OR data=#{color} OR data=#{shopcode} OR data=#{url}
-    	</if>
-    </select> -->
-    
-    <select id="selectStyle" resultType="styleVO" parameterType="hashmap">
-    	SELECT * 
-    	FROM STYLE
-    	where
-        <foreach collection="data" item="item" index="index" separator="or">
-            data = #{item}
-        </foreach>
-	</select>
-    
-    <insert id="insertStyle">
-    	INSERT INTO STYLE(
-    		img_name, data, color, ref, shopcode, url
-    		)VALUES(
-    		#{img_name}, #{data}, #{color}, #{ref}, #{shopcode}, #{url}
-    		)
-    </insert>
-    
-    <update id="updateStyle">
-    	UPDATE STYLE
-    		SET
-    		data=#{data},
-    		color=#{data},
-    		ref=#{ref},
-    		url=#{url}
-    		WHERE num=#{num}
-    </update>
-    
-    <delete id="deleteStyle">
-    	DELETE FROM STYLE WHERE num=#{num}
-    </delete>
+  
+  	<!-- INSERT의 경우 이미지 분석 후, Python을 통해 데이터베이스에 등록되므로 굳이 만들 필요가 없어서 제외 -->
+  	<select id="StyleList" resultType="styleVO">
+  		SELECT * FROM style
+  	</select>
+  	
+  	<select id="StyleOne" resultType="styleVO">
+  		SELECT *
+  		FROM style
+  		WHERE num=#{num}
+  	</select>
+  	
+  	<update id="updateStyle">
+  		UPDATE style SET
+  			top=#{top},
+  			top_color=#{top_color},
+  			pants=#{pants},
+  			pants_color=#{pants_color},
+  			img=#{img}
+  		WHERE
+  			num=#{num}
+  	</update>
+  	
+  	<delete id="deleteStyle">
+  		DELETE FROM style WHERE num=#{num}
+  	</delete>
     
 </mapper>

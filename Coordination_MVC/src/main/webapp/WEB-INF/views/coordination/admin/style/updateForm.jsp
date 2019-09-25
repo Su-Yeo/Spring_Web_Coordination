@@ -1,0 +1,75 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE html>
+<html>
+<head>
+<!-- favicon -->
+<link rel="apple-touch-icon" sizes="76x76" href="/resources/icon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/resources/icon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/resources/icon/favicon-16x16.png">
+<link rel="manifest" href="/resources/icon/site.webmanifest">
+<link rel="mask-icon" href="/resources/icon/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<!-- End favicon -->
+
+<meta name="theme-color" content="#ffffff">
+<meta charset="UTF-8">
+<title>관리자 - StyleUpdate</title>
+</head>
+<body>
+<div>
+<form action="updateStyle" method="POST">
+<table>
+<c:forEach items="${StyleOne}" var="style">
+	<tr>
+		<td align="center">
+			상의 종류
+		</td>
+		<td>
+			<input type="text" name="top" value="${style.top}" />
+		</td>
+	</tr>
+	<tr>
+		<td align="center">
+			상의 색상
+		</td>
+		<td>
+			<input type="text" name="top_color" value="${style.top_color}" />
+		</td>
+	</tr>
+	<tr>
+		<td align="center">
+			하의 종류
+		</td>
+		<td>
+			<input type="text" name="pants" value="${style.pants}" />
+		</td>
+	</tr>
+	<tr>
+		<td align="center">
+			하의 색상
+		</td>
+		<td>
+			<input type="text" name="pants_color" value="${style.pants_color}" />
+		</td>
+	</tr>
+	<tr>
+		<td align="center">
+			JPG
+		</td>
+		<td>
+			<input type="text" name="img" value="${style.img}" />
+		</td>
+	</tr>
+</c:forEach>
+	<tr>
+		<td colspan="2" align="center">
+			<input type="submit" value="이미지 수정하기" />
+		</td>
+	</tr>
+</table>
+</form>
+</div>
+</body>
+</html>

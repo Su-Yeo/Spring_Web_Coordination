@@ -37,6 +37,7 @@ public class InsertMember {
             mav.setViewName("coordination/member/signUpOK");
 		}catch(Exception e) {
 			e.printStackTrace();
+			
 			out.println("<script>"
 					+ "alert('회원가입에 실패했습니다. 다시 한 번 시도해주세요.');"
         			+ "</script>");

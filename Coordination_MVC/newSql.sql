@@ -33,8 +33,8 @@ primary key(id)
 create table style(
 num int(11) not null auto_increment,
 top varchar(30),
-pants varchar(30),
 top_color varchar(30),
+pants varchar(30),
 pants_color varchar(30),
 img varchar(50),
 primary key(num)

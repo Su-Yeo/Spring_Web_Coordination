@@ -1,57 +1,49 @@
 package com.coordination.dto;
 
 public class StyleVO {
-
 	
-	private int num; //사진번호	
-	private String img_name; //이미지명	
-	private String data; //상의종류 (하의종류 추가할지 고민중)
-	private String color; //색상	
-	private int ref; //조회 수	
-	private String shopcode; //쇼핑몰코드
-	private String url; //쇼핑몰 URL
+	private int num;
+	private String top;
+	private String top_color;
+	private String pants;
+	private String pants_color;
+	private String img;
 	
-	
+	//Getter Setter
 	public int getNum() {
 		return num;
 	}
 	public void setNum(int num) {
 		this.num = num;
 	}
-	public String getImg_name() {
-		return img_name;
+	public String getTop() {
+		return top;
 	}
-	public void setImg_name(String img_name) {
-		this.img_name = img_name;
+	public void setTop(String top) {
+		this.top = top;
 	}
-	public String getData() {
-		return data;
+	public String getTop_color() {
+		return top_color;
 	}
-	public void setData(String data) {
-		this.data = data;
+	public void setTop_color(String top_color) {
+		this.top_color = top_color;
 	}
-	public String getColor() {
-		return color;
+	public String getPants() {
+		return pants;
 	}
-	public void setColor(String color) {
-		this.color = color;
+	public void setPants(String pants) {
+		this.pants = pants;
 	}
-	public int getRef() {
-		return ref;
+	public String getPants_color() {
+		return pants_color;
 	}
-	public void setRef(int ref) {
-		this.ref = ref;
+	public void setPants_color(String pants_color) {
+		this.pants_color = pants_color;
 	}
-	public String getShopcode() {
-		return shopcode;
+	public String getImg() {
+		return img;
 	}
-	public void setShopcode(String shopcode) {
-		this.shopcode = shopcode;
-	}
-	public String getUrl() {
-		return url;
-	}
-	public void setUrl(String url) {
-		this.url = url;
+	public void setImg(String img) {
+		this.img = img;
 	}
 }
