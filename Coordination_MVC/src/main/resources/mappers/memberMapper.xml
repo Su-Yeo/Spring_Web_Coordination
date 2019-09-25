@@ -42,14 +42,11 @@
     </update>
     
     <!-- 회원정보 삭제 -->
-    <!-- member + closet Foreign Key로 인해 삭제가 불가능하므로 -->
-    <!-- 삭제를 원하는 회원의 비밀번호를 랜덤으로 암호화하여 접속이 불가능하게끔 변경 -->
+    <!-- closet Table에 Foreign Key로 걸려있기 때문에 해당 비밀번호를 변경 -->
     <delete id="deleteMember">
     	UPDATE member
     		SET
     		password=PASSWORD(#{password}),
-    		name=#{name},
-    		phone=#{phone},
     		ghost=#{ghost}
     		WHERE
     		id=#{id}

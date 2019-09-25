@@ -1,6 +1,9 @@
 package com.coordination.service;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.coordination.dto.MemberVO;
@@ -24,4 +27,5 @@ public interface MemberService {
 		
 	//로그인 처리
 	public String loginCheck(MemberVO vo, HttpSession session, HttpServletRequest request) throws Exception;
+
 }

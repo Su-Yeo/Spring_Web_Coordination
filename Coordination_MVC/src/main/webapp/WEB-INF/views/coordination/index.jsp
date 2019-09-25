@@ -8,9 +8,9 @@
 <html>
 <head>
 <script src="http://code.jquery.com/jquery-2.2.2.min.js"></script>
-<link rel="stylesheet" href="/resources/css/style.css">
-<link rel="stylesheet" href="/resources/css/style2.css">
-<link rel="stylesheet" href="/resources/css/swiper.min.css">
+<link rel="stylesheet" href="resources/css/style.css">
+<link rel="stylesheet" href="resources/css/style2.css">
+<link rel="stylesheet" href="resources/css/swiper.min.css">
 <meta charset="UTF-8">
 <title>Man & Coordination</title>
 <style>	
@@ -294,22 +294,27 @@
       	 -->
       	<p class="p1" style="font-size:50px;weight:bold;">
      	<a href="#">
-     		<img src="/resources/img/logo.jpg" style="width:700px;height:130px">
+     		<img src="resources/img/logo.jpg" style="width:700px;height:130px">
 		</a></p><hr/>
       </div>
       
       <div id="div_right">
-    <!-- weather select start -->
+    	<!-- weather select start -->
     	<div style="width:100%;margin-top:30px;text-align:center;">
 		    <div id="div_include3">
-		    	<c:forEach items="${image}" var="image">
-		    		${image}
-		    	</c:forEach>
-		    	<!--<jsp:include page="weather.jsp" flush="true"></jsp:include> -->
+		    	<jsp:include page="weather.jsp" flush="true"></jsp:include>
 		    </div>
 	    </div>
-    <!-- weather select end -->
+    	<!-- weather select end -->
+    	<!-- image select start -->
+    	<div>
+    		<c:forEach items="${image}" var="image">
+    			${image}
+		    </c:forEach>
+    	</div>
+    	<!-- image select end -->
       </div>
+      
       <div id="div_left">
          <div id="div_banner1">
             <button id="div_button1" onclick="location.href='#div_top'">▲</button>

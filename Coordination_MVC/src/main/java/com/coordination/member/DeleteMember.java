@@ -29,13 +29,11 @@ public class DeleteMember {
 		PrintWriter out = response.getWriter();
 		
 		try {
-			vo.setId("sangwon");
+			vo.setId("sangwon3");
 			//탈퇴유저 처리
-			//ID를 제외한 모든 회원정보를 랜덤으로 변경하여 정보 파기
-			vo.setPassword(RandomStringUtils.randomAscii(20));
-			vo.setName(RandomStringUtils.randomAscii(3));
-			vo.setPhone(RandomStringUtils.random(11));
 			vo.setGhost("y");
+			//비밀번호 20자리 랜덤 초기화
+			vo.setPassword(RandomStringUtils.randomAscii(20));
 			
 			//정상적으로 등록 완료 시, 로그인 페이지로 이동
 			service.deleteMember(vo);
