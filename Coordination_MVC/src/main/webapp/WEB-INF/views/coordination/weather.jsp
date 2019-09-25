@@ -22,12 +22,9 @@ function selTop(s){
         success : function(data){
         	var obj = JSON.parse(data);
     		$("#selectBox2").find("option").remove();
-    		$("#selectBox3").find("option").remove();
-    		$('#selectBox2').append("<option>선택해주세요</option>");
-    		$('#selectBox3').append("<option>선택해주세요</option>");
         	$.each(obj, function(index,entry){
                 $('#selectBox2').append("<option value='" + entry.value+ "'>" + entry.value + "</option>");
-     	    });
+     	   });
         }   
     });
 }
@@ -43,7 +40,6 @@ function selMdl(s2){
         },
         success : function(data){
         	var obj = JSON.parse(data);
-        	$("#selectBox2 option:first").remove();
     		$("#selectBox3").find("option").remove();
         	$.each(obj, function(index,entry){
                 //alert("code : "+ entry.code +", value : "+ entry.value);
@@ -149,16 +145,16 @@ function selLeaf(s3){
       					return item2.category == 'SKY' && item2.fcstTime == item.fcstTime 
       				}); 
       				arr.forEach(function (item, index, array) { 
-      					if(item.fcstValue=='1'){text.innerHTML += '<img src="resources/img/weather/sun.png" style="width:250px; height:250px;"><br>';} 
+      					if(item.fcstValue=='1'){text.innerHTML += '<img src="/resources/img/weather/sun.png" style="width:250px; height:250px;"><br>';} 
       					else if(item.fcstValue=='2'){text.innerHTML += '구름조금<br>';} 
-      					else if(item.fcstValue=='3'){text.innerHTML += '<img src="resources/img/weather/cloudsun.png" style="width:250px; height:250px;"><br>';} 
-      					else{text.innerHTML += '<img src="resources/img/weather/cloud.png" style="width:250px; height:250px;"><br>';}
+      					else if(item.fcstValue=='3'){text.innerHTML += '<img src="/resources/img/weather/cloudsun.png" style="width:250px; height:250px;"><br>';} 
+      					else{text.innerHTML += '<img src="/resources/img/weather/cloud.png" style="width:250px; height:250px;"><br>';}
       				}); 
       			} 
-      			else if(item.fcstValue=='1'){text.innerHTML += '<img src="resources/img/weather/rain.png" style="width:250px; height:250px;"><br>';} 
+      			else if(item.fcstValue=='1'){text.innerHTML += '<img src="/resources/img/weather/rain.png" style="width:250px; height:250px;"><br>';} 
       			else if(item.fcstValue=='2'){text.innerHTML += '비/눈<br>';} 
-      			else if(item.fcstValue=='3'){text.innerHTML += '<img src="resources/img/weather/snow.png" style="width:250px; height:250px;"><br>';} 
-      			else{text.innerHTML += '<img src="resources/img/weather/rain2.png" style="width:250px; height:250px;"><br>';}
+      			else if(item.fcstValue=='3'){text.innerHTML += '<img src="/resources/img/weather/snow.png" style="width:250px; height:250px;"><br>';} 
+      			else{text.innerHTML += '<img src="/resources/img/weather/rain2.png" style="width:250px; height:250px;"><br>';}
       		}); 
         }   
     });

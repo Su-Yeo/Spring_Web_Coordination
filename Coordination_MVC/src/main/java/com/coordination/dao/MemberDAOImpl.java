@@ -1,19 +1,15 @@
 package com.coordination.dao;
 
-import java.util.List;
-
-import javax.inject.Inject;
-
 import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.stereotype.Service;
 
 import com.coordination.dto.MemberVO;
 
-@Service
+@Repository
 public class MemberDAOImpl implements MemberDAO {
 
-	@Inject
+	@Autowired
 	private SqlSession sqlSession;
 	
 	private static final String Namespace = "com.coordination.mapper.memberMapper";
@@ -44,15 +40,17 @@ public class MemberDAOImpl implements MemberDAO {
 	@Override
 	public void updateMember(MemberVO vo) {
 		
-		sqlSession.insert(Namespace+".updateMember", vo);
+		sqlSession.update(Namespace+".updateMember", vo);
 		System.out.println("*****Member Data Update Completion*****");
 	}
 
 	//회원정보 삭제
+	//member + closet Foreign Key로 인해 삭제가 불가능하므로
+	//삭제를 원하는 회원의 비밀번호를 랜덤으로 암호화하여 접속이 불가능하게끔 변경
 	@Override
 	public void deleteMember(MemberVO vo) {
 		
-		sqlSession.insert(Namespace+".deleteMember", vo);
+		sqlSession.update(Namespace+".deleteMember", vo);
 		System.out.println("*****Member Data Delete Completion*****");
 	}
 
@@ -64,5 +62,4 @@ public class MemberDAOImpl implements MemberDAO {
 		
 		return vo;
 	}
-
 }

@@ -14,7 +14,7 @@ public class MemberController {
 	}
 	
 	//member 로그인 Page이동
-	@RequestMapping(value = "/login")
+	@RequestMapping("login")
 	public String login() {
 		
 		return "coordination/member/login";
