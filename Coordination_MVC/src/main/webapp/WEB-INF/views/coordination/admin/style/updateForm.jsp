@@ -22,6 +22,7 @@
 <form action="updateStyle" method="POST">
 <table>
 <c:forEach items="${StyleOne}" var="style">
+			<input type="hidden" name="num" value="${style.num}" />
 	<tr>
 		<td align="center">
 			상의 종류
@@ -62,6 +63,18 @@
 			<input type="text" name="img" value="${style.img}" />
 		</td>
 	</tr>
+<script type="text/javascript">
+	function deleteStyle() {
+		if(confirm('이미지를 삭제하시겠습니까???'))
+		{
+			location.href="<c:url value='deleteStyle'/>?num=${style.num}";
+		}
+		else
+		{
+			
+		}
+	}
+</script>
 </c:forEach>
 	<tr>
 		<td colspan="2" align="center">
@@ -70,6 +83,9 @@
 	</tr>
 </table>
 </form>
+			<button onClick="deleteStyle();">
+				이미지 삭제하기
+			</button>
 </div>
 </body>
 </html>

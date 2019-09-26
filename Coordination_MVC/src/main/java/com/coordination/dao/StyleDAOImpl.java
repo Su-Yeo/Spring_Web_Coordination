@@ -35,6 +35,13 @@ public class StyleDAOImpl implements StyleDAO {
 		return sqlSession.selectList(Namespace+".StyleList", data);
 	}
 	
+	//Method Override
+	@Override
+	public List<StyleVO> StyleList() throws Exception {
+		
+		return sqlSession.selectList(Namespace+".StyleList");
+	}
+	
 	//업데이트를 위한 이미지 정보 불러오기
 	public List<StyleVO> StyleOne(StyleVO vo) throws Exception {
 

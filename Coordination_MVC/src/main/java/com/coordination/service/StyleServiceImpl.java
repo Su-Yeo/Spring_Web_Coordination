@@ -24,6 +24,13 @@ public class StyleServiceImpl implements StyleService {
 		return dao.StyleList(data);
 	}
 	
+	//Method Override
+	@Override
+	public List<StyleVO> StyleList() throws Exception {
+		
+		return dao.StyleList();
+	}
+	
 	//업데이트를 위한 이미지 정보 불러오기
 	@Override	
 	public List<StyleVO> StyleOne(StyleVO vo, int num) throws Exception {
