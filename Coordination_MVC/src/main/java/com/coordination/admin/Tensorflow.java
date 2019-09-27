@@ -114,7 +114,8 @@ public class Tensorflow {
 		//이미지명 → 이미지명-1.jpg
 		image = image.substring(0, image.length()-4);
 		image += "-1.jpg";
-		
+		System.out.println(image);
+
 		String s = null;
 		try {
 			
@@ -152,14 +153,15 @@ public class Tensorflow {
 			}
 			
 		}catch(Exception e){
-			logger.info("**********Error!! (Upper_Tensorflow())**********");
-			System.out.println("**********Error!! (Upper_Tensorflow())**********");
+			logger.info("**********Error!! (lower_Tensorflow())**********");
+			System.out.println("**********Error!! (lower_Tensorflow())**********");
 			e.printStackTrace();
 			
 			System.exit(-1);
 		}finally {
-			System.out.println("======상의 이미지 분석 완료===");
+			System.out.println("======하의 이미지 분석 완료===");
 		}
+
 	}
 	
 	//이미지 복구

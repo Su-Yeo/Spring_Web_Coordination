@@ -32,13 +32,13 @@ public class JythonController {
 		//2 : T-shirt
 		//3 : Half-Tshirt
 		//4 : Hood
-		String[] img = Parsing(1);
+		//String[] img = Parsing(1);
 		
 		//파싱해서 온 이미지를 /resources/admin 폴더 안에 저장한 후,
 		//해당 파일들을 순차적으로 이미지 분석 → DB등록
 		//이미지 Path
-		String path = "C:\\Users\\sangw\\OneDrive\\문서\\Spring_Web\\"
-				+ "Coordination_MVC\\src\\main\\webapp\\resources\\admin\\";
+		String path = "C:\\Users\\sangw\\Coordination_MVC\\Coordination_MVC"
+				+ "\\src\\main\\webapp\\resources\\admin\\";
 		
 		String image = path + "709a56ccd5aa45ac5a30cb8f2d41ddc7.jpg";
 		
@@ -47,11 +47,11 @@ public class JythonController {
 			//전신 이미지 분리
 			tf.Cut(image);
 			//상의 이미지 분석
-			//tf.Upper_Tensorflow(image);
+			tf.Upper_Tensorflow(image);
 			//하의 이미지 분석
-			//tf.Lower_Tensorflow(image);
+			tf.Lower_Tensorflow(image);
 			//이미지 복구
-			//tf.restore(image);
+			tf.restore(image);
 		}
 		return mav;
 	}
