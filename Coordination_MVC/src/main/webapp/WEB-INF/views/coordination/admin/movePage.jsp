@@ -8,11 +8,15 @@
 <title>MovePage</title>
 </head>
 <body>
-<!-- Update가 완료되면 adminStyleList를 호출 -->
+<!-- Update -->
 <c:if test="${url eq 'update'}">
 	<meta charset="UTF-8" http-equiv="refresh" content="0;url=<c:url value='adminStyleList'/>">
 </c:if>
-<!-- 추후 늘어날 예정 -->
+
+<!-- Delete -->
+<c:if test="${url eq 'delete'}">
+	<meta charset="UTF-8" http-equiv="refresh" content="0;url=<c:url value='adminStyleList'/>">
+</c:if>
 
 </body>
 </html>

@@ -14,6 +14,12 @@ img{
 }
 </style>
 <body>
+
+<!-- 데이터베이스에 정보가 없을 경우 -->
+<c:if test="${empty StyleList}">
+		<h2>데이터베이스에 등록된 정보가 없습니다.</h2>
+</c:if>
+
 <c:forEach items="${StyleList}" var="style">
 	<a href="<c:url value='adminUpdate'/>?num=${style.num}">
 		<img src="/resources/admin/${style.img}" />

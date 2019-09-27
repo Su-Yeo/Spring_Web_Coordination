@@ -17,12 +17,23 @@
 <meta charset="UTF-8">
 <title>관리자 - StyleUpdate</title>
 </head>
+<style>
+img{
+	width: 250px;
+	height : 300px;
+}
+</style>
 <body>
 <div>
 <form action="updateStyle" method="POST">
 <table>
 <c:forEach items="${StyleOne}" var="style">
 			<input type="hidden" name="num" value="${style.num}" />
+	<tr>
+		<td colspan="2" align="center">
+			<img src="/resources/admin/${style.img}" />
+		</td>
+	</tr>		
 	<tr>
 		<td align="center">
 			상의 종류
@@ -67,7 +78,7 @@
 	function deleteStyle() {
 		if(confirm('이미지를 삭제하시겠습니까???'))
 		{
-			location.href="<c:url value='deleteStyle'/>?num=${style.num}";
+			location.href="<c:url value='deleteStyle'/>?num=${style.num}&img=${style.img}";
 		}
 		else
 		{

@@ -10,31 +10,67 @@ public class Tensorflow {
 	
 	private static final Logger logger = LoggerFactory.getLogger(Tensorflow.class);
 	
+	//전신 이미지 분리
+	//원본 이미지 -> 상의 이미지
+	//하의 이미지 -> 원본파일-1.jpg
+	//원본 이미지 -> 원본파일-2.jpg로 복사
+	public void Cut(String image)
+	{
+		String s = null;
+		try {
+			
+			System.out.println("Executing Python cut.py");
+			
+			String cutPath = "C:\\Python\\Lib\\site-packages\\"
+					+ "tensorflow\\examples\\label_image\\cut.py";
+			
+			//추론 이미지 경로와 동일해야함
+			String[] cut = new String[3];
+			cut[0] = "Python";
+			cut[1] = cutPath;
+			cut[2] = image;
+			
+			Process process = Runtime.getRuntime().exec(cut);
+			
+			BufferedReader stdInput = new BufferedReader(new
+					InputStreamReader(process.getInputStream()));
+			
+			BufferedReader stdError = new BufferedReader(new
+					InputStreamReader(process.getErrorStream()));
+			
+			while((s = stdInput.readLine()) != null)
+			{
+				System.out.println(s);
+			}
+			
+			while((s = stdError.readLine()) != null)
+			{
+				System.out.println(s);
+			}
+		}catch(Exception e){
+			logger.info("**********Error!! (Cut())**********");
+			System.out.println("**********Error!! (Cut())**********");
+			e.printStackTrace();
+			
+			System.exit(-1);
+		}finally {
+			System.out.println("===상의 이미지 자르기 완료===");
+			System.out.println("===하의 이미지 자르기 완료===");
+		}
+	}
+	
 	//상의 이미지 분석
 	public void Upper_Tensorflow(String image)
 	{
 		String s = null;
 		try {
 			
-			System.out.println("Executing Python Code");
-			
-			String upperPath = "C:\\Python\\Lib\\site-packages\\"
-					+ "tensorflow\\examples\\label_image\\upper.py";
-			
-			String[] upper = new String[3];
-			upper[0] = "Python";
-			upper[1] = upperPath;
-			upper[2] = image;
-			//추론 이미지 경로와 동일해야함
-			
-			Runtime.getRuntime().exec(upper);
-			System.out.println("----상의 이미지 자르기 완료----");
-			System.out.println();
-			System.out.println("----이미지 추론 시작----");
+			System.out.println("Executing Python admin_upper.py");
 			
 			//이미지 추론
 			String PythonScriptPath = "C:\\Python\\Lib\\site-packages\\tensorflow"
 					+ "\\examples\\label_image\\admin_upper.py";
+			
 			String[] cmd = new String[7];
 			cmd[0] = "Python";
 			cmd[1] = PythonScriptPath;
@@ -61,46 +97,33 @@ public class Tensorflow {
 			{
 				System.out.println(s);
 			}
-			
 		}catch(Exception e){
 			logger.info("**********Error!! (Upper_Tensorflow())**********");
 			System.out.println("**********Error!! (Upper_Tensorflow())**********");
 			e.printStackTrace();
 			
 			System.exit(-1);
+		}finally {
+			System.out.println("======상의 이미지 분석 완료===");
 		}
 	}
 	
 	//하의 이미지 분석
 	public void Lower_Tensorflow(String image)
 	{
-		System.out.println();
-		
 		//이미지명 → 이미지명-1.jpg
 		image = image.substring(0, image.length()-4);
 		image += "-1.jpg";
+		
 		String s = null;
 		try {
 			
-			System.out.println("Executing Python Code");
-			
-			String lowerPath = "C:\\Python\\Lib\\site-packages\\"
-					+ "tensorflow\\examples\\label_image\\lower.py";
-			
-			String[] lower = new String[3];
-			lower[0] = "Python";
-			lower[1] = lowerPath;
-			lower[2] = image;
-			//추론 이미지 경로와 동일해야함
-			
-			Runtime.getRuntime().exec(lower);
-			System.out.println("----하의 이미지 자르기 완료----");
-			System.out.println();
-			System.out.println("----이미지 추론 시작----");
-			
+			System.out.println("Executing Python admin_lower.py");		
+						
 			//이미지 추론
 			String PythonScriptPath = "C:\\Python\\Lib\\site-packages\\tensorflow"
 					+ "\\examples\\label_image\\admin_lower.py";
+			
 			String[] cmd = new String[7];
 			cmd[0] = "Python";
 			cmd[1] = PythonScriptPath;
@@ -134,34 +157,38 @@ public class Tensorflow {
 			e.printStackTrace();
 			
 			System.exit(-1);
+		}finally {
+			System.out.println("======상의 이미지 분석 완료===");
 		}
 	}
 	
 	//이미지 복구
 	public void restore(String image)
 	{
-
+		String s = null;
 		try {
-			
+			//이미지명.jpg → 이미지명
 			String restore = image.substring(0, image.length()-4);
+			
+			//이미지명 → 이미지명-2.jpg (원본파일명)
 			restore += "-2.jpg";
-			System.out.println(restore);
 			
-			String[] cmdd = new String[3];
-			cmdd[0] = "Python";
-			cmdd[1] = "C:\\Python\\Lib\\site-packages\\tensorflow\\"
+			String[] cmd = new String[3];
+			cmd[0] = "Python";
+			cmd[1] = "C:\\Python\\Lib\\site-packages\\tensorflow\\"
 					+ "examples\\label_image\\restore.py";
-			cmdd[2] = restore;
+			cmd[2] = restore;
 			
-			Process restore_process = Runtime.getRuntime().exec(cmdd);
 			
-			System.out.println("----이미지 복구 완료----");
+			Runtime.getRuntime().exec(cmd);
 		}catch(Exception e) {
 			logger.info("**********Error!! (restore())**********");
 			System.out.println("**********Error!! (restore())**********");
 			e.printStackTrace();
 			
 			System.exit(-1);
+		}finally {
+			System.out.println("======이미지 복구 완료===");
 		}
 	}
 }

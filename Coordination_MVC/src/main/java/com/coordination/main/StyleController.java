@@ -24,6 +24,7 @@ public class StyleController {
 	public String goStyleList(Model model) throws Exception {
 		
 		List<StyleVO> StyleList = service.StyleList();
+			
 		model.addAttribute("StyleList", StyleList);
 		
 		return "coordination/admin/style/StyleList";

@@ -19,7 +19,7 @@ public class JythonController {
 	private static final Logger logger = LoggerFactory.getLogger(JythonController.class);
 	public static String[] img = new String[5];
 
-	@RequestMapping("goadmin")
+	@RequestMapping("adminInsert")
 	public ModelAndView Tensorflow(HttpServletResponse response) throws Exception  {
 		
 		ModelAndView mav = new ModelAndView();
@@ -37,18 +37,21 @@ public class JythonController {
 		//파싱해서 온 이미지를 /resources/admin 폴더 안에 저장한 후,
 		//해당 파일들을 순차적으로 이미지 분석 → DB등록
 		//이미지 Path
-		String image = "C:\\Users\\sangw\\OneDrive\\Desktop\\Coordination_MVC"
-				+ "\\src\\main\\webapp\\resources\\admin\\"
-				+ "709a56ccd5aa45ac5a30cb8f2d41ddc6.jpg";  
+		String path = "C:\\Users\\sangw\\OneDrive\\문서\\Spring_Web\\"
+				+ "Coordination_MVC\\src\\main\\webapp\\resources\\admin\\";
+		
+		String image = path + "709a56ccd5aa45ac5a30cb8f2d41ddc7.jpg";
 		
 		for(int i=0; i<1; i++)
 		{
+			//전신 이미지 분리
+			tf.Cut(image);
 			//상의 이미지 분석
-			tf.Upper_Tensorflow(image);
+			//tf.Upper_Tensorflow(image);
 			//하의 이미지 분석
-			tf.Lower_Tensorflow(image);
+			//tf.Lower_Tensorflow(image);
 			//이미지 복구
-			tf.restore(image);
+			//tf.restore(image);
 		}
 		return mav;
 	}
