@@ -66,19 +66,19 @@ public class MemberServiceImpl implements MemberService {
 		//로그인 성공
 		if(vo != null && vo.getGhost().equals("n"))
 		{
-			logger.info(vo.getName() + "회원 Login Success");
+			logger.info("회원 Login Success");
 			
 			//Test 
 			//잘 수행될 경우 해당 구문 주석 or 삭제요망
-			System.out.println("ID : " + vo.getId());
-			System.out.println("PASSWORD : " + vo.getPassword());
-			System.out.println("NAME : " + vo.getName());
-			System.out.println("PHONE : " + vo.getPhone());
+			//System.out.println("ID : " + vo.getId());
+			//System.out.println("PASSWORD : " + vo.getPassword());
+			//System.out.println("NAME : " + vo.getName());
+			//System.out.println("PHONE : " + vo.getPhone());
 			
 			//세션 설정
 			//id의 경우 회원정보 수정, 삭제 시 필요
 			//이름의 경우 사이트에 OOO님 환영합니다 문구 시 필요 [추후 필요없을 경우 삭제]
-			session.setAttribute("userID", vo.getId());
+			session.setAttribute("userId", vo.getId());
 			session.setAttribute("userName", vo.getName());
 			
 			result = "success";

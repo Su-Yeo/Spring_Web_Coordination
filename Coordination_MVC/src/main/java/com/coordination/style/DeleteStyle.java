@@ -52,14 +52,14 @@ public class DeleteStyle {
 				
 				//삭제 완료 후, StyleList로 이동
 				logger.info("==========이미지를 정상적으로 삭제했습니다.==========");
-	            model.addAttribute("url", "delete");
 			}
 			else
 			{
 				//해당 Path에 이미지가 존재하지 않아 삭제불가능
 				logger.info("==========이미지가 존재하지않아 삭제에 실패했습니다.==========");
-	            model.addAttribute("url", "delete");
 			}
+			
+			model.addAttribute("url", "deleteStyle");
 			
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -68,7 +68,7 @@ public class DeleteStyle {
             model.addAttribute("url", "delete");
 		}
 		
-		return "coordination/admin/movePage";
+		return "movePage";
 	}
 	
 	@RequestMapping("delete")

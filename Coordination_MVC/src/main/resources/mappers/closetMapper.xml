@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.coordination.mapper.closetMapper">
+
+	<select id="ClosetList" resultType="closetVO">
+		SELECT *
+		FROM closet
+		WHERE id = #{id}
+	</select>
+	
+	<insert id="insertCloset">
+		INSERT INTO closet(
+			id,
+			category,
+			color,
+			img
+		)VALUES(
+			#{id},
+			#{category},
+			#{color},
+			#{img}
+		)
+	</insert>
+	
+	<update id="updateCloset">
+		UPDATE closet SET
+			category=#{category},
+			color=#{color},
+			img=#{img}
+		WHERE
+			num=#{num}
+	</update>
+	
+	<delete id="deleteCloset">
+		DELETE FROM closet WHERE num=#{num}
+	</delete>
+</mapper>

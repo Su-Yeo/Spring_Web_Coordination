@@ -34,16 +34,18 @@ public class InsertMember {
         			+ "</script>");
             out.flush();
             
-            mav.setViewName("coordination/member/signUpOK");
+            mav.setViewName("movePage");
+            mav.addObject("url", "insertMember");
+            
 		}catch(Exception e) {
 			e.printStackTrace();
 			
 			out.println("<script>"
 					+ "alert('회원가입에 실패했습니다. 다시 한 번 시도해주세요.');"
+					+ "history.back();"
         			+ "</script>");
             out.flush();
-            
-            mav.setViewName("coordination/member/signUpFail");
+        
 		}
 		
 		return mav;

@@ -36,7 +36,7 @@ public class UpdateStyle {
             out.flush();
             
             //업데이트 완료 후, StyleList로 이동
-            model.addAttribute("url", "update");
+            model.addAttribute("url", "updateStyle");
 			
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -48,6 +48,6 @@ public class UpdateStyle {
             out.flush();
 		}
 		
-		return "coordination/admin/movePage";
+		return "movePage";
 	}
 }

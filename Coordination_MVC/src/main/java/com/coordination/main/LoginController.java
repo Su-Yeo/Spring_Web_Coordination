@@ -28,7 +28,7 @@ public class LoginController {
 	private MemberService service;
 	
 	//로그인 처리
-	@RequestMapping(value="/logincheck", method=RequestMethod.POST)
+	@RequestMapping(value="loginCheck", method=RequestMethod.POST)
 	public ModelAndView loginCheck(@ModelAttribute MemberVO vo, HttpSession session, HttpServletRequest request, HttpServletResponse response) {
 		
 		ModelAndView mav = new ModelAndView();
@@ -39,14 +39,12 @@ public class LoginController {
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			
-			RedirectView redirect = new RedirectView("/");
-			redirect.setContextRelative(true);
-			
 			//로그인 성공
 			if(result.equals("success"))
 			{
 				//메인 페이지로 이동
-				mav.setView(redirect);
+				mav.setViewName("movePage");
+				mav.addObject("url", "loginSuccess");
 			}
 			//탈퇴한 회원
 			else if(result.equals("ghost"))
@@ -56,19 +54,19 @@ public class LoginController {
 	        			+ "</script>");
 	            out.flush();
 	            
-	            //로그인 페이지로 이동
-	            mav.setViewName("");
+	          //메인 페이지로 이동
+				mav.setViewName("movePage");
+				mav.addObject("url", "loginGhost");
 			}
 			//로그인 실패
 			else
 			{
 				out.println("<script>"
 						+ "alert('아이디 또는 비밀번호가 틀렸습니다.');"
+						+ "history.back();"
 	        			+ "</script>");
 	            out.flush();
-	            
-	            //로그인 페이지로 이동
-	            mav.setViewName("");
+
 			}
 			
 		}catch(Exception e) {

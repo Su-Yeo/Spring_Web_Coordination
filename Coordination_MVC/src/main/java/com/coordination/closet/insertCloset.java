@@ -1,43 +1,44 @@
-package com.coordination.member;
+package com.coordination.closet;
 
 import java.io.PrintWriter;
 
-import javax.inject.Inject;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.coordination.dto.MemberVO;
-import com.coordination.service.MemberService;
+import com.coordination.dto.ClosetVO;
+import com.coordination.service.ClosetService;
 
 @Controller
-public class UpdateMember {
+public class insertCloset {
 
-	@Inject
-	private MemberService service;
+	@Autowired
+	private ClosetService service;
 	
-	@RequestMapping(value = "updateMember", method = RequestMethod.POST)
-	public ModelAndView insert(MemberVO vo, HttpServletResponse response)throws Exception {
-	
-		ModelAndView mav = new ModelAndView();
+	@RequestMapping(value = "insertCloset", method = RequestMethod.POST)
+	public ModelAndView insert(ClosetVO vo, HttpServletResponse response) throws Exception {
 		
+		ModelAndView mav = new ModelAndView();
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		
 		try {
-			service.updateMember(vo);
+			
+			service.insertCloset(vo);
 			
 			out.println("<script>"
-					+ "alert('회원정보가 정상적으로 변경되었습니다.');"
+					+ "alert('정상적으로 등록되었습니다.');"
         			+ "</script>");
             out.flush();
             
+            //MyPage로 이동
             mav.setViewName("movePage");
-            mav.addObject("url", "updateMember");
-            
+            mav.addObject("url", "insertCloset");
+			
 		}catch(Exception e) {
 			e.printStackTrace();
 			
@@ -46,7 +47,6 @@ public class UpdateMember {
 					+ "history.back();"
         			+ "</script>");
             out.flush();
-            
 		}
 		
 		return mav;

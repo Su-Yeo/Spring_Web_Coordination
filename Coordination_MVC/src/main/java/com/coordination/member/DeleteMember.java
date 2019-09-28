@@ -29,22 +29,25 @@ public class DeleteMember {
 		PrintWriter out = response.getWriter();
 		
 		try {
-			vo.setId("sangwon");
+			//vo.setId("client01");
+			
 			//탈퇴유저 처리
-			//ID를 제외한 모든 회원정보를 랜덤으로 변경하여 정보 파기
-			vo.setPassword(RandomStringUtils.randomAscii(20));
-			vo.setName(RandomStringUtils.randomAscii(3));
-			vo.setPhone(RandomStringUtils.random(11));
+			//ID,PASSWORD를 제외한 모든 회원정보를 랜덤으로 변경하여 정보 파기
+			//비밀번호를 안바꾸는 이유는 로그인 처리에서 vo는 있지만 ghost가 y인 것만 구분하기 위해
+			//그렇기에 회원가부터 암호화
+			vo.setName(RandomStringUtils.randomAscii(1));
+			vo.setPhone(RandomStringUtils.random(1));
 			vo.setGhost("y");
 			
-			//정상적으로 등록 완료 시, 로그인 페이지로 이동
 			service.deleteMember(vo);
-			mav.setViewName("coordination/index");
 			
 			out.println("<script>"
 					+ "alert('회원정보가 정상적으로 삭제되었습니다.');"
         			+ "</script>");
             out.flush();
+            
+            mav.setViewName("movePage");
+            mav.addObject("url", "deleteMember");
             
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -54,7 +57,9 @@ public class DeleteMember {
 					+ "history.back();"
         			+ "</script>");
             out.flush();
+            
 		}
+		
 		return mav;
 	}
 }
