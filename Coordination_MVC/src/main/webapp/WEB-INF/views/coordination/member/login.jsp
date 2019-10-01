@@ -3,8 +3,46 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Login</title>
+<script src="http://code.jquery.com/jquery-latest.min.js">
+</script>
+
+<script>
+	$(document).ready(function() {
+		$("#btnLogin").click(function() {
+			var userid = $("#id").val();
+			var passwd = $('#password').val();
+			
+			if (userid == "") {
+				$('#id_invalidate').text("아이디를 입력해주세요");
+				$('#id').focus();
+				//return;
+			}
+			if(passwd == "") {
+				$('#pwd_invalidate').text("비밀번호를 입력해주세요");
+			}
+/* 			$('.loginForm').submit();
+			var data = "id=" + userid + "&password=" + passwd;
+			
+			$.ajax({
+				type : "POST",
+				data : data,
+				url : action,
+				success : function(value) {
+					$('loginForm').submit();
+				}
+			}); */
+		});
+	});
+</script>
+<style>
+	span{
+		font-color: red;
+		font-weight: bold; 
+		font-size: 7px;
+	}
+</style>
 </head>
 <body>
 <div align = "center">
@@ -13,17 +51,19 @@
 		<table cellpadding="5" align = "center">
 			<tr>
 				<td align = "center">
-					<input type="text" name="id" maxlength="30" placeholder="아이디" pattern="[A-Za-z0-9]{4,}" autofocus required>
+					<input type="text" id="id" name="id" maxlength="30" placeholder="아이디" pattern="[A-Za-z0-9]{4,}" autofocus required><br/>
+					<span id="id_invalidate"></span>
 				</td>
 			</tr>
 			<tr>
 				<td align = "center">
-					<input type="password" name="password" maxlength="50" placeholder="비밀번호" autofocus required>
+					<input type="password" id="password" name="password" maxlength="50" placeholder="비밀번호" autofocus required><br/>
+					<span id="pwd_invalidate"></span>
 				</td>
 			</tr>
 			<tr>
 				<td align = "center">
-					<input type="submit" value="로 그 인">
+					<input type="button" value="로 그 인" id="btnLogin">
 				</td>
 			</tr>
 		</table>
