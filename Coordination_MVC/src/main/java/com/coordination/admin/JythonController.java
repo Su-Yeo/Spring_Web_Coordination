@@ -2,6 +2,7 @@ package com.coordination.admin;
 
 import java.io.PrintWriter;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.jsoup.Jsoup;
@@ -10,8 +11,9 @@ import org.jsoup.select.Elements;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class JythonController {
@@ -19,28 +21,23 @@ public class JythonController {
 	private static final Logger logger = LoggerFactory.getLogger(JythonController.class);
 	public static String[] img = new String[5];
 
-	@RequestMapping("adminInsert")
-	public ModelAndView Tensorflow(HttpServletResponse response) throws Exception  {
-		
-		ModelAndView mav = new ModelAndView();
+	@RequestMapping(value = "adminInsert")
+	public String Tensorflow(HttpServletResponse response, HttpServletRequest request, Model model) throws Exception  {
+			
+		//이미지 분석 객체 생성
 		Tensorflow tf = new Tensorflow();
+		
 		//alert창 사용을 위한 선언 
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
-		
-		//1 : Outer
-		//2 : T-shirt
-		//3 : Half-Tshirt
-		//4 : Hood
-		//String[] img = Parsing(1);
-		
+
 		//파싱해서 온 이미지를 /resources/admin 폴더 안에 저장한 후,
 		//해당 파일들을 순차적으로 이미지 분석 → DB등록
 		//이미지 Path
 		String path = "C:\\Users\\sangw\\Coordination_MVC\\Coordination_MVC"
 				+ "\\src\\main\\webapp\\resources\\admin\\";
 		
-		String image = path + "709a56ccd5aa45ac5a30cb8f2d41ddc7.jpg";
+		String image = path + "709a56ccd5aa45ac5a30cb8f2d41ddc9.jpg";
 		
 		for(int i=0; i<1; i++)
 		{
@@ -53,15 +50,37 @@ public class JythonController {
 			//이미지 복구
 			tf.restore(image);
 		}
-		return mav;
+		
+		model.addAttribute("url", "insertStyle");
+		
+		return "movePage";
+	}
+	
+	@RequestMapping(value = "parsing")
+	public String ImageDown(HttpServletRequest request) {
+		
+		//1 : Outer
+		//2 : T-shirt
+		//3 : Half-Tshirt
+		//4 : Hood
+		int num = 0;
+		num = Integer.parseInt(request.getParameter("Category"));
+
+		//파싱해서 가져온 이미지를 배열로 받는다.
+		String[] img = Parsing(num);
+		
+		//해당 로직에서 지정된 장소에 해당 이미지 다운로드
+		
+		for(int i=0; i<img.length; i++)
+		{
+			System.out.println(img[i]);
+		}
+		
+		return null;
 	}
 
 	public String[] Parsing(int num) {
 		
-		//이미지 링크 가져오기
-		//클래스 이름 가져오기 : select("클래스명")
-		//id 이름 가져오기 : select("#id명")
-		//속성 가져오기 : attr("alt")
 		try {
 			//파싱할 웹 페이지
 			String url = "";
