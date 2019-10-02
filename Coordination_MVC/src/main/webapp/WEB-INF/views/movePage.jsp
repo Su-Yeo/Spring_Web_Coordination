@@ -28,14 +28,14 @@
 	<meta charset="UTF-8" http-equiv="refresh" content="0;url=<c:url value=''/>">
 </c:if>
 
-<!-- ClosetUpdate(url 변경해야함) -->
+<!-- ClosetUpdate -->
 <c:if test="${url eq 'updateCloset'}">
-	<meta charset="UTF-8" http-equiv="refresh" content="0;url=<c:url value=''/>">
+	<meta charset="UTF-8" http-equiv="refresh" content="0;url=<c:url value='isMyPage'/>">
 </c:if>
 
-<!-- ClosetDelete(url 변경해야함) -->
+<!-- ClosetDelete -->
 <c:if test="${url eq 'deleteCloset'}">
-	<meta charset="UTF-8" http-equiv="refresh" content="0;url=<c:url value=''/>">
+	<meta charset="UTF-8" http-equiv="refresh" content="0;url=<c:url value='isMyPage'/>">
 </c:if>
 
 <!-- MemberInsert -->

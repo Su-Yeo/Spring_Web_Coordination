@@ -70,10 +70,10 @@ public class MemberServiceImpl implements MemberService {
 			
 			//Test 
 			//잘 수행될 경우 해당 구문 주석 or 삭제요망
-			//System.out.println("ID : " + vo.getId());
-			//System.out.println("PASSWORD : " + vo.getPassword());
-			//System.out.println("NAME : " + vo.getName());
-			//System.out.println("PHONE : " + vo.getPhone());
+			System.out.println("ID : " + vo.getId());
+			System.out.println("PASSWORD : " + vo.getPassword());
+			System.out.println("NAME : " + vo.getName());
+			System.out.println("PHONE : " + vo.getPhone());
 			
 			//세션 설정
 			//id의 경우 회원정보 수정, 삭제 시 필요
