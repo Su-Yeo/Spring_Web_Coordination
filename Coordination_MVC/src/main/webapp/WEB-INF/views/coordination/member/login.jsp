@@ -45,8 +45,17 @@
 				type : "GET",
 				data : data,
 				url : action,
+<<<<<<< HEAD
 				success : function(data) {
 					alert("값 전달 성공!!!");
+=======
+				success : function(response) {
+					  if(response.trim() == "success"){
+						  alert("dddd");
+					  }
+
+					$('#loginForm').submit();
+>>>>>>> da167f63e7367298d4eebd9e19ca311612b21baf
 				}
 			});
 			

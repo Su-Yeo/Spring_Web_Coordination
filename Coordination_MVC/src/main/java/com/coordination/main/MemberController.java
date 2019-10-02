@@ -234,6 +234,7 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value="loginAjax", method=RequestMethod.GET)
+<<<<<<< HEAD
 	public String loginAjax(@ModelAttribute MemberVO vo, HttpSession session, HttpServletRequest request, HttpServletResponse response) throws Exception {
 	
 		String id = request.getParameter("id");
@@ -242,6 +243,36 @@ public class MemberController {
 		System.out.println("====================================" + password);
 		System.out.println("success");
 		
+=======
+	public String ajaxlogin(@ModelAttribute MemberVO vo, HttpSession session, HttpServletRequest request) throws Exception {
+		
+		
+		try {
+		
+			String result = memberService.loginCheck(vo, session, request);
+			
+			
+			//로그인 성공
+			if(result.equals("success"))
+			{
+				System.out.println("success");
+			}
+			//탈퇴한 회원
+			else if(result.equals("ghost"))
+			{
+
+			}
+			//로그인 실패
+			else
+			{
+
+			}
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+			logger.info("Error!!");
+		}
+>>>>>>> da167f63e7367298d4eebd9e19ca311612b21baf
 		
 		return "coordination/member/login";
 	}
