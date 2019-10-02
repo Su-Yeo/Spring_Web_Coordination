@@ -39,7 +39,6 @@
 <style>
 	span{
 		color: red;
-		weight: bold; 
 		font-size: 7px;
 	}
 </style>
