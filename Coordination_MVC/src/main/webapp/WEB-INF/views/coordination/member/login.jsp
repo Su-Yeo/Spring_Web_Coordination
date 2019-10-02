@@ -38,8 +38,7 @@
 </script>
 <style>
 	span{
-		font-color: red;
-		font-weight: bold; 
+		color: red;
 		font-size: 7px;
 	}
 </style>
