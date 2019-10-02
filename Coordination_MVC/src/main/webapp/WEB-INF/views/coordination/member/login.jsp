@@ -15,24 +15,40 @@
 			var passwd = $('#password').val();
 			
 			if (userid == "") {
-				$('#id_invalidate').text("아이디를 입력해주세요");
+				$('#invalidate').text("아이디를 입력해주세요");
 				$('#id').focus();
-				//return;
+				return;
 			}
-			if(passwd == "") {
-				$('#pwd_invalidate').text("비밀번호를 입력해주세요");
-			}
-/* 			$('.loginForm').submit();
-			var data = "id=" + userid + "&password=" + passwd;
 			
+			var exp = /^[A-Za-z0-9]{4,}$/; // 영문자와 숫자
+			// 정규표현식.test(입력값) -> 규칙에 맞으면 true
+			
+			if(!exp.test(userid)){
+				$('#invalidate').text("4자 이상의 영문자와 숫자만 입력가능합니다.");
+				$('#id').focus();
+				return;
+			}
+			else {
+				$('#invalidate').text("");
+			}
+			
+			if(passwd == "") {
+				$('#invalidate').text("비밀번호를 입력해주세요");
+				$('#password').focus();
+				return;
+			}
+			$('#loginForm').submit();
+			/*var data = "id=" + userid + "&password=" + passwd;
+
 			$.ajax({
 				type : "POST",
 				data : data,
 				url : action,
 				success : function(value) {
-					$('loginForm').submit();
+					$('#loginForm').submit();
 				}
-			}); */
+			});
+			*/
 		});
 	});
 </script>
@@ -46,18 +62,17 @@
 <body>
 <div align = "center">
 	<b>Login</b>
-	<form name="loginForm" method="post" action="loginCheck">
+	<form id="loginForm" method="post" action="loginCheck">
 		<table cellpadding="5" align = "center">
 			<tr>
 				<td align = "center">
-					<input type="text" id="id" name="id" maxlength="30" placeholder="아이디" pattern="[A-Za-z0-9]{4,}" autofocus required><br/>
-					<span id="id_invalidate"></span>
+					<input type="text" id="id" name="id" maxlength="30" placeholder="아이디" autofocus required>
 				</td>
 			</tr>
 			<tr>
 				<td align = "center">
 					<input type="password" id="password" name="password" maxlength="50" placeholder="비밀번호" autofocus required><br/>
-					<span id="pwd_invalidate"></span>
+					<span id="invalidate"></span>
 				</td>
 			</tr>
 			<tr>
