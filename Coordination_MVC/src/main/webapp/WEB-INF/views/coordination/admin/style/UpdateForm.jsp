@@ -4,6 +4,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+<!-- Bootstrap -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <!-- favicon -->
 <link rel="apple-touch-icon" sizes="76x76" href="/resources/icon/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/resources/icon/favicon-32x32.png">
@@ -12,10 +15,9 @@
 <link rel="mask-icon" href="/resources/icon/safari-pinned-tab.svg" color="#5bbad5">
 <meta name="msapplication-TileColor" content="#da532c">
 <!-- End favicon -->
-
 <meta name="theme-color" content="#ffffff">
 <meta charset="UTF-8">
-<title>관리자 - StyleUpdate</title>
+<title>관리자 - 데이터 수정Page</title>
 </head>
 <style>
 img{

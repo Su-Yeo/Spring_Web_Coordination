@@ -7,6 +7,7 @@
 <title>Login</title>
 <script src="http://code.jquery.com/jquery-latest.min.js">
 </script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.4.4.min.js"></script>
 
 <script>
 	$(document).ready(function() {
@@ -38,17 +39,17 @@
 				return;
 			}
 			$('#loginForm').submit();
-			/*var data = "id=" + userid + "&password=" + passwd;
+			var data = "id=" + userid + "&password=" + passwd;
 
 			$.ajax({
-				type : "POST",
+				type : "GET",
 				data : data,
 				url : action,
-				success : function(value) {
-					$('#loginForm').submit();
+				success : function(data) {
+					alert("값 전달 성공!!!");
 				}
 			});
-			*/
+			
 		});
 	});
 </script>
@@ -62,7 +63,7 @@
 <body>
 <div align = "center">
 	<b>Login</b>
-	<form id="loginForm" method="post" action="loginCheck">
+	<form id="loginForm" method="get" action="loginAjax">
 		<table cellpadding="5" align = "center">
 			<tr>
 				<td align = "center">
@@ -81,6 +82,7 @@
 				</td>
 			</tr>
 		</table>
+		<div id="msg">ㅇㅇㅇㅇ</div>
 	</form>
 </div>
 </body>

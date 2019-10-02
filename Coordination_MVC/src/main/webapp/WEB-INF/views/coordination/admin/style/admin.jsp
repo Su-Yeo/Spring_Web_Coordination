@@ -16,48 +16,42 @@
 <meta name="msapplication-TileColor" content="#da532c">
 <!-- End favicon -->
 <meta charset="UTF-8">
-<title>관리자 - 수정．삭제Page</title>
+<title>관리자 - MainPage</title>
 </head>
 <style>
-	img{
-		width: 240px;
-		height: 240px;
+	button{
+		width: 200px;
+		height: 120px;
 	}
-	table {
-    width: 100%;
-    border: 1px solid #444444;
-    border-collapse: collapse;
-  }
-  th, td {
-    border: 1px solid #444444;
-    padding: 10px;
-  }
 </style>
 <body>
-<!-- 데이터베이스에 정보가 없을 경우 -->
-<c:if test="${empty StyleList}">
-		<h2>데이터베이스에 등록된 정보가 없습니다.</h2>
-</c:if>
+<h3>협력 쇼핑몰 : 언더70, 바이슬림, 조군샵, 무신사 스토어</h3>
+
 <div class="container" align="center">
-<c:set var="i" value="0" />
-	<c:set var="j" value="3" />
-	<table>
-	  <c:forEach items="${StyleList}" var="style">
-	    <c:if test="${i%j == 0 }">
-	    <tr>
-	    </c:if>
-	    	<td align="center">
-				<img src="/resources/admin/${style.img}" /> <br/>
-				<button class="btn btn-success" onClick="goUpdate();">수정</button>
-				&nbsp;
-				<button class="btn btn-danger" onClick="goDelete();">삭제</button>
-			</td>
-	    <c:if test="${i%j == j-1 }">
-	    </tr>
-	    </c:if>
-	    <c:set var="i" value="${i+1 }" />
-	  </c:forEach>
-	</table>
+	<button class="btn btn-outline-info" onClick="InsertData();">
+		관리자<br>데이터 등록
+	</button>
+		&nbsp;&nbsp;&nbsp;&nbsp;
+	<button class="btn btn-outline-success" onClick="UpdateData();">
+		관리자<br>데이터 수정．삭제
+	</button>
 </div>
+<script>
+	function InsertData(){
+		
+		var password = "";
+		
+		password = prompt("비밀번호 8자리를 입력해주세요.");
+		location.href="<c:url value="adminParsingList"/>?password=" + password;
+	}
+	
+	function UpdateData(){
+		
+		var password = "";
+		
+		password = prompt("비밀번호 8자리를 입력해주세요.");
+		location.href="<c:url value="adminStyleList"/>?password=" + password;
+	}
+</script>
 </body>
 </html>

@@ -232,4 +232,17 @@ public class MemberController {
 		
 		return url;
 	}
+	
+	@RequestMapping(value="loginAjax", method=RequestMethod.GET)
+	public String loginAjax(@ModelAttribute MemberVO vo, HttpSession session, HttpServletRequest request, HttpServletResponse response) throws Exception {
+	
+		String id = request.getParameter("id");
+		String password = request.getParameter("password");
+		System.out.println("====================================" + id);
+		System.out.println("====================================" + password);
+		System.out.println("success");
+		
+		
+		return "coordination/member/login";
+	}
 }

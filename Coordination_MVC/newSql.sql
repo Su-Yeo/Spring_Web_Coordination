@@ -1,5 +1,10 @@
+--2019.10.02 수정사항 :
+alter table style add reg_date timestamp default CURRENT_TIMESTAMP;
+alter table style add identify varchar(1) default 'n';
+
 --회원들의 정보를 저장하기 위한 데이터베이스
 create database user;
+
 
 --접근권한 부여
 grant ALL ON user.* TO 'man01'@'localhost'
