@@ -38,17 +38,21 @@
 				return;
 			}
 			$('#loginForm').submit();
-			/*var data = "id=" + userid + "&password=" + passwd;
+			var data = "id=" + userid + "&password=" + passwd;
 
 			$.ajax({
-				type : "POST",
+				type : "GET",
 				data : data,
 				url : action,
-				success : function(value) {
+				success : function(response) {
+					  if(response.trim() == "success"){
+						  alert("dddd");
+					  }
+
 					$('#loginForm').submit();
 				}
 			});
-			*/
+			
 		});
 	});
 </script>
@@ -62,7 +66,7 @@
 <body>
 <div align = "center">
 	<b>Login</b>
-	<form id="loginForm" method="post" action="loginCheck">
+	<form id="loginForm" method="get" action="loginAjax">
 		<table cellpadding="5" align = "center">
 			<tr>
 				<td align = "center">

@@ -232,4 +232,37 @@ public class MemberController {
 		
 		return url;
 	}
+	
+	@RequestMapping(value="loginAjax", method=RequestMethod.GET)
+	public String ajaxlogin(@ModelAttribute MemberVO vo, HttpSession session, HttpServletRequest request) throws Exception {
+		
+		
+		try {
+		
+			String result = memberService.loginCheck(vo, session, request);
+			
+			
+			//로그인 성공
+			if(result.equals("success"))
+			{
+				System.out.println("success");
+			}
+			//탈퇴한 회원
+			else if(result.equals("ghost"))
+			{
+
+			}
+			//로그인 실패
+			else
+			{
+
+			}
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+			logger.info("Error!!");
+		}
+		
+		return "coordination/member/login";
+	}
 }
