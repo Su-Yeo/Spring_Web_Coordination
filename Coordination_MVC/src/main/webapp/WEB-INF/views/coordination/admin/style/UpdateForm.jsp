@@ -26,79 +26,70 @@ img{
 }
 </style>
 <body>
-<div>
-<form action="updateStyle" method="POST">
-<table>
-<c:forEach items="${StyleOne}" var="style">
-			<input type="hidden" name="num" value="${style.num}" />
-	<tr>
-		<td colspan="2" align="center">
-			<img src="/resources/admin/${style.img}" />
-		</td>
-	</tr>		
-	<tr>
-		<td align="center">
-			상의 종류
-		</td>
-		<td>
-			<input type="text" name="top" value="${style.top}" />
-		</td>
-	</tr>
-	<tr>
-		<td align="center">
-			상의 색상
-		</td>
-		<td>
-			<input type="text" name="top_color" value="${style.top_color}" />
-		</td>
-	</tr>
-	<tr>
-		<td align="center">
-			하의 종류
-		</td>
-		<td>
-			<input type="text" name="pants" value="${style.pants}" />
-		</td>
-	</tr>
-	<tr>
-		<td align="center">
-			하의 색상
-		</td>
-		<td>
-			<input type="text" name="pants_color" value="${style.pants_color}" />
-		</td>
-	</tr>
-	<tr>
-		<td align="center">
-			JPG
-		</td>
-		<td>
-			<input type="text" name="img" value="${style.img}" />
-		</td>
-	</tr>
-<script type="text/javascript">
-	function deleteStyle() {
-		if(confirm('이미지를 삭제하시겠습니까???'))
-		{
-			location.href="<c:url value='deleteStyle'/>?num=${style.num}&img=${style.img}";
-		}
-		else
-		{
-			
-		}
-	}
-</script>
-</c:forEach>
-	<tr>
-		<td colspan="2" align="center">
-			<input type="submit" value="이미지 수정하기" />
-		</td>
-	</tr>
-</table>
-</form>
-			<button onClick="deleteStyle();">
-				이미지 삭제하기
-			</button>
-</div>
+
+<!-- 이미지정보를 수정할 경우 -->
+<c:if test="${not empty StyleOne}">
+	<div>
+		<form action="updateStyle" method="POST">
+		<table>
+		<c:forEach items="${StyleOne}" var="style">
+					<input type="hidden" name="num" value="${style.num}" />
+			<tr>
+				<td colspan="2" align="center">
+					<img src="/resources/admin/${style.img}" />
+				</td>
+			</tr>		
+			<tr>
+				<td align="center">
+					상의 종류
+				</td>
+				<td>
+					<input type="text" name="top" value="${style.top}" />
+				</td>
+			</tr>
+			<tr>
+				<td align="center">
+					상의 색상
+				</td>
+				<td>
+					<input type="text" name="top_color" value="${style.top_color}" />
+				</td>
+			</tr>
+			<tr>
+				<td align="center">
+					하의 종류
+				</td>
+				<td>
+					<input type="text" name="pants" value="${style.pants}" />
+				</td>
+			</tr>
+			<tr>
+				<td align="center">
+					하의 색상
+				</td>
+				<td>
+					<input type="text" name="pants_color" value="${style.pants_color}" />
+				</td>
+			</tr>
+			<tr>
+				<td align="center">
+					JPG
+				</td>
+				<td>
+					<input type="text" name="img" value="${style.img}" />
+				</td>
+			</tr>
+		</c:forEach>
+			<tr>
+				<td colspan="2" align="center">
+					<input type="submit" value="이미지 수정하기" />
+				</td>
+			</tr>
+		</table>
+		</form>
+	</div>
+</c:if>
+
+
 </body>
 </html>

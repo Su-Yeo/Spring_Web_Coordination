@@ -16,51 +16,38 @@
 <meta name="msapplication-TileColor" content="#da532c">
 <!-- End favicon -->
 <meta charset="UTF-8">
-<title>관리자 - 수정．삭제Page</title>
+<title>관리자 - 이미지 등록 검증Page</title>
 </head>
 <style>
 	img{
 		width: 240px;
 		height: 240px;
 	}
-	table {
-    width: 100%;
-    border: 1px solid #444444;
-    border-collapse: collapse;
-  }
-  th, td {
-    border: 1px solid #444444;
-    padding: 10px;
-  }
-  .mySlides {
-	display:none;
-}
 </style>
 <body>
-<!-- 수정, 삭제 -->
-<div class="container" align="center">
-<!-- 데이터베이스에 정보가 없을 경우 -->
-<c:if test="${empty StyleList}">
-		<h2>관리자의 승인이 완료된 이미지 정보가 존재하지 않습니다.</h2>
+<!-- 데이터 파싱 → 다운로드 → 이미지 분석 → DB등록 후 관리자 최종 인증 단계  -->
+<div class="container">
+<c:if test="${empty StyleListIdentify}">
+		<h2>관리자의 승인이 필요한 이미지 정보가 존재하지 않습니다.</h2>
+</c:if>
+
+
+<c:if test="${not empty StyleListIdentify}">
+		<h2>이미지를 클릭하면 이미지의 정보를 호출합니다.</h2>
 </c:if>
 <table>
 	<tr>
-		<c:set var="i" value="0" />
-		<c:forEach items="${StyleList}" var="style">
-			<td align="center">
-				<img src="/resources/admin/${style.img}" /> <br/>
-				<button class="btn btn-success" onClick="location.href='adminUpdateForm?num=${style.num}'">수정</button>
-				&nbsp;
-				<button class="btn btn-danger" onClick="location.href='deleteStyle?num=${style.num}&img=${style.img}'">삭제</button>
+		<c:forEach items="${StyleListIdentify}" var="style">
+			<td>
+				<div onClick="location.href='IdentifyUpdateForm'?num=${style.num}">
+					<img src="/resources/admin/${style.img}">
+				</div>
 			</td>
- 		<c:set var="i" value="${i+1 }" />
-		<c:if test="${i == 3}">
-			<tr>
-			</tr>
-		</c:if>
 		</c:forEach>
 	</tr>
 </table>
+	
+
 </div>
 </body>
 </html>

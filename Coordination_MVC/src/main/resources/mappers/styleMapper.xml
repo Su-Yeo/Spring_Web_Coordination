@@ -8,6 +8,14 @@
   	<!-- INSERT의 경우 이미지 분석 후, Python을 통해 데이터베이스에 등록되므로 굳이 만들 필요가 없어서 제외 -->
   	<select id="StyleList" resultType="styleVO">
   		SELECT * FROM style
+  		WHERE
+  			identify='y'
+  	</select>
+  	
+  	<select id="StyleListIdentify" resultType="styleVO">
+  		SELECT * FROM style
+  		WHERE
+  			identify='n'
   	</select>
   	
   	<select id="StyleOne" resultType="styleVO">
@@ -29,10 +37,10 @@
   	
   	<update id="updateIndentify">
   		UPDATE style SET
-  			identify=#{identify}
+  			identify='y'
   		WHERE
-  			num=#{num} OR num=#{num} OR num=#{num} OR num=#{num} OR num=#{num}
-  	
+  			num=#{num}
+    	
   	</update>  	
   	<delete id="deleteStyle">
   		DELETE FROM style WHERE num=#{num}

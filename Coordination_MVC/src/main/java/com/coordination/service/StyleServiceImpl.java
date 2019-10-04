@@ -31,6 +31,13 @@ public class StyleServiceImpl implements StyleService {
 		return dao.StyleList();
 	}
 	
+	//검증되지 않은 이미지 불러오기
+	@Override
+	public List<StyleVO> StyleListIdentify() throws Exception {
+		
+		return dao.StyleListIdentify();
+	}
+	
 	//업데이트를 위한 이미지 정보 불러오기
 	@Override	
 	public List<StyleVO> StyleOne(StyleVO vo, int num) throws Exception {
@@ -44,6 +51,13 @@ public class StyleServiceImpl implements StyleService {
 	public void updateStyle(StyleVO vo) {
 			
 		dao.updateStyle(vo);
+	}
+	
+	//이미지 검증 업데이트
+	@Override
+	public void updateIndentify(StyleVO vo) {
+		
+		dao.updateIndentify(vo);
 	}
 			
 	//이미지 삭제

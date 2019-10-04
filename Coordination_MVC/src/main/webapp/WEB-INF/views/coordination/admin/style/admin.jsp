@@ -32,6 +32,10 @@
 		관리자<br>데이터 등록
 	</button>
 		&nbsp;&nbsp;&nbsp;&nbsp;
+	<button class="btn btn-outline-warning" onClick="IdentifyData();">
+		관리자<br>데이터 등록
+	</button>	
+		&nbsp;&nbsp;&nbsp;&nbsp;
 	<button class="btn btn-outline-success" onClick="UpdateData();">
 		관리자<br>데이터 수정．삭제
 	</button>
@@ -43,6 +47,14 @@
 		
 		password = prompt("비밀번호 8자리를 입력해주세요.");
 		location.href="<c:url value="adminParsingList"/>?password=" + password;
+	}
+	
+	function IdentifyData(){
+		
+		var password = "";
+		
+		password = prompt("비밀번호 8자리를 입력해주세요.");
+		location.href="<c:url value="adminIdentify"/>?password=" + password;
 	}
 	
 	function UpdateData(){

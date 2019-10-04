@@ -1,10 +1,6 @@
 package com.coordination.main;
 
-import java.util.HashMap;
-import java.util.List;
 import java.util.Locale;
-
-import javax.inject.Inject;
 
 import org.json.simple.JSONArray;
 import org.jsoup.Jsoup;

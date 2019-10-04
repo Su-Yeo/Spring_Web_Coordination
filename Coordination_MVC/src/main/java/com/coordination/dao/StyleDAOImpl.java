@@ -42,6 +42,13 @@ public class StyleDAOImpl implements StyleDAO {
 		return sqlSession.selectList(Namespace+".StyleList");
 	}
 	
+	//검증되지 않은 이미지 불러오기
+	@Override
+	public List<StyleVO> StyleListIdentify() throws Exception {
+		
+		return sqlSession.selectList(Namespace+".StyleListIdentify");
+	}
+	
 	//업데이트를 위한 이미지 정보 불러오기
 	public List<StyleVO> StyleOne(StyleVO vo) throws Exception {
 
@@ -56,6 +63,14 @@ public class StyleDAOImpl implements StyleDAO {
 		
 		sqlSession.update(Namespace+".updateStyle", vo);
 		logger.info("=====Data Update Complete!!!=====");
+	}
+	
+	//이미지 검증 업데이트
+	@Override
+	public void updateIndentify(StyleVO vo) {
+		
+		sqlSession.update(Namespace+".updateIndentify", vo);
+		logger.info("=====Data IdentifyUpdate Complete!!!=====");
 	}
 		
 	//이미지 삭제
