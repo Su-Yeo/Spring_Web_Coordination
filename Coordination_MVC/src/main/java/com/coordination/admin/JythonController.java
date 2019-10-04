@@ -1,7 +1,13 @@
 package com.coordination.admin;
 
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
 import java.io.PrintWriter;
+import java.net.URL;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -13,14 +19,16 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class JythonController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(JythonController.class);
-	public static String[] img = new String[5];
+	private String[] img = null;
 
+	@Resource(name="imgPath")
+	private String imgPath;
+	
 	@RequestMapping(value = "adminInsert")
 	public String Tensorflow(HttpServletResponse response, HttpServletRequest request, Model model) throws Exception  {
 			
@@ -63,24 +71,54 @@ public class JythonController {
 		//2 : T-shirt
 		//3 : Half-Tshirt
 		//4 : Hood
-		int num = 0;
-		num = Integer.parseInt(request.getParameter("Category"));
+		String imgName="";
+		URL imageUrl = null;
+        InputStream in = null;
+        FileOutputStream fos = null;
+        int data=0;
+        int num = Integer.parseInt(request.getParameter("Category"));
 
 		//파싱해서 가져온 이미지를 배열로 받는다.
-		String[] img = Parsing(num);
-		
-		//해당 로직에서 지정된 장소에 해당 이미지 다운로드
-		
-		for(int i=0; i<img.length; i++)
-		{
-			System.out.println(img[i]);
-		}
-		
-		return null;
+		Parsing(num);
+		       
+        //폴더 생성
+  		File fileDir = new File(imgPath, "admin");
+  		if(!fileDir.isDirectory()){
+  			fileDir.mkdirs();
+  		}
+      		
+        try {       	       
+			//해당 로직에서 지정된 장소에 해당 이미지 다운로드	
+			for(int i=0; i<img.length; i++)
+			{
+				imgName=img[i].substring(img[i].lastIndexOf('/') + 1, img[i].length());
+				
+				//URL로 이미지 가져오기
+				imageUrl = new URL(img[i].toString());
+				in = new BufferedInputStream(imageUrl.openStream());
+				
+				//다운로드
+				fos = new FileOutputStream(imgPath+"\\admin\\"+imgName);
+				while(true){
+	                //이미지를 읽어온다.
+	                data = in.read();
+	                if(data == -1){
+	                    break;
+	                }
+	                //이미지를 쓴다.
+	                fos.write(data);
+	            }
+	            in.close();
+	            fos.close();
+	            data=0;
+			}
+        }catch (Exception e) {
+			System.out.println("**********Error!!(ImageDown())**********");
+		}	
+		return "coordination/admin/style/StyleList";
 	}
 
-	public String[] Parsing(int num) {
-		
+	public void Parsing(int num) {		
 		try {
 			//파싱할 웹 페이지
 			String url = "";
@@ -117,15 +155,10 @@ public class JythonController {
 			  
 			for(int n=0; n<img.length; n++)
 			{
-				img[n] = imgs.get(n).attr("src");
-			}
-			 
-			
+				img[n] = "http:"+imgs.get(n).attr("src");
+			}			
 		}catch(Exception e) {
-			logger.info("**********Error!! (Parsing())**********");
 			System.out.println("**********Error!! (Parsing())**********");
 		}
-
-		return img;
 	}
 }
