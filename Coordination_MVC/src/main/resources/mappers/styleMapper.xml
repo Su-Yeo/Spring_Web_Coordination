@@ -27,6 +27,13 @@
   			num=#{num}
   	</update>
   	
+  	<update id="updateIndentify">
+  		UPDATE style SET
+  			identify=#{identify}
+  		WHERE
+  			num=#{num} OR num=#{num} OR num=#{num} OR num=#{num} OR num=#{num}
+  	
+  	</update>  	
   	<delete id="deleteStyle">
   		DELETE FROM style WHERE num=#{num}
   	</delete>

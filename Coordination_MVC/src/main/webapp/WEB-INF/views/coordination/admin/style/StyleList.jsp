@@ -51,6 +51,23 @@
 				<button class="btn btn-success" onClick="goUpdate();">수정</button>
 				&nbsp;
 				<button class="btn btn-danger" onClick="goDelete();">삭제</button>
+<script type="text/javascript">
+function goUpdate(){
+	
+	if(confirm('이미지를 수정하시겠습니까???'))
+	{
+		location.href="<c:url value='adminUpdateForm'/>?num=${$style.num}";
+	}
+}
+	
+function goDelete(){
+	
+	if(confirm('이미지를 삭제하시겠습니까???'))
+	{
+		location.href="<c:url value='deleteStyle'/>?num=${style.num}&img=${style.img}";
+	}
+}
+</script>
 			</td>
 	    <c:if test="${i%j == j-1 }">
 	    </tr>
