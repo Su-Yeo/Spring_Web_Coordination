@@ -2,14 +2,13 @@ package com.coordination.admin;
 
 import java.io.BufferedInputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStream;
-import java.io.PrintWriter;
 import java.net.URL;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -29,43 +28,66 @@ public class JythonController {
 	@Resource(name="imgPath")
 	private String imgPath;
 	
-	@RequestMapping(value = "adminInsert")
-	public String Tensorflow(HttpServletResponse response, HttpServletRequest request, Model model) throws Exception  {
+	@RequestMapping(value = "parsing")
+	public String Tensorflow(Model model, HttpServletRequest request) throws Exception  {
 			
 		//이미지 분석 객체 생성
 		Tensorflow tf = new Tensorflow();
 		
-		//alert창 사용을 위한 선언 
-		response.setContentType("text/html; charset=UTF-8");
-		PrintWriter out = response.getWriter();
-
-		//파싱해서 온 이미지를 /resources/admin 폴더 안에 저장한 후,
-		//해당 파일들을 순차적으로 이미지 분석 → DB등록
-		//이미지 Path
-		String path = "C:\\Users\\sangw\\Coordination_MVC\\Coordination_MVC"
-				+ "\\src\\main\\webapp\\resources\\admin\\";
+		//이미지 분석 Path && 분석할 이미지명
+		String path = "C:\\img\\tensorflow\\";
+		String image = null;
 		
-		String image = path + "709a56ccd5aa45ac5a30cb8f2d41ddc9.jpg";
+		//파싱해서 온 이미지를 C:\img\tensorflow 폴더에 저장
+		//ImageDown(request);
 		
-		for(int i=0; i<1; i++)
+		//이동할 폴더
+		File folder = new File("C:\\img\\tensorflow");
+		//이동될 폴더
+		File folder2 = new File("C:\\img\\admin");
+		
+		//DB에 등록되지않은 tensorflow폴더 안에 있는 이미지명 추출
+		File[] listOfFiles = folder.listFiles();
+		
+		/* for (int i = 0; i < listOfFiles.length; i++) */
+		for (int i = 0; i < listOfFiles.length; i++)
 		{
-			//전신 이미지 분리
-			tf.Cut(image);
-			//상의 이미지 분석
-			tf.Upper_Tensorflow(image);
-			//하의 이미지 분석
-			tf.Lower_Tensorflow(image);
-			//이미지 복구
-			tf.restore(image);
+			if(listOfFiles[i].isFile())
+			{
+				//Tensorflow폴더 안에 이미지파일명을 차례대로 image에 할당
+				image = path + listOfFiles[i].getName();
+				
+				//전신 이미지 분리
+				//tf.Cut(image);
+				//상의 이미지 분석
+				tf.Upper_Tensorflow(image);
+				//하의 이미지 분석
+				//tf.Lower_Tensorflow(image);
+				//이미지 복구
+				//tf.restore(image);	
+			}
+			else
+			{
+				System.out.println("\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\");
+				System.out.println(listOfFiles[i].getName() + "파일이 존재하지 않습니다.");
+				System.out.println("\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\");
+			}
 		}
+		//Tensorflow에서 admin폴더로 이미지 복사
+		copy(folder, folder2);
+		System.out.println("======이미지 복사 완료======");
+				
+		//Tensorflow폴더 안에 이미지 삭제
+		delete(folder.toString());
+		System.out.println("======이미지 삭제 완료======");
 		
 		model.addAttribute("url", "insertStyle");
 		
 		return "movePage";
 	}
 	
-	@RequestMapping(value = "parsing")
-	public String ImageDown(HttpServletRequest request) {
+	/* @RequestMapping(value = "parsing") */
+	public void ImageDown(HttpServletRequest request) {
 		
 		//1 : Outer
 		//2 : T-shirt
@@ -80,10 +102,11 @@ public class JythonController {
 
 		//파싱해서 가져온 이미지를 배열로 받는다.
 		Parsing(num);
-		       
+
         //폴더 생성
   		File fileDir = new File(imgPath, "admin");
-  		if(!fileDir.isDirectory()){
+  		if(!fileDir.isDirectory())
+  		{
   			fileDir.mkdirs();
   		}
       		
@@ -99,7 +122,8 @@ public class JythonController {
 				
 				//다운로드
 				fos = new FileOutputStream(imgPath+"\\admin\\"+imgName);
-				while(true){
+				while(true)
+				{
 	                //이미지를 읽어온다.
 	                data = in.read();
 	                if(data == -1){
@@ -115,9 +139,9 @@ public class JythonController {
         }catch (Exception e) {
 			System.out.println("**********Error!!(ImageDown())**********");
 		}	
-		return "coordination/admin/style/StyleList";
 	}
 
+	//이미지 파싱
 	public void Parsing(int num) {		
 		try {
 			//파싱할 웹 페이지
@@ -159,6 +183,73 @@ public class JythonController {
 			}			
 		}catch(Exception e) {
 			System.out.println("**********Error!! (Parsing())**********");
+		}
+	}
+	
+	//C:\img\tensorflow에서 C:\img\admin으로 이동
+	public static void copy(File sourceF, File targetF){
+		File[] target_file = sourceF.listFiles();
+		
+		for (File file : target_file)
+		{
+			File temp = new File(targetF.getAbsolutePath() + File.separator + file.getName());
+			if(file.isDirectory())
+			{
+				temp.mkdir();
+				copy(file, temp);
+			} 
+			else
+			{
+				FileInputStream fis = null;
+				FileOutputStream fos = null;
+				try {
+					fis = new FileInputStream(file);
+					fos = new FileOutputStream(temp);
+					byte[] b = new byte[4096];
+					int cnt = 0;
+					
+					while((cnt=fis.read(b)) != -1)
+					{
+						fos.write(b, 0, cnt);
+					}
+				} catch (Exception e) {
+					e.printStackTrace();
+				} finally{
+					try {
+						fis.close();
+						fos.close();
+					} catch (Exception e) {
+						e.printStackTrace();
+					}		
+				}
+			}
+		}
+	}
+	
+	//C:\img\tensorflow 사진 삭제
+	public static void delete(String path) {
+		
+		File folder = new File(path);
+		try {
+			if(folder.exists())
+			{
+			    File[] folder_list = folder.listFiles();
+					
+			    for (int i = 0; i < folder_list.length; i++)
+			    {
+			    	if(folder_list[i].isFile())
+			    	{
+			    		folder_list[i].delete();
+			    	}
+			    	else
+			    	{
+			    		delete(folder_list[i].getPath());
+			    	}
+			    	folder_list[i].delete();
+			    }
+			}
+		} catch (Exception e) {
+			e.getStackTrace();
 		}
 	}
 }

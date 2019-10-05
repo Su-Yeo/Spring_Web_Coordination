@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<% request.setCharacterEncoding("UTF-8"); %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,23 +32,30 @@
 		<h2>관리자의 승인이 필요한 이미지 정보가 존재하지 않습니다.</h2>
 </c:if>
 
-
+<%
+	String path = "C:\\img\\admin\\";
+%>
 <c:if test="${not empty StyleListIdentify}">
 		<h2>이미지를 클릭하면 이미지의 정보를 호출합니다.</h2>
-</c:if>
+
 <table>
 	<tr>
+		<c:set var="i" value="0" />
 		<c:forEach items="${StyleListIdentify}" var="style">
 			<td>
-				<div onClick="location.href='IdentifyUpdateForm'?num=${style.num}">
-					<img src="/resources/admin/${style.img}">
-				</div>
+				<a href="IdentifyUpdateForm?num=${style.num}">
+					<img src="<%= path %>${style.img}" />
+				</a>
 			</td>
+		<c:set var="i" value="${i+1 }" />
+		<c:if test="${i == 3}">
+	<tr>
+	</tr>
+		</c:if>
 		</c:forEach>
 	</tr>
 </table>
-	
-
+</c:if>
 </div>
 </body>
 </html>

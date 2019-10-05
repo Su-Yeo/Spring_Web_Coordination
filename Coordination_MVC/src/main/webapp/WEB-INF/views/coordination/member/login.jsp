@@ -8,7 +8,7 @@
 <script src="http://code.jquery.com/jquery-latest.min.js">
 </script>
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.4.4.min.js"></script>
-
+<!-- 
 <script>
 	$(document).ready(function() {
 		$("#btnLogin").click(function() {
@@ -45,23 +45,18 @@
 				type : "GET",
 				data : data,
 				url : action,
-<<<<<<< HEAD
 				success : function(data) {
 					alert("값 전달 성공!!!");
-=======
 				success : function(response) {
 					  if(response.trim() == "success"){
 						  alert("dddd");
 					  }
 
 					$('#loginForm').submit();
->>>>>>> da167f63e7367298d4eebd9e19ca311612b21baf
 				}
 			});
-			
-		});
-	});
 </script>
+ -->
 <style>
 	span{
 		color: red;
@@ -72,7 +67,7 @@
 <body>
 <div align = "center">
 	<b>Login</b>
-	<form id="loginForm" method="get" action="loginAjax">
+	<form id="loginForm" method="post" action="loginCheck">
 		<table cellpadding="5" align = "center">
 			<tr>
 				<td align = "center">
@@ -87,11 +82,11 @@
 			</tr>
 			<tr>
 				<td align = "center">
-					<input type="button" value="로 그 인" id="btnLogin">
+					<!-- <input type="button" value="로 그 인" id="btnLogin"> -->
+					<input type="submit" value="로 그 인" />
 				</td>
 			</tr>
 		</table>
-		<div id="msg">ㅇㅇㅇㅇ</div>
 	</form>
 </div>
 </body>

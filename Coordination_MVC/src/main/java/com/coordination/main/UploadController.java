@@ -28,7 +28,7 @@ public class UploadController {
     
 	@RequestMapping(value="imgUpload")
     public String imgUpload() {
-    	return "/coordination/imgUpload";
+    	return "/coordination/member/imgUpload";
     }
 	
     //이미지 업로드 처리

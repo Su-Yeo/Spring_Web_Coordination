@@ -23,7 +23,7 @@
 		width: 240px;
 		height: 240px;
 	}
-	table {
+/* 	table {
     width: 100%;
     border: 1px solid #444444;
     border-collapse: collapse;
@@ -31,10 +31,7 @@
   th, td {
     border: 1px solid #444444;
     padding: 10px;
-  }
-  .mySlides {
-	display:none;
-}
+  } */
 </style>
 <body>
 <!-- 수정, 삭제 -->
@@ -44,11 +41,14 @@
 		<h2>관리자의 승인이 완료된 이미지 정보가 존재하지 않습니다.</h2>
 </c:if>
 <table>
+<%
+	String path = "C:\\img\\admin\\";
+%>
 	<tr>
 		<c:set var="i" value="0" />
 		<c:forEach items="${StyleList}" var="style">
 			<td align="center">
-				<img src="/resources/admin/${style.img}" /> <br/>
+				<img src="<%= path %>${style.img}" /> <br/>
 				<button class="btn btn-success" onClick="location.href='adminUpdateForm?num=${style.num}'">수정</button>
 				&nbsp;
 				<button class="btn btn-danger" onClick="location.href='deleteStyle?num=${style.num}&img=${style.img}'">삭제</button>

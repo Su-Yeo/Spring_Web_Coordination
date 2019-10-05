@@ -28,15 +28,16 @@ img{
 <body>
 
 <!-- 이미지정보를 수정할 경우 -->
-<c:if test="${not empty StyleOne}">
+<c:if test="${data eq 'updateStyle'}">
 	<div>
 		<form action="updateStyle" method="POST">
 		<table>
 		<c:forEach items="${StyleOne}" var="style">
+					<!-- num값 hidden전송 -->
 					<input type="hidden" name="num" value="${style.num}" />
 			<tr>
 				<td colspan="2" align="center">
-					<img src="/resources/admin/${style.img}" />
+					<img src="C:\img\admin\${style.img}" />
 				</td>
 			</tr>		
 			<tr>
@@ -89,7 +90,73 @@ img{
 		</form>
 	</div>
 </c:if>
-
+ 
+<!-- 관리자 인증모드 -->
+<c:if test="${data eq 'IdentifyUpdate'}">
+	<div>
+		<form action="IdentifyUpdate" method="POST">
+		<table>
+		<c:forEach items="${StyleOne}" var="style">
+					<!-- num값 hidden전송 -->
+					<input type="hidden" name="num" value="${style.num}" />
+			<tr>
+<%
+	String path = "C:\\img\\admin\\";
+%>
+				<td colspan="2" align="center">
+					<img src="<%= path %>${style.img}" />
+				</td>
+			</tr>		
+			<tr>
+				<td align="center">
+					상의 종류
+				</td>
+				<td>
+					<input type="text" name="top" value="${style.top}" />
+				</td>
+			</tr>
+			<tr>
+				<td align="center">
+					상의 색상
+				</td>
+				<td>
+					<input type="text" name="top_color" value="${style.top_color}" />
+				</td>
+			</tr>
+			<tr>
+				<td align="center">
+					하의 종류
+				</td>
+				<td>
+					<input type="text" name="pants" value="${style.pants}" />
+				</td>
+			</tr>
+			<tr>
+				<td align="center">
+					하의 색상
+				</td>
+				<td>
+					<input type="text" name="pants_color" value="${style.pants_color}" />
+				</td>
+			</tr>
+			<tr>
+				<td align="center">
+					JPG
+				</td>
+				<td>
+					<input type="text" name="img" value="${style.img}" />
+				</td>
+			</tr>
+		</c:forEach>
+			<tr>
+				<td colspan="2" align="center">
+					<input type="submit" value="관리자 인증완료" />
+				</td>
+			</tr>
+		</table>
+		</form>
+	</div>
+</c:if>
 
 </body>
 </html>

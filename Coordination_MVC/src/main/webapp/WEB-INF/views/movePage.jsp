@@ -15,7 +15,7 @@
 
 <!-- StyleInsert -->
 <c:if test="${url eq 'insertStyle'}">
-	<meta charset="UTF-8" http-equiv="refresh" content="0;url=<c:url value='adminStyleList'/>?password=1234">
+	<meta charset="UTF-8" http-equiv="refresh" content="0;url=<c:url value='adminPage'/>">
 </c:if>
 
 <!-- StyleUpdate -->

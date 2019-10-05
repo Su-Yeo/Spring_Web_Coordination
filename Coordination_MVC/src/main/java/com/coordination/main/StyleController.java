@@ -150,9 +150,11 @@ public class StyleController {
 		int num = 0;
 		num = Integer.parseInt(request.getParameter("num"));
 		
+		//관리자가 이미지를 수정할 경우 이동 될 Page
+		//Data라는 이름으로 updateStyle값을 넘겨준다.
 		List<StyleVO> StyleOne = service.StyleOne(vo, num);
 		model.addAttribute("StyleOne", StyleOne);
-		model.addAttribute("if", "updateStyle");
+		model.addAttribute("data", "updateStyle");
 		
 		return "coordination/admin/style/UpdateForm";
 	}
@@ -185,23 +187,22 @@ public class StyleController {
 		int num = 0;
 		num = Integer.parseInt(request.getParameter("num"));
 		
+		//데이터 검증을 위해 이동 될 Page
+		//data라는 이름에 IdentifyUpdate값을 준다
 		List<StyleVO> StyleOne = service.StyleOne(vo, num);
 		model.addAttribute("StyleOne", StyleOne);
-		model.addAttribute("if", "IdentifyUpdate");
+		model.addAttribute("data", "IdentifyUpdate");
 		
 		return "coordination/admin/style/UpdateForm";
 	}
 	
 	//관리자 - 데이터 검증3
-		@RequestMapping(value = "IdentifyUpdate", method = RequestMethod.GET)
+		@RequestMapping(value = "IdentifyUpdate", method = RequestMethod.POST)
 		public String IdentifyUpdate(StyleVO vo, Model model, HttpServletRequest request) {
-			
-			int num = 0;
-			num = Integer.parseInt(request.getParameter("num"));
 			
 			try {
 				
-				vo.setNum(num);
+				vo.setNum(vo.getNum());
 				service.updateIndentify(vo);
 				
 				logger.info("==========관리자 이미지 검증 완료!==========");

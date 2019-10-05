@@ -6,24 +6,29 @@
 <mapper namespace="com.coordination.mapper.styleMapper">
   
   	<!-- INSERT의 경우 이미지 분석 후, Python을 통해 데이터베이스에 등록되므로 굳이 만들 필요가 없어서 제외 -->
+  	
+  	<!-- 관리자의 검증이 완료된 이미지만 출력(메인화면, 관리자-수정,삭제) -->
   	<select id="StyleList" resultType="styleVO">
   		SELECT * FROM style
   		WHERE
   			identify='y'
   	</select>
   	
+  	<!-- 관리자의 검증이 완료되지 않은 이미지만 출력(파싱 후, 관리자 데이터 검증) -->
   	<select id="StyleListIdentify" resultType="styleVO">
   		SELECT * FROM style
   		WHERE
   			identify='n'
   	</select>
   	
+  	<!-- 관리자가 데이터 검증 또는 수정할 때 사용하기 위한 SQL문 -->
   	<select id="StyleOne" resultType="styleVO">
   		SELECT *
   		FROM style
   		WHERE num=#{num}
   	</select>
   	
+  	<!-- 관리자가 이미지 수정할 때 사용하기 위한 SQL문 -->
   	<update id="updateStyle">
   		UPDATE style SET
   			top=#{top},
@@ -35,13 +40,20 @@
   			num=#{num}
   	</update>
   	
+  	<!-- 관리자가 이미지 검증을 할 때 사용하기 위한 SQL문 -->
   	<update id="updateIndentify">
   		UPDATE style SET
+  			top=#{top},
+  			top_color=#{top_color},
+  			pants=#{pants},
+  			pants_color=#{pants_color},
+  			img=#{img},
   			identify='y'
   		WHERE
   			num=#{num}
-    	
   	</update>  	
+  	
+  	<!-- 관리자가 이미지를 삭제할 때 사용하기 위한 SQL문 -->
   	<delete id="deleteStyle">
   		DELETE FROM style WHERE num=#{num}
   	</delete>

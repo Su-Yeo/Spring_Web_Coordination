@@ -33,7 +33,7 @@
 	</button>
 		&nbsp;&nbsp;&nbsp;&nbsp;
 	<button class="btn btn-outline-warning" onClick="IdentifyData();">
-		관리자<br>데이터 등록
+		관리자<br>파싱 데이터 검증
 	</button>	
 		&nbsp;&nbsp;&nbsp;&nbsp;
 	<button class="btn btn-outline-success" onClick="UpdateData();">
