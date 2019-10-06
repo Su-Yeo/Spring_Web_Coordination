@@ -1,6 +1,10 @@
 package com.coordination.main;
 
+import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
+
+import javax.inject.Inject;
 
 import org.json.simple.JSONArray;
 import org.jsoup.Jsoup;
@@ -36,6 +40,7 @@ public class HomeController {
 	
 	private String top="경기도";
 	private String mdl="부천시소사구";
+	private String leaf="괴안동";
 	
 	/**
 	 * Simply selects the home view to render by returning its name.
@@ -57,6 +62,10 @@ public class HomeController {
 		//상품리스트의 상품사진 class명
 		Elements titles = doc.select("div.box a img.thumb");				
 		model.addAttribute("image", titles);
+		
+		top="경기도";
+		mdl="부천시소사구";
+		leaf="괴안동";
 		
 		return "coordination/index";
 	}
@@ -88,10 +97,10 @@ public class HomeController {
     @RequestMapping(value="/weather/selLeaf", method=RequestMethod.POST, produces="text/plain;charset=utf-8")
     public String selLeaf(@RequestParam("selLeaf")String selLeaf) throws Exception {
         logger.info("selLeaf : "+selLeaf);
+        leaf = selLeaf;
         CoordFetcher coord = new CoordFetcher();
-        ApiExplorerWeather api = new ApiExplorerWeather(coord.fetchCoord(top,mdl,selLeaf));
+        ApiExplorerWeather api = new ApiExplorerWeather(coord.fetchCoord(top,mdl,leaf));
     	JsonArray js = api.getJArray();
-        //System.out.println(mapleaf.toJSONString());
         return js.toString();
     }
     
