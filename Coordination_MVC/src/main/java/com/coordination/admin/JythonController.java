@@ -6,6 +6,8 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -24,7 +26,7 @@ public class JythonController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(JythonController.class);
 	private String[] img = null;
-
+	
 	@Resource(name="imgPath")
 	private String imgPath;
 	
@@ -39,8 +41,9 @@ public class JythonController {
 		String image = null;
 		
 		//파싱해서 온 이미지를 C:\img\tensorflow 폴더에 저장
-		//ImageDown(request);
+		ImageDown(request);
 		
+		/*
 		//이동할 폴더
 		File folder = new File("C:\\img\\tensorflow");
 		//이동될 폴더
@@ -49,7 +52,6 @@ public class JythonController {
 		//DB에 등록되지않은 tensorflow폴더 안에 있는 이미지명 추출
 		File[] listOfFiles = folder.listFiles();
 		
-		/* for (int i = 0; i < listOfFiles.length; i++) */
 		for (int i = 0; i < listOfFiles.length; i++)
 		{
 			if(listOfFiles[i].isFile())
@@ -80,13 +82,13 @@ public class JythonController {
 		//Tensorflow폴더 안에 이미지 삭제
 		delete(folder.toString());
 		System.out.println("======이미지 삭제 완료======");
+		*/
 		
 		model.addAttribute("url", "insertStyle");
 		
 		return "movePage";
 	}
-	
-	/* @RequestMapping(value = "parsing") */
+
 	public void ImageDown(HttpServletRequest request) {
 		
 		//1 : Outer
@@ -98,10 +100,11 @@ public class JythonController {
         InputStream in = null;
         FileOutputStream fos = null;
         int data=0;
-        int num = Integer.parseInt(request.getParameter("Category"));
+        String shopName = request.getParameter("shopName");
+        int category = Integer.parseInt(request.getParameter("Category"));
 
 		//파싱해서 가져온 이미지를 배열로 받는다.
-		Parsing(num);
+		Parsing(shopName, category);
 
         //폴더 생성
   		File fileDir = new File(imgPath, "admin");
@@ -110,12 +113,13 @@ public class JythonController {
   			fileDir.mkdirs();
   		}
       		
-        try {       	       
-			//해당 로직에서 지정된 장소에 해당 이미지 다운로드	
-			for(int i=0; i<img.length; i++)
+        try {       
+        	
+			//해당 로직에서 지정된 장소에 해당 이미지 다운로드
+        	for(int i=0; i<img.length; i++)
 			{
 				imgName=img[i].substring(img[i].lastIndexOf('/') + 1, img[i].length());
-				
+
 				//URL로 이미지 가져오기
 				imageUrl = new URL(img[i].toString());
 				in = new BufferedInputStream(imageUrl.openStream());
@@ -126,7 +130,8 @@ public class JythonController {
 				{
 	                //이미지를 읽어온다.
 	                data = in.read();
-	                if(data == -1){
+	                if(data == -1)
+	                {
 	                    break;
 	                }
 	                //이미지를 쓴다.
@@ -136,51 +141,110 @@ public class JythonController {
 	            fos.close();
 	            data=0;
 			}
+        	
         }catch (Exception e) {
 			System.out.println("**********Error!!(ImageDown())**********");
 		}	
 	}
 
 	//이미지 파싱
-	public void Parsing(int num) {		
+	public void Parsing(String shopName, int category) {
+		
+		//파싱할 웹 페이지
+		String url = null;
 		try {
-			//파싱할 웹 페이지
-			String url = "";
 			
-			switch(num)
+			if(shopName.equals("언더70"))
 			{
-				case 1:
-					url = "http://under70.kr/product/list.html?cate_no=24&page=1";
-					break;
+				switch(category)
+				{
+					//outer
+					case 1:
+						url = "http://under70.kr/product/list.html?cate_no=24&page=1";
+						break;
+					//t-shirt
+					case 2:
+						url = "http://under70.kr/product/list.html?cate_no=53&page=1";
+						break;					
+					//half-tshirt
+					case 3:
+						url = "http://under70.kr/product/list.html?cate_no=55&page=1";
+						break;						
+					//Hood
+					case 4:
+						url = "http://under70.kr/product/list.html?cate_no=33";
+						break;						
+					default:
+						url = "null";
+						break;
+				}
+				//Connect
+				Document doc = Jsoup.connect(url).get();
 				
-				case 2:
-					url = "http://under70.kr/product/list.html?cate_no=53&page=1";
-					break;
-					
-				case 3:
-					url = "http://under70.kr/product/list.html?cate_no=55&page=1";
-					break;
-					
-				case 4:
-					url = "http://under70.kr/product/list.html?cate_no=33\"";
-					break;
-					
-				default:
-					url = "null";
-					break;
+				//상품리스트의 상품사진 class명 (수정O)	
+				Elements imgs = doc.select("ul.prdList.column4 div.box a img.thumb"); 
+				img = new String[imgs.size()];
+				  
+				for(int n=0; n<img.length; n++)
+				{
+					img[n] = "http:"+imgs.get(n).attr("src");
+				}			
+				
 			}
-			
-			//Connect (수정X) 
-			Document doc = Jsoup.connect(url).get();
-			  
-			//상품리스트의 상품사진 class명 (수정O) 
-			Elements imgs = doc.select("ul.prdList.column4 div.box a img.thumb"); 
-			img = new String[imgs.size()];
-			  
-			for(int n=0; n<img.length; n++)
+			else if(shopName.equals("바이슬림"))
 			{
-				img[n] = "http:"+imgs.get(n).attr("src");
-			}			
+				switch(category) 
+				{
+					//outer
+					case 1:
+						url = "https://www.byslim.com/category/outer/5/";
+						break;
+					//t-shirt
+					case 2:
+						url = "https://www.byslim.com/category/%EA%B8%B4%ED%8C%94-%ED%8B%B0%EC%85%94%EC%B8%A0/444/";
+						break;
+					//half-tshirt
+					case 3:
+						url = "https://www.byslim.com/category/%EB%B0%98%ED%8C%94/171/";
+						break;
+					//Hood
+					case 4:
+						url = "https://www.byslim.com/category/%EB%A7%A8%ED%88%AC%EB%A7%A8%ED%9B%84%EB%93%9C/72/";
+						break;
+					default:
+						url = "null";
+						break;
+				}
+				//Connect
+				Document doc = Jsoup.connect(url).get();
+				
+				//상품리스트의 상품사진 class명 (수정O)	
+				Elements imgs = doc.select("div.-thumb img");
+				//1차적으로 src를 할당하기 위한 배열
+				String[] str = new String[imgs.size()];
+				//src에서 jpg또는 jpeg만을 할당하기 위한 List
+				//jpg또는 jpeg만 할당한 후, 맨 위에 선언된 img[]에 리턴
+				List<String> length = new ArrayList<String>();
+				
+				for(int n = 0; n < str.length; n++)
+				{
+					str[n] = imgs.get(n).attr("src");
+					if(str[n].substring(str[n].length()-4, str[n].length()).equals(".jpg") ||
+							str[n].substring(str[n].length()-4, str[n].length()).equals("jpeg"))
+					{
+						//jpg 또는 jpeg파일만 List에 할당
+						length.add("http:" + str[n]);
+					}
+				}
+				
+				//jpg or jpeg 숫자만큼 배열 재선언
+				img = new String[length.size()];
+				for(int i=0; i<length.size(); i++)
+				{
+					img[i] = length.get(i);
+				}
+			}
+		
 		}catch(Exception e) {
 			System.out.println("**********Error!! (Parsing())**********");
 		}

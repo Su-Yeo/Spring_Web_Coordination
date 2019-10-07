@@ -1,5 +1,6 @@
 package com.coordination.main;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -50,18 +51,35 @@ public class HomeController {
 	public String home(@ModelAttribute StyleVO vo, Locale locale, Model model) throws Exception {
 		logger.info("Welcome Man & Coordination!!");
 		
-		//이미지 링크 가져오기
-		//클래스 이름 가져오기 : select("클래스명")
-		//id 이름 가져오기 : select("#id명")
-		//속성 가져오기 : attr("alt")
-		String url = "http://under70.kr/product/list.html?cate_no=25";
+		String url = "https://www.byslim.com/category/%EB%B0%98%ED%8C%94/171/";
 		
 		//Connect
 		Document doc = Jsoup.connect(url).get();
 		
 		//상품리스트의 상품사진 class명
-		Elements titles = doc.select("div.box a img.thumb");				
-		model.addAttribute("image", titles);
+		Elements imgs = doc.select("div.-thumb img");	
+		String[] str = new String[imgs.size()];
+		List<String> length = new ArrayList<String>();
+		
+		for(int n = 0; n < str.length; n++)
+		{
+			str[n] = imgs.get(n).attr("src");
+			if(str[n].substring(str[n].length()-4, str[n].length()).equals(".jpg") ||
+					str[n].substring(str[n].length()-4, str[n].length()).equals("jpeg"))
+			{
+				//jpg 또는 jpeg파일만 List에 할당
+				length.add("http:" + str[n]);
+			}
+		}
+		
+		//jpg or jpeg 숫자만큼 배열 재선언
+		String[] img = new String[length.size()];
+		for(int i=0; i<length.size(); i++)
+		{
+			img[i] = length.get(i);
+		}
+		
+		model.addAttribute("image", img);
 		
 		top="경기도";
 		mdl="부천시소사구";

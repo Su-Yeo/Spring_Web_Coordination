@@ -3,6 +3,7 @@ package com.coordination.main;
 import java.io.File;
 import java.util.List;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
@@ -20,6 +21,9 @@ import com.coordination.service.StyleService;
 @Controller
 public class StyleController {
 
+	@Resource(name="imgPath")
+	private String imgPath;
+	
 	@Autowired
 	private StyleService service;
 	
@@ -28,7 +32,6 @@ public class StyleController {
 	//관리자 - style 변경
 	@RequestMapping(value = "updateStyle", method = RequestMethod.POST)
 	public String update(StyleVO vo, Model model) throws Exception {
-		
 		
 		try {
 			
@@ -58,16 +61,14 @@ public class StyleController {
 		
 		//삭제된 정보의 이미지명을 받아 프로젝트 내에 존재하는 해당 이미지 파일 삭제
 		String img = request.getParameter("img");
-		String path = "C:\\Users\\sangw\\Spring_Web\\Coordination_MVC"
-				+ "\\src\\main\\webapp\\resources\\"
-				+ "admin\\" + img;
+		imgPath += "\\admin\\" + img;
 		
 		try {
 			
 			vo.setNum(num);
-
+			
 			//프로젝트 내에 이미지 파일을 삭제하기 위한 파일 객체 선언
-			File file = new File(path);
+			File file = new File(imgPath);
 			
 			//해당 파일이 존재한다면 DB정보 삭제 + 이미지 삭제
 			if(file.exists() == true)
@@ -80,7 +81,7 @@ public class StyleController {
 			}
 			else
 			{
-				//해당 Path에 이미지가 존재하지 않아 삭제불가능
+				//해당 imgPath에 이미지가 존재하지 않아 삭제불가능
 				logger.info("==========이미지가 존재하지않아 삭제에 실패했습니다.==========");
 			}
 			

@@ -40,14 +40,15 @@
 	<div style="clear:left">
 		<p class="p2" style="font-size:24px">Today's Coordination</p>
 	</div>
-	
 	<div style="display: table; margin: 0 auto;">
-		<%-- <c:forEach items="${StyleList}" var="style">
+	<!-- 
+		<c:forEach items="${StyleList}" var="style" begin="1" end="12" step="1">
 			<div class="polaroid">
 					<img src="/resources/style/${style.img}" alt="이미지 링크">
 					<p></p>
 			</div>
-		</c:forEach> --%>	
+		</c:forEach>	
+	 -->
 	</div>
 </body>
 </html>

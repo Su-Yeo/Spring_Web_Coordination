@@ -3,6 +3,7 @@ package com.coordination.main;
 import java.io.PrintWriter;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,13 +23,31 @@ public class ClosetController {
 	
 	//회원 - 나만의 옷장 등록
 	@RequestMapping(value = "insertCloset", method = RequestMethod.POST)
-	public ModelAndView insert(ClosetVO vo, HttpServletResponse response) throws Exception {
+	public ModelAndView insert(ClosetVO vo, HttpServletResponse response, HttpSession session) throws Exception {
 		
 		ModelAndView mav = new ModelAndView();
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		
 		try {
+			//Id
+			String userId = session.getAttribute("userId").toString();
+			
+			//category
+	    	String category = null;
+	    	category = "t shirt";
+	    	
+	    	//color
+	    	String color = null;
+	    	color = "black";
+	    	
+	    	//img
+	    	String img = null;
+	    	
+	    	vo.setId(userId);
+	    	vo.setCategory(category);
+	    	vo.setColor(color);
+	    	vo.setImg(img);
 			
 			service.insertCloset(vo);
 			

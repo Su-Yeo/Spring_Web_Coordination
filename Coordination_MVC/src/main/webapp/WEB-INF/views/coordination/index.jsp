@@ -7,6 +7,11 @@
 <!DOCTYPE html>
 <html>
 <head>
+<!-- Bootstrap -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+<!-- Script & CSS -->
 <script src="http://code.jquery.com/jquery-2.2.2.min.js"></script>
 <link rel="stylesheet" href="/resources/css/style.css">
 <link rel="stylesheet" href="/resources/css/style2.css">
@@ -307,10 +312,11 @@
 	    </div>
     	<!-- weather select end -->
     	<!-- image select start -->
-    	<div>
-    		<c:forEach items="${image}" var="image">
-    			${image}
-		    </c:forEach>
+    	<br/>
+    	<div class="container">
+    		<c:forEach items="${image}" var="style" begin="1" end="12" step="1">
+    			<img src="${style}" />
+    		</c:forEach>
     	</div>
     	<!-- image select end -->
       </div>

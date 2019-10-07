@@ -20,17 +20,17 @@
 
 <!-- StyleUpdate -->
 <c:if test="${url eq 'updateStyle'}">
-	<meta charset="UTF-8" http-equiv="refresh" content="0;url=<c:url value='adminStyleList'/>?password=1234">
+	<meta charset="UTF-8" http-equiv="refresh" content="0;url=<c:url value='adminPage'/>">
 </c:if>
 
 <!-- IdentifyUpdate -->
 <c:if test="${url eq 'IdentifyUpdate'}">
-	<meta charset="UTF-8" http-equiv="refresh" content="0;url=<c:url value='adminStyleList'/>?password=1234">
+	<meta charset="UTF-8" http-equiv="refresh" content="0;url=<c:url value='adminIdentify'/>?password=1234">
 </c:if>
 
 <!-- StyleDelete -->
 <c:if test="${url eq 'deleteStyle'}">
-	<meta charset="UTF-8" http-equiv="refresh" content="0;url=<c:url value='adminStyleList'/>?password=1234">
+	<meta charset="UTF-8" http-equiv="refresh" content="0;url=<c:url value='adminPage'/>">
 </c:if>
 
 

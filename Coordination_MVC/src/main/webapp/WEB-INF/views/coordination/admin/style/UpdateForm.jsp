@@ -26,6 +26,9 @@ img{
 }
 </style>
 <body>
+<%
+	String path = "C:\\img\\admin\\";
+%>
 
 <!-- 이미지정보를 수정할 경우 -->
 <c:if test="${data eq 'updateStyle'}">
@@ -37,7 +40,7 @@ img{
 					<input type="hidden" name="num" value="${style.num}" />
 			<tr>
 				<td colspan="2" align="center">
-					<img src="C:\img\admin\${style.img}" />
+					<img src="<%= path %>${style.img}" />
 				</td>
 			</tr>		
 			<tr>
@@ -100,9 +103,6 @@ img{
 					<!-- num값 hidden전송 -->
 					<input type="hidden" name="num" value="${style.num}" />
 			<tr>
-<%
-	String path = "C:\\img\\admin\\";
-%>
 				<td colspan="2" align="center">
 					<img src="<%= path %>${style.img}" />
 				</td>
@@ -147,16 +147,17 @@ img{
 					<input type="text" name="img" value="${style.img}" />
 				</td>
 			</tr>
-		</c:forEach>
 			<tr>
 				<td colspan="2" align="center">
 					<input type="submit" value="관리자 인증완료" />
+					&nbsp;&nbsp;&nbsp;
+					<input type="button" value="이미지 삭제" onClick="location.href='deleteStyle?num=${style.num}&img=${style.img}'" />
 				</td>
 			</tr>
+		</c:forEach>
 		</table>
 		</form>
 	</div>
 </c:if>
-
 </body>
 </html>

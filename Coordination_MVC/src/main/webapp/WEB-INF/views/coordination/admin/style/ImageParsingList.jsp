@@ -18,11 +18,34 @@
 <meta charset="UTF-8">
 <title>관리자 - ImageParsingList</title>
 </head>
+<style>
+	img{
+		width: 230px;
+		height: 270px;
+	}
+	
+	.size{
+		width: 100px;
+		height: 35px;
+	}
+	.size:hover{
+		background-color: #17A2B8;
+		background-position: #ffffff;
+	}
+</style>
 <body>
 
 <div class="container" align="center">
 <form id="frm" method="GET" action="parsing">
 	<table>
+		<tr>
+			<td colspan="2" align="center">
+				<input type="radio" id="shopName1" name="shopName" value="언더70" class="form-control">언더70
+			</td>
+			<td colspan="2" align="center">
+				<input type="radio" id="shopName2" name="shopName" value="바이슬림" class="form-control">바이슬림
+			</td>
+		</tr>
 		<tr>
 			<td width="100" align="center">
 				<img src="/resources/admin/outer.jpg" />
@@ -53,7 +76,8 @@
 		</tr>
 		<tr>
 			<td colspan="4" align="center">
-				<button class="btn btn-outline-info" onClick="submit2()">등록</button>
+				<!-- btn-outline-info -->
+				<input type="button" class="form-control size" onClick="submit2();" value="등록" />
 			</td>
 		</tr>
 	</table>
@@ -62,21 +86,28 @@
 <script>
 	
     function submit2(){
+    	
+    	if( document.getElementById("shopName1").checked != true &&
+    	    document.getElementById("shopName2").checked != true)
+    	{
+    		alert('데이터 등록할 쇼핑몰을 선택해주세요.');
+    		document.getElementById("shopName1").focus();
+    		return;
+    	}
+  
         if(document.getElementById("Category1").checked != true &&
            document.getElementById("Category2").checked != true &&
            document.getElementById("Category3").checked != true &&
            document.getElementById("Category4").checked != true)
         {
-            alert("처리상태를 체크해주십시오.");
+            alert("카테고리를 체크해주십시오.");
             document.getElementById("Category1").focus();
+            
             return;
         }
-        else
-        {
-        	document.getElementById("frm").submit();	
-        }
+        
+        document.getElementById("frm").submit();
     }
-
 </script>
 </body>
 </html>

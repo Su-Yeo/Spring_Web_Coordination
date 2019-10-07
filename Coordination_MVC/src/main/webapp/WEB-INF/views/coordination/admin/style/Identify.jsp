@@ -26,36 +26,41 @@
 	}
 </style>
 <body>
-<!-- 데이터 파싱 → 다운로드 → 이미지 분석 → DB등록 후 관리자 최종 인증 단계  -->
-<div class="container">
-<c:if test="${empty StyleListIdentify}">
-		<h2>관리자의 승인이 필요한 이미지 정보가 존재하지 않습니다.</h2>
-</c:if>
-
 <%
 	String path = "C:\\img\\admin\\";
 %>
+<!-- 데이터 파싱 → 다운로드 → 이미지 분석 → DB등록 후 관리자 최종 인증 단계  -->
+<div class="container">
+
+<!-- 데이터가 존재하지 않을 경우 -->
+<c:if test="${empty StyleListIdentify}">
+		<h2>관리자의 승인이 필요한 이미지 정보가 존재하지 않습니다.<br/> 3초 뒤 관리자 메인 페이지로 이동합니다.</h2>
+		<meta charset="UTF-8" http-equiv="refresh" content="3;url=<c:url value='adminPage'/>">
+</c:if>
+
+<!-- 데이터가 존재할 경우 -->
 <c:if test="${not empty StyleListIdentify}">
 		<h2>이미지를 클릭하면 이미지의 정보를 호출합니다.</h2>
-
 <table>
-	<tr>
-		<c:set var="i" value="0" />
-		<c:forEach items="${StyleListIdentify}" var="style">
-			<td>
+	<c:set var="i" value="0" />
+	<c:set var="j" value="3" />
+	<c:forEach items="${StyleListIdentify}" var="style">
+	<c:if test="${i%j == 0 }">
+		<tr>
+	</c:if>
+			<td align="center">
 				<a href="IdentifyUpdateForm?num=${style.num}">
 					<img src="<%= path %>${style.img}" />
 				</a>
 			</td>
-		<c:set var="i" value="${i+1 }" />
-		<c:if test="${i == 3}">
-	<tr>
-	</tr>
-		</c:if>
-		</c:forEach>
-	</tr>
+	<c:if test="${i%j == j-1 }">
+		</tr>
+	</c:if> 
+	<c:set var="i" value="${i+1 }" />
+	</c:forEach>
 </table>
 </c:if>
+
 </div>
 </body>
 </html>
