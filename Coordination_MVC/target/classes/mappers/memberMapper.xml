@@ -56,7 +56,10 @@
     
     <!-- 로그인 처리 -->
     <select id="loginCheck" resultType="memberVO">
-    	SELECT * FROM member WHERE id=#{id} AND password=PASSWORD(#{password})
+    	SELECT * 
+    	FROM member
+    	WHERE 
+    		id=#{id} AND password=PASSWORD(#{password})
     </select>
     
 </mapper>

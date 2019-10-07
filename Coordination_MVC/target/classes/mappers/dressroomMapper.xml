@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.coordination.mapper.dressroomMapper">
+	
+	<!-- 한 회원마다 보여질 저장된 코디사진 출력 -->
+	<select id="dressroomList" resultType="dressroomVO">
+		SELECT * 
+		FROM dressroom
+		WHERE
+			id=#{id}
+	</select>
+	
+	<!-- 한 회원이 마음에 드는 코디사진을 저장 -->
+	<insert id="insertDressroom">
+		INSERT INTO dressroom(
+			num,
+			id,
+			img
+		)VALUES(
+			(SELECT IFNULL(MAX(num)+1, 1) FROM dressroom a),
+			#{id},
+			#{img}
+		)
+	</insert>
+	
+	<!-- 한 회원이 저장된 코디 사진을 삭제 -->
+	<delete id="deleteDressroom">
+		DELETE FROM dressroom WHERE num=#{num}
+	</delete>
+
+</mapper>

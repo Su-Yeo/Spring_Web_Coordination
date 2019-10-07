@@ -67,11 +67,10 @@ constraint closet_id_fk foreign key(id) references member(id)
  * 회원 아이디(FK)
  * 이미지 파일명
  */
-
-/*
-dskfnsdkflndskr234120312u3/회원아이디.jpg
-dskfnsdkflndskr234120312u3/회원아이디.jpg
-dskfnsdkflndskr234120312u3/회원아이디
-회원아이디
-dskfnsdkflndskr234120312u3.jpg
- */
+create table dressroom(
+num int(11) not null,
+id varchar(30),
+img varchar(50),
+primary key(num),
+constraint dressroom_id_fk foreign key(id) references member(id)
+);

@@ -8,7 +8,8 @@
 	<select id="ClosetList" resultType="closetVO">
 		SELECT *
 		FROM closet
-		WHERE id = #{id}
+		WHERE
+			id = #{id}
 	</select>
 	
 	<insert id="insertCloset">
