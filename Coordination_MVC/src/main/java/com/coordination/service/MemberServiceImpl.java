@@ -1,8 +1,5 @@
 package com.coordination.service;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -10,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.coordination.dao.MemberDAO;
 import com.coordination.dto.MemberVO;
@@ -59,12 +57,11 @@ public class MemberServiceImpl implements MemberService {
 	
 	//로그인 처리
 	@Override
-	public Map<String, Object> loginCheck(MemberVO vo, HttpSession session, HttpServletRequest request) throws Exception {
+	@Transactional
+	public String loginCheck(MemberVO vo, HttpSession session, HttpServletRequest request) throws Exception {
 		
 		//결과를 반환해줄 변수
 		String result = "";
-		
-		Map<String, Object> data = new HashMap<String, Object>();
 		
 		vo = dao.loginCheck(vo);
 		
@@ -75,10 +72,10 @@ public class MemberServiceImpl implements MemberService {
 			
 			//Test 
 			//잘 수행될 경우 해당 구문 주석 or 삭제요망
-			System.out.println("ID : " + vo.getId());
-			System.out.println("PASSWORD : " + vo.getPassword());
-			System.out.println("NAME : " + vo.getName());
-			System.out.println("PHONE : " + vo.getPhone());
+			//System.out.println("ID : " + vo.getId());
+			//System.out.println("PASSWORD : " + vo.getPassword());
+			//System.out.println("NAME : " + vo.getName());
+			//System.out.println("PHONE : " + vo.getPhone());
 			
 			//세션 설정
 			//id의 경우 회원정보 수정, 삭제 시 필요
@@ -87,7 +84,6 @@ public class MemberServiceImpl implements MemberService {
 			session.setAttribute("userName", vo.getName());
 			
 			result = "success";
-			data.put("result", "success");
 		}
 		//탈퇴한 회원
 		else if(vo != null && vo.getGhost().equals("y"))
@@ -95,7 +91,6 @@ public class MemberServiceImpl implements MemberService {
 			logger.info("Error!!, 탈퇴한 회원 로그인");
 			
 			result = "ghost";
-			data.put("result", "ghost");
 		}
 		//로그인 실패
 		else
@@ -103,9 +98,8 @@ public class MemberServiceImpl implements MemberService {
 			logger.info("Error!!, 아이디 또는 비밀번호 오류");
 			
 			result = "fail";
-			data.put("result", "fail");
 		}
 		
-		return data;
+		return result;
 	}
 }

@@ -11,7 +11,7 @@
 
 <!-- Script&CSS -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="/resources/js/app.js"></script>
+<!-- <script src="/resources/js/app.js"></script> -->
 <script src="/resources/js/jquery-3.3.1.min.js"></script>
 <script src="/resources/js/bootstrap.min.js" async></script>
 <link rel="stylesheet" type="text/css" href="/resources/css/w3.css">
@@ -62,10 +62,10 @@
                 	 <a class="w3-bar-item w3-button" id="myBtn">마이페이지</a>
                 	 <div id="demoAcc" class="w3-bar-block w3-hide w3-padding w3-medium">
                 	 	<c:if test="${empty sessionScope.userId}"> 
-                	 		<a href="products/productsList.php?pCode=B01" class="w3-bar-item w3-button">로그인</a>
+                	 		<a onclick="document.getElementById('login_modal').style.display='block'" class="w3-bar-item w3-button">로그인</a>
                 	 	</c:if>
                 	 	<c:if test="${not empty sessionScope.userId}"> 
-                	 		<a href="products/productsList.php?pCode=B01" class="w3-bar-item w3-button">로그아웃</a>
+                	 		<a href="logout" class="w3-bar-item w3-button">로그아웃</a>
                 	 	</c:if>
                 	 </div>
                 </div>
@@ -76,19 +76,19 @@
                     	<a onclick="document.getElementById('login_modal').style.display='block'" class="w3-bar-item w3-button">로그인</a>
                     </c:if>
                     <c:if test="${not empty sessionScope.userId}"> 
-                    	<a onclick="document.getElementById('login_modal').style.display='block'" class="w3-bar-item w3-button">로그아웃</a>
+                    	<a href="logout" class="w3-bar-item w3-button">로그아웃</a>
                     </c:if>
                     <c:if test="${empty sessionScope.userId}"> 
-                    	<a href="#" class="w3-bar-item w3-button">회원가입</a>
+                    	<a href="signup" class="w3-bar-item w3-button">회원가입</a>
                     </c:if>
                     <c:if test="${not empty sessionScope.userId}"> 
-                    	<a href="#" class="w3-bar-item w3-button">마이페이지</a>
+                    	<a href="isMyPage" class="w3-bar-item w3-button">마이페이지</a>
                     </c:if>
                </div>
 			</div>
 		</div>     
 		
-		<a href="index.php" class="w3-wide w3-bar-item" style="text-decoration:none;">
+		<a href="/" class="w3-wide w3-bar-item" style="text-decoration:none;">
 			<b>LOGO</b>
 		</a>
 		
@@ -98,13 +98,13 @@
 				<a onclick="document.getElementById('login_modal').style.display='block'" class='w3-button w3-padding-large menuFont'>로그인</a>
 			</c:if>
 			<c:if test="${not empty sessionScope.userId}">
-				<a href='members/logoutCheck.php' class='w3-button w3-padding-large menuFont' style='text-decoration:none'>로그아웃</a>
+				<a href='logout' class='w3-button w3-padding-large menuFont' style='text-decoration:none'>로그아웃</a>
 			</c:if>
 			<c:if test="${empty sessionScope.userId}">
-				<a class='w3-button w3-padding-large menuFont'>회원가입</a>
+				<a href='signup' class='w3-button w3-padding-large menuFont'>회원가입</a>
 			</c:if>
 			<c:if test="${not empty sessionScope.userId}">
-				<a class='w3-button w3-padding-large menuFont'>회원정보</a>
+				<a href='isMyPage' class='w3-button w3-padding-large menuFont'>회원정보</a>
 			</c:if>
 		</div>
 	</div>
@@ -129,10 +129,10 @@
 				<input class="w3-input w3-border w3-margin-bottom" type="text" placeholder="아이디를 입력해주세요." name="id" id="id" required>
 				<input class="w3-input w3-border" type="password" placeholder="비밀번호를 입력해주세요." name="password" id="password" required>
 				
-				<c:if test="${login eq 'ghost'}">
+				<c:if test="${data eq 'ghost'}">
 					<div id="display_error" style="color:red;">탈퇴한 회원입니다.</div>
 				</c:if>
-				<c:if test="${login eq 'error'}">
+				<c:if test="${data eq 'error'}">
 					<div id="display_error" style="color:red;">아이디 또는 비밀번호가 틀렸습니다.</div>
 				</c:if>
 				
@@ -144,7 +144,6 @@
 	</div>
 </div>
 <!-- End 로그인 모달 -->
-
 
 
 <script>

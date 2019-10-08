@@ -1,9 +1,7 @@
 package com.coordination.main;
 
 import java.io.PrintWriter;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,10 +13,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.coordination.dto.ClosetVO;
 import com.coordination.dto.MemberVO;
@@ -142,19 +138,18 @@ public class MemberController {
 		return "movePage";
 	}
 	//로그인 처리
-	/* @RequestMapping(value="loginCheck", method=RequestMethod.POST) */
+	@RequestMapping(value="loginCheck", method=RequestMethod.POST)
 	public String loginCheck(MemberVO vo, Model model, HttpSession session, HttpServletRequest request, HttpServletResponse response) throws Exception {
 			
-		response.setContentType("text/html; charset=UTF-8");
-		PrintWriter out = response.getWriter();
+		
+		response.setContentType("text/html; charset=UTF-8"); PrintWriter out =
+		response.getWriter();
+		 
 		
 		try {
-			//String result = memberService.loginCheck(vo, session, request);
-			Map<String, Object> data = new HashMap<String, Object>();
-			data = memberService.loginCheck(vo, session, request);
-			String result = data.get("result").toString();
+			String result = memberService.loginCheck(vo, session, request);
 			
-			
+						
 			//로그인 성공
 			if(result.equals("success"))
 			{
@@ -165,20 +160,23 @@ public class MemberController {
 			else if(result.equals("ghost"))
 			{
 				//메인 페이지로 이동
-				out.println("<script>"
-						+ "history.back();"
-	        			+ "</script>");
-	            out.flush();
-				model.addAttribute("login", "ghost");
+				out.println("<script>" 
+						+ "alert('탈퇴한 회원입니다.');"
+						+ "</script>"); 
+				out.flush();
+				
+				model.addAttribute("url", "loginGhost");
 			}
 			//로그인 실패
 			else
 			{
-				out.println("<script>"
+				model.addAttribute("data", "error");
+				
+	            out.println("<script>" 
+						+ "alert('아이디 또는 비밀번호가 틀렸습니다.');"
 						+ "history.back();"
-	        			+ "</script>");
+						+ "</script>");
 	            out.flush();
-	            model.addAttribute("login", "error");
 			}
 			
 		}catch(Exception e) {
@@ -187,6 +185,17 @@ public class MemberController {
 		}
 		
 		return "movePage";
+	}
+	
+	@RequestMapping("logout")
+	public String logout(HttpSession session) {
+		
+		//세션 삭제
+		session.removeAttribute("userId");
+		session.removeAttribute("userName");
+		
+		//메인 Page이동
+		return "redirect:/";
 	}
 
 	//member 회원가입 Page이동
@@ -220,14 +229,5 @@ public class MemberController {
 			
 			return "coordination/member/myPage";
 		}
-	}
-	
-	
-	@RequestMapping(value = "loginCheck", method = RequestMethod.POST)
-	public @ResponseBody Map<String, Object> loginPost(@RequestBody MemberVO vo, HttpSession session, HttpServletRequest request) throws Exception {
-		
-		logger.info(vo.toString());
-		
-		return memberService.loginCheck(vo, session, request);
 	}
 }
