@@ -12,11 +12,14 @@ import org.apache.commons.lang3.RandomStringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.coordination.dto.ClosetVO;
@@ -233,34 +236,4 @@ public class MemberController {
 		return url;
 	}
 	
-	@RequestMapping(value="loginAjax", method=RequestMethod.GET)
-	public String loginAjax(@ModelAttribute MemberVO vo, HttpSession session, HttpServletRequest request, HttpServletResponse response) throws Exception {
-		
-		try {
-		
-			String result = memberService.loginCheck(vo, session, request);
-			
-			//로그인 성공
-			if(result.equals("success"))
-			{
-				System.out.println("success");
-			}
-			//탈퇴한 회원
-			else if(result.equals("ghost"))
-			{
-
-			}
-			//로그인 실패
-			else
-			{
-
-			}
-			
-		}catch(Exception e) {
-			e.printStackTrace();
-			logger.info("Error!!");
-		}
-		
-		return "coordination/member/login";
-	}
 }

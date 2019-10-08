@@ -8,7 +8,7 @@
 <script src="http://code.jquery.com/jquery-latest.min.js">
 </script>
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.4.4.min.js"></script>
-<!-- 
+
 <script>
 	$(document).ready(function() {
 		$("#btnLogin").click(function() {
@@ -38,25 +38,30 @@
 				$('#password').focus();
 				return;
 			}
-			$('#loginForm').submit();
+			<!-- $('#loginForm').submit(); -->
+			
 			var data = "id=" + userid + "&password=" + passwd;
 
+			<!--
 			$.ajax({
-				type : "GET",
+				type : "POST",
 				data : data,
 				url : action,
-				success : function(data) {
-					alert("값 전달 성공!!!");
 				success : function(response) {
-					  if(response.trim() == "success"){
-						  alert("dddd");
+					  if(response == "success"){
+						  loaction.href="/";
 					  }
-
-					$('#loginForm').submit();
+					  else
+					  {
+						  alert("Error");
+					  }
+					/* $('#loginForm').submit(); */
 				}
 			});
+		});
+		-->
 </script>
- -->
+
 <style>
 	span{
 		color: red;
@@ -83,7 +88,7 @@
 			<tr>
 				<td align = "center">
 					<!-- <input type="button" value="로 그 인" id="btnLogin"> -->
-					<input type="submit" value="로 그 인" />
+					<input type="submit" value="로 그 인" id="btnLogin" />
 				</td>
 			</tr>
 		</table>
