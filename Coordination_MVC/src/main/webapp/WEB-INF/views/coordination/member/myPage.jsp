@@ -8,7 +8,18 @@
 <meta charset="UTF-8">
 <title>myPage</title>
 </head>
+<style>
+	img{
+		align:center;
+		margin:0 auto;
+		width: 275px;
+		height: 400px;
+	}
+</style>
 <body>
+<%
+	String path = "C:\\img\\user\\";
+%>
 회원 ID : ${sessionScope.userId} <br/>
 회원 이름 : ${sessionScope.userName}
 <br/><br/>
@@ -19,7 +30,9 @@
 	<h2>나만의 옷장이 비어있습니다.</h2>
 </c:if>
 <c:forEach items="${ClosetList}" var="closet">
-	<img src="/resources/closet/${closet.img}" />
+	<a href="updateClosetForm?num=${closet.num}">
+		<img src="<%= path %>${closet.img}" />
+	</a>
 </c:forEach>
 </div>
 </body>

@@ -3,379 +3,178 @@
 <%@page import="com.google.gson.JsonArray"%>
 <%@page import="java.util.Map"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%request.setCharacterEncoding("utf-8");%>    
+<%request.setCharacterEncoding("utf-8");%> 
+<%@ page session="true" %>   
 <!DOCTYPE html>
 <html>
 <head>
-<!-- Bootstrap -->
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
-<!-- Script & CSS -->
-<script src="http://code.jquery.com/jquery-2.2.2.min.js"></script>
-<link rel="stylesheet" href="/resources/css/style.css">
-<link rel="stylesheet" href="/resources/css/style2.css">
-<link rel="stylesheet" href="/resources/css/swiper.min.css">
+<!-- Script&CSS -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="/resources/js/app.js"></script>
+<script src="/resources/js/jquery-3.3.1.min.js"></script>
+<script src="/resources/js/bootstrap.min.js" async></script>
+<link rel="stylesheet" type="text/css" href="/resources/css/w3.css">
+<link rel="stylesheet" type="text/css" href="/resources/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Permanent+Marker">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nanum+Gothic">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Jua">
+
+<!-- favicon -->
+<link rel="apple-touch-icon" sizes="120x120" href="/resources/icon/user/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/resources/icon/user/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/resources/icon/user/favicon-16x16.png">
+<link rel="manifest" href="/resources/icon/user/site.webmanifest">
+<link rel="mask-icon" href="/resources/icon/user/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+<!-- End favicon -->
+
 <meta charset="UTF-8">
-<title>Man & Coordination</title>
-<style>	
-	#div_top{
-		 <!-- background-color:#000000; -->
-	   text-align: center;
-	   width: 100%;
-	   padding-top:50px;
-	}
-    #div_right{
-       float: left;
-       text-align: center;
-       width: 100%;
-    }
-    
-    #div_left{
-		position: absolute;
-		top: 300px;
-		right: 50%;
-		width: 117px;
-		margin-right: -720px;
-    }
-    
-	#div_main{
-		background: linear-gradient(180deg, #FFFFFF , #DDDDDD);
-		text-align: center;
-		float: left;
-		width:100%;
-		height: auto;
-		margin-left: -2%;
-		padding-left: 45px;
-	}
-	
-	#div_bottom{
-		float: left;
-		background-color:#DDDDDD;
-		text-align:left;
-		      width: 100%;
-		border-top:1px solid #C3C3C3;
-		padding:30px;
-		margin-left:-1%;
-	}
-
-  	#div_img{
-	    text-align: center;
-	    background-color: white;
-	    display: inline-block;
-	    width: 80%;
-	
-	    display: -webkit-box;
-	    display: -ms-flexbox;
-	    display: -webkit-flex;
-	    display: flex;
-	    -webkit-box-pack: center;
-	    -ms-flex-pack: center;
-	    -webkit-justify-content: center;
-	    justify-content: center;
-	    -webkit-box-align: center;
-	    -ms-flex-align: center;
-	    -webkit-align-items: center;
-	    align-items: center;
-  	}
-  	
-	#div_img:nth-child(2n){
-	   	width: 60%;
-	}
-	
-	#div_img:nth-child(3n){
-	   	width: 40%;
-	}
-	
-	#div_banner1{
-		float: left;
-		width:100%;
-		margin: 2px 2px;
-	}
-	
-  	.p1{
-		margin-top:-5px;
-	    position: relative;
-	    display: inline-block;
-	    background:#ffffff;
-	    -webkit-background-clip: text;
-	    -webkit-text-fill-color: transparent;
-	    white-space: nowrap;
-  	}
-  	
-	.p2{
-		clear:left;
-		position: relative;
-		display: inline-block;
-		background: linear-gradient(45deg, #000000 , #888888, #000000);
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-		white-space: nowrap;
-		margin-top:50px;
-	}
-	.p3{
-		position: relative;
-		display: inline-block;
-		background: linear-gradient(-45deg, #FFBF00 , #FF00BF , #5858FA);
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-		white-space: nowrap;
-	}
-	#div_button1,#div_button2,#div_button3{
-		background: #222222;
-		color: #fff;
-		border: none;
-		position: relative;
-		height: 40px;
-		width: 100%;
-		font-size: 15px;
-		cursor: pointer;
-		transition: 800ms ease all;
-		outline: none;
-	}
-  
-	#div_button1:hover,#div_button2:hover,#div_button3:hover{
-		background: #fff;
-		color: #222222;
-	}
-  
-  #div_button1:before,#div_button1:after,#div_button2:before,#div_button2:after,#div_button3:before,#div_button3:after{
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0;
-    height: 2px;
-    width: 0;
-    background: #ffffff;
-    transition: 600ms ease all;
-  }
-  
-  #div_button1:after,#div_button2:after,#div_button3:after{
-    right: inherit;
-    top: inherit;
-    left: 0;
-    bottom: 0;
-  }
-  
-  #div_button1:hover:before,#div_button1:hover:after,#div_button2:hover:before,#div_button2:hover:after,#div_button3:hover:before,#div_button3:hover:after{
-    width: 100%;
-    transition: 8
-  }
-  
-  
-	/* 사이드 메뉴 */
-	.sidenav {
-		height: 100%;
-		width: 0px;
-		position: fixed;
-		z-index: 1;
-		top: 0;
-		left: 0;
-		background-color: #333333;
-		overflow-x: hidden;
-		transition: 0.5s;
-		padding-top: 60px;
-	}
-	.sidenav a {
-		height:100px;
-		padding-left:16px;
-		text-decoration: none;
-		font-size: 20px;
-		color: #919191;
-		display: block;
-		transition: 0.3s;
-	}
-	.sidenav a:visited {
-	    color: #919191;
-	}
-	.sidenav a:hover {
-		color: #f1f1f1;
-	}
-	.sidenav .closebtn {
-		position: absolute;
-		top: 0;
-		right: 15px;
-		font-size: 36px;
-		margin-left: 50px;
-	}
-	@media screen and (max-height: 450px) {
-		.sidenav {padding-top: 15px;}
-		.sidenav a {font-size: 18px;}
-	}
-	.divselect div{
-		border-top:1px solid #919191;
-		border-bottom:1px solid #919191;
-		height:100px;
-		line-height:100px;
-	}
-	/* 사이드메뉴 버튼 */
-	#btn1{
-            margin-right:-4px;
-    }
-    #btn2{   
-        margin-left:-3px;
-    }
-    #btn_group{
-		align:center;
-    }
-    #btn_group button{
-		font-size: 20px;
-    	width: 150px;
-        border: 1px solid #919191;
-        background-color: #333333;
-        color: #919191;
-        padding: 30px;
-    }
-    #btn_group button:hover{
-        color:white;
-    }
-    
-    img {
-		align:center;
-		margin:0 auto;
-		width: 275px;
-		height: 400px;
-	}
-</style>
+<title>오늘 뭐 입지??</title>
 </head>
-<body>
-	<div id="mySidenav" class="sidenav">
-		<div>
-			<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-		</div>
-		<div style="text-align:center;margin-top:-30px;margin-bottom:30px;">
-			<font style="color:#919191;font-size:25px;">Filter</font>
-		</div>
-		<div class="divselect">
-			<div><a href="#">정렬 기준</a></div>
-			<div><a href="#">제품 종류</a></div>
-			<div><a href="#">스타일</a></div>
-			<div><a href="#">사이즈</a></div>
-			<div><a href="#">컬러</a></div>
-			<div><a href="#">키</a></div>
-		</div>
-		<div id="btn_group">
-       		<button id="btn1">선택</button>
-        	<button id="btn2">초기화</button>
-    	</div>
-	</div>
-<script>
-	//오른쪽 리모콘 Animation
-	$(document).ready(function() {
-	
-		// 기존 css에서 플로팅 배너 위치(top)값을 가져와 저장한다.
-		var floatPosition = parseInt($("#div_left").css('top'));
-		// 250px 이런식으로 가져오므로 여기서 숫자만 가져온다. parseInt( 값 );
-	
-		$(window).scroll(function() {
-			// 현재 스크롤 위치를 가져온다.
-			var scrollTop = $(window).scrollTop();
-			var newPosition = scrollTop + floatPosition + "px";
-	
-			/* 애니메이션 없이 바로 따라감
-			 $("#div_left").css('top', newPosition);
-			 */
-	
-			$("#div_left").stop().animate({
-				"top" : newPosition
-			}, 500);
-	
-		}).scroll();
-	
-	});
-
-	function openNav() {
-			document.getElementById("mySidenav").style.width = "400px";
-	}
-	function closeNav() {
-		document.getElementById("mySidenav").style.width = "0px";
-	}
-</script>
-
-   <div style="text-align:center;">
-      <div id="div_top">
-      	<!--
-		<p class="p1" style="font-size:50px;weight:bold;"><a href="index.jsp">M & C</a></p>
-      	 -->
-      	<p class="p1" style="font-size:50px;weight:bold;">
-     	<a href="#">
-     		<img src="/resources/img/logo.jpg" style="width:700px;height:130px">
-		</a></p><hr/>
-      </div>
-      
-      <div id="div_right">
-    	<!-- weather select start -->
-    	<div style="width:100%;margin-top:30px;text-align:center;">
-		    <div id="div_include3">
-		    	<jsp:include page="weather.jsp" flush="true"></jsp:include>
-		    </div>
-	    </div>
-    	<!-- weather select end -->
-    	<!-- image select start -->
-    	<br/>
-    	<div class="container">
-    		<c:forEach items="${image}" var="style" begin="1" end="12" step="1">
-    			<img src="${style}" />
-    		</c:forEach>
-    	</div>
-    	<!-- image select end -->
-      </div>
-      
-      <div id="div_left">
-         <div id="div_banner1">
-            <button id="div_button1" onclick="location.href='#div_top'">▲</button>
-         </div>
-         <div id="div_banner1">
-            <button id="div_button2" onclick="openNav()">Style</button>
-         </div>
-         <div id="div_banner1">
-            <button id="div_button3" onclick="location.href='#div_bottom'">▼</button>
-         </div>
-      </div>
-      
-      <div id="div_main">
+<style>
+        h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
+        body,a {font-family: 'Nanum Gothic', sans-serif;}
         
-                  
-    	<!-- include main -->
-	    <div id="div_include" style="width:70%;margin:0 auto;">
-	    </div>   
-    </div>
-	<div id="div_bottom">
-		<div>
-			<table align="center" width="80%">
-				<tr>
-					<td width="600px">
-						<font style="font-size:18px;font-weight:bold">문의</font><br/><br/>
-						<font style="font-size:25px;font-weight:bold">010-9935-7482</font><br/>
-						<font style="font-size:12px;color:gray">평일 10:00~17:00(점심시간 12:00~13:00/주말&공휴일 휴무)<br>
-						업무시간 외 문의는 Q&A게시판을 이용부탁드립니다.</font>
-					</td>
-					<td width="600px">
-						<font style="font-size:18px;font-weight:bold">주소</font><br/><br/><br/>
-						<font style="font-size:14px;color:gray">경기도 부천시 경인로 590 (유한대학교)</font>
-					</td>
-					<td width="300px">
-						<font style="font-size:18px;font-weight:bold">만든이</font><br/><br/><br/>
-						<font style="font-size:14px;color:gray">팀장 : 선상원</font><br/>
-						<font style="font-size:14px;color:gray">팀원 : 박관용, 설 훈, 여수향</font>
-					</td>
-				</tr>
-			</table>
+        .menuFont {font-family: 'Nanum Gothic', sans-serif; font-size: 13px;}
+        .categoryFont {font-family: 'Jua', sans-serif;}
+        .dynamicFont {font-family: 'Permanent Marker', cursive;}
+        .optionFont {background-color: darkgrey; color: white; font-size: 11px; font-family: "돋움", sans-serif; padding: 2px;}
+        
+        .stringHidden {white-space: nowrap; overflow: hidden; text-overflow: ellipsis;}
+    </style>
+<body>
+<div class="w3-top">
+	<!-- 상단바 왼쪽 메뉴 -->
+	<div class="w3-bar w3-white w3-card w3-large" style='padding-left:15px; padding-right:15px;'>
+		<div class="w3-dropdown-click w3-left">
+			<a onclick="show_category()" class="w3-button">
+				<i class="fa fa-bars"></i>
+			</a>
+			<div class="w3-dropdown-content w3-bar-block w3-card-category w3-border" style="width:250px; padding-bottom:10px; padding-top:10px;" id="category">
+				<a class="w3-bar-item w3-button">패션의류/잡화</a>
+                <a class="w3-bar-item w3-button">문구/오피스</a>
+                
+                <div id="myAccFunc">
+                	 <a class="w3-bar-item w3-button" id="myBtn">마이페이지</a>
+                	 <div id="demoAcc" class="w3-bar-block w3-hide w3-padding w3-medium">
+                	 	<c:if test="${empty sessionScope.userId}"> 
+                	 		<a href="products/productsList.php?pCode=B01" class="w3-bar-item w3-button">로그인</a>
+                	 	</c:if>
+                	 	<c:if test="${not empty sessionScope.userId}"> 
+                	 		<a href="products/productsList.php?pCode=B01" class="w3-bar-item w3-button">로그아웃</a>
+                	 	</c:if>
+                	 </div>
+                </div>
+                
+                <div class="w3-hide-large w3-hide-medium w3-small">
+                	<p style='margin-left:10px; margin-right:10px;' class="w3-border-bottom w3-border-light-grey"></p>
+                    <c:if test="${empty sessionScope.userId}"> 
+                    	<a onclick="document.getElementById('login_modal').style.display='block'" class="w3-bar-item w3-button">로그인</a>
+                    </c:if>
+                    <c:if test="${not empty sessionScope.userId}"> 
+                    	<a onclick="document.getElementById('login_modal').style.display='block'" class="w3-bar-item w3-button">로그아웃</a>
+                    </c:if>
+                    <c:if test="${empty sessionScope.userId}"> 
+                    	<a href="#" class="w3-bar-item w3-button">회원가입</a>
+                    </c:if>
+                    <c:if test="${not empty sessionScope.userId}"> 
+                    	<a href="#" class="w3-bar-item w3-button">마이페이지</a>
+                    </c:if>
+               </div>
+			</div>
+		</div>     
+		
+		<a href="index.php" class="w3-wide w3-bar-item" style="text-decoration:none;">
+			<b>LOGO</b>
+		</a>
+		
+		<!-- 상단바 오른쪽 메뉴, 사이즈 작아지면 사라짐 -->
+		<div class="w3-right w3-hide-small" style="margin-bottom:-1px;">
+			<c:if test="${empty sessionScope.userId}">
+				<a onclick="document.getElementById('login_modal').style.display='block'" class='w3-button w3-padding-large menuFont'>로그인</a>
+			</c:if>
+			<c:if test="${not empty sessionScope.userId}">
+				<a href='members/logoutCheck.php' class='w3-button w3-padding-large menuFont' style='text-decoration:none'>로그아웃</a>
+			</c:if>
+			<c:if test="${empty sessionScope.userId}">
+				<a class='w3-button w3-padding-large menuFont'>회원가입</a>
+			</c:if>
+			<c:if test="${not empty sessionScope.userId}">
+				<a class='w3-button w3-padding-large menuFont'>회원정보</a>
+			</c:if>
 		</div>
 	</div>
-	<!-- bottom end -->
+</div>
+<!-- End 상단바 -->  
+
+<!-- 로그인 모달 -->
+<div id="login_modal" class="w3-modal">
+	<div class="w3-modal-content w3-card-4 w3-animate-zoom" style="max-width:600px">
+		<div class="w3-center">  
+			<br>
+			<span onclick="document.getElementById('login_modal').style.display='none'" class="w3-button w3-xlarge w3-transparent w3-display-topright" title="Close Modal">
+			×
+			</span>
+			<h1 class="dynamicFont" style="font-size:50px;">
+				<b>오늘 뭐 입지??</b>
+			</h1>
+		</div>
+		
+		<form class="w3-container" action="loginCheck" method="post" name="login_form" id="login_form" autocomplete="off">
+			<div class="w3-section">
+				<input class="w3-input w3-border w3-margin-bottom" type="text" placeholder="아이디를 입력해주세요." name="id" id="id" required>
+				<input class="w3-input w3-border" type="password" placeholder="비밀번호를 입력해주세요." name="password" id="password" required>
+				
+				<c:if test="${login eq 'ghost'}">
+					<div id="display_error" style="color:red;">탈퇴한 회원입니다.</div>
+				</c:if>
+				<c:if test="${login eq 'error'}">
+					<div id="display_error" style="color:red;">아이디 또는 비밀번호가 틀렸습니다.</div>
+				</c:if>
+				
+				<button class="w3-button w3-block w3-green w3-section w3-padding" type="submit">
+					로그인
+				</button>
+			</div>
+		</form>
+	</div>
+</div>
+<!-- End 로그인 모달 -->
+
+
+
+<script>
+	// 카테고리 항목 → 하위 항목 호버효과로 펼쳐 줌
+	$('#myAccFunc').hover(function() {
+		var menu_select_icon = document.createElement("i");
+        menu_select_icon.className = "w3-margin-left fa fa-caret-down";
+        
+        var x = document.getElementById("demoAcc");
+        var y = document.getElementById("myBtn");
+        
+        if (x.className.indexOf("w3-show") == -1) {
+            x.className += " w3-show";
+            y.append(menu_select_icon);
+        } else {
+            x.className = x.className.replace(" w3-show", "");
+            $('i.fa-caret-down').remove();
+        }
+	});
 	
-<!--
-	//원래 리모콘 CSS 
-	#div_left{
-       float: left;
-       position: fixed;
-       left: 5%;
-       top: 40%;
-       margin-left: 85%;
-       text-align: center;
-       width: 117px;
-    }
- -->
+	// 상단바에 있는 카데고리 펼쳐주는 효과
+	function show_category() {
+		var x = document.getElementById("category");
+		
+		if (x.className.indexOf("w3-show") == -1) {
+            x.className += " w3-show";
+        } else {
+            x.className = x.className.replace(" w3-show", "");
+        }
+	}
+</script>   	
 </body>
 </html>

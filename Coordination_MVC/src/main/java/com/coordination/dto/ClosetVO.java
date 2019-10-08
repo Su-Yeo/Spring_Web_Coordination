@@ -8,6 +8,7 @@ public class ClosetVO {
 	private String color;
 	private String img;
 	
+	
 	//Getter Setter
 	public int getNum() {
 		return num;

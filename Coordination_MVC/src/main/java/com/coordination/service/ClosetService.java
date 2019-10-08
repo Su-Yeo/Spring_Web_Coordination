@@ -7,7 +7,7 @@ import com.coordination.dto.ClosetVO;
 public interface ClosetService {
 
 	//각 회원의 옷장 출력
-	public List<ClosetVO> ClosetList(ClosetVO vo) throws Exception;
+	public List<ClosetVO> closetList(ClosetVO vo) throws Exception;
 	
 	//회원이 나만의 옷장에 사진 저장
 	public void insertCloset(ClosetVO vo);

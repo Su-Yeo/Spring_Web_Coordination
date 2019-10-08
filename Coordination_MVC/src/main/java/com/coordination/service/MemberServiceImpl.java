@@ -1,5 +1,8 @@
 package com.coordination.service;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -56,10 +59,12 @@ public class MemberServiceImpl implements MemberService {
 	
 	//로그인 처리
 	@Override
-	public String loginCheck(MemberVO vo, HttpSession session, HttpServletRequest request) throws Exception {
+	public Map<String, Object> loginCheck(MemberVO vo, HttpSession session, HttpServletRequest request) throws Exception {
 		
 		//결과를 반환해줄 변수
 		String result = "";
+		
+		Map<String, Object> data = new HashMap<String, Object>();
 		
 		vo = dao.loginCheck(vo);
 		
@@ -82,6 +87,7 @@ public class MemberServiceImpl implements MemberService {
 			session.setAttribute("userName", vo.getName());
 			
 			result = "success";
+			data.put("result", "success");
 		}
 		//탈퇴한 회원
 		else if(vo != null && vo.getGhost().equals("y"))
@@ -89,6 +95,7 @@ public class MemberServiceImpl implements MemberService {
 			logger.info("Error!!, 탈퇴한 회원 로그인");
 			
 			result = "ghost";
+			data.put("result", "ghost");
 		}
 		//로그인 실패
 		else
@@ -96,8 +103,9 @@ public class MemberServiceImpl implements MemberService {
 			logger.info("Error!!, 아이디 또는 비밀번호 오류");
 			
 			result = "fail";
+			data.put("result", "fail");
 		}
 		
-		return result;
+		return data;
 	}
 }

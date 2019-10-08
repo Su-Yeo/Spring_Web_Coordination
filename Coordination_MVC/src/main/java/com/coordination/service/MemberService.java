@@ -1,5 +1,7 @@
 package com.coordination.service;
 
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -23,5 +25,5 @@ public interface MemberService {
 	public void deleteMember(MemberVO vo);
 		
 	//로그인 처리
-	public String loginCheck(MemberVO vo, HttpSession session, HttpServletRequest request) throws Exception;
+	public Map<String, Object> loginCheck(MemberVO vo, HttpSession session, HttpServletRequest request) throws Exception;
 }

@@ -49,7 +49,7 @@ public class HomeController {
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(@ModelAttribute StyleVO vo, Locale locale, Model model) throws Exception {
-		logger.info("Welcome Man & Coordination!!");
+		logger.info("패션 코디북, 오늘 뭐 입지??");
 		
 		String url = "https://www.byslim.com/category/%EB%B0%98%ED%8C%94/171/";
 		

@@ -16,9 +16,9 @@ public class ClosetServiceImpl implements ClosetService {
 	
 	//각 회원의 옷장 출력
 	@Override
-	public List<ClosetVO> ClosetList(ClosetVO vo) throws Exception {
+	public List<ClosetVO> closetList(ClosetVO vo) throws Exception {
 		
-		return dao.ClosetList(vo);
+		return dao.closetList(vo);
 	}
 
 	//회원이 나만의 옷장에 사진 저장

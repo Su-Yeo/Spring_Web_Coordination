@@ -1,9 +1,10 @@
 package com.coordination.main;
 
 import java.io.PrintWriter;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -12,15 +13,12 @@ import org.apache.commons.lang3.RandomStringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.coordination.dto.ClosetVO;
 import com.coordination.dto.MemberVO;
@@ -31,18 +29,17 @@ import com.coordination.service.MemberService;
 public class MemberController {
 	
 	@Autowired
-	private ClosetService closetService;
-	
-	@Inject
 	private MemberService memberService;
+	
+	@Autowired
+	private ClosetService closetService;
 	
 	private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
 	
 	//member 회원가입
 	@RequestMapping(value = "insertMember", method = RequestMethod.POST)
-	public ModelAndView insert(MemberVO vo, HttpServletResponse response) throws Exception {
+	public String insert(MemberVO vo, Model model, HttpServletResponse response) throws Exception {
 		
-		ModelAndView mav = new ModelAndView();
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		
@@ -54,8 +51,8 @@ public class MemberController {
         			+ "</script>");
             out.flush();
             
-            mav.setViewName("movePage");
-            mav.addObject("url", "insertMember");
+            //로그인 페이지로 이동
+            model.addAttribute("url", "insertMember");
             
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -68,14 +65,12 @@ public class MemberController {
         
 		}
 		
-		return mav;
+		return "movePage";
 	}
 	
 	//member 정보수정
 	@RequestMapping(value = "updateMember", method = RequestMethod.POST)
-	public ModelAndView update(MemberVO vo, HttpServletResponse response)throws Exception {
-	
-		ModelAndView mav = new ModelAndView();
+	public String update(MemberVO vo, Model model, HttpServletResponse response)throws Exception {
 		
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
@@ -88,8 +83,8 @@ public class MemberController {
         			+ "</script>");
             out.flush();
             
-            mav.setViewName("movePage");
-            mav.addObject("url", "updateMember");
+            //마이 페이지로 이동
+            model.addAttribute("url", "updateMember");
             
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -102,14 +97,12 @@ public class MemberController {
             
 		}
 		
-		return mav;
+		return "movePage";
 	}
 	
 	//member 정보삭제
 	@RequestMapping(value = "deleteMember", method = RequestMethod.GET)
-	public ModelAndView delete(MemberVO vo, HttpServletResponse response)throws Exception {
-	
-		ModelAndView mav = new ModelAndView();
+	public String delete(MemberVO vo, Model model, HttpServletResponse response)throws Exception {
 		
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
@@ -132,8 +125,8 @@ public class MemberController {
         			+ "</script>");
             out.flush();
             
-            mav.setViewName("movePage");
-            mav.addObject("url", "deleteMember");
+            //메인 페이지로 이동
+            model.addAttribute("url", "deleteMember");
             
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -146,56 +139,55 @@ public class MemberController {
             
 		}
 		
-		return mav;
+		return "movePage";
 	}
 	//로그인 처리
-	@RequestMapping(value="loginCheck", method=RequestMethod.POST)
-	public ModelAndView loginCheck(@ModelAttribute MemberVO vo, HttpSession session, HttpServletRequest request, HttpServletResponse response) {
+	/* @RequestMapping(value="loginCheck", method=RequestMethod.POST) */
+	public String loginCheck(MemberVO vo, Model model, HttpSession session, HttpServletRequest request, HttpServletResponse response) throws Exception {
 			
-		ModelAndView mav = new ModelAndView();
-			
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		
 		try {
-			String result = memberService.loginCheck(vo, session, request);
+			//String result = memberService.loginCheck(vo, session, request);
+			Map<String, Object> data = new HashMap<String, Object>();
+			data = memberService.loginCheck(vo, session, request);
+			String result = data.get("result").toString();
 			
-			response.setContentType("text/html; charset=UTF-8");
-			PrintWriter out = response.getWriter();
 			
 			//로그인 성공
 			if(result.equals("success"))
 			{
 				//메인 페이지로 이동
-				mav.setViewName("movePage");
-				mav.addObject("url", "loginSuccess");
+				model.addAttribute("url", "loginSuccess");
 			}
 			//탈퇴한 회원
 			else if(result.equals("ghost"))
 			{
+				//메인 페이지로 이동
 				out.println("<script>"
-						+ "alert('탈퇴한 회원정보입니다');"
+						+ "history.back();"
 	        			+ "</script>");
 	            out.flush();
-	            
-	          //메인 페이지로 이동
-				mav.setViewName("movePage");
-				mav.addObject("url", "loginGhost");
+				model.addAttribute("login", "ghost");
 			}
 			//로그인 실패
 			else
 			{
 				out.println("<script>"
-						+ "alert('아이디 또는 비밀번호가 틀렸습니다.');"
 						+ "history.back();"
 	        			+ "</script>");
 	            out.flush();
-				}
+	            model.addAttribute("login", "error");
+			}
 			
 		}catch(Exception e) {
 			e.printStackTrace();
 			logger.info("Error!!");
 		}
 		
-		return mav;
-		}
+		return "movePage";
+	}
 
 	//member 회원가입 Page이동
 	@RequestMapping("signup")
@@ -212,28 +204,30 @@ public class MemberController {
 	}
 	
 	@RequestMapping("isMyPage")
-	public String myPage(ClosetVO vo, HttpSession session, Model model) throws Exception {
-		
-		String url = null;
+	public String myPage(ClosetVO vo, Model model, HttpSession session) throws Exception {
 		
 		if(session.getAttribute("userId") == null)
 		{
-			//비로그인한 User가 페이지에 접근할 경우
-			url = "movePage";
-			model.addAttribute("url", "GhostMyPage");
+			return "redirect:/";
 		}
 		else
 		{
-			//로그인한 회원이 페이지에 접근할 경우
-			url = "coordination/member/myPage";
-			Object userId = session.getAttribute("userId");
-			String id = userId.toString();
+			String id = session.getAttribute("userId").toString();
 			vo.setId(id);
 			
-			List<ClosetVO> ClosetList = closetService.ClosetList(vo);
+			List<ClosetVO> ClosetList = closetService.closetList(vo);
+			model.addAttribute("ClosetList", ClosetList);
+			
+			return "coordination/member/myPage";
 		}
-		
-		return url;
 	}
 	
+	
+	@RequestMapping(value = "loginCheck", method = RequestMethod.POST)
+	public @ResponseBody Map<String, Object> loginPost(@RequestBody MemberVO vo, HttpSession session, HttpServletRequest request) throws Exception {
+		
+		logger.info(vo.toString());
+		
+		return memberService.loginCheck(vo, session, request);
+	}
 }

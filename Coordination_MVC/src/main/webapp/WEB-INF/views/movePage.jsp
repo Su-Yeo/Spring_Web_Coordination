@@ -54,6 +54,19 @@
 
 
 
+<!-- DressroomInsert(url변경해야 함) -->
+<c:if test="${url eq 'insertDressroom'}">
+	<meta charset="UTF-8" http-equiv="refresh" content="0;url=<c:url value='/'/>">
+</c:if>
+
+<!-- DressroomDelete -->
+<c:if test="${url eq 'deleteDressroom'}">
+	<meta charset="UTF-8" http-equiv="refresh" content="0;url=<c:url value='isMyPage'/>">
+</c:if>
+
+
+
+
 <!-- MemberInsert -->
 <c:if test="${url eq 'insertMember'}">
 	<meta charset="UTF-8" http-equiv="refresh" content="0;url=<c:url value='login'/>">
