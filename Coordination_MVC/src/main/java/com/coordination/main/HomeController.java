@@ -1,16 +1,20 @@
 package com.coordination.main;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Locale;
+import java.util.Properties;
 
-import javax.inject.Inject;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONArray;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.select.Elements;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,42 +52,13 @@ public class HomeController {
 	 * @throws Exception 
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(@ModelAttribute StyleVO vo, Locale locale, Model model) throws Exception {
+	public String home(@ModelAttribute StyleVO vo, Model model, Locale locale) throws Exception {
 		logger.info("패션 코디북, 오늘 뭐 입지??");
-		
-		String url = "https://www.byslim.com/category/%EB%B0%98%ED%8C%94/171/";
-		
-		//Connect
-		Document doc = Jsoup.connect(url).get();
-		
-		//상품리스트의 상품사진 class명
-		Elements imgs = doc.select("div.-thumb img");	
-		String[] str = new String[imgs.size()];
-		List<String> length = new ArrayList<String>();
-		
-		for(int n = 0; n < str.length; n++)
-		{
-			str[n] = imgs.get(n).attr("src");
-			if(str[n].substring(str[n].length()-4, str[n].length()).equals(".jpg") ||
-					str[n].substring(str[n].length()-4, str[n].length()).equals("jpeg"))
-			{
-				//jpg 또는 jpeg파일만 List에 할당
-				length.add("http:" + str[n]);
-			}
-		}
-		
-		//jpg or jpeg 숫자만큼 배열 재선언
-		String[] img = new String[length.size()];
-		for(int i=0; i<length.size(); i++)
-		{
-			img[i] = length.get(i);
-		}
-		
-		model.addAttribute("image", img);
 		
 		top="경기도";
 		mdl="부천시소사구";
 		leaf="괴안동";
+		
 		
 		return "coordination/index";
 	}
@@ -191,5 +166,53 @@ public class HomeController {
 		
 		return "coordination/imageView";
 	}
+    
+    //고객의 소리 - Java Mail API
+    @RequestMapping(value = "mail", method = RequestMethod.POST)
+    public String mail(HttpServletRequest request, HttpSession memberSession)throws AddressException, MessagingException {
+
+    	String host = "smtp.naver.com";
+    	
+    	//보내는 사람 정보
+    	final String user = "sunrns126@naver.com";
+    	final String password = "";
+    	
+    	// SMTP 서버 정보를 설정
+    	Properties props = new Properties();
+    	props.put("mail.smtp.host", host);
+    	props.put("mail.smtp.port", 587);
+    	props.put("mail.smtp.auth", "true");
+    	
+    	Session session = Session.getDefaultInstance(props, new javax.mail.Authenticator() {
+    		protected PasswordAuthentication getPasswordAuthentication() {
+    			return new PasswordAuthentication(user, password); 
+    		} 
+    	});
+    	
+    	try {
+    		
+    		MimeMessage message = new MimeMessage(session);
+    		message.setFrom(new InternetAddress(user));
+    		
+    		//받는 사람 정보
+    		message.addRecipient(Message.RecipientType.TO, new InternetAddress("sangwon7482@naver.com"));
+    		
+    		//메일 제목
+    		String subject = memberSession.getAttribute("userName").toString() + "님의 건의사항 입니다.";
+    		message.setSubject(subject);
+    		//메일 내용
+    		String body = request.getParameter("mail");
+    		message.setText(body);
+    		
+    		// send the message 
+    		Transport.send(message);
+    		System.out.println("Success Message Send"); 
+    		
+    	}catch(MessagingException e) {
+    		e.printStackTrace(); 
+    	}
+
+    	return "redirect:/";
+    }
 }
 

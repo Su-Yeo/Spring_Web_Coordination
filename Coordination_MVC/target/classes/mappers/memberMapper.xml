@@ -9,11 +9,15 @@
     <select id="memberList" resultType="memberVO">
     	SELECT * FROM member WHERE ghost='n'
     </select>
-    
-    <select id="selectMember" resultType="memberVO">
-    	SELECT * FROM member WHERE id=#{id} AND ghost='n'
+-->  
+
+    <select id="memberList" resultType="memberVO">
+    	SELECT *
+    	FROM member
+    	WHERE
+    		id=#{id}
     </select>
--->
+
     
     <!-- 회원가입 -->
     <insert id="insertMember">
@@ -37,7 +41,7 @@
     		SET
     		password=PASSWORD(#{password}),
     		phone=#{phone}
-    		WHERE
+    	WHERE
     		id=#{id}
     </update>
     
@@ -50,7 +54,7 @@
     		name=#{name},
     		phone=#{phone},
     		ghost=#{ghost}
-    		WHERE
+    	WHERE
     		id=#{id}
     </delete>
     

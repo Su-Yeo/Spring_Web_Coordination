@@ -8,20 +8,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-
-<!-- Script&CSS -->
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- <script src="/resources/js/app.js"></script> -->
-<script src="/resources/js/jquery-3.3.1.min.js"></script>
-<script src="/resources/js/bootstrap.min.js" async></script>
-<link rel="stylesheet" type="text/css" href="/resources/css/w3.css">
-<link rel="stylesheet" type="text/css" href="/resources/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Permanent+Marker">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nanum+Gothic">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Jua">
-
 <!-- favicon -->
 <link rel="apple-touch-icon" sizes="120x120" href="/resources/icon/user/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/resources/icon/user/favicon-32x32.png">
@@ -32,148 +18,579 @@
 <meta name="theme-color" content="#ffffff">
 <!-- End favicon -->
 
+<!-- 상단메뉴바 -->
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://fonts.googleapis.com/css?family=Merienda+One" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<!-- 메일 Modal 개발자 Modal-->
+<link href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <meta charset="UTF-8">
 <title>오늘 뭐 입지??</title>
 </head>
-<style>
-        h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
-        body,a {font-family: 'Nanum Gothic', sans-serif;}
-        
-        .menuFont {font-family: 'Nanum Gothic', sans-serif; font-size: 13px;}
-        .categoryFont {font-family: 'Jua', sans-serif;}
-        .dynamicFont {font-family: 'Permanent Marker', cursive;}
-        .optionFont {background-color: darkgrey; color: white; font-size: 11px; font-family: "돋움", sans-serif; padding: 2px;}
-        
-        .stringHidden {white-space: nowrap; overflow: hidden; text-overflow: ellipsis;}
-    </style>
-<body>
-<div class="w3-top">
-	<!-- 상단바 왼쪽 메뉴 -->
-	<div class="w3-bar w3-white w3-card w3-large" style='padding-left:15px; padding-right:15px;'>
-		<div class="w3-dropdown-click w3-left">
-			<a onclick="show_category()" class="w3-button">
-				<i class="fa fa-bars"></i>
-			</a>
-			<div class="w3-dropdown-content w3-bar-block w3-card-category w3-border" style="width:250px; padding-bottom:10px; padding-top:10px;" id="category">
-				<a class="w3-bar-item w3-button">패션의류/잡화</a>
-                <a class="w3-bar-item w3-button">문구/오피스</a>
-                
-                <div id="myAccFunc">
-                	 <a class="w3-bar-item w3-button" id="myBtn">마이페이지</a>
-                	 <div id="demoAcc" class="w3-bar-block w3-hide w3-padding w3-medium">
-                	 	<c:if test="${empty sessionScope.userId}"> 
-                	 		<a onclick="document.getElementById('login_modal').style.display='block'" class="w3-bar-item w3-button">로그인</a>
-                	 	</c:if>
-                	 	<c:if test="${not empty sessionScope.userId}"> 
-                	 		<a href="logout" class="w3-bar-item w3-button">로그아웃</a>
-                	 	</c:if>
-                	 </div>
-                </div>
-                
-                <div class="w3-hide-large w3-hide-medium w3-small">
-                	<p style='margin-left:10px; margin-right:10px;' class="w3-border-bottom w3-border-light-grey"></p>
-                    <c:if test="${empty sessionScope.userId}"> 
-                    	<a onclick="document.getElementById('login_modal').style.display='block'" class="w3-bar-item w3-button">로그인</a>
-                    </c:if>
-                    <c:if test="${not empty sessionScope.userId}"> 
-                    	<a href="logout" class="w3-bar-item w3-button">로그아웃</a>
-                    </c:if>
-                    <c:if test="${empty sessionScope.userId}"> 
-                    	<a href="signup" class="w3-bar-item w3-button">회원가입</a>
-                    </c:if>
-                    <c:if test="${not empty sessionScope.userId}"> 
-                    	<a href="isMyPage" class="w3-bar-item w3-button">마이페이지</a>
-                    </c:if>
-               </div>
-			</div>
-		</div>     
-		
-		<a href="/" class="w3-wide w3-bar-item" style="text-decoration:none;">
-			<b>LOGO</b>
-		</a>
-		
-		<!-- 상단바 오른쪽 메뉴, 사이즈 작아지면 사라짐 -->
-		<div class="w3-right w3-hide-small" style="margin-bottom:-1px;">
-			<c:if test="${empty sessionScope.userId}">
-				<a onclick="document.getElementById('login_modal').style.display='block'" class='w3-button w3-padding-large menuFont'>로그인</a>
-			</c:if>
-			<c:if test="${not empty sessionScope.userId}">
-				<a href='logout' class='w3-button w3-padding-large menuFont' style='text-decoration:none'>로그아웃</a>
-			</c:if>
-			<c:if test="${empty sessionScope.userId}">
-				<a href='signup' class='w3-button w3-padding-large menuFont'>회원가입</a>
-			</c:if>
-			<c:if test="${not empty sessionScope.userId}">
-				<a href='isMyPage' class='w3-button w3-padding-large menuFont'>회원정보</a>
-			</c:if>
-		</div>
-	</div>
-</div>
-<!-- End 상단바 -->  
+<style type="text/css">
 
-<!-- 로그인 모달 -->
-<div id="login_modal" class="w3-modal">
-	<div class="w3-modal-content w3-card-4 w3-animate-zoom" style="max-width:600px">
-		<div class="w3-center">  
-			<br>
-			<span onclick="document.getElementById('login_modal').style.display='none'" class="w3-button w3-xlarge w3-transparent w3-display-topright" title="Close Modal">
-			×
-			</span>
-			<h1 class="dynamicFont" style="font-size:50px;">
-				<b>오늘 뭐 입지??</b>
-			</h1>
-		</div>
-		
-		<form class="w3-container" action="loginCheck" method="post" name="login_form" id="login_form" autocomplete="off">
-			<div class="w3-section">
-				<input class="w3-input w3-border w3-margin-bottom" type="text" placeholder="아이디를 입력해주세요." name="id" id="id" required>
-				<input class="w3-input w3-border" type="password" placeholder="비밀번호를 입력해주세요." name="password" id="password" required>
-				
-				<c:if test="${data eq 'ghost'}">
-					<div id="display_error" style="color:red;">탈퇴한 회원입니다.</div>
-				</c:if>
-				<c:if test="${data eq 'error'}">
-					<div id="display_error" style="color:red;">아이디 또는 비밀번호가 틀렸습니다.</div>
-				</c:if>
-				
-				<button class="w3-button w3-block w3-green w3-section w3-padding" type="submit">
-					로그인
-				</button>
-			</div>
-		</form>
-	</div>
-</div>
-<!-- End 로그인 모달 -->
-
-
-<script>
-	// 카테고리 항목 → 하위 항목 호버효과로 펼쳐 줌
-	$('#myAccFunc').hover(function() {
-		var menu_select_icon = document.createElement("i");
-        menu_select_icon.className = "w3-margin-left fa fa-caret-down";
-        
-        var x = document.getElementById("demoAcc");
-        var y = document.getElementById("myBtn");
-        
-        if (x.className.indexOf("w3-show") == -1) {
-            x.className += " w3-show";
-            y.append(menu_select_icon);
-        } else {
-            x.className = x.className.replace(" w3-show", "");
-            $('i.fa-caret-down').remove();
-        }
-	});
-	
-	// 상단바에 있는 카데고리 펼쳐주는 효과
-	function show_category() {
-		var x = document.getElementById("category");
-		
-		if (x.className.indexOf("w3-show") == -1) {
-            x.className += " w3-show";
-        } else {
-            x.className = x.className.replace(" w3-show", "");
-        }
+	<!-- 상단 메뉴바 -->
+	body{
+		background: #eeeeee;
 	}
-</script>   	
+    .form-inline {
+        display: inline-block;
+    }
+	.navbar-header.col {
+		padding: 0 !important;
+	}	
+	.navbar {		
+		background: #fff;
+		padding-left: 16px;
+		padding-right: 16px;
+		border-bottom: 1px solid #d6d6d6;
+		box-shadow: 0 0 4px rgba(0,0,0,.1);
+	}
+	.nav-link img {
+		border-radius: 50%;
+		width: 36px;
+		height: 36px;
+		margin: -8px 0;
+		float: left;
+		margin-right: 10px;
+	}
+	.navbar .navbar-brand {
+		color: #555;
+		padding-left: 0;
+		padding-right: 50px;
+		font-family: 'Merienda One', sans-serif;
+	}
+	.navbar .navbar-brand i {
+		font-size: 20px;
+		margin-right: 5px;
+	}
+	.search-box {
+        position: relative;
+    }	
+    .search-box input {
+		box-shadow: none;
+        padding-right: 35px;
+        border-radius: 3px !important;
+    }
+	.search-box .input-group-addon {
+        min-width: 35px;
+        border: none;
+        background: transparent;
+        position: absolute;
+        right: 0;
+        z-index: 9;
+        padding: 7px;
+		height: 100%;
+    }
+    .search-box i {
+        color: #a0a5b1;
+		font-size: 19px;
+    }
+	.navbar .nav-item i {
+		font-size: 18px;
+	}
+	.navbar .dropdown-item i {
+		font-size: 16px;
+		min-width: 22px;
+	}
+	.navbar .nav-item.open > a {
+		background: none !important;
+	}
+	.navbar .dropdown-menu {
+		border-radius: 1px;
+		border-color: #e5e5e5;
+		box-shadow: 0 2px 8px rgba(0,0,0,.05);
+	}
+	.navbar .dropdown-menu li a {
+		color: #777;
+		padding: 8px 20px;
+		line-height: normal;
+	}
+	.navbar .dropdown-menu li a:hover, .navbar .dropdown-menu li a:active {
+		color: #333;
+	}	
+	.navbar .dropdown-item .material-icons {
+		font-size: 21px;
+		line-height: 16px;
+		vertical-align: middle;
+		margin-top: -2px;
+	}
+	.navbar .badge {
+		background: #f44336;
+		font-size: 11px;
+		border-radius: 20px;
+		position: absolute;
+		min-width: 10px;
+		padding: 4px 6px 0;
+		min-height: 18px;
+		top: 5px;
+	}
+	.navbar ul.nav li a.notifications, .navbar ul.nav li a.messages {
+		position: relative;
+		margin-right: 10px;
+	}
+	.navbar ul.nav li a.messages {
+		margin-right: 20px;
+	}
+	.navbar a.notifications .badge {
+		margin-left: -8px;
+	}
+	.navbar a.messages .badge {
+		margin-left: -4px;
+	}	
+	.navbar .active a, .navbar .active a:hover, .navbar .active a:focus {
+		background: transparent !important;
+	}
+	@media (min-width: 1200px){
+		.form-inline .input-group {
+			width: 300px;
+			margin-left: 30px;
+		}
+	}
+	@media (max-width: 1199px){
+		.form-inline {
+			display: block;
+			margin-bottom: 10px;
+		}
+		.input-group {
+			width: 100%;
+		}
+	}
+	<!-- End 상단 메뉴바 -->
+	<!-- 메일 Modal -->
+	.modal-newsletter {	
+		color: #999;
+		font-size: 15px;
+	}
+	.modal-newsletter .modal-content {
+		padding: 40px;
+		border-radius: 0;		
+		border: none;
+	}
+	.modal-newsletter .modal-header {
+		border-bottom: none;   
+        position: relative;
+		text-align: center;
+		border-radius: 5px 5px 0 0;
+	}
+	.modal-newsletter h4 {
+		color: #000;
+		text-align: center;
+		font-size: 30px;
+		margin: 0 0 25px;
+		font-weight: bold;
+		text-transform: capitalize;
+	}
+	.modal-newsletter .close {
+		background: #c0c3c8;
+		position: absolute;
+		top: -15px;
+		right: -15px;
+		color: #fff;
+		text-shadow: none;
+		opacity: 0.5;
+		width: 22px;
+		height: 22px;
+		border-radius: 20px;
+		font-size: 16px;
+	}
+	.modal-newsletter .close span {
+		position: relative;
+		top: -1px;
+	}
+	.modal-newsletter .close:hover {
+		opacity: 0.8;
+	}
+	.modal-newsletter .icon-box {
+		color: #7265ea;		
+		display: inline-block;
+		z-index: 9;
+		text-align: center;
+		position: relative;
+		margin-bottom: 10px;
+	}
+	.modal-newsletter .icon-box i {
+		font-size: 110px;
+	}
+	.modal-newsletter .form-control, .modal-newsletter .btn {
+		min-height: 46px;
+		border-radius: 3px; 
+	}
+	.modal-newsletter .form-control {
+		box-shadow: none;
+		border-color: #dbdbdb;
+	}
+	.modal-newsletter .form-control:focus {
+		border-color: #7265ea;
+		box-shadow: 0 0 8px rgba(114, 101, 234, 0.5);
+	}
+    .modal-newsletter .btn {
+        color: #fff;
+        border-radius: 4px;
+		background: #7265ea;
+		text-decoration: none;
+		transition: all 0.4s;
+        line-height: normal;
+		padding: 6px 20px;
+		min-width: 150px;
+        border: none;
+    }
+	.modal-newsletter .btn:hover, .modal-newsletter .btn:focus {
+		background: #4e3de4;
+		outline: none;
+	}
+	.modal-newsletter .input-group {
+		margin: 30px 0 15px;
+	}
+	<!-- End 메일 Modal -->
+	<!-- 개발자 Modal-->
+	.modal-confirm {		
+		color: #636363;
+		width: 400px;
+	}
+	.modal-confirm .modal-content {
+		padding: 20px;
+		border-radius: 5px;
+		border: none;
+        text-align: center;
+		font-size: 14px;
+	}
+	.modal-confirm .modal-header {
+		border-bottom: none;   
+        position: relative;
+	}
+	.modal-confirm h4 {
+		text-align: center;
+		font-size: 26px;
+		margin: 30px 0 -10px;
+	}
+	.modal-confirm .close {
+        position: absolute;
+		top: -5px;
+		right: -2px;
+	}
+	.modal-confirm .modal-body {
+		color: #999;
+	}
+	.modal-confirm .modal-footer {
+		border: none;
+		text-align: center;		
+		border-radius: 5px;
+		font-size: 13px;
+		padding: 10px 15px 25px;
+	}
+	.modal-confirm .modal-footer a {
+		color: #999;
+	}		
+	.modal-confirm .icon-box {
+		width: 80px;
+		height: 80px;
+		margin: 0 auto;
+		border-radius: 50%;
+		z-index: 9;
+		text-align: center;
+		border: 3px solid #f15e5e;
+	}
+	.modal-confirm .icon-box i {
+		color: #f15e5e;
+		font-size: 46px;
+		display: inline-block;
+		margin-top: 13px;
+	}
+    .modal-confirm .btn {
+        color: #fff;
+        border-radius: 4px;
+		background: #60c7c1;
+		text-decoration: none;
+		transition: all 0.4s;
+        line-height: normal;
+		min-width: 120px;
+        border: none;
+		min-height: 40px;
+		border-radius: 3px;
+		margin: 0 5px;
+		outline: none !important;
+    }
+	.modal-confirm .btn-info {
+        background: #c1c1c1;
+    }
+    .modal-confirm .btn-info:hover, .modal-confirm .btn-info:focus {
+        background: #a8a8a8;
+    }
+    .modal-confirm .btn-danger {
+        background: #f15e5e;
+    }
+    .modal-confirm .btn-danger:hover, .modal-confirm .btn-danger:focus {
+        background: #ee3535;
+    }
+	<!-- End 개발자 Modal-->
+	<!-- Notice Modal -->
+	.modal-login {
+        color: #434343;
+		width: 350px;
+	}
+	.modal-login .modal-content {
+		padding: 20px;
+		border-radius: 1px;
+		border: none;
+        position: relative;
+	}
+	.modal-login .modal-header {
+		border-bottom: none;
+	}
+	.modal-login h4 {
+		text-align: center;
+		font-size: 22px;
+        margin-bottom: -10px;
+	}
+    .modal-login .avatar {
+        color: #fff;
+		margin: 0 auto;
+        text-align: center;
+		width: 100px;
+		height: 100px;
+		border-radius: 50%;
+		z-index: 9;
+		background: #FB6E9D;
+		padding: 15px;
+		box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
+	}
+    .modal-login .avatar i {
+        font-size: 62px;
+    }
+	.modal-login .form-control, .modal-login .btn {
+		min-height: 40px;
+		border-radius: 1px; 
+        transition: all 0.5s;
+	}    
+	.modal-login .hint-text {
+		text-align: center;
+		padding-top: 10px;
+	}
+	.modal-login .close {
+        position: absolute;
+		top: 15px;
+		right: 15px;
+	}
+	.modal-login .btn {
+		background: #FB6E9D;
+		border: none;
+		line-height: normal;
+	}
+	.modal-login .btn:hover, .modal-login .btn:focus {
+		background: #fb3c7a;
+	}
+	.modal-login .hint-text a {
+		color: #999;
+	}
+	<!-- End Notice Modal -->
+</style>
+<body>
+<%
+	//이미지가 보여질 Path명
+	String path = "C:\\img\\user\\";
+%>
+
+<nav class="navbar navbar-default navbar-expand-xl navbar-light">
+	<div class="navbar-header d-flex col">
+	<div style="float:left;"><img src="/resources/icon/icon.png"></div><a class="navbar-brand">오늘 뭐 입지 <b>??</b></a>
+		<button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle navbar-toggler ml-auto">
+			<span class="navbar-toggler-icon"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+		</button>
+	</div>
+	<!-- End Logo -->
+	
+	<!-- 모바일 화면 : 펼쳤을 때 나올 목록들 -->
+	<div id="navbarCollapse" class="collapse navbar-collapse justify-content-start">
+		<ul class="nav navbar-nav">
+			<li class="nav-item active"><a href="/" class="nav-link">Home</a></li>
+			<c:if test="${empty sessionScope.userId}">
+				<li class="nav-item"><a href="login" class="nav-link">Login</a></li>
+				<li class="nav-item"><a href="signup" class="nav-link">SignUp</a></li>
+			</c:if>
+			<!-- <li class="nav-item dropdown">
+				<a data-toggle="dropdown" class="nav-link dropdown-toggle" href="#">Services <b class="caret"></b></a>
+				<ul class="dropdown-menu">					
+					<li><a href="#" class="dropdown-item">Web Design</a></li>
+					<li><a href="#" class="dropdown-item">Web Development</a></li>
+					<li><a href="#" class="dropdown-item">Graphic Design</a></li>
+					<li><a href="#" class="dropdown-item">Digital Marketing</a></li>
+				</ul>
+			</li> -->
+			<li class="nav-item"><a href="#developerModal" data-toggle="modal" class="nav-link">Developer</a></li>
+			<li class="nav-item"><a href="#infomationModal" data-toggle="modal" class="nav-link">Infomation</a></li>
+		</ul>
+		
+		<!-- 로그인하면 보여질 화면 -->
+		<c:if test="${not empty sessionScope.userId}">
+		<ul class="nav navbar-nav navbar-right ml-auto">
+			<li class="nav-item"><a href="#noticeModal" data-toggle="modal" class="nav-link notifications"><i class="fa fa-bell-o"></i><span class="badge"></span></a></li>
+			<li class="nav-item"><a href="#MailModal" data-toggle="modal" class="nav-link messages"><i class="fa fa-envelope-o"></i><span class="badge"></span></a></li>
+			<li class="nav-item dropdown">
+				<a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle user-action">
+					<img src="/resources/icon/icon2.png" class="avatar" alt="프로필 사진"> ${sessionScope.userName} <b class="caret"></b></a>
+				<ul class="dropdown-menu">
+					<li><a href="isMyPage" class="dropdown-item"><i class="fa fa-user-o"></i> 나만의 옷장</a></li>
+					<li><a href="isMyPage" class="dropdown-item"><i class="fa fa-sliders"></i> 회원정보 수정</a></li>
+					<!-- <li><a href="#" class="dropdown-item"><i class="fa fa-calendar-o"></i></a></li> -->
+					<li class="divider dropdown-divider"></li>
+					<li><a href="logout" class="dropdown-item"><i class="material-icons">&#xE8AC;</i> Logout</a></li>
+				</ul>
+			</li>
+		</ul>
+		</c:if>
+	</div>
+</nav>
+
+<!-- Mail Modal -->
+<div id="MailModal" class="modal fade">
+	<div class="modal-dialog modal-newsletter">
+		<div class="modal-content">
+			<form action="mail" method="post">
+				<div class="modal-header">
+					<div class="icon-box">						
+						<i class="fa fa-envelope-open-o"></i>
+					</div>
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span>&times;</span></button>
+				</div>
+				<div class="modal-body text-center">
+					<h4>고객의 소리</h4>	
+					<p>
+						저희 웹 사이트와 관련된 궁금한 사항이 있으시면 문의를 남겨주세요.<br/>
+						가능한 빨리 답변을 드리겠습니다.
+					</p>
+					<div class="input-group">
+						<div style="padding-bottom: 70px;">
+						<textarea name="mail" rows="3" cols="100" class="form-control" required></textarea>
+						</div>
+						<!--<input type="email" class="form-control" placeholder="Enter your email" required>-->
+						<footer>
+						<span class="input-group-btn">
+							<input type="submit" class="btn btn-primary" value="보내기">
+						</span>
+						</footer>
+					</div>
+				</div>
+			</form>			
+		</div>
+	</div>
+</div>
+<!-- End Mail Modal -->
+
+<!-- Developer Model -->
+<div id="developerModal" class="modal fade">
+	<div class="modal-dialog modal-confirm">
+		<div class="modal-content">
+			<div class="modal-header">				
+				<h2 class="modal-title">개발자 소개</h2>	
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			</div>
+			<div class="modal-body" align="center">
+				<table>
+					<tr>
+						<td>
+							<img src="/resources/developer.jpg" style="width:100px; height:130px;"/>
+						</td>
+						<td valign="middle">
+							&nbsp;이름 : 선상원 <br/>
+							&nbsp;학번 : 201507046
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<img src="/resources/icon/icon.png" style="width:100px; height:130px;"/>
+						</td>
+						<td valign="middle">
+							&nbsp;이름 : 박관용 <br/>
+							&nbsp;학번 : 201507042
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<img src="/resources/icon/icon.png" style="width:100px; height:130px;"/>
+						</td>
+						<td valign="middle">
+							&nbsp;이름 : 설 훈 <br/>
+							&nbsp;학번 : 201507078
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<img src="/resources/icon/icon.png" style="width:100px; height:130px;"/>
+						</td>
+						<td valign="middle">
+							&nbsp;이름 : 여수향 <br/>
+							&nbsp;학번 : 201707056
+						</td>
+					</tr>
+				</table>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-danger" data-dismiss="modal">닫기</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- End Developer Model -->
+
+<!-- Infomation Model -->
+<div id="infomationModal" class="modal fade">
+	<div class="modal-dialog modal-confirm">
+		<div class="modal-content">
+			<div class="modal-header">				
+				<h2 class="modal-title">옷 골라주는 사람들</h2>	
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			</div>
+			<div class="modal-body" align="center">
+				<p>
+					안녕하세요? <br/>
+					'옷 골라주는 사람들'입니다. <br/>
+					저희가 개발한 웹 사이트는 다양한 패션 코디룩을 제공하는 코디북 웹 사이트입니다. <br/>
+				</p>
+				<p align="left">
+					1. 사용자가 지정한 지역의 온도에 맞는 다양한 코디룩을 제공! <br/>
+					2. 회원분들에게는 나만의 옷장 서비스 도입! <br/>
+					3. 실제 옷장에 있는 옷들을 촬영하여 업로드하면 해당 옷의 종류와 색상을 컴퓨터가 자동 분석하여 다양한 코디룩을 제공합니다.
+				</p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-danger" data-dismiss="modal">닫기</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- End Infomation Model -->
+
+<!-- Notice Model -->
+<div id="noticeModal" class="modal fade">
+	<div class="modal-dialog modal-login">
+		<div class="modal-content">
+			<div class="modal-header">
+				<div align="center">
+                	<img src="/resources/notice.png">
+                </div>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			</div>
+			<div class="modal-body">
+				<p>
+				</p>
+				<div class="form-group">
+					<button type="button" class="btn btn-primary btn-block btn-lg" data-dismiss="modal">돌아가기</button>
+				</div>			
+			</div>
+		</div>
+	</div>
+</div>
+<!-- End Notice Model -->
 </body>
 </html>

@@ -1,5 +1,7 @@
 package com.coordination.service;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -26,13 +28,13 @@ public class MemberServiceImpl implements MemberService {
 //		
 //		return dao.memberList();
 //	}
-//
-//	//특정 회원 정보 조회
-//	@Override
-//	public List<MemberVO> selectMember(MemberVO vo) throws Exception {
-//
-//		return dao.selectMember(vo);
-//	}
+
+	//특정 회원 정보 조회
+	@Override
+	public List<MemberVO> memberList(MemberVO vo) throws Exception {
+
+		return dao.memberList(vo);
+	}
 
 	//회원가입
 	@Override

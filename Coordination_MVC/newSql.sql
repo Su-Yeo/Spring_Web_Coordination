@@ -1,3 +1,6 @@
+--수정사항에 있는 사항의 SQL문은 Create문에 수정되어있으니 새로만드는 경우,
+--Create문을, 기존에 존재하는 경우 Alter문을 사용하기 바람
+
 --2019.10.02 수정사항 :
 alter table style add reg_date timestamp default CURRENT_TIMESTAMP;
 alter table style add identify varchar(1) default 'n';
@@ -22,7 +25,7 @@ id varchar(30) not null,
 password varchar(50),
 name varchar(30),
 phone varchar(11),
-ghost varchar(1) default 'n',
+ghost varchar(1) default 'n'
 primary key(id)
 );
 
@@ -42,6 +45,8 @@ top_color varchar(30),
 pants varchar(30),
 pants_color varchar(30),
 img varchar(50),
+reg_date timestamp default CURRENT_TIMESTAMP,
+identify varchar(1) default 'n',
 primary key(num)
 );
 

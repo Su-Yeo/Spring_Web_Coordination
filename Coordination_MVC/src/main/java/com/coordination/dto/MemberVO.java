@@ -7,7 +7,7 @@ public class MemberVO {
 	private String name;
 	private String phone;
 	private String ghost;
-	
+
 	//Getter, Setter
 	public String getId() {
 		return id;
