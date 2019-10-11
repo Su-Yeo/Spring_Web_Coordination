@@ -20,7 +20,7 @@ public class UploadFileUtils {
         File target = new File(imgPath + savedPath, savedName);
         // 임시 디렉토리에 업로드된 파일을 지정된 디렉토리로 복사
         FileCopyUtils.copy(fileData, target);
-        return savedPath+savedName;
+        return savedName;
     }
 
 	// 디렉토리 생성

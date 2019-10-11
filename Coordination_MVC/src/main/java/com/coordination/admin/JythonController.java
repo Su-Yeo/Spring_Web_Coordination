@@ -1,6 +1,7 @@
 package com.coordination.admin;
 
 import java.io.BufferedInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -15,16 +16,12 @@ import javax.servlet.http.HttpServletRequest;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class JythonController {
-	
-	private static final Logger logger = LoggerFactory.getLogger(JythonController.class);
 	private String[] img = null;
 	
 	@Resource(name="imgPath")
@@ -98,8 +95,11 @@ public class JythonController {
 		String imgName="";
 		URL imageUrl = null;
         InputStream in = null;
+        ByteArrayOutputStream out=null;
         FileOutputStream fos = null;
-        int data=0;
+        int n=0;
+        byte[] buf = null;
+        byte[] response=null;
         String shopName = request.getParameter("shopName");
         int category = Integer.parseInt(request.getParameter("Category"));
 
@@ -123,24 +123,23 @@ public class JythonController {
 				//URL로 이미지 가져오기
 				imageUrl = new URL(img[i].toString());
 				in = new BufferedInputStream(imageUrl.openStream());
-				
+				out = new ByteArrayOutputStream();
+				buf = new byte[1024];
+				n = 0;
+				while (-1!=(n=in.read(buf))) {
+					out.write(buf, 0, n);
+				}
+				out.close();
+				in.close();
+				response = out.toByteArray();
+								
 				//다운로드
 				fos = new FileOutputStream(imgPath+"\\admin\\"+imgName);
-				while(true)
-				{
-	                //이미지를 읽어온다.
-	                data = in.read();
-	                if(data == -1)
-	                {
-	                    break;
-	                }
-	                //이미지를 쓴다.
-	                fos.write(data);
-	            }
-	            in.close();
-	            fos.close();
-	            data=0;
+				fos.write(response);
+				fos.close();
 			}
+        	
+        	System.out.println("이미지 다운 완료!");
         	
         }catch (Exception e) {
 			System.out.println("**********Error!!(ImageDown())**********");
@@ -228,12 +227,12 @@ public class JythonController {
 				
 				for(int n = 0; n < str.length; n++)
 				{
-					str[n] = imgs.get(n).attr("src");
+					str[n] = "https:"+imgs.get(n).attr("src");
 					if(str[n].substring(str[n].length()-4, str[n].length()).equals(".jpg") ||
 							str[n].substring(str[n].length()-4, str[n].length()).equals("jpeg"))
 					{
 						//jpg 또는 jpeg파일만 List에 할당
-						length.add("http:" + str[n]);
+						length.add(str[n]);
 					}
 				}
 				
