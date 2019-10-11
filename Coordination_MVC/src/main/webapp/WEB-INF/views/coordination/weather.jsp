@@ -6,6 +6,10 @@
 <!DOCTYPE html>
 <html>
 <head>
+<!-- bootstrap -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="http://code.jquery.com/jquery-2.2.2.min.js"></script>
@@ -166,7 +170,8 @@ function selLeaf(s3){
 </script>
 </head>
 <body>
-<div id="weatherDiv" style="width:700px;background:#222222;color:#FFFFFF;border-radius:20px;margin:0 auto;">
+<!-- <div id="weatherDiv" style="width:700px;background:#222222;color:#FFFFFF;border-radius:20px;margin:0 auto;"> -->
+<div id="weatherDiv" style="width:700px;background:#222222;color:#FFFFFF;border-radius:20px;">
 	<div id="selectDiv" style="text-align:right">
 		<%
 		CoordFetcher coord = new CoordFetcher();
@@ -210,7 +215,8 @@ function selLeaf(s3){
 	</div>
 	<div style="height:350px;">
 		<div id="text" style="margin-left:16%;float:left;"></div>
-		<div id="weather1" style="width:100%;height:250px;font-size:90px;padding-top:80px;margin-left:-90px;"></div>
+		<!-- <div id="weather1" style="width:100%;height:250px;font-size:90px;padding-top:80px;margin-left:-90px;"></div> -->
+		<div id="weather1" style="width:100%;height:250px;font-size:90px;padding-top:80px;"></div>
 		<div id="weather" style="font-size:25px;margin-top:-70px;"></div>
 	</div>
 </div>

@@ -89,6 +89,7 @@ public class JythonController {
 		return "movePage";
 	}
 
+	
 	public void ImageDown(HttpServletRequest request) {
 		
 		//1 : Outer
@@ -147,7 +148,7 @@ public class JythonController {
 		}	
 	}
 
-	//이미지 파싱
+	//이미지 파싱 
 	public void Parsing(String shopName, int category) {
 		
 		//파싱할 웹 페이지

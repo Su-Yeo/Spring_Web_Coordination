@@ -1,5 +1,7 @@
 package com.coordination.main;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 import java.util.Properties;
 
@@ -15,6 +17,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONArray;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.select.Elements;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,8 +64,38 @@ public class HomeController {
 		mdl="부천시소사구";
 		leaf="괴안동";
 		
+		String url = "https://www.byslim.com/category/outer/5/";
+		
+		Document doc = Jsoup.connect(url).get();
+		Elements imgs = doc.select("div.-thumb img");
+		String[] str = new String[imgs.size()];
+		List<String> length = new ArrayList<String>();
+		
+		for(int n = 0; n < str.length; n++)
+		{
+			str[n] = imgs.get(n).attr("src");
+			if(str[n].substring(str[n].length()-4, str[n].length()).equals(".jpg") ||
+					str[n].substring(str[n].length()-4, str[n].length()).equals("jpeg"))
+			{
+				length.add("http:" + str[n]);
+			}
+		}
+		
+		String[] img = new String[length.size()];
+		for(int i=0; i<length.size(); i++)
+		{
+			img[i] = length.get(i);
+		}
+		
+		model.addAttribute("StyleList", img);
 		
 		return "coordination/index";
+	}
+	
+	@RequestMapping("index2")
+	public String index2() {
+		
+		return "coordination/index2";
 	}
 	
 	// Ajax 지역선택 처리 매핑
@@ -175,7 +210,7 @@ public class HomeController {
     	
     	//보내는 사람 정보
     	final String user = "sunrns126@naver.com";
-    	final String password = "";
+    	final String password = "javamail123";
     	
     	// SMTP 서버 정보를 설정
     	Properties props = new Properties();
@@ -198,7 +233,7 @@ public class HomeController {
     		message.addRecipient(Message.RecipientType.TO, new InternetAddress("sangwon7482@naver.com"));
     		
     		//메일 제목
-    		String subject = memberSession.getAttribute("userName").toString() + "님의 건의사항 입니다.";
+    		String subject = "오늘 뭐 입지?? >>" + memberSession.getAttribute("userName").toString() + "님의 건의사항 입니다.";
     		message.setSubject(subject);
     		//메일 내용
     		String body = request.getParameter("mail");

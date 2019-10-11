@@ -25,8 +25,9 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<!-- w3 -->
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
 <!-- 메일 Modal 개발자 Modal-->
 <link href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round" rel="stylesheet">
@@ -34,12 +35,12 @@
 <meta charset="UTF-8">
 <title>오늘 뭐 입지??</title>
 </head>
+<!-- 상단 메뉴바 -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <style type="text/css">
 
-	<!-- 상단 메뉴바 -->
-	body{
-		background: #eeeeee;
-	}
+	/* 상단 메뉴바 */
     .form-inline {
         display: inline-block;
     }
@@ -163,8 +164,8 @@
 			width: 100%;
 		}
 	}
-	<!-- End 상단 메뉴바 -->
-	<!-- 메일 Modal -->
+	/* End 상단 메뉴바 */
+	/* 메일 Modal */
 	.modal-newsletter {	
 		color: #999;
 		font-size: 15px;
@@ -249,8 +250,8 @@
 	.modal-newsletter .input-group {
 		margin: 30px 0 15px;
 	}
-	<!-- End 메일 Modal -->
-	<!-- 개발자 Modal-->
+	/* End 메일 Modal */
+	/* 개발자 Modal */
 	.modal-confirm {		
 		color: #636363;
 		width: 400px;
@@ -330,8 +331,8 @@
     .modal-confirm .btn-danger:hover, .modal-confirm .btn-danger:focus {
         background: #ee3535;
     }
-	<!-- End 개발자 Modal-->
-	<!-- Notice Modal -->
+    /* End 개발자 Modal */
+	/* Notice Modal */
 	.modal-login {
         color: #434343;
 		width: 350px;
@@ -390,7 +391,12 @@
 	.modal-login .hint-text a {
 		color: #999;
 	}
-	<!-- End Notice Modal -->
+	/* End Notice Modal */
+	
+	img{
+		margin: 8px;
+    	overflow: hidden;
+	}
 </style>
 <body>
 <%
@@ -592,5 +598,24 @@
 	</div>
 </div>
 <!-- End Notice Model -->
+
+<div class="container" align="center">
+	<!-- weather -->
+	<div>
+		
+	</div>
+	
+	<!-- Image -->
+	<div>
+		<c:forEach items="${StyleList}" var="style" begin="1" end="12" step="1">
+			<img class="w3-border w3-hover-border-red" src="${style}" >
+		</c:forEach>
+	</div>
+	
+	<!-- Footer -->
+	<div align="center" style="background: #000000; color: white;">
+		Footer
+	</div>
+</div>
 </body>
 </html>

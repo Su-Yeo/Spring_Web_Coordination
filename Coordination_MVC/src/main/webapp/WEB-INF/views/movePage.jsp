@@ -87,7 +87,7 @@
 
 <!-- LoginSuccess -->
 <c:if test="${url eq 'loginSuccess'}">
-	<meta charset="UTF-8" http-equiv="refresh" content="0;url=<c:url value='isMyPage'/>">
+	<meta charset="UTF-8" http-equiv="refresh" content="0;url=<c:url value='/'/>">
 </c:if>
 
 <!-- LoginGhost -->
