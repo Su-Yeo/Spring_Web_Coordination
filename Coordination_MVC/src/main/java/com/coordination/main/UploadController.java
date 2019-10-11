@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.coordination.dto.ClosetVO;
 import com.coordination.service.ClosetService;
@@ -41,19 +42,16 @@ public class UploadController {
     }
 	
     //이미지 업로드 처리
-    @ResponseBody // view가 아닌 data리턴
     @RequestMapping(value="/uploadImg", method=RequestMethod.POST)
-    public ResponseEntity<String> uploadImg(MultipartFile file, HttpSession session) throws Exception {//session.getId(); 수정
+    public String uploadImg(MultipartFile file, HttpSession session, RedirectAttributes redirectAttributes) throws Exception {//session.getId(); 수정
     	
-    	//id
+    	//id 
     	String userId = session.getAttribute("userId").toString();
     	
-    	return new ResponseEntity<String>(
-    			UploadFileUtils.uploadFile(
-    					imgPath,
-    					file.getOriginalFilename(),
-    					file.getBytes(),
-    					userId), HttpStatus.OK);
+    	String savePath = UploadFileUtils.uploadFile(imgPath, file.getOriginalFilename(), file.getBytes(), userId);
+    	redirectAttributes.addFlashAttribute("savePath", savePath);
+    	
+    	return "redirect:/insertCloset";
     }
 
     //이미지 표시

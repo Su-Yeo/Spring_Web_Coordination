@@ -3,6 +3,7 @@ package com.coordination.main;
 import java.io.File;
 import java.io.PrintWriter;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.support.RequestContextUtils;
 
 import com.coordination.dto.ClosetVO;
 import com.coordination.service.ClosetService;
@@ -28,9 +30,8 @@ public class ClosetController {
 	private ClosetService service;
 	
 	//회원 - 나만의 옷장 등록
-	@RequestMapping(value = "insertCloset", method = RequestMethod.POST)
-	public String insert(ClosetVO vo, Model model, HttpServletResponse response, HttpSession session) throws Exception {
-
+	@RequestMapping(value = "insertCloset", method = {RequestMethod.GET, RequestMethod.POST})
+	public String insert(ClosetVO vo, Model model, HttpServletResponse response, HttpSession session, HttpServletRequest request) throws Exception {
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		
@@ -47,7 +48,7 @@ public class ClosetController {
 	    	color = "black";
 	    	
 	    	//img
-	    	String img = null;
+	    	String img = RequestContextUtils.getInputFlashMap(request).get("savePath").toString();
 	    	
 	    	vo.setId(userId);
 	    	vo.setCategory(category);

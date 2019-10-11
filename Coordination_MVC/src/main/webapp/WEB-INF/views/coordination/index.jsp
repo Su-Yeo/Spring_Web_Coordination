@@ -406,7 +406,7 @@
 
 <nav class="navbar navbar-default navbar-expand-xl navbar-light">
 	<div class="navbar-header d-flex col">
-	<div style="float:left;"><img src="/resources/icon/icon.png"></div><a class="navbar-brand">오늘 뭐 입지 <b>??</b></a>
+	<div style="float:left;"><img src="/resources/icon/icon.png" style="width: 50px;"></div><a class="navbar-brand">오늘 뭐 입지 <b>??</b></a>
 		<button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle navbar-toggler ml-auto">
 			<span class="navbar-toggler-icon"></span>
 			<span class="icon-bar"></span>

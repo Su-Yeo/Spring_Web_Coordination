@@ -31,7 +31,7 @@
 </c:if>
 <c:forEach items="${ClosetList}" var="closet">
 	<a href="updateClosetForm?num=${closet.num}">
-		<img src="<%= path %>${closet.img}" />
+		<img src="/displayImg?name=${closet.img}&folder=user"/>
 	</a>
 </c:forEach>
 </div>
