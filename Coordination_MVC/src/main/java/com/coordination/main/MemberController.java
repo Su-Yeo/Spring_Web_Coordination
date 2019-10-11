@@ -142,6 +142,8 @@ public class MemberController {
 	public String loginCheck(MemberVO vo, Model model, HttpSession session, HttpServletRequest request, HttpServletResponse response) throws Exception {
 			
 		
+		String url = null;
+		
 		response.setContentType("text/html; charset=UTF-8"); PrintWriter out =
 		response.getWriter();
 		 
@@ -155,6 +157,7 @@ public class MemberController {
 			{
 				//메인 페이지로 이동
 				model.addAttribute("url", "loginSuccess");
+				url = "movePage";
 			}
 			//탈퇴한 회원
 			else if(result.equals("ghost"))
@@ -162,21 +165,17 @@ public class MemberController {
 				//메인 페이지로 이동
 				out.println("<script>" 
 						+ "alert('탈퇴한 회원입니다.');"
-						+ "</script>"); 
+						+ "</script>");
 				out.flush();
 				
 				model.addAttribute("url", "loginGhost");
+				url = "movePage";
 			}
 			//로그인 실패
 			else
 			{
-				model.addAttribute("data", "error");
-				
-	            out.println("<script>" 
-						+ "alert('아이디 또는 비밀번호가 틀렸습니다.');"
-						+ "history.back();"
-						+ "</script>");
-	            out.flush();
+				model.addAttribute("login", "fail");
+				url = "coordination/member/login";
 			}
 			
 		}catch(Exception e) {
@@ -184,7 +183,7 @@ public class MemberController {
 			logger.info("Error!!");
 		}
 		
-		return "movePage";
+		return url;
 	}
 	
 	@RequestMapping("logout")

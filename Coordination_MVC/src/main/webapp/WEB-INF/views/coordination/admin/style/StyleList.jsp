@@ -14,7 +14,7 @@
 <link rel="manifest" href="/resources/icon/admin/site.webmanifest">
 <link rel="mask-icon" href="/resources/icon/admin/safari-pinned-tab.svg" color="#5bbad5">
 <meta name="msapplication-TileColor" content="#da532c">
-<!-- End favicon --> -->
+<!-- End favicon -->
 <meta charset="UTF-8">
 <title>관리자 - 수정．삭제Page</title>
 </head>

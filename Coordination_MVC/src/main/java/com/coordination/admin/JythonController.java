@@ -40,7 +40,7 @@ public class JythonController {
 		//파싱해서 온 이미지를 C:\img\tensorflow 폴더에 저장
 		ImageDown(request);
 		
-		/*
+		
 		//이동할 폴더
 		File folder = new File("C:\\img\\tensorflow");
 		//이동될 폴더
@@ -79,7 +79,7 @@ public class JythonController {
 		//Tensorflow폴더 안에 이미지 삭제
 		delete(folder.toString());
 		System.out.println("======이미지 삭제 완료======");
-		*/
+		
 		
 		model.addAttribute("url", "insertStyle");
 		
@@ -108,7 +108,7 @@ public class JythonController {
 		Parsing(shopName, category);
 
         //폴더 생성
-  		File fileDir = new File(imgPath, "admin");
+  		File fileDir = new File(imgPath, "tensorflow");
   		if(!fileDir.isDirectory())
   		{
   			fileDir.mkdirs();
@@ -135,7 +135,7 @@ public class JythonController {
 				response = out.toByteArray();
 								
 				//다운로드
-				fos = new FileOutputStream(imgPath+"\\admin\\"+imgName);
+				fos = new FileOutputStream(imgPath+"\\tensorflow\\"+imgName);
 				fos.write(response);
 				fos.close();
 			}

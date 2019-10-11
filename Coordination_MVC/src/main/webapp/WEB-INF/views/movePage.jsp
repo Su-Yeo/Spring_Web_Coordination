@@ -92,8 +92,11 @@
 
 <!-- LoginGhost -->
 <c:if test="${url eq 'loginGhost'}">
-	<meta charset="UTF-8" http-equiv="refresh" content="0;url=<c:url value='/'/>">
+	<meta charset="UTF-8" http-equiv="refresh" content="0;url=<c:url value='login'/>">
 </c:if>
+
+
+
 
 <!-- MyPage(Ghost) -->
 <c:if test="${url eq 'GhostMyPage'}">

@@ -26,14 +26,11 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
-<!-- w3 -->
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-
 <!-- 메일 Modal 개발자 Modal-->
 <link href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round" rel="stylesheet">
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <meta charset="UTF-8">
-<title>오늘 뭐 입지??</title>
+<title>오늘 뭐 입지?</title>
 </head>
 <!-- 상단 메뉴바 -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -392,7 +389,6 @@
 		color: #999;
 	}
 	/* End Notice Modal */
-	
 	img{
 		margin: 8px;
     	overflow: hidden;
@@ -406,7 +402,7 @@
 
 <nav class="navbar navbar-default navbar-expand-xl navbar-light">
 	<div class="navbar-header d-flex col">
-	<div style="float:left;"><img src="/resources/icon/icon.png" style="width: 50px;"></div><a class="navbar-brand">오늘 뭐 입지 <b>??</b></a>
+	<div style="float:left;"><img src="/resources/icon/icon.png" style="width: 50px;"></div><a class="navbar-brand">오늘 뭐 입지 <b>?</b></a>
 		<button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle navbar-toggler ml-auto">
 			<span class="navbar-toggler-icon"></span>
 			<span class="icon-bar"></span>
@@ -561,7 +557,7 @@
 				<p>
 					안녕하세요? <br/>
 					'옷 골라주는 사람들'입니다. <br/>
-					저희가 개발한 웹 사이트는 다양한 패션 코디룩을 제공하는 코디북 웹 사이트입니다. <br/>
+					저희가 개발한  '오늘 뭐 입지?' 웹 사이트는 다양한 패션 코디룩을 제공하는 코디북 웹 사이트입니다. <br/>
 				</p>
 				<p align="left">
 					1. 사용자가 지정한 지역의 온도에 맞는 다양한 코디룩을 제공! <br/>
