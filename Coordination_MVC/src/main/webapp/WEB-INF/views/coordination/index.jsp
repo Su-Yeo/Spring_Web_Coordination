@@ -29,25 +29,9 @@
 <!-- 메일 Modal 개발자 Modal-->
 <link href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round" rel="stylesheet">
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-
-<!-- CSS -->
-<link href="/resources/index/base.css" rel="stylesheet">
-<link href="/resources/index/font_noto_sans_cjk.css" rel="stylesheet">
-<link href="/resources/index/index.css" rel="stylesheet">
-<link href="/resources/index/nice-select.css" rel="stylesheet">
-<link href="/resources/index/slick-theme.css" rel="stylesheet">
-<link href="/resources/index/slick.css" rel="stylesheet">
-<link href="/resources/index/slick.css" rel="stylesheet">
-<link href="/resources/index/style_lazy.css" rel="stylesheet">
-<link href="/resources/index/style.min.css" rel="stylesheet">
 <meta charset="UTF-8">
 <title>오늘 뭐 입지?</title>
 </head>
-<!-- Javascript -->
-<script src="/resources/index/en.js"></script>
-<script src="/resources/index/jquery.autocomplete.min.js"></script>
-<script src="/resources/index/slick.min.js"></script>
-
 <!-- 상단 메뉴바 -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -405,10 +389,6 @@
 		color: #999;
 	}
 	/* End Notice Modal */
-	img{
-		margin: 8px;
-    	overflow: hidden;
-	}
 </style>
 <body>
 <%
@@ -611,86 +591,11 @@
 </div>
 <!-- End Notice Model -->
 
-<div class="container" align="center">
-	<!-- weather -->
-	<div>
-		
-	</div>
-	
-	<!-- Image -->
-	<div>
-		<c:forEach items="${StyleList}" var="style" begin="1" end="12" step="1">
-			<img class="w3-border w3-hover-border-red" src="${style}" >
-		</c:forEach>
-	</div>
+<!-- Container -->
+<div class="container" style="position: relative;">
+
 </div>
 
-<!-- Footer -->
-<div id="footer" align="center">
-    <div id="footer_notice_wide">
-        패션에 관심이 없던 여러분도 오늘 뭐 입지?? 를 통해 패셔니스타가 되실 수 있습니다.!<br>
-    </div>
-    <div id="footer_content">
-        <div class="table">
-            <div class="footer_about">
-                <img alt="오늘 뭐 입지??" src="/resources/icon/icon.png" style="width:70px; height: 70px;">
-                <font style="font-size: 30px;">오늘 뭐 입지??</font>
-                <br>
-                <h1>실제 옷장의 옷들을 저장해보세요.</h1>
-                <p>여러 협력 쇼핑몰 제품의 사진을 사용하고 있습니다.<br>
-                    간혹! 원하는 코디룩의 사진이 나오지 않을 수 있습니다! ㅠㅠ<br>
-                    그럴 때는 상단에 '<고객의 소리>'를 통해 문의해주세요.<br>
-                </p>
-            </div>
-            <div class="col0">
-                <div class="row0">
-                    <span class="footer_title">
-                        CS CENTER</span>
-                    <br>
-                    <br>
-                    <span class="call">010-9935-7482</span>
-                    월 - 금 10:00AM ~ 17:00PM
-                    <br>
-                    Lunch 13:00PM ~ 14:00PM
-                </div>
-            </div>
-            <div class="col1 account">
-                <span class="footer_title">KAKAO</span>
-                <br>
-                <br>
-                Man&Coordination
-                <br>
-                유한대학교 IT소프트웨어공학과
-                <br>
-                개발자 팀명 : 옷 골라주는 사람들
-            </div>
-            <div class="col3">
-                <span class="footer_title">FOLLOW US</span>
-                <br>
-                <br>
-                <div class="social">
-                    <a class="facebook" href="http://www.facebook.com" target="_blank">
-                        <img src="/resources/icon/facebook.png" alt="Facebook">
-                    </a>
-                    <a class="instagram" href="http://instagram.com" target="_blank">
-                        <img src="/resources/icon/instagram.png" alt="Instagram">
-                    </a>
-                </div>
-            </div>
-            <div class="col4">
-                옷 골라주는 사람들 팀장 : 선상원<br>
-                팀원 : 박관용, 설 훈, 여수향<br>
-                유한대학교 IT소프트웨어공학과<br>
-                2019년도 학술제 발표작품<br>
-                대표전화 010-9935-7482<br>
-                Email : sangwon7482@naver.com
-           </div>
-           <div class="col5">
-           <img src="/resources/developer.jpg" style="width: 170px; height: 170px; border: 1px solid #000000;">
-           </div>
-        </div>
-    </div>
-</div>
-<!-- End Footer -->
+
 </body>
 </html>
