@@ -389,6 +389,32 @@
 		color: #999;
 	}
 	/* End Notice Modal */
+<<<<<<< HEAD
+=======
+	img{
+		margin: 1px;
+    	overflow: hidden;
+	}
+	
+	/* Image Polaroid */
+	div.img_polaroid {
+		display: inline-block;
+		background-color: white;
+		margin: 10px 15px;
+		border: 1px solid gray;
+	}
+	div.img_polaroid:hover {
+		border: 1px solid red;
+	}
+	
+	div.img_container {
+		text-align: left;
+		padding: 10px 20px;
+	}
+	div.img_container div {
+		margin-top: 5px;
+	}
+>>>>>>> 21394971d1bfc1cf340021ea96f82889e689c6a1
 </style>
 <body>
 <%
@@ -591,8 +617,31 @@
 </div>
 <!-- End Notice Model -->
 
+<<<<<<< HEAD
 <!-- Container -->
 <div class="container" style="position: relative;">
+=======
+<div class="container" align="center">
+	<!-- weather -->
+	<div>
+		
+	</div>
+	
+	<!-- Image -->
+	<div>
+		<c:forEach items="${StyleList}" var="style" begin="1" end="12" step="1">   
+			<div class="img_polaroid">
+				<img class="w3-border w3-hover-border-red" src="${style}" >
+				<div class="img_container">
+					<div><b>Image NickName</b></div>
+					<div>Example Title</div>
+					<div>좋아요 : #명 <span style="margin: 0 0 0 60%;">버튼</span></div>
+				</div>
+			</div>
+		</c:forEach>
+	</div>
+</div>
+>>>>>>> 21394971d1bfc1cf340021ea96f82889e689c6a1
 
 </div>
 
