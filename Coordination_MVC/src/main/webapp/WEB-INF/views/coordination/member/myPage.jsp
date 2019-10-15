@@ -8,18 +8,15 @@
 <meta charset="UTF-8">
 <title>myPage</title>
 </head>
-<style>
-	img{
-		align:center;
-		margin:0 auto;
-		width: 275px;
-		height: 400px;
-	}
-</style>
 <body>
 <%
 	String path = "C:\\img\\user\\";
 %>
+<!-- Nav -->
+<jsp:include page="../nav.jsp"></jsp:include>
+<!-- End Nav -->
+
+
 회원 ID : ${sessionScope.userId} <br/>
 회원 이름 : ${sessionScope.userName}
 <br/><br/>

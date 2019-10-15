@@ -63,7 +63,7 @@ public class HomeController {
 		top="경기도";
 		mdl="부천시소사구";
 		leaf="괴안동";
-		
+
 		String url = "https://www.byslim.com/category/outer/5/";
 		
 		Document doc = Jsoup.connect(url).get();
