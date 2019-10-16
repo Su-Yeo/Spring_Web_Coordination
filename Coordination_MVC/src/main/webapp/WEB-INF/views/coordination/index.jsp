@@ -53,6 +53,12 @@
 
 <!-- Container -->
 <div class="container">
+	<!-- weather select start -->
+   	<div style="width:100%;margin-top:30px;text-align:center;">
+	    <div id="div_include3">
+	    	<jsp:include page="weather.jsp" flush="true"></jsp:include>
+	    </div>
+    </div>
 	
 	<!-- Image -->
 	<div>

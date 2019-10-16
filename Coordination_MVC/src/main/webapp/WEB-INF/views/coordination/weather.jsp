@@ -171,7 +171,7 @@ function selLeaf(s3){
 </head>
 <body>
 <!-- <div id="weatherDiv" style="width:700px;background:#222222;color:#FFFFFF;border-radius:20px;margin:0 auto;"> -->
-<div id="weatherDiv" style="width:700px;background:#222222;color:#FFFFFF;border-radius:20px;">
+<div id="weatherDiv" style="width:100%;background:#222222;color:#FFFFFF;border-radius:20px;">
 	<div id="selectDiv" style="text-align:right">
 		<%
 		CoordFetcher coord = new CoordFetcher();
