@@ -44,7 +44,15 @@
 				<td colspan="2" align="center">
 					<img src="<%= path %>${style.img}" />
 				</td>
-			</tr>		
+			</tr>	
+			<tr>
+				<td align="center">
+					쇼핑몰
+				</td>
+				<td>
+					<input type="text" name="top" value="${style.shopname}" />
+				</td>
+			</tr>	
 			<tr>
 				<td align="center">
 					상의 종류
@@ -108,7 +116,15 @@
 				<td colspan="2" align="center">
 					<img src="<%= path %>${style.img}" />
 				</td>
-			</tr>		
+			</tr>
+			<tr>
+				<td align="center">
+					쇼핑몰
+				</td>
+				<td>
+					<input type="text" name="top" value="${style.shopname}" />
+				</td>
+			</tr>	
 			<tr>
 				<td align="center">
 					상의 종류

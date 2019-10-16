@@ -8,6 +8,7 @@
 <!-- Bootstrap -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
 <!-- favicon -->
 <link rel="apple-touch-icon" sizes="76x76" href="/resources/icon/admin/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/resources/icon/admin/favicon-32x32.png">
@@ -15,7 +16,7 @@
 <link rel="manifest" href="/resources/icon/admin/site.webmanifest">
 <link rel="mask-icon" href="/resources/icon/admin/safari-pinned-tab.svg" color="#5bbad5">
 <meta name="msapplication-TileColor" content="#da532c">
-<!-- End favicon -->avicon -->
+<!-- End favicon -->
 <meta charset="UTF-8">
 <title>관리자 - 이미지 등록 검증Page</title>
 </head>

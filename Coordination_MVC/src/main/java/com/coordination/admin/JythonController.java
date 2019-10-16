@@ -27,7 +27,7 @@ public class JythonController {
 	@Resource(name="imgPath")
 	private String imgPath;
 	
-	@RequestMapping(value = "parsing")
+	@RequestMapping(value="parsing")
 	public String Tensorflow(Model model, HttpServletRequest request) throws Exception  {
 			
 		//이미지 분석 객체 생성
@@ -40,11 +40,22 @@ public class JythonController {
 		//파싱해서 온 이미지를 C:\img\tensorflow 폴더에 저장
 		ImageDown(request);
 		
+		//쇼핑몰 이름 업데이트
+		String shopName = request.getParameter("shopName");	
 		
 		//이동할 폴더
 		File folder = new File("C:\\img\\tensorflow");
+		if(!folder.isDirectory())
+  		{
+			folder.mkdirs();
+  		}
+		
 		//이동될 폴더
 		File folder2 = new File("C:\\img\\admin");
+		if(!folder2.isDirectory())
+  		{
+			folder2.mkdirs();
+  		}
 		
 		//DB에 등록되지않은 tensorflow폴더 안에 있는 이미지명 추출
 		File[] listOfFiles = folder.listFiles();
@@ -58,12 +69,18 @@ public class JythonController {
 				
 				//전신 이미지 분리
 				//tf.Cut(image);
+				
 				//상의 이미지 분석
 				tf.Upper_Tensorflow(image);
+				
 				//하의 이미지 분석
 				//tf.Lower_Tensorflow(image);
+				
 				//이미지 복구
-				//tf.restore(image);	
+				//tf.restore(image);
+				
+				//쇼핑몰 이름 업데이트
+				tf.shopNameUpdate(shopName);
 			}
 			else
 			{
@@ -78,8 +95,7 @@ public class JythonController {
 				
 		//Tensorflow폴더 안에 이미지 삭제
 		delete(folder.toString());
-		System.out.println("======이미지 삭제 완료======");
-		
+		System.out.println("======이미지 삭제 완료======");		
 		
 		model.addAttribute("url", "insertStyle");
 		
@@ -188,8 +204,7 @@ public class JythonController {
 				for(int n=0; n<img.length; n++)
 				{
 					img[n] = "http:"+imgs.get(n).attr("src");
-				}			
-				
+				}
 			}
 			else if(shopName.equals("바이슬림"))
 			{

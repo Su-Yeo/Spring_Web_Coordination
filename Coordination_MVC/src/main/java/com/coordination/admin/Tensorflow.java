@@ -193,4 +193,53 @@ public class Tensorflow {
 			System.out.println("======이미지 복구 완료===");
 		}
 	}
+	
+	//쇼핑몰 이름 업데이트
+	public void shopNameUpdate(String shopName)
+	{
+		
+		String s = null;
+		try {
+			
+			System.out.println("Executing Python shopName.py");		
+							
+			//이미지 추론
+			String PythonScriptPath = "C:\\Python\\Lib\\site-packages\\tensorflow"
+					+ "\\examples\\label_image\\shopName.py";
+				
+			String[] cmd = new String[3];
+			cmd[0] = "Python";
+			cmd[1] = PythonScriptPath;
+			cmd[2] = shopName;
+				
+			Process process = Runtime.getRuntime().exec(cmd);
+				
+			BufferedReader stdInput = new BufferedReader(new
+					InputStreamReader(process.getInputStream()));
+				
+			BufferedReader stdError = new BufferedReader(new
+					InputStreamReader(process.getErrorStream()));
+				
+			while((s = stdInput.readLine()) != null)
+			{
+				System.out.println(s);
+			}
+				
+			while((s = stdError.readLine()) != null)
+			{
+				System.out.println(s);
+			}
+				
+		}catch(Exception e){
+			logger.info("**********Error!! (shopNameUpdate())**********");
+			System.out.println("**********Error!! (shopNameUpdate())**********");
+			e.printStackTrace();
+				
+			System.exit(-1);
+		}finally {
+			System.out.println("======쇼핑몰 이름 업데이트 완료======");
+			System.out.println();
+		}
+
+	}
 }

@@ -21,6 +21,7 @@ public class DressroomController {
 	@Autowired
 	private DressroomService service;
 
+	//회원 - 나만의 코디룸에 원하는 사진을 저장
 	@RequestMapping(value = "dressInsert", method = RequestMethod.GET)
 	public String insert(DressroomVO vo, Model model, HttpServletResponse response, HttpServletRequest request, HttpSession session) throws Exception {
 		
@@ -59,6 +60,7 @@ public class DressroomController {
 		return "movePage";
 	}
 	
+	//회원 - 나만의 코디룸에서 원하는 사진을 삭제
 	@RequestMapping(value = "dressDelete", method = RequestMethod.GET)
 	public String delete(DressroomVO vo, Model model, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		

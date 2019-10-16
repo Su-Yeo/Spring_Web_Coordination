@@ -54,9 +54,9 @@
 
 
 
-<!-- DressroomInsert(url변경해야 함) -->
+<!-- DressroomInsert -->
 <c:if test="${url eq 'insertDressroom'}">
-	<meta charset="UTF-8" http-equiv="refresh" content="0;url=<c:url value='/'/>">
+	<meta charset="UTF-8" http-equiv="refresh" content="0;url=<c:url value='isMyPage'/>">
 </c:if>
 
 <!-- DressroomDelete -->

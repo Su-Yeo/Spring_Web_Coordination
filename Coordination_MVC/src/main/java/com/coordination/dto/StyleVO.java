@@ -12,6 +12,8 @@ public class StyleVO {
 	private String img;
 	private Date reg_date;
 	private String identify;
+	private String shopname;
+	
 	
 	//Getter Setter
 	public int getNum() {
@@ -61,5 +63,11 @@ public class StyleVO {
 	}
 	public void setIdentify(String identify) {
 		this.identify = identify;
+	}
+	public String getShopname() {
+		return shopname;
+	}
+	public void setShopname(String shopname) {
+		this.shopname = shopname;
 	}
 }
