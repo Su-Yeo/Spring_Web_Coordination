@@ -38,7 +38,8 @@
   			top_color=#{top_color},
   			pants=#{pants},
   			pants_color=#{pants_color},
-  			img=#{img}
+  			img=#{img},
+  			shopname=#{shopname}
   		WHERE
   			num=#{num}
   	</update>
@@ -51,7 +52,8 @@
   			pants=#{pants},
   			pants_color=#{pants_color},
   			img=#{img},
-  			identify='y'
+  			identify='y',
+  			shopname=#{shopname}
   		WHERE
   			num=#{num}
   	</update>  	

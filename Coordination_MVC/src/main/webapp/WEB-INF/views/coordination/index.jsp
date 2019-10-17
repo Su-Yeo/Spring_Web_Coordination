@@ -73,6 +73,44 @@
 			</div>
 		</c:forEach>
 	</div>
+	
+	<footer>
+		<table class="table">
+			<tr>
+				<td valign="top">
+					<img src="/resources/icon/icon.png" style="width:40px; height:40px"><br>
+					<span style="font-size: 25px; font-family: cursive; font-weight: bold;">오늘 뭐 입지 ?</span><br>
+					<span style="font-size: 13px; font-weight: bold;">실제 옷장의 옷을 담다</span><br>
+					<span style="font-size: 8px;">
+						기계학습 된 모델이 실제 사진의 색상을 분석합니다.<br>
+						모든 패션 사진은 협력 쇼핑몰에서 제공되는 사진입니다.<br>
+						여러분에 옷장에 있는 다양한 사진을 등록하여 체험해보세요.<br>
+					</span>
+				</td>
+				<td valign="top">
+					<br>
+					<br>
+					<span style="font-size: 25px; font-family: cursive; font-weight: bold;">CS CENTER</span><br>
+					<span style="font-size: 13px; font-weight: bold;">010-9935-7482</span><br>
+					<span style="font-size: 8px;">
+						월-금 10:00AM ~ 18:00PM<br>
+						Lunch 13:00PM ~ 14:00PM
+					</span>
+				</td>
+				<td valign="top">
+					<br>
+					<br>
+					<span style="font-size: 25px; font-family: cursive; font-weight: bold;">FOLLOW AS</span><br>
+					<a href="http://www.facebook.com">
+						<img src="/resources/icon/facebook.png" style="width:25px; height:25px">
+					</a>
+					<a href="http://www.instagram.com">
+						<img src="/resources/icon/instagram.png" style="width:25px; height:25px">
+					</a>
+				</td>
+			</tr>
+		</table>
+	</footer>
 </div>
 </body>
 </html>
