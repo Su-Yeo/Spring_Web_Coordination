@@ -3,7 +3,6 @@ package com.coordination.main;
 import java.io.File;
 import java.io.PrintWriter;
 import java.util.List;
-import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -15,8 +14,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.support.RequestContextUtils;
 
+import com.coordination.admin.TensorflowImpl;
 import com.coordination.dto.ClosetVO;
 import com.coordination.service.ClosetService;
 
@@ -34,36 +35,35 @@ public class ClosetController {
 	public String insert(ClosetVO vo, Model model, HttpServletResponse response, HttpSession session, HttpServletRequest request) throws Exception {
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
+		TensorflowImpl tf = new TensorflowImpl();
+		
+		//img
+		String Path = "C:\\img\\user\\";
+		String image = Path + RequestContextUtils.getInputFlashMap(request).get("savePath").toString();
 		
 		try {
 			//Id
 			String userId = session.getAttribute("userId").toString();
 			
+			
 			//category
-	    	String category = null;
-	    	category = "t shirt";
-	    	
-	    	//color
-	    	String color = null;
-	    	color = "black";
-	    	
-	    	//img
-	    	String img = RequestContextUtils.getInputFlashMap(request).get("savePath").toString();
-	    	
-	    	vo.setId(userId);
-	    	vo.setCategory(category);
-	    	vo.setColor(color);
-	    	vo.setImg(img);
-			
-			service.insertCloset(vo);
-			
-			out.println("<script>"
-					+ "alert('정상적으로 등록되었습니다.');"
-        			+ "</script>");
-            out.flush();
-            
-            //MyPage로 이동
-            model.addAttribute("url", "insertCloset");
+	    	System.out.println("=========================");
+	    	System.out.println("이미지명 : " + image);
+	    	System.out.println("카테고리 : " + vo.getCategory());
+	    	System.out.println("=========================");
+/*	    	
+	    	//upper
+	    	if(category.equals("upper"))
+	    	{
+	    		tf.user_Upper(image);
+	    	}
+	    	//lower
+	    	else
+	    	{
+	    		tf.user_Lower(image);
+	    	}
+*/	    	
+	    	model.addAttribute("url", "identifyCloset");
 			
 		}catch(Exception e) {
 			e.printStackTrace();

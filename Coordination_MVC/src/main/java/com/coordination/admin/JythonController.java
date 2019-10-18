@@ -31,7 +31,7 @@ public class JythonController {
 	public String Tensorflow(Model model, HttpServletRequest request) throws Exception  {
 			
 		//이미지 분석 객체 생성
-		Tensorflow tf = new Tensorflow();
+		TensorflowImpl tf = new TensorflowImpl();
 		
 		//이미지 분석 Path && 분석할 이미지명
 		String path = "C:\\img\\tensorflow\\";
@@ -68,19 +68,21 @@ public class JythonController {
 				image = path + listOfFiles[i].getName();
 				
 				//전신 이미지 분리
-				//tf.Cut(image);
+				tf.Cut(image);
 				
 				//상의 이미지 분석
-				tf.Upper_Tensorflow(image);
+				tf.admin_Upper(image);
 				
 				//하의 이미지 분석
-				//tf.Lower_Tensorflow(image);
-				
-				//이미지 복구
-				//tf.restore(image);
+				tf.admin_Lower(image);
 				
 				//쇼핑몰 이름 업데이트
-				tf.shopNameUpdate(shopName);
+				tf.admin_ShopName(shopName);
+				
+				//이미지 복구
+				tf.admin_restore(image);
+				
+				System.out.println("현재 :" + i + "/" + listOfFiles.length);
 			}
 			else
 			{
@@ -89,6 +91,7 @@ public class JythonController {
 				System.out.println("\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\");
 			}
 		}
+		
 		//Tensorflow에서 admin폴더로 이미지 복사
 		copy(folder, folder2);
 		System.out.println("======이미지 복사 완료======");

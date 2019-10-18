@@ -56,6 +56,13 @@ public class HomeController {
 	 * Simply selects the home view to render by returning its name.
 	 * @throws Exception 
 	 */
+	
+	@RequestMapping("nav")
+	public String nav() {
+		
+		return "coordination/nav";
+	}
+	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(@ModelAttribute StyleVO vo, Model model, Locale locale) throws Exception {
 		logger.info("패션 코디북, 오늘 뭐 입지??");

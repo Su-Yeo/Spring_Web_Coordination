@@ -56,10 +56,10 @@
 	<!-- weather select start -->
    	<div style="width:100%;margin-top:30px;text-align:center;">
 	    <div id="div_include3">
-	    	<jsp:include page="weather.jsp" flush="true"></jsp:include>
+	    	<jsp:include page="weather.jsp" flush="true" />
 	    </div>
     </div>
-	
+	 
 	<!-- Image -->
 	<div>
 		<c:forEach items="${StyleList}" var="style" begin="1" end="12" step="1">   

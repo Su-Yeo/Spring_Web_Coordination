@@ -37,7 +37,7 @@
 
 
 <!-- ClosetInsert(url 변경해야함) -->
-<c:if test="${url eq 'insertCloset'}">
+<c:if test="${url eq 'identifyCloset'}">
 	<meta charset="UTF-8" http-equiv="refresh" content="0;url=<c:url value='isMyPage'/>">
 </c:if>
 

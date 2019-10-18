@@ -4,6 +4,7 @@ import java.io.FileInputStream;
 import java.io.InputStream;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.io.IOUtils;
@@ -24,12 +25,13 @@ import com.coordination.dto.ClosetVO;
 import com.coordination.service.ClosetService;
 import com.coordination.service.UploadFileUtils;
 
+
 @Controller
 public class UploadController {
 	
 	@Resource(name="imgPath")
 	private String imgPath;
-    
+	
 	@RequestMapping(value="imgUpload")
     public String imgUpload(HttpSession session) {
 		
@@ -43,7 +45,7 @@ public class UploadController {
 	
     //이미지 업로드 처리
     @RequestMapping(value="/uploadImg", method=RequestMethod.POST)
-    public String uploadImg(MultipartFile file, HttpSession session, RedirectAttributes redirectAttributes) throws Exception {//session.getId(); 수정
+    public String uploadImg(MultipartFile file, HttpSession session, RedirectAttributes redirectAttributes, HttpServletRequest request) throws Exception {//session.getId(); 수정
     	
     	//id 
     	String userId = session.getAttribute("userId").toString();

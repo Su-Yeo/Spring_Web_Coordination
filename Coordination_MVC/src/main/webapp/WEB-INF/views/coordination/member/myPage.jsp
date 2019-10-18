@@ -5,6 +5,15 @@
 <!DOCTYPE html>
 <html>
 <head>
+<!-- favicon -->
+<link rel="apple-touch-icon" sizes="120x120" href="/resources/icon/user/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/resources/icon/user/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/resources/icon/user/favicon-16x16.png">
+<link rel="manifest" href="/resources/icon/user/site.webmanifest">
+<link rel="mask-icon" href="/resources/icon/user/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+<!-- End favicon -->
 <meta charset="UTF-8">
 <title>myPage</title>
 </head>
@@ -12,6 +21,7 @@
 <%
 	String path = "C:\\img\\user\\";
 %>
+
 <!-- Nav -->
 <jsp:include page="../nav.jsp"></jsp:include>
 <!-- End Nav -->
