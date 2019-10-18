@@ -229,4 +229,22 @@ public class MemberController {
 			return "coordination/member/myPage";
 		}
 	}
+
+	@RequestMapping("infoUpdatePage")
+	public String infoUpdate(MemberVO vo, Model model, HttpSession session) throws Exception {
+		if(session.getAttribute("userId") == null)
+		{
+			return "redirect:/";
+		}
+		else
+		{
+			String id = session.getAttribute("userId").toString();
+			vo.setId(id);
+			
+			List<MemberVO> MemberList = memberService.memberList(vo);
+			model.addAttribute("MemberList", MemberList);
+			
+			return "coordination/member/infoUpdate";
+		}
+	}
 }

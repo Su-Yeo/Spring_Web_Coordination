@@ -435,7 +435,7 @@
 					<img src="/resources/icon/icon2.png" class="avatar" alt="프로필 사진"> ${sessionScope.userName} <b class="caret"></b></a>
 				<ul class="dropdown-menu">
 					<li><a href="isMyPage" class="dropdown-item"><i class="fa fa-user-o"></i> 나만의 옷장</a></li>
-					<li><a href="isMyPage" class="dropdown-item"><i class="fa fa-sliders"></i> 회원정보 수정</a></li>
+					<li><a href="infoUpdatePage" class="dropdown-item"><i class="fa fa-sliders"></i> 회원정보 수정</a></li>
 					<!-- <li><a href="#" class="dropdown-item"><i class="fa fa-calendar-o"></i></a></li> -->
 					<li class="divider dropdown-divider"></li>
 					<li><a href="logout" class="dropdown-item"><i class="material-icons">&#xE8AC;</i> Logout</a></li>
