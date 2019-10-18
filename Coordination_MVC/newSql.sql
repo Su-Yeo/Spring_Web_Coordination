@@ -1,9 +1,10 @@
 --수정사항에 있는 사항의 SQL문은 Create문에 수정되어있으니 새로만드는 경우,
 --Create문을, 기존에 존재하는 경우 Alter문을 사용하기 바람
 
---2019.10.02 수정사항 :
+--2019.10.16 수정사항 :
 alter table style add reg_date timestamp default CURRENT_TIMESTAMP;
 alter table style add identify varchar(1) default 'n';
+alter table style add shopname varchar(30);
 
 --회원들의 정보를 저장하기 위한 데이터베이스
 create database user;
@@ -47,6 +48,7 @@ pants_color varchar(30),
 img varchar(50),
 reg_date timestamp default CURRENT_TIMESTAMP,
 identify varchar(1) default 'n',
+shopname varchar(30),
 primary key(num)
 );
 

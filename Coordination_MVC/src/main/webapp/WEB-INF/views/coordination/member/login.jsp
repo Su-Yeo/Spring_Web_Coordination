@@ -136,7 +136,16 @@
             	<label id="errorMessage" class="checkbox-inline" style="color: red;">아이디 또는 비밀번호 오류입니다.</label>
             </c:if>
         </div> 
-        <input type="submit" class="btn btn-primary btn-block btn-lg" style="background: #61C7C1;" value="Login">              
+        <input type="submit" class="btn btn-primary btn-block btn-lg" style="background: #61C7C1;" value="Login">
+        <br>
+        <a href="signup">
+       		<span style="font-size: 10px; color: black;">아이디가 없으신가요?</span>   
+        </a>
+		<div align="right" style="float: right;">
+			<a href="/">
+       			<span style="font-size: 10px; color: black;">돌아가기</span> 
+			</a>
+		</div>   
     </form>			
 </div>
 </body>
