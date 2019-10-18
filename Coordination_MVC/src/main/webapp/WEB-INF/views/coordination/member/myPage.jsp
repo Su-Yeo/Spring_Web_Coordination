@@ -17,6 +17,14 @@
 <meta charset="UTF-8">
 <title>myPage</title>
 </head>
+<style>
+	img{
+		align:center;
+		margin:0 auto;
+		width: 275px;
+		height: 400px;
+	}
+</style>
 <body>
 <%
 	String path = "C:\\img\\user\\";
