@@ -67,7 +67,7 @@
 				<img class="w3-border w3-hover-border-red" src="${style}" >
 				<div class="img_container">
 					<div><b>Image NickName</b></div>
-					<div>Example Title</div>
+
 					<div>좋아요 : #명 <span style="margin: 0 0 0 60%;">버튼</span></div>
 				</div>
 			</div>

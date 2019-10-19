@@ -132,6 +132,7 @@
 			<h2>Upload</h2>
 			<p>기계학습 된 신경망이 실제 옷장에 옷을 촬영하여 등록하면 옷의 색상을 분석해 알려줍니다.</p>
 		</div>    
+		<br>
         <div class="form-group" style="margin-top: -30px;">
 			<label>Photo Upload</label>
         	<input type="file" id="userImg" class="form-control" name="file">
