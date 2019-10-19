@@ -42,27 +42,10 @@ public class ClosetController {
 		String image = Path + RequestContextUtils.getInputFlashMap(request).get("savePath").toString();
 		
 		try {
-			//Id
-			String userId = session.getAttribute("userId").toString();
+
+			//사용자 이미지 업로드 후, 분석
+			tf.user(image);
 			
-			
-			//category
-	    	System.out.println("=========================");
-	    	System.out.println("이미지명 : " + image);
-	    	System.out.println("카테고리 : " + vo.getCategory());
-	    	System.out.println("=========================");
-/*	    	
-	    	//upper
-	    	if(category.equals("upper"))
-	    	{
-	    		tf.user_Upper(image);
-	    	}
-	    	//lower
-	    	else
-	    	{
-	    		tf.user_Lower(image);
-	    	}
-*/	    	
 	    	model.addAttribute("url", "identifyCloset");
 			
 		}catch(Exception e) {

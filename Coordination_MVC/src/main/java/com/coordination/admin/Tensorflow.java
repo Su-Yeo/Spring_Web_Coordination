@@ -20,10 +20,9 @@ public interface Tensorflow {
 	//관리자-사진 이미지 복구
 	public void admin_restore(String image);
 	
-	//사용자-상의 이미지 분석
-	public void user_Upper(String image);
+	//사용자-이미지 분석
+	//상하의 구분X
+	public void user(String image);
 
-	//사용자-하의 이미지 분석
-	public void user_Lower(String image);
 	
 }

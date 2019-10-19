@@ -245,7 +245,7 @@ public class TensorflowImpl implements Tensorflow {
 
 	//사용자-상의 이미지 분석
 	@Override
-	public void user_Upper(String image) {
+	public void user(String image) {
 		String s = null;
 		try {
 			
@@ -253,7 +253,7 @@ public class TensorflowImpl implements Tensorflow {
 			
 			//이미지 추론
 			String PythonScriptPath = "C:\\Python\\Lib\\site-packages\\tensorflow"
-					+ "\\examples\\label_image\\user_upper.py";
+					+ "\\examples\\label_image\\user.py";
 			
 			String[] cmd = new String[7];
 			cmd[0] = "Python";
@@ -282,64 +282,13 @@ public class TensorflowImpl implements Tensorflow {
 				System.out.println(s);
 			}
 		}catch(Exception e){
-			logger.info("**********Error!! (user_Upper())**********");
-			System.out.println("**********Error!! (user_Upper())**********");
+			logger.info("**********Error!! (user())**********");
+			System.out.println("**********Error!! (user())**********");
 			e.printStackTrace();
 			
 			System.exit(-1);
 		}finally {
-			System.out.println("======상의 이미지 분석 완료===");
-			System.out.println();
-		}
-	}
-	
-	//사용자-하의 이미지 분석
-	@Override
-	public void user_Lower(String image) {
-		String s = null;
-		try {
-			
-			System.out.println("Executing Python user_lower.py");		
-						
-			//이미지 추론
-			String PythonScriptPath = "C:\\Python\\Lib\\site-packages\\tensorflow"
-					+ "\\examples\\label_image\\user_lower.py";
-			
-			String[] cmd = new String[7];
-			cmd[0] = "Python";
-			cmd[1] = PythonScriptPath;
-			cmd[2] = "--input_layer=Mul";
-			cmd[3] = "--output_layer=final_result";
-			cmd[4] = "--labels=C:\\tmp\\top\\retrain_labels.txt";
-			cmd[5] = "--graph=C:\\tmp\\top\\retrain_graph.pb";
-			cmd[6] = "--image=" + image;
-			
-			Process process = Runtime.getRuntime().exec(cmd);
-			
-			BufferedReader stdInput = new BufferedReader(new
-					InputStreamReader(process.getInputStream()));
-			
-			BufferedReader stdError = new BufferedReader(new
-					InputStreamReader(process.getErrorStream()));
-			
-			while((s = stdInput.readLine()) != null)
-			{
-				System.out.println(s);
-			}
-			
-			while((s = stdError.readLine()) != null)
-			{
-				System.out.println(s);
-			}
-			
-		}catch(Exception e){
-			logger.info("**********Error!! (user_Lower())**********");
-			System.out.println("**********Error!! (user_Lower())**********");
-			e.printStackTrace();
-			
-			System.exit(-1);
-		}finally {
-			System.out.println("======하의 이미지 분석 완료===");
+			System.out.println("======사용자 이미지 분석 완료===");
 			System.out.println();
 		}
 	}

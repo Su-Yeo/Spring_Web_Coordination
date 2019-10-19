@@ -26,16 +26,7 @@
 <script type="text/javascript">
 
 	function goSubmit() {
-		
-		if( document.getElementById("upper").checked != true &&
-	    	document.getElementById("lower").checked != true)
-	    {
-	    		alert('분류를 선택해주세요.');
-	    		document.getElementById("upper").focus();
-	    		return;
-	    }
-		
-		
+	
 		var fileValue = $("#userImg").val().split("\\");
 		var fileName = fileValue[fileValue.length-1];
 	    if(checkImageType(fileName))
@@ -140,12 +131,7 @@
 		<div class="form-header">
 			<h2>Upload</h2>
 			<p>기계학습 된 신경망이 실제 옷장에 옷을 촬영하여 등록하면 옷의 색상을 분석해 알려줍니다.</p>
-		</div>
-		<div class="form-group" align="center">
-			<label class="radio-inline"><input type="radio" id="upper" name="category" value="upper" class="form-control">상의</label>
-			&nbsp;&nbsp;&nbsp;&nbsp;
-			<label class="radio-inline"><input type="radio" id="lower" name="category" value="lower" class="form-control">하의</label>
-        </div>       
+		</div>    
         <div class="form-group" style="margin-top: -30px;">
 			<label>Photo Upload</label>
         	<input type="file" id="userImg" class="form-control" name="file">
