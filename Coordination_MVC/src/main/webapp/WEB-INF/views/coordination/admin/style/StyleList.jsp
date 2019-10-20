@@ -57,7 +57,7 @@
 		<tr>
 	</c:if>
 			<td align="center">
-				<img src="<%= path %>${style.img}" /> <br/>
+				<img src="/displayImg?name=${style.img}&folder=admin" /> <br/>
 				<button class="btn btn-success" onClick="location.href='adminUpdateForm?num=${style.num}'">수정</button>
 				&nbsp;
 				<button class="btn btn-danger" onClick="location.href='deleteStyle?num=${style.num}&img=${style.img}'">삭제</button>

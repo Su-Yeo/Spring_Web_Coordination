@@ -6,9 +6,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<!-- bootstrap -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="http://code.jquery.com/jquery-2.2.2.min.js"></script>
@@ -85,8 +82,9 @@ function selLeaf(s3){
       		    url : "/style",
       		    data : {"tmn" : arr1[0].fcstValue, "tmx" : arr1[1].fcstValue},
       		    dataType: "text",
-      		    error : function(){
-      		        alert('통신실패!!');
+      		    error : function(xhr,status,error){
+      		        alert('통신실패!! style');
+      		      	alert(xhr+", "+status+", "+error);
       		    },
       		    success : function(data){
       		    	$("div#div_include").html(data);
@@ -217,6 +215,8 @@ function selLeaf(s3){
 		<!-- <div id="weather1" style="width:100%;height:250px;font-size:90px;padding-top:80px;margin-left:-90px;"></div> -->
 		<div id="weather1" style="width:100%;height:250px;font-size:90px;padding-top:80px;"></div>
 		<div id="weather" style="font-size:25px;margin-top:-70px;"></div>
+		<!-- <div id="weather1" style="width:100%;height:250px;font-size:90px;padding-top:80px;"></div>
+		<div id="weather" style="font-size:25px;margin-top:-70px;"></div> -->
 	</div>
 </div>
 </body>

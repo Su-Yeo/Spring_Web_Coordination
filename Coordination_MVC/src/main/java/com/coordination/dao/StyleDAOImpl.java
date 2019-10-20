@@ -22,9 +22,9 @@ public class StyleDAOImpl implements StyleDAO {
 	
 	//이미지 불러오기
 	@Override
-	public List<StyleVO> StyleList(HashMap<String, String[]> data) throws Exception {
+	public List<StyleVO> TemperatureStyle(HashMap<String, String[]> data) throws Exception {
 		
-		return sqlSession.selectList(Namespace+".StyleList", data);
+		return sqlSession.selectList(Namespace+".TemperatureStyle", data);
 	}
 	
 	//Method Override

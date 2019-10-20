@@ -19,9 +19,9 @@ public class StyleServiceImpl implements StyleService {
 	
 	//이미지 불러오기
 	@Override
-	public List<StyleVO> StyleList(HashMap<String, String[]> data) throws Exception {
+	public List<StyleVO> TemperatureStyle(HashMap<String, String[]> data) throws Exception {
 		
-		return dao.StyleList(data);
+		return dao.TemperatureStyle(data);
 	}
 	
 	//Method Override

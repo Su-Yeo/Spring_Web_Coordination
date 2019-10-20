@@ -42,7 +42,7 @@
 					<input type="hidden" name="num" value="${style.num}" />
 			<tr>
 				<td colspan="2" align="center">
-					<img src="<%= path %>${style.img}" />
+					<img src="/displayImg?name=${style.img}&folder=admin" />
 				</td>
 			</tr>	
 			<tr>
@@ -50,7 +50,7 @@
 					쇼핑몰
 				</td>
 				<td>
-					<input type="text" name="top" value="${style.shopname}" />
+					<input type="text" name="shopname" value="${style.shopname}" />
 				</td>
 			</tr>	
 			<tr>
@@ -114,7 +114,7 @@
 					<input type="hidden" name="num" value="${style.num}" />
 			<tr>
 				<td colspan="2" align="center">
-					<img src="<%= path %>${style.img}" />
+					<img src="/displayImg?name=${style.img}&folder=admin" />
 				</td>
 			</tr>
 			<tr>
@@ -122,7 +122,7 @@
 					쇼핑몰
 				</td>
 				<td>
-					<input type="text" name="top" value="${style.shopname}" />
+					<input type="text" name="shopname" value="${style.shopname}" />
 				</td>
 			</tr>	
 			<tr>

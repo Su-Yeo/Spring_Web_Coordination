@@ -1,6 +1,7 @@
 package com.coordination.main;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Properties;
@@ -30,6 +31,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.coordination.dao.StyleDAO;
 import com.coordination.dto.StyleVO;
@@ -146,67 +148,101 @@ public class HomeController {
 		System.out.println("tmn : "+tmn);
 		System.out.println("tmx : "+tmx);
 		
-		int avgTemp = (Integer.parseInt(tmn) + Integer.parseInt(tmx)) / 2;
-		String[] data = new String[4];
+		int tempMax = Integer.parseInt(tmx);
+		//int avgTemp = (Integer.parseInt(tmn) + Integer.parseInt(tmx)) / 2;
+		int tempDiff = Integer.parseInt(tmx) - Integer.parseInt(tmn);
+		String[] data = new String[5];
 
-		if(avgTemp <= 4)
-		{
+		if(tempMax >= 24) {
+			//티셔츠, 반팔
+			data[0] = "t-shirt";
+			data[1] = "harf-tshirt";
+			data[2] = "harf-shirt";	
+		}
+		else if(tempMax >= 18) {
+			//티셔츠, 반팔
+			data[0] = "t-shirt";
+			data[1] = "harf-tshirt";
+			data[2] = "harf-shirt";	
+			if(tempDiff >= 6) {
+				//긴팔, 가디건, 청자켓
+				data[3] = "shirt";
+				data[4] = "jacket";
+			}
+		}
+		else if(tempMax >= 14) {
+			//긴팔
+			data[0] = "shirt";
+			if(tempDiff >= 6) {
+				//자켓, 트렌치코트, 가죽자켓
+				data[1] = "jacket";
+				data[2] = "coat";
+				data[3] = "leather-jacket";
+			}
+		}
+		else {
 			//패딩, 두꺼운코트
 			data[0] = "padding";
 			data[1] = "coat";
 		}
-		else if(avgTemp >= 5 && avgTemp <= 8)
-		{
-			//코트, 가죽자켓
-			data[0] = "coat";
-			data[1] = "leather-jacket";
-		}
-		else if(avgTemp >= 9 && avgTemp <= 11)
-		{
-			//자켓, 트렌치코트
-			data[0] = "coat";
-			data[1] = "jacket";
-		}
-		else if(avgTemp >= 12 && avgTemp <= 16)
-		{
-			//자켓, 가디건
-			data[0] = "jacket";
-		}
-		else if(avgTemp >= 17 && avgTemp <= 19)
-		{
-			//자켓, 가디건, 티셔츠
-			data[0] = "jacket";
-			data[1] = "t-shirt";
-		}
-		else if(avgTemp >= 20 && avgTemp <= 22)
-		{
-			//가디건, 티셔츠
-			data[0] = "t-shirt";
-		}
-		else if(avgTemp >= 23 && avgTemp <= 27)
-		{
-			//반팔, 티셔츠, 셔츠, 반팔셔츠
-			data[0] = "t-shirt";
-			data[1] = "harf-tshirt";
-			data[2] = "shirt";
-			data[3] = "harf-shirt";			
-		}
-		else if(avgTemp >= 28)
-		{
-			//반팔, 민소매
-			data[0] = "harf-tshirt";
-			data[1] = "harf-shirt";
-		}
 		
-//		HashMap<String, String[]> hm = new HashMap<String, String[]>();
-//		hm.put("data", data) ;
-//		
-//		List<StyleVO> StyleList = styleDAO.StyleList(hm);
-//		model.addAttribute("StyleList", StyleList);
-
+//		if(avgTemp <= 4)
+//		{
+//			//패딩, 두꺼운코트
+//			data[0] = "padding";
+//			data[1] = "coat";
+//		}
+//		else if(avgTemp >= 5 && avgTemp <= 8)
+//		{
+//			//코트, 가죽자켓
+//			data[0] = "coat";
+//			data[1] = "leather-jacket";
+//		}
+//		else if(avgTemp >= 9 && avgTemp <= 11)
+//		{
+//			//자켓, 트렌치코트
+//			data[0] = "coat";
+//			data[1] = "jacket";
+//		}
+//		else if(avgTemp >= 12 && avgTemp <= 16)
+//		{
+//			//자켓, 가디건
+//			data[0] = "jacket";
+//		}
+//		else if(avgTemp >= 17 && avgTemp <= 19)
+//		{
+//			//자켓, 가디건, 티셔츠
+//			data[0] = "jacket";
+//			data[1] = "t-shirt";
+//		}
+//		else if(avgTemp >= 20 && avgTemp <= 22)
+//		{
+//			//가디건, 티셔츠
+//			data[0] = "t-shirt";
+//		}
+//		else if(avgTemp >= 23 && avgTemp <= 27)
+//		{
+//			//반팔, 티셔츠, 셔츠, 반팔셔츠
+//			data[0] = "t-shirt";
+//			data[1] = "harf-tshirt";
+//			data[2] = "shirt";
+//			data[3] = "harf-shirt";			
+//		}
+//		else if(avgTemp >= 28)
+//		{
+//			//반팔, 민소매
+//			data[0] = "harf-tshirt";
+//			data[1] = "harf-shirt";
+//		}
 		
+		HashMap<String, String[]> hm = new HashMap<String, String[]>();
+		hm.put("data", data) ;
+		
+		List<StyleVO> TemperatureStyle = styleDAO.TemperatureStyle(hm);
+		model.addAttribute("TemperatureStyle", TemperatureStyle);
 		
 		return "coordination/imageView";
+		//return model;
 	}
     
     //고객의 소리 - Java Mail API

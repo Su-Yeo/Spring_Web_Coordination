@@ -53,7 +53,7 @@
 	</c:if>
 			<td align="center">
 				<a href="IdentifyUpdateForm?num=${style.num}">
-					<img src="<%= path %>${style.img}" />
+					<img src="/displayImg?name=${style.img}&folder=admin" />
 				</a>
 			</td>
 	<c:if test="${i%j == j-1 }">

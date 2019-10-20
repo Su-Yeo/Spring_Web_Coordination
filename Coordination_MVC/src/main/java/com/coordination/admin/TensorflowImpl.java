@@ -132,7 +132,7 @@ public class TensorflowImpl implements Tensorflow {
 			cmd[2] = "--input_layer=Mul";
 			cmd[3] = "--output_layer=final_result";
 			cmd[4] = "--labels=C:\\tmp\\color\\retrain_labels.txt";
-			cmd[5] = "--graph=CC:\\tmp\\color\\retrain_graph.pb";
+			cmd[5] = "--graph=C:\\tmp\\color\\retrain_graph.pb";
 			cmd[6] = "--image=" + image;
 			
 			Process process = Runtime.getRuntime().exec(cmd);

@@ -5,50 +5,23 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<style>
-	div.polaroid {
-		width: 275px;
-		background-color: white;
-		box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-		margin-bottom: 25px;
-		float : left;
-		margin : 20px;
-	}
-	img {
-		align:center;
-		margin:0 auto;
-		width: 275px;
-		height: 400px;
-	}
-	
-	div.container {
-		text-align: center;
-		padding: 10px 20px;
-	}
-	
-	a {
-		color: black; 
-		text-decoration: none; 
-	}
-	a:visited{
-		color: black;
-	}
-</style>
 <title></title>
 </head>
-<body style="text-align:center">
-	<div style="clear:left">
+<body>
+	<!-- <div style="clear:left">
 		<p class="p2" style="font-size:24px">Today's Coordination</p>
-	</div>
-	<div style="display: table; margin: 0 auto;">
-	<!-- 
-		<c:forEach items="${StyleList}" var="style" begin="1" end="12" step="1">
-			<div class="polaroid">
-					<img src="/resources/style/${style.img}" alt="이미지 링크">
-					<p></p>
+	</div> -->
+	<div id="div_include">
+		<c:forEach items="${TemperatureStyle}" var="style" begin="1" end="12" step="1">   
+			<div class="img_polaroid">
+				<img class="w3-border w3-hover-border-red" src="/displayImg?name=${style.img}&folder=admin" >
+				<div class="img_container">
+					<div><b>${style.shopname}</b></div>
+
+					<div>좋아요 : #명 <span style="margin: 0 0 0 60%;">버튼</span></div>
+				</div>
 			</div>
-		</c:forEach>	
-	 -->
+		</c:forEach>
 	</div>
 </body>
 </html>

@@ -8,7 +8,7 @@ import com.coordination.dto.StyleVO;
 public interface StyleService {
 
 	//이미지 불러오기
-	public List<StyleVO> StyleList(HashMap<String, String[]> data) throws Exception;
+	public List<StyleVO> TemperatureStyle(HashMap<String, String[]> data) throws Exception;
 		
 	//Method Override
 	public List<StyleVO> StyleList() throws Exception;

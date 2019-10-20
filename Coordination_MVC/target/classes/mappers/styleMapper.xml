@@ -63,4 +63,12 @@
   		DELETE FROM style WHERE num=#{num}
   	</delete>
     
+    <select id="TemperatureStyle" resultType="styleVO" parameterType="hashmap">
+    	SELECT * 
+    	FROM STYLE
+    	where identify='y' and
+        <foreach collection="data" item="item" index="index" separator="or">
+            top = #{item}
+        </foreach>
+	</select>
 </mapper>
