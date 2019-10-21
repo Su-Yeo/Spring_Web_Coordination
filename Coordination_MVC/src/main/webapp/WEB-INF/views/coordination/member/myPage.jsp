@@ -14,15 +14,15 @@
 <meta name="msapplication-TileColor" content="#da532c">
 <meta name="theme-color" content="#ffffff">
 <!-- End favicon -->
-  <meta charset="utf-8">
-	<title>myPage</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+ <meta charset="utf-8">
+<title>myPage</title>
+ <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
 
-  <!-- Link Swiper's CSS -->
-  <link rel="stylesheet" href="/resources/css/swiper.min.css">
+ <!-- Link Swiper's CSS -->
+ <link rel="stylesheet" href="/resources/css/swiper.min.css">
 
-  <!-- Demo styles -->
-  <style>
+ <!-- Demo styles -->
+ <style>
     html, body {
       position: relative;
       height: 100%;
@@ -57,30 +57,27 @@
       -webkit-align-items: center;
       align-items: center;
     }
-  </style>
+ </style>
 </head>
 <body>
-<%
-	String path = "C:\\img\\user\\";
-%>
 <!-- Nav -->
 <jsp:include page="../nav.jsp"></jsp:include>
 <!-- End Nav -->
-회원 ID : ${sessionScope.userId} <br/>
-회원 이름 : ${sessionScope.userName}
-<br/><br/>
-------------나만의 옷장------------<br/>
-<c:if test="${empty ClosetList}">
-	<h2>나만의 옷장이 비어있습니다.</h2>
-</c:if>
+
+<a href="imgUpload">나만의 옷장 등록</a>
 
 <!-- Swiper -->
-  <div style="width:900px;height:400px;" class="swiper-container">
-    <div class="swiper-wrapper">
-    <c:forEach items="${ClosetList}" var="closet">
-      <div class="swiper-slide"><a href="updateClosetForm?num=${closet.num}">
-            <img style="border: 1px solid gray;width:300px;height:350px;" src="/displayImg?name=${closet.img}&folder=user"/>
-		</a></div>
+<div style="width:900px;height:400px;" class="swiper-container">
+	<div class="swiper-wrapper">
+		<c:forEach items="${ClosetList}" var="closet">
+			<div class="swiper-slide">
+				<c:if test="${empty ClosetList}">
+					<h2>나만의 옷장이 비어있습니다.</h2>
+				</c:if>
+				<a href="updateClosetForm?num=${closet.num}">
+					<img style="border: 1px solid gray;width:300px;height:350px;" src="/displayImg?name=${closet.img}&folder=user"/>
+				</a>
+			</div>
 		</c:forEach>
     </div>
     <!-- Add Pagination -->

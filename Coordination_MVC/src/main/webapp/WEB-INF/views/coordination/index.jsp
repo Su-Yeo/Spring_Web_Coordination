@@ -75,6 +75,7 @@
 	</div> --%>
 	
 	<div>
+		<!-- 날씨 온도차에 따른 코디 이미지 호출 -->
 		<jsp:include page="imageView.jsp" flush="true" />
 	</div>
 	

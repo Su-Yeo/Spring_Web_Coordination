@@ -40,13 +40,25 @@ public class ClosetController {
 		//img
 		String Path = "C:\\img\\user\\";
 		String image = Path + RequestContextUtils.getInputFlashMap(request).get("savePath").toString();
+		String img = RequestContextUtils.getInputFlashMap(request).get("savePath").toString();
 		
 		try {
 
 			//사용자 이미지 업로드 후, 분석
 			tf.user(image);
 			
-	    	model.addAttribute("url", "identifyCloset");
+			out.println("<script>"
+					+ "alert('이미지의 색상이 분석되었습니다.');"
+        			+ "</script>");
+            out.flush();
+			
+	    	//model.addAttribute("url", "identifyCloset");
+            
+            //Setter
+            vo.setImg(img);
+            //Getter
+            List<ClosetVO> closetList = service.closetList(vo);
+            model.addAttribute("closetList", closetList);
 			
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -58,31 +70,10 @@ public class ClosetController {
             out.flush();
 		}
 		
-		return "movePage";
+		return "coordination/member/imgUpload2";
 	}
 	
-	//회원 - 나만의 옷장 수정1(Form이동)
-	@RequestMapping(value = "updateClosetForm")
-	public String updateForm(ClosetVO vo, Model model, HttpServletRequest request) {
-		
-		int num = 0;
-		num = Integer.parseInt(request.getParameter("num"));
-		
-		try {
-			vo.setNum(num);
-			List<ClosetVO> closetList = service.closetList(vo);
-			
-			model.addAttribute("closetList", closetList);
-			
-		}catch(Exception e) {
-			e.printStackTrace();
-			
-		}
-		
-		return "coordination/member/closetUpdateDelete";
-	}
-	
-	//회원 - 나만의 옷장 수정2
+	//회원 - 나만의 옷장 등록 후 수정
 	@RequestMapping(value = "updateCloset", method = RequestMethod.POST)
 	public String update(ClosetVO vo, Model model, HttpServletResponse response) throws Exception {
 		
@@ -93,7 +84,7 @@ public class ClosetController {
 			service.updateCloset(vo);
 			
 			out.println("<script>"
-					+ "alert('수정이 완료되었습니다.');"
+					+ "alert('정상적으로 등록되었습니다.');"
         			+ "</script>");
             out.flush();
             
