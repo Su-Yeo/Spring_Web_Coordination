@@ -52,10 +52,10 @@
 <!-- End Nav -->
 
 <!-- Container -->
-<div class="container">
+<div class="container" style="text-align:center;">
 	<!-- weather select start -->
-   	<div style="width:100%;margin-top:30px;text-align:center;">
-	    <div id="div_include3">
+   	<div style="margin-top:20px;">
+	    <div style="width:90%;margin:0 auto" id="div_include3">
 	    	<jsp:include page="weather.jsp" flush="true" />
 	    </div>
     </div>

@@ -8,6 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="/resources/css/style.css">
 <script src="http://code.jquery.com/jquery-2.2.2.min.js"></script>
 <script type="text/javascript">
 function selTop(s){
