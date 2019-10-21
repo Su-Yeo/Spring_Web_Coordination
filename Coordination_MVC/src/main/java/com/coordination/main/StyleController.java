@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.coordination.dto.StyleVO;
 import com.coordination.service.StyleService;
@@ -162,8 +163,27 @@ public class StyleController {
 	
 	//관리자 - 데이터 검증1
 	@RequestMapping(value = "adminIdentify", method = RequestMethod.GET)
-	public String goIdentify(StyleVO vo, Model model, HttpServletRequest request) throws Exception {
+	public String goIdentify(StyleVO vo,
+			Model model,
+			HttpServletRequest request,
+			@RequestParam(required = false, defaultValue = "1") int page,
+			@RequestParam(required = false, defaultValue = "1") int range
+			) throws Exception {
+
 		
+		//전체 페이지 갯수
+		int listCnt = service.StyleListIdentifyCount();
+		
+		//Pagination 객체생성
+		Pagination pagination = new Pagination();
+		pagination.pageInfo(page, range, listCnt);
+		
+		model.addAttribute("pagination", pagination);
+		model.addAttribute("StyleIdentifyList", service.StyleListIdentify(pagination));
+		
+		return "coordination/admin/style/Identify";
+		
+		/*
 		String password = request.getParameter("password");
 		
 		//관리자 비밀번호가 1234면 Identify로 이동
@@ -179,6 +199,7 @@ public class StyleController {
 				//관리자 메인Page로 다시 이동
 				return "redirect:adminPage";
 			}
+		*/
 	}
 	
 	//관리자 - 데이터 검증2

@@ -60,7 +60,7 @@ public class JythonController {
 		//DB에 등록되지않은 tensorflow폴더 안에 있는 이미지명 추출
 		File[] listOfFiles = folder.listFiles();
 		
-		for (int i = 0; i < listOfFiles.length; i++)
+		for (int i = 0; i <= listOfFiles.length; i++)
 		{
 			if(listOfFiles[i].isFile())
 			{

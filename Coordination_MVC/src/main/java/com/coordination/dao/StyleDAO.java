@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.coordination.dto.StyleVO;
+import com.coordination.main.Pagination;
 
 public interface StyleDAO {
 
@@ -14,7 +15,9 @@ public interface StyleDAO {
 	public List<StyleVO> StyleList() throws Exception;
 	
 	//검증되지 않은 이미지 불러오기
-	public List<StyleVO> StyleListIdentify() throws Exception;
+	public List<StyleVO> StyleListIdentify(Pagination pagination) throws Exception;
+	
+	public int StyleListIdentifyCount() throws Exception;
 	
 	//업데이트를 위한 이미지 정보 불러오기
 	public List<StyleVO> StyleOne(StyleVO vo) throws Exception;

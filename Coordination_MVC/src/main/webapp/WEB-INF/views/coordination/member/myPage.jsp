@@ -14,15 +14,53 @@
 <meta name="msapplication-TileColor" content="#da532c">
 <meta name="theme-color" content="#ffffff">
 <!-- End favicon -->
+
+<!-- Link Swiper's CSS -->
+<link rel="stylesheet" href="/resources/css/swiper.min.css">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
  <meta charset="utf-8">
 <title>myPage</title>
- <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+<!-- Swiper JS -->
+<script src="/resources/js/swiper.min.js"></script>
+<!-- Initialize Swiper -->
+<script>
+    var swiper = new Swiper('.swiper-container', {
+      slidesPerView: 3,
+      spaceBetween: 20,
+      loop: true,
+      loopFillGroupWithBlank: true,
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+      breakpoints: {
+			1024: {
+				slidesPerView: 3,
+				spaceBetween: 20
+			},
+			768: {
+				slidesPerView: 2,
+				spaceBetween: 18
+			},
+			640: {
+				slidesPerView: 2,
+				spaceBetween: 25
+			},
+			480: {
+				slidesPerView: 1,
+				spaceBetween: 0
+			}
+		}
+    });
+</script>
+</head>
+<style>
 
- <!-- Link Swiper's CSS -->
- <link rel="stylesheet" href="/resources/css/swiper.min.css">
-
- <!-- Demo styles -->
- <style>
+	<!-- Demo styles -->
     html, body {
       position: relative;
       height: 100%;
@@ -57,8 +95,7 @@
       -webkit-align-items: center;
       align-items: center;
     }
- </style>
-</head>
+</style>
 <body>
 <!-- Nav -->
 <jsp:include page="../nav.jsp"></jsp:include>
@@ -85,45 +122,7 @@
     <!-- Add Arrows -->
     <div class="swiper-button-next swiper-button-black" style="opacity:0.5;"></div>
     <div class="swiper-button-prev swiper-button-black" style="opacity:0.5;"></div>
-  </div>
-</div>
-  <!-- Swiper JS -->
-  <script src="/resources/js/swiper.min.js"></script>
+ </div>
 
-  <!-- Initialize Swiper -->
-  <script>
-    var swiper = new Swiper('.swiper-container', {
-      slidesPerView: 3,
-      spaceBetween: 20,
-      loop: true,
-      loopFillGroupWithBlank: true,
-      pagination: {
-        el: '.swiper-pagination',
-        clickable: true,
-      },
-      navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-      },
-      breakpoints: {
-			1024: {
-				slidesPerView: 3,
-				spaceBetween: 20
-			},
-			768: {
-				slidesPerView: 2,
-				spaceBetween: 18
-			},
-			640: {
-				slidesPerView: 2,
-				spaceBetween: 25
-			},
-			480: {
-				slidesPerView: 1,
-				spaceBetween: 0
-			}
-		}
-    });
-  </script>
 </body>
 </html>

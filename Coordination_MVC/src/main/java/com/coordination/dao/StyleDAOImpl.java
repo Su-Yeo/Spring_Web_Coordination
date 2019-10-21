@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.coordination.dto.StyleVO;
+import com.coordination.main.Pagination;
 
 @Repository
 public class StyleDAOImpl implements StyleDAO {
@@ -36,9 +37,15 @@ public class StyleDAOImpl implements StyleDAO {
 	
 	//검증되지 않은 이미지 불러오기
 	@Override
-	public List<StyleVO> StyleListIdentify() throws Exception {
+	public List<StyleVO> StyleListIdentify(Pagination pagination) throws Exception {
 		
-		return sqlSession.selectList(Namespace+".StyleListIdentify");
+		return sqlSession.selectList(Namespace+".StyleListIdentify", pagination);
+	}
+	
+	@Override
+	public int StyleListIdentifyCount() throws Exception {
+		
+		return sqlSession.selectOne(Namespace+".StyleListIdentifyCount");
 	}
 	
 	//업데이트를 위한 이미지 정보 불러오기
