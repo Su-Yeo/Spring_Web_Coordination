@@ -8,6 +8,60 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+	#weatherDiv{
+		height:550px;
+	}
+	.weatherImg img{
+		width:400px;
+		height:400px;
+		margin:-100px;
+	}
+	#weather1{
+		font-size:150px;
+	}
+	#weather{
+		font-size:35px;
+	}
+/*----------------------------태블릿----------------------------*/
+@media all and (min-width: 600px) and (max-width: 1279px) {
+	.weatherImg img{
+		width:300px;
+		height:300px;
+		margin:-40px;
+	}
+	#weather1{
+		font-size:130px;
+	}
+	#weather{
+		font-size:25px;
+	}
+}
+/*----------------------------태블릿끝----------------------------*/
+
+/*----------------------------모바일----------------------------*/
+@media all and (max-width: 600px){
+	#weatherDiv{
+		height:350px;
+	}
+	.weatherImg img{
+		width:200px;
+		height:200px;
+		margin:-20px;
+		margin-bottom:-30px;
+	}
+	#weather1{
+		font-size:70px;
+	}
+	#weather{
+		font-size:15px;
+	}
+	.custom-dropdown {
+		font-size:0.6em;
+	}
+}
+/*----------------------------모바일끝----------------------------*/
+</style>
 <link rel="stylesheet" href="/resources/css/style.css">
 <script src="http://code.jquery.com/jquery-2.2.2.min.js"></script>
 <script type="text/javascript">
@@ -151,16 +205,16 @@ function selLeaf(s3){
       					return item2.category == 'SKY' && item2.fcstTime == item.fcstTime 
       				}); 
       				arr.forEach(function (item, index, array) { 
-      					if(item.fcstValue=='1'){text.innerHTML += '<img src="resources/img/weather/sun.png" style="width:250px; height:250px;"><br>';} 
-      					else if(item.fcstValue=='2'){text.innerHTML += '구름조금<br>';} 
-      					else if(item.fcstValue=='3'){text.innerHTML += '<img src="resources/img/weather/cloudsun.png" style="width:250px; height:250px;"><br>';} 
-      					else{text.innerHTML += '<img src="resources/img/weather/cloud.png" style="width:250px; height:250px;"><br>';}
+      					if(item.fcstValue=='1'){text.innerHTML += '<div class="weatherImg"><img src="resources/img/weather/sun.png"></div>';} 
+      					else if(item.fcstValue=='2'){text.innerHTML += '<div class="weatherImg"><img src="resources/img/weather/sun.png"></div>';} 
+      					else if(item.fcstValue=='3'){text.innerHTML += '<div class="weatherImg"><img src="resources/img/weather/cloudsun.png"></div>';} 
+      					else{text.innerHTML += '<div class="weatherImg"><img src="resources/img/weather/cloud.png"></div>';}
       				}); 
       			} 
-      			else if(item.fcstValue=='1'){text.innerHTML += '<img src="resources/img/weather/rain.png" style="width:250px; height:250px;"><br>';} 
+      			else if(item.fcstValue=='1'){text.innerHTML += '<div class="weatherImg"><img src="resources/img/weather/rain.png"></div>';} 
       			else if(item.fcstValue=='2'){text.innerHTML += '비/눈<br>';} 
-      			else if(item.fcstValue=='3'){text.innerHTML += '<img src="resources/img/weather/snow.png" style="width:250px; height:250px;"><br>';} 
-      			else{text.innerHTML += '<img src="resources/img/weather/rain2.png" style="width:250px; height:250px;"><br>';}
+      			else if(item.fcstValue=='3'){text.innerHTML += '<div class="weatherImg"><img src="resources/img/weather/snow.png"></div>';} 
+      			else{text.innerHTML += '<div class="weatherImg"><img src="resources/img/weather/rain2.png"></div>';}
       		}); 
         }   
     });
@@ -168,8 +222,7 @@ function selLeaf(s3){
 </script>
 </head>
 <body>
-<!-- <div id="weatherDiv" style="width:700px;background:#222222;color:#FFFFFF;border-radius:20px;margin:0 auto;"> -->
-<div id="weatherDiv" style="width:100%;background:#222222;color:#FFFFFF;border-radius:20px;">
+<div id="weatherDiv" style="width:100%;background:#222222;color:#FFFFFF;border-radius:10px;">
 	<div id="selectDiv" style="text-align:right">
 		<%
 		CoordFetcher coord = new CoordFetcher();
@@ -211,13 +264,14 @@ function selLeaf(s3){
 			selLeaf("괴안동");
 		</script>
 	</div>
-	<div style="height:350px;">
-		<div id="text" style="margin-left:16%;float:left;"></div>
-		<!-- <div id="weather1" style="width:100%;height:250px;font-size:90px;padding-top:80px;margin-left:-90px;"></div> -->
-		<div id="weather1" style="width:100%;height:250px;font-size:90px;padding-top:80px;"></div>
-		<div id="weather" style="font-size:25px;margin-top:-70px;"></div>
-		<!-- <div id="weather1" style="width:100%;height:250px;font-size:90px;padding-top:80px;"></div>
-		<div id="weather" style="font-size:25px;margin-top:-70px;"></div> -->
+	<div style="width:100%;height:90%;">
+		<div style="width:70%;margin:0 auto;">
+			<div id="text"></div>
+			<div style="margin:10px;">
+				<div id="weather1"></div>
+				<div id="weather"></div>
+			</div>
+		</div>
 	</div>
 </div>
 </body>
