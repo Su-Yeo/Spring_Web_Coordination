@@ -66,11 +66,6 @@
 	/*----------------------------모바일끝----------------------------*/
 </style>
 <body>
-<%
-	//이미지가 보여질 Path명
-	String path = "C:\\img\\admin\\";
-%>
-
 <!-- Nav -->
 <jsp:include page="nav.jsp" />
 <!-- End Nav -->

@@ -11,12 +11,16 @@ public interface StyleService {
 	//이미지 불러오기
 	public List<StyleVO> TemperatureStyle(HashMap<String, String[]> data) throws Exception;
 		
-	//Method Override
-	public List<StyleVO> StyleList() throws Exception;
+	//관리자-이미지 불러오기
+	public List<StyleVO> StyleList(Pagination pagination) throws Exception;
+		
+	//관리자-이미지 갯수
+	public int StyleListCount() throws Exception;
 	
 	//검증되지 않은 이미지 불러오기
 	public List<StyleVO> StyleListIdentify(Pagination pagination) throws Exception;
 	
+	//검증되지 않은 이미지 갯수
 	public int StyleListIdentifyCount() throws Exception;
 	
 	//업데이트를 위한 이미지 정보 불러오기

@@ -107,7 +107,7 @@
 		<hr>
         <div class="form-group" align="center">
         	<input type="hidden" name="num" value="${closet.num}" />
-			<img style="border: 1px solid gray;" src="/displayImg?name=${closet.img}&folder=user"/>
+			<img style="border: 1px solid gray;width:300px;height:350px;" src="/displayImg?name=${closet.img}&folder=user"/>
         </div>
         <div class="form-group">
 			<label>Category</label>

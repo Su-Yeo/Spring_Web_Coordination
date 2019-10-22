@@ -7,10 +7,32 @@
   
   	<!-- INSERT의 경우 이미지 분석 후, Python을 통해 데이터베이스에 등록되므로 굳이 만들 필요가 없어서 제외 -->
   	
+  	<!-- 날씨 온도에 따른 이미지 출력 -->
+    <select id="TemperatureStyle" resultType="styleVO" parameterType="hashmap">
+    	SELECT * 
+    	FROM STYLE
+    	where identify='y' and
+        <foreach collection="data" item="item" index="index" separator="or">
+            top = #{item}
+        </foreach>
+	</select>
+  	
   	<!-- 관리자의 검증이 완료된 이미지만 출력(메인화면, 관리자-수정,삭제) -->
   	<select id="StyleList" resultType="styleVO">
   		SELECT 
   			* 
+  		FROM 
+  			style
+  		WHERE
+  			identify='y'
+  		LIMIT
+  			#{startList}, #{listSize}
+  	</select>
+  	
+  	<!-- COUNT -->
+  	<select id="StyleListCount" resultType="int">
+  		SELECT 
+  			COUNT(*) as listCnt
   		FROM 
   			style
   		WHERE
@@ -81,12 +103,4 @@
   		DELETE FROM style WHERE num=#{num}
   	</delete>
     
-    <select id="TemperatureStyle" resultType="styleVO" parameterType="hashmap">
-    	SELECT * 
-    	FROM STYLE
-    	where identify='y' and
-        <foreach collection="data" item="item" index="index" separator="or">
-            top = #{item}
-        </foreach>
-	</select>
 </mapper>
