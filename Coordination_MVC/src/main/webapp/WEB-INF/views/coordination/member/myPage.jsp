@@ -66,16 +66,17 @@
 <!-- Nav -->
 <jsp:include page="../nav.jsp"></jsp:include>
 <!-- End Nav -->
-회원 ID : ${sessionScope.userId} <br/>
-회원 이름 : ${sessionScope.userName}
-<br/><br/>
-------------나만의 옷장------------<br/>
+
+<a href="imgUpload">나만의 옷장 등록</a>
+
+<div></div>
+${sessionScope.userName}님의 옷장
 <c:if test="${empty ClosetList}">
 	<h2>나만의 옷장이 비어있습니다.</h2>
 </c:if>
-
+<div class="container" style="text-align:center;">
 <!-- Swiper -->
-  <div style="width:900px;height:400px;" class="swiper-container">
+  <div class="swiper-container">
     <div class="swiper-wrapper">
     <c:forEach items="${ClosetList}" var="closet">
       <div class="swiper-slide"><a href="updateClosetForm?num=${closet.num}">
@@ -113,7 +114,7 @@
 				slidesPerView: 3,
 				spaceBetween: 20
 			},
-			768: {
+			780: {
 				slidesPerView: 2,
 				spaceBetween: 18
 			},

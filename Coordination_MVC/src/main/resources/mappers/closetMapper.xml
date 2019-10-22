@@ -17,6 +17,9 @@
 		<if test="num != 0">
 			AND num=#{num}
 		</if>
+		<if test="img != null">
+			AND img=#{img}
+		</if>
 	</select>
 	
 	<insert id="insertCloset">

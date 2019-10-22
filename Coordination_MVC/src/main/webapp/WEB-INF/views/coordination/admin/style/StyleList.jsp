@@ -37,37 +37,6 @@
   } */
 </style>
 <body>
-<%
-	String path = "C:\\img\\admin\\";
-%>
 
-<!-- 수정, 삭제 -->
-<div class="container" align="center">
-<!-- 데이터베이스에 정보가 없을 경우 -->
-<c:if test="${empty StyleList}">
-		<h2>관리자의 승인이 완료된 이미지 정보가 존재하지 않습니다.</h2>
-</c:if>
-
-
-<table>
-	<c:set var="i" value="0" />
-	<c:set var="j" value="3" />
-	<c:forEach items="${StyleList}" var="style">
-	<c:if test="${i%j == 0 }">
-		<tr>
-	</c:if>
-			<td align="center">
-				<img src="/displayImg?name=${style.img}&folder=admin" /> <br/>
-				<button class="btn btn-success" onClick="location.href='adminUpdateForm?num=${style.num}'">수정</button>
-				&nbsp;
-				<button class="btn btn-danger" onClick="location.href='deleteStyle?num=${style.num}&img=${style.img}'">삭제</button>
-			</td>
-	<c:if test="${i%j == j-1 }">
-		</tr>
-	</c:if> 
-	<c:set var="i" value="${i+1 }" />
-	</c:forEach>
-</table>
-</div>
 </body>
 </html>

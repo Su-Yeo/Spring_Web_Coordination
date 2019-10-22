@@ -124,7 +124,6 @@
 	}
 </style>
 <body>
-
 <!-- Upload Forr -->
 <div class="signup-form">
     <form id="myForm" method="post" action="uploadImg" enctype="multipart/form-data">

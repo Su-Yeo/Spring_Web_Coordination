@@ -9,24 +9,42 @@
   	
   	<!-- 관리자의 검증이 완료된 이미지만 출력(메인화면, 관리자-수정,삭제) -->
   	<select id="StyleList" resultType="styleVO">
-  		SELECT * 
-  		FROM style
+  		SELECT 
+  			* 
+  		FROM 
+  			style
   		WHERE
   			identify='y'
   	</select>
   	
   	<!-- 관리자의 검증이 완료되지 않은 이미지만 출력(파싱 후, 관리자 데이터 검증) -->
   	<select id="StyleListIdentify" resultType="styleVO">
-  		SELECT * 
-  		FROM style
+  		SELECT 
+  			*
+  		FROM 
+  			style
+  		WHERE
+  			identify='n'
+  		LIMIT 
+  			#{startList}, #{listSize}
+  	</select>
+  	
+  	<!-- COUNT -->
+  	<select id="StyleListIdentifyCount" resultType="int">
+  		SELECT 
+  			COUNT(*) as listCnt
+  		FROM 
+  			style
   		WHERE
   			identify='n'
   	</select>
   	
   	<!-- 관리자가 데이터 검증 또는 수정할 때 사용하기 위한 SQL문 -->
   	<select id="StyleOne" resultType="styleVO">
-  		SELECT *
-  		FROM style
+  		SELECT 
+  			*
+  		FROM 
+  			style
   		WHERE 
   			num=#{num}
   	</select>

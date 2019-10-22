@@ -41,6 +41,21 @@
 	</button>
 </div>
 <script>
+	IdentifyAdmin();
+
+	function IdentifyAdmin(){
+		
+		var password = "";
+		
+		password = prompt("비밀번호 8자리를 입력해주세요.");
+		if(password != '1234')
+		{
+			alert("PASSWORD ERROR!!!")
+			history.back();
+		}
+	}
+	
+
 	function InsertData(){
 		
 		var password = "";

@@ -40,6 +40,30 @@
 	div.img_container div {
 		margin-top: 5px;
 	}
+	.title{
+		margin:1%;
+		font-size:30pt;
+	}
+	/*----------------------------태블릿----------------------------*/
+	@media all and (min-width: 600px) and (max-width: 1279px) {
+		
+		.title{
+			margin:1%;
+			font-size:25pt;
+		}
+	}
+	/*----------------------------태블릿끝----------------------------*/
+
+	/*----------------------------모바일----------------------------*/
+	@media all and (max-width: 600px){
+		.title{
+			position:absolute;
+    		overflow:hidden;
+    		font-size:0;
+
+		}
+	}
+	/*----------------------------모바일끝----------------------------*/
 </style>
 <body>
 <%
@@ -53,26 +77,13 @@
 
 <!-- Container -->
 <div class="container" style="text-align:center;">
+	
 	<!-- weather select start -->
-   	<div style="margin-top:20px;">
-	    <div style="width:90%;margin:0 auto" id="div_include3">
-	    	<jsp:include page="weather.jsp" flush="true" />
-	    </div>
+   	<div style="width:96%;margin:0 auto;margin-top:20px;">
+	    <jsp:include page="weather.jsp" flush="true" />
     </div>
-	 
-	<!-- Image -->
-	<%-- <div id="div_include">
-		<c:forEach items="${TemperatureStyle}" var="style" begin="1" end="12" step="1">   
-			<div class="img_polaroid">
-				<img class="w3-border w3-hover-border-red" src="/displayImg?name=${style.img}&folder=admin" >
-				<div class="img_container">
-					<div><b>${style.shopname}</b></div>
 
-					<div>좋아요 : #명 <span style="margin: 0 0 0 60%;">버튼</span></div>
-				</div>
-			</div>
-		</c:forEach>
-	</div> --%>
+	<div class="title">Outfit Tips For Today Temperature!</div>
 	
 	<div>
 		<jsp:include page="imageView.jsp" flush="true" />
