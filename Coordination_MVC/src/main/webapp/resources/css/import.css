@@ -1,0 +1,4 @@
+/*import.css(완성본)*/
+@import url(./reset.css);/*태그 초기화 작업(공통)*/
+@import url(./common.css);/*공통영역(상단/하단)*/
+@import url(./tabsStyle.css);/*메인부터 거브페이지 컨텐츠 요소들(공통아닌 부분)*/
