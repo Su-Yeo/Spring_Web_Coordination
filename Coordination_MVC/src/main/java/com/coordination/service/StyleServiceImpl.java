@@ -23,11 +23,18 @@ public class StyleServiceImpl implements StyleService {
 		return dao.TemperatureStyle(data);
 	}
 	
-	//Method Override
+	//관리자-이미지 불러오기
 	@Override
-	public List<StyleVO> StyleList() throws Exception {
+	public List<StyleVO> StyleList(Pagination pagination) throws Exception {
 		
-		return dao.StyleList();
+		return dao.StyleList(pagination);
+	}
+	
+	//관리자-이미지 갯수
+	@Override
+	public int StyleListCount() throws Exception {
+		
+		return dao.StyleListCount();
 	}
 	
 	//검증되지 않은 이미지 불러오기
@@ -37,6 +44,7 @@ public class StyleServiceImpl implements StyleService {
 		return dao.StyleListIdentify(pagination);
 	}
 	
+	//검증되지 않은 이미지 갯수
 	@Override
 	public int StyleListIdentifyCount() throws Exception {
 		

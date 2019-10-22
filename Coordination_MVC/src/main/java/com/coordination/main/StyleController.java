@@ -124,10 +124,27 @@ public class StyleController {
 		
 	}
 	
-	//관리자 - 데이터．삭제1
+	//관리자 - 데이터 수정/삭제
 	@RequestMapping(value = "adminStyleList", method = RequestMethod.GET)
-	public String goStyleList(Model model, HttpServletRequest request) throws Exception {
+	public String goStyleList(Model model,
+			HttpServletRequest request,
+			@RequestParam(required = false, defaultValue = "1") int page,
+			@RequestParam(required = false, defaultValue = "1") int range)
+			throws Exception {
 		
+		//전체 페이지 갯수
+		int listCnt = service.StyleListCount();
+				
+		//Pagination 객체생성
+		Pagination pagination = new Pagination();
+		pagination.pageInfo(page, range, listCnt);
+				
+		model.addAttribute("pagination", pagination);
+		model.addAttribute("StyleList", service.StyleList(pagination));
+				
+		return "coordination/admin/style/StyleList";
+		
+		/*
 		String password = request.getParameter("password");
 		
 		//관리자 비밀번호가 1234면 StyleList로 이동
@@ -143,6 +160,7 @@ public class StyleController {
 				//관리자 메인Page로 다시 이동
 				return "redirect:adminPage";
 			}
+		*/
 	}
 
 	//관리자 - 데이터 수정．삭제2

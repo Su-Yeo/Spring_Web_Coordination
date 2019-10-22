@@ -28,11 +28,18 @@ public class StyleDAOImpl implements StyleDAO {
 		return sqlSession.selectList(Namespace+".TemperatureStyle", data);
 	}
 	
-	//Method Override
+	//관리자-이미지 불러오기
 	@Override
-	public List<StyleVO> StyleList() throws Exception {
+	public List<StyleVO> StyleList(Pagination pagination) throws Exception {
 		
-		return sqlSession.selectList(Namespace+".StyleList");
+		return sqlSession.selectList(Namespace+".StyleList", pagination);
+	}
+	
+	//관리자-이미지 갯수
+	@Override
+	public int StyleListCount() throws Exception {
+		
+		return sqlSession.selectOne(Namespace+".StyleListCount");
 	}
 	
 	//검증되지 않은 이미지 불러오기
@@ -42,6 +49,7 @@ public class StyleDAOImpl implements StyleDAO {
 		return sqlSession.selectList(Namespace+".StyleListIdentify", pagination);
 	}
 	
+	//검증되지 않은 이미지 갯수
 	@Override
 	public int StyleListIdentifyCount() throws Exception {
 		
