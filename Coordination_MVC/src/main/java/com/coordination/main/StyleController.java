@@ -105,78 +105,11 @@ public class StyleController {
 		return "coordination/admin/style/admin";
 	}
 	
-	//관리자 - 데이터 등록1
+	//관리자 - 데이터 등록1 → JythonController
 	@RequestMapping(value = "adminParsingList", method = RequestMethod.GET)
-	public String parsingList(HttpServletRequest request) {
+	public String parsingList() {
 		
-		String password = request.getParameter("password");
-		
-		//관리자 비밀번호가 1234면 ParsingList로 이동
-		if(password.equals("1234"))
-		{
-			return "coordination/admin/style/ImageParsingList";
-		}
-		else
-		{
-			//관리자 메인Page로 다시 이동
-			return "redirect:adminPage";
-		}
-		
-	}
-	
-	//관리자 - 데이터 수정/삭제
-	@RequestMapping(value = "adminStyleList", method = RequestMethod.GET)
-	public String goStyleList(Model model,
-			HttpServletRequest request,
-			@RequestParam(required = false, defaultValue = "1") int page,
-			@RequestParam(required = false, defaultValue = "1") int range)
-			throws Exception {
-		
-		//전체 페이지 갯수
-		int listCnt = service.StyleListCount();
-				
-		//Pagination 객체생성
-		Pagination pagination = new Pagination();
-		pagination.pageInfo(page, range, listCnt);
-				
-		model.addAttribute("pagination", pagination);
-		model.addAttribute("StyleList", service.StyleList(pagination));
-				
-		return "coordination/admin/style/StyleList";
-		
-		/*
-		String password = request.getParameter("password");
-		
-		//관리자 비밀번호가 1234면 StyleList로 이동
-			if(password.equals("1234"))
-			{
-				List<StyleVO> StyleList = service.StyleList();
-				
-				model.addAttribute("StyleList", StyleList);
-				return "coordination/admin/style/StyleList";
-			}
-			else
-			{
-				//관리자 메인Page로 다시 이동
-				return "redirect:adminPage";
-			}
-		*/
-	}
-
-	//관리자 - 데이터 수정．삭제2
-	@RequestMapping(value = "adminUpdateForm", method = RequestMethod.GET)
-	public String goUpdateStyle(StyleVO vo, Model model, HttpServletRequest request) throws Exception {
-		
-		int num = 0;
-		num = Integer.parseInt(request.getParameter("num"));
-		
-		//관리자가 이미지를 수정할 경우 이동 될 Page
-		//Data라는 이름으로 updateStyle값을 넘겨준다.
-		List<StyleVO> StyleOne = service.StyleOne(vo, num);
-		model.addAttribute("StyleOne", StyleOne);
-		model.addAttribute("data", "updateStyle");
-		
-		return "coordination/admin/style/UpdateForm";
+		return "coordination/admin/style/ImageParsingList";
 	}
 	
 	//관리자 - 데이터 검증1
@@ -187,8 +120,7 @@ public class StyleController {
 			@RequestParam(required = false, defaultValue = "1") int page,
 			@RequestParam(required = false, defaultValue = "1") int range
 			) throws Exception {
-
-		
+			
 		//전체 페이지 갯수
 		int listCnt = service.StyleListIdentifyCount();
 		
@@ -200,25 +132,7 @@ public class StyleController {
 		model.addAttribute("StyleIdentifyList", service.StyleListIdentify(pagination));
 		
 		return "coordination/admin/style/Identify";
-		
-		/*
-		String password = request.getParameter("password");
-		
-		//관리자 비밀번호가 1234면 Identify로 이동
-			if(password.equals("1234"))
-			{
-				List<StyleVO> StyleListIdentify = service.StyleListIdentify();
-				model.addAttribute("StyleListIdentify", StyleListIdentify);
-				
-				return "coordination/admin/style/Identify";
-			}
-			else
-			{
-				//관리자 메인Page로 다시 이동
-				return "redirect:adminPage";
-			}
-		*/
-	}
+	}	
 	
 	//관리자 - 데이터 검증2
 	@RequestMapping(value = "IdentifyUpdateForm", method = RequestMethod.GET)
@@ -237,25 +151,62 @@ public class StyleController {
 	}
 	
 	//관리자 - 데이터 검증3
-		@RequestMapping(value = "IdentifyUpdate", method = RequestMethod.POST)
-		public String IdentifyUpdate(StyleVO vo, Model model, HttpServletRequest request) {
+	@RequestMapping(value = "IdentifyUpdate", method = RequestMethod.POST)
+	public String IdentifyUpdate(StyleVO vo, Model model, HttpServletRequest request) {
 			
-			try {
+		try {
 				
-				vo.setNum(vo.getNum());
-				service.updateIndentify(vo);
+			vo.setNum(vo.getNum());
+			service.updateIndentify(vo);
 				
-				logger.info("==========관리자 이미지 검증 완료!==========");
+			logger.info("==========관리자 이미지 검증 완료!==========");
 				
-				model.addAttribute("url", "IdentifyUpdate");
+			model.addAttribute("url", "IdentifyUpdate");
 				
-			}catch(Exception e) {
-				e.printStackTrace();
+		}catch(Exception e) {
+			e.printStackTrace();
 				
-				logger.info("==========Error!!!==========");
-				model.addAttribute("url", "error");
-			}
-			
-			return "movePage";
+			logger.info("==========Error!!!==========");
+			model.addAttribute("url", "error");
 		}
+			
+		return "movePage";
+	}	
+	
+	//관리자 - 데이터 수정/삭제 리스트
+	@RequestMapping(value = "adminStyleList", method = RequestMethod.GET)
+	public String goStyleList(Model model,
+			HttpServletRequest request,
+			@RequestParam(required = false, defaultValue = "1") int page,
+			@RequestParam(required = false, defaultValue = "1") int range)
+			throws Exception {
+		
+		//전체 페이지 갯수
+		int listCnt = service.StyleListCount();
+				
+		//Pagination 객체생성
+		Pagination pagination = new Pagination();
+		pagination.pageInfo(page, range, listCnt);
+				
+		model.addAttribute("pagination", pagination);
+		model.addAttribute("StyleList", service.StyleList(pagination));
+				
+		return "coordination/admin/style/StyleList";
+	}
+
+	//관리자 - 데이터 수정/삭제 폼
+	@RequestMapping(value = "adminUpdateForm", method = RequestMethod.GET)
+	public String goUpdateStyle(StyleVO vo, Model model, HttpServletRequest request) throws Exception {
+		
+		int num = 0;
+		num = Integer.parseInt(request.getParameter("num"));
+		
+		//관리자가 이미지를 수정할 경우 이동 될 Page
+		//Data라는 이름으로 updateStyle값을 넘겨준다.
+		List<StyleVO> StyleOne = service.StyleOne(vo, num);
+		model.addAttribute("StyleOne", StyleOne);
+		model.addAttribute("data", "updateStyle");
+		
+		return "coordination/admin/style/UpdateForm";
+	}
 }

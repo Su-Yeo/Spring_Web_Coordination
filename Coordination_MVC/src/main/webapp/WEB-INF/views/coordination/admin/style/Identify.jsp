@@ -190,6 +190,11 @@ h2::after {
 </style>
 <body>
 <!-- 데이터 파싱 → 다운로드 → 이미지 분석 → DB등록 후 관리자 최종 인증 단계  -->
+<div align="right">
+	<button class="btn btn-primary" onClick="location.href='adminPage'" style="margin-right: 50px;margin-top: 30px;">뒤로가기</button>
+</div>
+
+
 <div class="container">
 	<div class="row">
 		<div class="col-md-12">

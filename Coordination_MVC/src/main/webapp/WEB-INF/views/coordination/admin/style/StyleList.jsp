@@ -189,6 +189,11 @@ h2::after {
 }
 </style>
 <body>
+<div align="right">
+	<button class="btn btn-primary" onClick="location.href='adminPage'" style="margin-right: 50px;margin-top: 30px;">뒤로가기</button>
+</div>
+
+
 <div class="container">
 	<div class="row">
 		<div class="col-md-12">

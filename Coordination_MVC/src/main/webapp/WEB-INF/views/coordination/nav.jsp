@@ -412,21 +412,31 @@
 				<li class="nav-item"><a href="login" class="nav-link">Login</a></li>
 				<li class="nav-item"><a href="signup" class="nav-link">SignUp</a></li>
 			</c:if>
-			<!-- <li class="nav-item dropdown">
-				<a data-toggle="dropdown" class="nav-link dropdown-toggle" href="#">Services <b class="caret"></b></a>
-				<ul class="dropdown-menu">					
-					<li><a href="#" class="dropdown-item">Web Design</a></li>
-					<li><a href="#" class="dropdown-item">Web Development</a></li>
-					<li><a href="#" class="dropdown-item">Graphic Design</a></li>
-					<li><a href="#" class="dropdown-item">Digital Marketing</a></li>
-				</ul>
-			</li> -->
+
 			<li class="nav-item"><a href="#developerModal" data-toggle="modal" class="nav-link">Developer</a></li>
 			<li class="nav-item"><a href="#infomationModal" data-toggle="modal" class="nav-link">Infomation</a></li>
 		</ul>
 		
 		<!-- 로그인하면 보여질 화면 -->
-		<c:if test="${not empty sessionScope.userId}">
+		<c:if test="${sessionScope.userId eq 'admin'}">
+		<ul class="nav navbar-nav navbar-right ml-auto">
+			<li class="nav-item"><a href="#noticeModal" data-toggle="modal" class="nav-link notifications"><i class="fa fa-bell-o"></i><span class="badge"></span></a></li>
+			<li class="nav-item"><a href="#MailModal" data-toggle="modal" class="nav-link messages"><i class="fa fa-envelope-o"></i><span class="badge"></span></a></li>
+			<li class="nav-item dropdown">
+				<a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle user-action">
+					<img src="/resources/icon/icon2.png" class="avatar" alt="프로필 사진"> ${sessionScope.userName} <b class="caret"></b></a>
+				<ul class="dropdown-menu">
+					<li><a href="adminPage" class="dropdown-item"><i class="fa fa-user-o"></i> 관리자 페이지</a></li>
+					<!-- <li><a href="#" class="dropdown-item"><i class="fa fa-calendar-o"></i></a></li> -->
+					<li class="divider dropdown-divider"></li>
+					<li><a href="logout" class="dropdown-item"><i class="material-icons">&#xE8AC;</i> Logout</a></li>
+				</ul>
+			</li>
+		</ul>
+		</c:if>
+		
+		<!-- 로그인하면 보여질 화면 -->
+		<c:if test="${not empty sessionScope.userId && sessionScope.userId ne 'admin'}">
 		<ul class="nav navbar-nav navbar-right ml-auto">
 			<li class="nav-item"><a href="#noticeModal" data-toggle="modal" class="nav-link notifications"><i class="fa fa-bell-o"></i><span class="badge"></span></a></li>
 			<li class="nav-item"><a href="#MailModal" data-toggle="modal" class="nav-link messages"><i class="fa fa-envelope-o"></i><span class="badge"></span></a></li>
