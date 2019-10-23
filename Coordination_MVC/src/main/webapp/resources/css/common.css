@@ -1,0 +1,543 @@
+/*common.css(main-sub까지) - 공통인 부분(예:상단과 하단)*/
+
+html,body,main{height:100%;}/*높이에 %적용되도록 하기 위해 필수*/
+/*header div.inner{width:1200px; margin:0 auto; min-height:10px; border:1px solid red;}*//*%인지 픽섹인지 판단할것*/
+
+
+/*인포메뉴 시작*/
+section#infomenu {
+	background:url(../image/common/line.gif) no-repeat 0 41px;
+	width:100%; height:44px; 
+}
+
+
+section#infomenu div.inner{
+	width:1100px;
+	height:100%;
+	margin:0 auto;
+	position:relative;
+}
+
+section#infomenu div.inner nav.btn ul#navi01{
+	margin-left:210px;
+	border:0px solid pink;
+	height:40px;
+}
+
+section#infomenu div.inner nav.btn ul#navi01 li{
+	text-align:center;
+	float:left;
+	border-right:1px solid #cacaca;
+}
+
+section#infomenu div.inner nav.btn ul#navi01 li:first-child{ background:#e86102; width:110px;
+	padding:10px 0;
+}
+
+section#infomenu div.inner nav.btn ul#navi01 li:first-child a{ color:#fff;font-family: 'notokr-regular';
+	font-size:18px; }
+
+section#infomenu div.inner nav.btn ul#navi01 li.tab02 a,li.tab03 a,li.tab04 a{
+	font-family: 'notokr-regular';
+	font-size:18px;
+	color:#565252;
+	padding:10px 0;
+	width:110px;
+	display:inline-block;
+	border:0px solid blue;
+}
+
+section#infomenu div.inner nav.btn ul#navi01 li.tab02 a:hover,li.tab03 a:hover,li.tab04 a:hover{
+	color:#fff;
+	background:#e86102;
+}
+/*로그인*/
+section#infomenu div.inner div.login ul#info{
+	border:0px solid black;
+	position:absolute;
+	top:14px;
+	right:66px;
+	}
+
+section#infomenu div.inner div.login ul#info li{
+	border:0px solid yellow;
+	display:inline;
+	padding-left:5px;
+	padding-right:0px;
+	background:url(../image/common/dot.png)no-repeat 0 8px;
+	display:inline-block;
+}
+
+section#infomenu div.inner div.login ul#info li.first{
+	padding-left:0;
+	background:none;
+}
+
+section#infomenu div.inner div.login ul#info li a{
+	font-size:16px;
+	color:#928f8f;
+	font-family: 'notokr-regular';
+
+}
+/*로그인끝*/
+
+section#infomenu div.inner div#language {
+	border:1px solid #c8c8c8;
+	position:absolute;
+	top:11px;
+	right:0;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+}
+
+section#infomenu div.inner div#language legend{
+	display:none;
+}
+
+section#infomenu div.inner div#language select{
+	font-size:12px;
+	color:#c8c8c8;
+	font-family: 'notokr-regular';
+}
+/*인포메뉴 끝*/
+
+/*상단영역*/
+header{
+	width:100%; height:103px; 
+	background-color:rgba(255,255,255,1);
+}
+
+header div.inner {
+	width:1100px;
+	border:0px solid green;
+	height:100%;
+	margin:0 auto;
+	position:relative;
+
+ }
+header div.inner h1.logo{
+	position:absolute;
+	left:0;
+	top:26px;
+}
+
+/*-----------------pc에서 태블릿 안보이게----------------------*/
+header div.inner h1.logo-t, header div.inner h1.menu ,header div.inner div.shop{
+	display:none;
+}
+
+/*메인 메뉴*/
+header div.inner div.main{
+	border:0px solid red;
+}
+
+header div.inner div.main nav#navi02 ul{
+	border:0px solid red;
+	float:right;
+	padding-top:48px;
+}
+
+header div.inner div.main nav#navi02 ul li{
+	border:0px solid cyan;
+	display:inline;
+	margin-left: 71px;
+}
+
+header div.inner div.main nav#navi02 ul li a{
+	font-family: 'notokr-regular';
+	font-size:18px;
+	color:#000;
+}
+/*메인 끝*/
+
+/*---------------------헤드 태블릿-------------------------------*/
+@media all and (max-width: 1439px) {/*1439이하일때*/
+header div.inner{
+	border:0px solid red;
+	width:100%;
+	/*background:red;*/
+	}
+}
+
+@media all and (min-width: 600px) and (max-width: 1279px) {
+	
+section#infomenu ,header .inner h1.logo, header .inner nav{display:none;}
+
+header{
+	width:100%;
+	height:60px;
+	position:relative;
+	background:#ff7932;
+}
+
+header div.inner{
+	width:92.5%;
+}
+
+header div.inner div.main h1.logo-t{
+	text-align:center;
+	display:block;
+	padding-top:10px;
+}
+
+header div.inner div.main h1.menu{
+	display:block;
+	position:absolute;
+	left:0;
+	top:20px;
+}
+
+header div.inner div.main div.shop{
+	border:0px solid red;
+	display:block;
+	width:61px;
+	position:absolute;
+	right:0;
+	top:19px;
+	background:#fff;
+	text-align:center;
+	padding-top:6px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+}
+
+header div.inner div.main div.shop p a{
+	font-family: 'notokr-regular';
+	font-size:14px;
+	color:#ff7932;
+	padding:11px 0;
+}
+}
+/*-------------------------헤드 태블릿끝-----------------------*/
+/*-------------------------헤드 모바일--------------------------*/
+@media all and (max-width: 600px){
+section#infomenu ,header .inner h1.logo, header .inner nav{display:none;}
+
+header{
+	width:100%;
+	height:60px;
+	position:relative;
+	background:#ff7932;
+}
+
+header div.inner{
+	width:87.5%;
+}
+
+header div.inner div.main h1.logo-t{
+	text-align:center;
+	display:block;
+	padding-top:10px;
+}
+
+header div.inner div.main h1.menu{
+	display:block;
+	position:absolute;
+	left:0;
+	top:18px;
+}
+
+header div.inner div.main div.shop{
+	border:0px solid red;
+	display:block;
+	width:61px;
+	position:absolute;
+	right:0;
+	top:19px;
+	background:#fff;
+	text-align:center;
+	padding-top:6px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+}
+
+header div.inner div.main div.shop p a{
+	font-family: 'notokr-regular';
+	font-size:14px;
+	color:#ff7932;
+	padding:11px 0;
+}
+
+}
+/*-------------------------헤드 모바일끝--------------------------*/
+
+/*하단영역*/
+footer{
+	width:100%; height:230px; background:#313030;
+}
+
+footer.main div.inner{
+	width:1100px;
+	height:100%;
+	margin:0 auto;
+	position:relative;
+}
+
+footer.main div.inner p{
+	float:left;
+	margin-top:107px;
+}
+
+footer.main div.inner div.foot-area01{
+	float:left;
+	margin: 50px 0 0 99px;
+}
+footer.main div.inner div.foot-area01 ul li:first-child{
+	padding-left: 0;
+    background: none;
+}
+
+footer.main div.inner div.foot-area01 ul li{
+	float: left;
+    padding: 0 17px 0 18px;
+	background:url(../image/common/footer_line.gif)no-repeat center left;
+}
+footer.main div.inner div.foot-area01 ul li a{
+	font-family: 'notokr-regular';
+	font-size:18px;
+	color:#fff;
+}
+footer.main div.inner div.foot-area01 address{
+	padding-top:58px;
+	font-family: 'notokr-regular';
+	font-size:14px;
+	color:#fff;
+	font-style: normal;
+	line-height:1.5;
+}
+
+/*----------태블릿에서 삭제-------------*/
+footer.main div.inner div.foot-area01-t ul.footer-menu02{display:none;}
+
+footer.main div.inner div.foot-area01-t address.add02{display:none;}
+
+/*그림 패밀리사이트*/
+footer.main div.inner div.foot-area02{
+	float:right;
+	
+}
+footer.main div.inner div.foot-area02 div.family{
+	padding-top:51px;
+}
+footer.main div.inner div.foot-area02 div.family select{
+	border:1px solid #c8c8c8;
+	width:242px;
+	text-align:center;
+	padding:9px 0;
+}
+
+footer.main div.inner div.foot-area02 div.family legend{
+	display:none;
+}
+
+/*검은색하단*/
+footer.adr{
+	width:100%; height:70px; background:#000;
+	position:relative;
+}
+
+footer.adr div.inner{
+	width:1100px;
+	height:100%;
+	margin:0 auto;
+	position:relative;
+}
+footer.adr div.inner p{
+	padding-top:28px;
+	font-family: 'notokr-regular';
+	font-size:14px;
+	color:#fff;
+}
+footer.adr div.inner ul.sns{
+	position:absolute;
+	float:right;
+	top:29px;
+	right:0px;
+}
+footer.adr div.inner ul.sns li{
+	float:left;
+	margin-left:20px;
+	
+}
+
+/*----------------------하단 태블릿----------------------------*/
+@media all and (min-width: 600px) and (max-width: 1279px) {
+footer.main .foot-area01 ,
+footer.main .foot-area02 ,
+footer.adr ul.sns{display:none;}
+	
+footer.main{
+	width:100%; height:260px; background:#313030;
+}
+
+footer.main div.inner{
+	width:92.5%;
+	height:100%;
+	margin:0 auto;
+	position:relative;
+}
+
+footer.main p.logo2{
+	position:absolute;
+	right:0;
+	bottom:16px;
+}
+
+footer.main div.inner div.foot-area01-t ul.footer-menu02{
+	display:block;
+	padding-top:2.4vh;
+	text-align:center;
+}
+
+footer.main div.inner div.foot-area01-t ul.footer-menu02 li:first-child{
+	background:none;
+	padding-left:0;
+}
+
+footer.main div.inner div.foot-area01-t ul.footer-menu02 li:last-child{
+	padding-right:0;
+}
+
+footer.main div.inner div.foot-area01-t ul.footer-menu02 li{
+	display:inline-block;
+    padding: 0 3vw 0 3vw;
+	background:url(../image/common/footer_line.gif)no-repeat center left;
+}
+
+footer.main div.inner div.foot-area01-t ul.footer-menu02 li a{
+	font-size:2.86vw;
+	color:#fff;
+}
+footer.main div.inner div.foot-area01-t ul li select{
+	background:none;
+	font-size:2.86vw;
+	color:#fff;
+}
+
+footer.main  div.inner div.foot-area01-t address.add02{
+	padding-top:6.34vh;
+	text-align:center;
+	display:block;
+	font-size:2.34vw;
+	color:#fff;
+	font-style: normal;
+	line-height:2em;
+}
+
+footer.adr{
+	width:100%; height:80px; background:#000;
+}
+
+footer.adr div.inner{
+	width:92.5%;
+	height:100%;
+	margin:0 auto;
+}
+
+footer.adr div.inner p.copyright{
+	padding-top:3.64vh;
+	text-align:center;
+	font-size:2.08vw;
+}
+
+}
+
+/*----------------------하단 모바일----------------------------*/
+
+@media all and (max-width: 600px){
+footer.main .foot-area01 ,
+footer.main .foot-area02 ,
+footer.adr ul.sns,
+footer.main  div.inner div.foot-area01-t address.add02 span,
+footer.main p.logo2
+{display:none;}
+	
+footer.main{
+	width:100%; height:175px; background:#313030;position:relative;
+}
+
+footer.main div.inner{
+	width:87.5%;
+	height:100%;
+	margin:0 auto;
+	
+}
+
+footer.main div.inner div.foot-area01-t ul.footer-menu02{
+	display:block;
+	padding-top:2.4vh;
+	text-align:center;
+}
+
+footer.main div.inner div.foot-area01-t ul.footer-menu02 li:first-child{
+	background:none;
+}
+
+footer.main div.inner div.foot-area01-t ul.footer-menu02 li:last-child{
+	padding-right:0;
+}
+
+footer.main div.inner div.foot-area01-t ul.footer-menu02 li{
+	display:inline-block;
+    padding: 0 6vw 0 8vw;
+	background:url(../image/common/footer_line.gif)no-repeat center left;
+}
+footer.main div.inner div.foot-area01-t ul.footer-menu02 li:nth-child(3){
+	padding: 0 5.5vw 0 10vw;
+}
+
+
+footer.main div.inner div.foot-area01-t ul.footer-menu02 li:nth-child(4){
+	background:none;
+	position:absolute;
+	top:132px;
+	left:50px;
+}
+
+footer.main div.inner div.foot-area01-t ul.footer-menu02 li:nth-child(5){
+	background:none;
+	position:absolute;
+	top:132px;
+	right:50px;
+}
+
+footer.main div.inner div.foot-area01-t ul.footer-menu02 li a{
+	font-size:2.21vh;
+	color:#fff;
+}
+footer.main div.inner div.foot-area01-t ul li select{
+	background:none;
+	border:1px solid #fff;
+	font-size:2.21vh;
+	color:#fff;
+}
+
+footer.main  div.inner div.foot-area01-t address.add02{
+	padding-top:1.95vh;
+	text-align:center;
+	display:block;
+	font-size:1.69vh;
+	color:#fff;
+	font-style: normal;
+	line-height:2em;
+}
+
+footer.adr{
+	width:100%; height:45px; background:#000;
+}
+
+footer.adr div.inner{
+	width:87.5%;
+	height:100%;
+	margin:0 auto;
+}
+
+footer.adr div.inner p.copyright{
+	text-align:center;
+	font-size:2.29vw;
+	padding-top:2vh;
+}
+
+}
+
+
