@@ -6,6 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>InfoUpdatePage</title>
 <style>
 	/* Title */
@@ -22,25 +23,29 @@
 	
 	/* Table */
 	.info_div {
-		width: 60%;
+		min-width: 400px;
+		max-width: 60%;
 		margin: 0 auto;
 	}
 	.info_table {
 		width: 100%;
 	}
 	.info_table th{
-		width: 200px;
+		width: 20%;
 		height: 50px;
+		font-size: 0.9vm;
 		border-bottom: 1px solid rgba(204, 204 ,204 , .4);
 	}
 	.info_table td{
-		width: 350px;
+		width: 40%;
 		height: 50px;
+		font-size: 1vm;
 		border-bottom: 1px solid rgba(204, 204 ,204 , .4);
 	}
 	.modify_btn{
 		width: 125px;
 		height: 30px;
+		font-size: 1vm;
 		background-color: white;
 		border: 1px solid rgba(204, 204 ,204 , .4);
 		-webkit-transition: border 0.2s ease;
@@ -55,6 +60,7 @@
 		width: 62.5px;
 		height: 30px;
 		background-color: white;
+		font-size: 1vm;
 		border: 1px solid rgba(204, 204 ,204 , .4);
 		-webkit-transition: border 0.2s ease;
     	-moz-transition: border 0.2s ease;
@@ -78,8 +84,11 @@
 	
 	/* 회원탈퇴 */
 	.delete_font {
+		font-size: 0.7vm;
 		color: rgba(204, 204 ,204 , .4);
 	}
+	
+	@media ( max-width: )
 </style>
 
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
