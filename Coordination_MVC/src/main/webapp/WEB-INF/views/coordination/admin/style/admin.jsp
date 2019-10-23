@@ -31,27 +31,37 @@
 	}
 </style>
 <body>
+<!-- Nav -->
+<jsp:include page="../../nav.jsp" />
+<!-- End Nav -->
 
-<div>
+<div class="container" align="center" style="margin-top: 50px;">
+	<div style="float:left"></div>
+	<div style="float:left">
 	<div class="item button-jittery" style="background: #f1c40f; width: 300px; height: 300px; text-align: center;
-	padding-top: 50px; border-radius: 10px; display: inline-block;">
+	padding-top: 50px; border-radius: 10px; margin-right: 20px;">
 		<button class="btnStyle" onClick="location.href='adminParsingList'">
 			<p class="fontStyle">관리자<br>데이터 등록</p>
 		</button>
 	</div>
+	</div>
 	
+	<div style="float:left">
 	<div class="item button-jittery" style="background: #e67e22; width: 300px; height: 300px; text-align: center;
-	padding-top: 50px; border-radius: 10px; display: inline-block;">
+	padding-top: 50px; border-radius: 10px; margin-right: 20px;">
 		<button class="btnStyle" onClick="location.href='adminIdentify'">
 			<p class="fontStyle">관리자<br>파싱 데이터 <br>검증</p>
 		</button>
 	</div>
+	</div>
 	
+	<div style="float:left">
 	<div class="item button-jittery" style="background: #9b59b6; width: 300px; height: 300px; text-align: center;
-	padding-top: 50px; border-radius: 10px; display: inline-block;">
+	padding-top: 50px; border-radius: 10px;">
 		<button class="btnStyle" onClick="location.href='adminStyleList'">
 			<p class="fontStyle">관리자<br>데이터<br>수정/삭제</p>
 		</button>
+	</div>
 	</div>
 </div> 
  
