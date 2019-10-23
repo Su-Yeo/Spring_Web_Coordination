@@ -4,9 +4,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<!-- Bootstrap -->
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <!-- favicon -->
 <link rel="apple-touch-icon" sizes="76x76" href="/resources/icon/admin/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/resources/icon/admin/favicon-32x32.png">
@@ -15,70 +12,48 @@
 <link rel="mask-icon" href="/resources/icon/admin/safari-pinned-tab.svg" color="#5bbad5">
 <meta name="msapplication-TileColor" content="#da532c">
 <!-- End favicon -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="/resources/admin/main.css">
 <meta charset="UTF-8">
 <title>관리자 - MainPage</title>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <style>
-	button{
+	.btnStyle{
 		width: 200px;
-		height: 120px;
+		height: 200px;
+	}
+	.fontStyle{
+		font-size: 20px;
+		color: white;
+		font-weight: bold;
+		text-align: center;
 	}
 </style>
 <body>
-<h3>협력 쇼핑몰 : 언더70, 바이슬림, 조군샵, 무신사 스토어</h3>
 
-<div class="container" align="center">
-	<button class="btn btn-outline-info" onClick="InsertData();">
-		관리자<br>데이터 등록
-	</button>
-		&nbsp;&nbsp;&nbsp;&nbsp;
-	<button class="btn btn-outline-warning" onClick="IdentifyData();">
-		관리자<br>파싱 데이터 검증
-	</button>	
-		&nbsp;&nbsp;&nbsp;&nbsp;
-	<button class="btn btn-outline-success" onClick="UpdateData();">
-		관리자<br>데이터 수정．삭제
-	</button>
-</div>
-<script>
-	IdentifyAdmin();
-
-	function IdentifyAdmin(){
-		
-		var password = "";
-		
-		password = prompt("비밀번호 8자리를 입력해주세요.");
-		if(password != '1234')
-		{
-			alert("PASSWORD ERROR!!!")
-			history.back();
-		}
-	}
+<div>
+	<div class="item button-jittery" style="background: #f1c40f; width: 300px; height: 300px; text-align: center;
+	padding-top: 50px; border-radius: 10px; display: inline-block;">
+		<button class="btnStyle" onClick="location.href='adminParsingList'">
+			<p class="fontStyle">관리자<br>데이터 등록</p>
+		</button>
+	</div>
 	
-
-	function InsertData(){
-		
-		var password = "";
-		
-		password = prompt("비밀번호 8자리를 입력해주세요.");
-		location.href="<c:url value="adminParsingList"/>?password=" + password;
-	}
+	<div class="item button-jittery" style="background: #e67e22; width: 300px; height: 300px; text-align: center;
+	padding-top: 50px; border-radius: 10px; display: inline-block;">
+		<button class="btnStyle" onClick="location.href='adminIdentify'">
+			<p class="fontStyle">관리자<br>파싱 데이터 <br>검증</p>
+		</button>
+	</div>
 	
-	function IdentifyData(){
-		
-		var password = "";
-		
-		password = prompt("비밀번호 8자리를 입력해주세요.");
-		location.href="<c:url value="adminIdentify"/>?password=" + password;
-	}
-	
-	function UpdateData(){
-		
-		var password = "";
-		
-		password = prompt("비밀번호 8자리를 입력해주세요.");
-		location.href="<c:url value="adminStyleList"/>?password=" + password;
-	}
-</script>
+	<div class="item button-jittery" style="background: #9b59b6; width: 300px; height: 300px; text-align: center;
+	padding-top: 50px; border-radius: 10px; display: inline-block;">
+		<button class="btnStyle" onClick="location.href='adminStyleList'">
+			<p class="fontStyle">관리자<br>데이터<br>수정/삭제</p>
+		</button>
+	</div>
+</div> 
+ 
 </body>
 </html>
