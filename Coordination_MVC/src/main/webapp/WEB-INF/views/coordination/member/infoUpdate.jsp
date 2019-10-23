@@ -51,10 +51,23 @@
 	.modify_btn:hover {
 		border: 1px solid black;
 	}
+	.modify_cancle_btn, .modify_ok_btn {
+		width: 62.5px;
+		height: 30px;
+		background-color: white;
+		border: 1px solid rgba(204, 204 ,204 , .4);
+		-webkit-transition: border 0.2s ease;
+    	-moz-transition: border 0.2s ease;
+    	-o-transition: border 0.2s ease;
+    	transition: border 0.2s ease;
+	}
+	.modify_cancle_btn:hover, .modify_ok_btn:hover {
+		border: 1px solid black;
+	}
 	
 	/* info-Modify */
 	.info-modify{
-		margin: 35px;
+		margin: 30px 0;
 	}
 	.input {
 		height: 50px;
@@ -101,32 +114,28 @@
 	function phone_modify_close(){
 		var phoneA = document.getElementById('phone_area');
 		var phoneCA = document.getElementById('phone_change_area');
+		var phoneI = document.getElementById('newPhone');
 		
 		phoneA.style.display = '';
 		phoneCA.style.display = 'none';
+		phoneI.value = "";
+	}
+	
+	/* 회원 탈퇴 클릭 */
+	function delete_member(){
+		var frm = document.getElementById('deleteForm');
+		
+		if(confirm('정말로 탈퇴하시겠습니까?')) {
+			frm.submit();	
+		} else {
+			
+		}
 	}
 	
 	/* 페이지 최초 로드 */
  	$(document).ready(function(){
  		document.getElementById('password_change_area').style.display = 'none';
  		document.getElementById('phone_change_area').style.display = 'none';
- 		
- 		$('#password').change(function(){
- 			var op = document.getElementById('op').value;
- 			var ip = document.getElementById('password');
- 			var spc = document.getElementById('span_pass_check');
- 			
- 			document.getElementById('check').setAttribute('value', op);
- 			
- 			if(ip != op){
- 				spc.value = '비밀번호가 일치하지 않습니다.';
- 				spc.style.color = 'red';
- 			}
- 			else{
- 				spc.value = '비밀번호가 일치합니다.';
- 				spc.style.color = 'skyblue';
- 			}
- 		})
  	});
 </script>
 </head>
@@ -173,24 +182,18 @@
 					</th>
 					<td colspan="2">
 						<div class="info-modify">
-							<div class="input">
-								<label for="">기존 비밀번호</label>
-									<input type="password" class="pwd_input" id="password"">
-										<span id="span_pass_check"></span>
-											<input type="hidden" id="op" value="${ member.password }"/>
-							</div>
-							<div class="input">		
-								<label for="">변경 비밀번호</label>
-									<input type="password" class="pwd_input" id="newPassword">
-							</div>
-							<div class="input">
-								<label for="">변경 비밀번호 재입력</label>
-									<input type="password" class="pwd_input" id="checkPassword" onchange="checkPass()">
-							</div>
-							<div class="button_group">
-								<input type="button" class="modify_cancle_btn" value="취소" onclick="pwd_modify_close()" /> 
-								<input type="button" class="modify_ok_btn" value="확인" disabled />
-							</div>
+							<form id="pwd_modify_form" method="post" action="updateMember">
+								<div class="input">		
+									<label for="">변경 비밀번호</label>
+										<input type="password" class="pwd_input" id="newPassword" name="password" required>
+										<input type="hidden" value="${ sessionScope.userId }" name="id"/>
+										<input type="hidden" value="${ member.phone }" name="phone"/>
+								</div>
+								<div class="button_group">
+									<input type="button" class="modify_cancle_btn" value="취소" onclick="pwd_modify_close()" /> 
+									<input type="submit" class="modify_ok_btn" value="확인"/>
+								</div>
+							</form>
 						</div>
 					</td>
 				</tr>
@@ -219,19 +222,26 @@
 					</th>
 					<td colspan="2">
 						<div class="info-modify">
-							<div class="input">
-								<input type="text" id="newPhone" placeholder="휴대전화 번호 입력"/>
-							</div>
-							<div class="button_group">
-									<input type="button" class="modify_cancle_btn" value="취소" onclick="phone_modify_close()" /> 
-									<input type="button" class="modify_ok_btn" value="확인" disabled />
-							</div>
+							<form method="post" action="updateMember">
+								<div class="input">
+									<input type="text" id="newPhone" name="phone" placeholder="휴대전화 번호 입력 " pattern="(010)\d{3,4}\d{4}" required />
+								</div>
+								<div class="button_group">
+										<input type="button" class="modify_cancle_btn" value="취소" onclick="phone_modify_close()" /> 
+										<input type="submit" class="modify_ok_btn" value="확인"/>
+										<input type="hidden" value="${ sessionScope.userId }" name="id"/>
+										<input type="hidden" value="${ member.password }" name="password"/>
+								</div>
+							</form>
 						</div>
 					</td>
 				</tr>
 			</c:forEach>
 		</table><br/>
-		<p class="delete_font">회원탈퇴를 원하시면 회원탈퇴 버튼을 눌러주세요 <input type="button" class="modify_btn" value="회원탈퇴"></p>
+		<form id="deleteForm" method="get" action="deleteMember">
+			<input type="hidden" name="id" value="${ sessionScope.userId }"/>
+			<p class="delete_font">회원탈퇴를 원하시면 회원탈퇴 버튼을 눌러주세요 <input type="button" class="modify_btn" value="회원탈퇴" onclick="delete_member()"></p>
+		</form>
 	</div>
 </body>
 </html>
