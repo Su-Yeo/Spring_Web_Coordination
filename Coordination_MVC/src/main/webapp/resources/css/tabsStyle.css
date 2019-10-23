@@ -1,0 +1,3035 @@
+/*style.css(main-sub까지) - 공통이 아닌부분*/
+
+/*영역별 탭*/
+
+.clearfix:before, .clearfix:after { content: " "; display: table; }
+.clearfix:after { clear: both; }
+
+.page-header {
+    background-color: rgb(255, 255, 255);
+	/*
+	background:url(../images/common/menu01_bg.png) repeat-x center bottom;*/
+    width: 100%;
+	height:58px;
+	text-align:center;
+	position:relative;
+	border-top:1px solid #cccccc;
+	border-bottom:1px solid #cccccc;
+}
+.page-header .inner{
+	width:100%;
+	margin: 0 auto;
+	border:0px solid red;
+	position:relative;
+	text-align:center;
+}
+
+section#main-s01{
+
+	
+}
+section#main-s01 div.inner{
+	width:1100px;
+	border:0px solid green;
+	height:100%;
+	margin:0 auto;
+}
+
+section#main-s01 div.inner ul.nav{
+}
+		
+section#main-s01 div.inner ul.nav li{
+	border-right:1px solid #cccccc;
+	border-left:1px solid #cccccc;
+	box-sizing: border-box;
+	width:33.3%;
+	text-align:center;
+	float:left;
+	display:inline;
+	padding:15px 0;
+}
+
+section#main-s01 div.inner ul.nav li.center{
+	border:none;
+}
+
+section#main-s01 div.inner ul.nav li a{
+	font-family: 'notokr-regular';
+	font-size:24px;
+	color:#000;
+}
+
+section#main-s01 div.inner ul.nav li a:hover{
+	color:#fc7a3a;
+}
+
+
+/* Sticky header (clone) 메뉴 접어진 부분 */
+.page-header-clone {
+    background-color: rgb(255, 255, 255);
+	border:0px solid green;
+	height:60px;
+    opacity: 0.9;
+    position: fixed;
+    top: -100px;
+    width: 100%;
+    z-index: 30;	
+    -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.25);
+            box-shadow: 0 1px 1px rgba(0, 0, 0, 0.25);		
+    -webkit-transition: top 0.25s;
+            transition: top 0.25s;	
+	margin:0 auto;	
+}
+
+.page-header-clone > .inner {
+    margin: auto;
+    width: 100%;
+	position:relative;
+}
+.page-header-clone .qnb a{
+		visibility:hidden;
+		width:0;
+		height:0;
+		margin:0;
+		padding:0;
+		line-height:0;
+}
+
+.page-header-clone.visible {
+    top: 0;
+}
+
+/*영역별 탭 끝 */
+
+/*-------------------영역별 탭 태블릿 숨기기-------------------*/
+@media all and (min-width: 600px) and (max-width: 1279px) {
+	section#main-s01{display:none;}
+
+}
+
+/*-------------------영역별 탭 모바일 숨기기-------------------*/
+@media all and (max-width: 600px) {
+	section#main-s01{display:none;}
+}
+
+/*공지사항 */
+section#main-s02{width:100%; height:499px; background:#fff; }
+
+section#main-s02 div.inner{
+	width:1100px;
+	border:0px solid green;
+	height:auto;
+	margin:0 auto;
+}
+
+section#main-s02 div.inner ul{
+	padding-top:15px;
+	padding-bottom:134px;
+}
+
+section#main-s02 div.inner ul li.news{
+	float:left;
+	display:inline;
+	width:78px;
+	background-color:#f52121;
+	text-align:center;
+}
+
+section#main-s02 div.inner ul li.news a{
+	display:inline-block;
+	padding:5px 0;
+	font-family: 'notokr-regular';
+	font-size:16px;
+	color:#fff;
+}
+
+section#main-s02 div.inner ul li.news2{
+	float:left;
+	padding-left:14px;
+	padding-top:6px;
+}
+
+section#main-s02 div.inner ul li.news2 a{
+	font-family: 'notokr-regular';
+	font-size:16px;
+	color:#000;
+}
+/*공지사항 끝*/
+
+/*---------------------------공지사항 태블릿-----------------------------*/
+@media all and (min-width: 600px) and (max-width: 1279px) {
+section#main-s02{border:0px solid blue; width:100%; height:auto; background:#fff;}
+	
+section#main-s02 div.inner{
+		width:92.5%; height:auto; margin:0 auto;
+		border:0px solid orange; 
+}
+
+section#main-s02 div.inner ul{
+	border:0px solid green; overflow:hidden; 
+	padding:1.85vh 0;
+	height:auto;	
+}
+
+section#main-s02 div.inner ul li.news{
+	float:left;
+	display:inline;
+	width:10.15vw;
+	background-color:#f52121;
+	text-align:center;
+}
+
+section#main-s02 div.inner ul li.news a{
+	display:inline-block;
+	padding:0.48vh 0;
+	font-family: 'notokr-regular';
+	font-size:2vw;
+	color:#fff;
+}
+
+section#main-s02 div.inner ul li.news2{
+	float:left;
+	padding:0.39vh 0 0 10px;
+}
+
+section#main-s02 div.inner ul li.news2 a{
+	font-family: 'notokr-regular';
+	font-size:2.3vw;
+	color:#000;
+}
+
+}
+/*----------------------공지사항 태블릿끝----------------------*/
+
+/*--------------------------공지사항 모바일--------------------------*/
+@media all and (max-width: 600px) {
+section#main-s02{border:0px solid blue; width:100%; height:auto; background:#fff;}	
+
+section#main-s02 div.inner{
+		width:87.5%; height:auto; margin:0 auto;
+		border:0px solid orange; 
+}
+
+section#main-s02 div.inner ul{
+	border:0px solid green; overflow:hidden; 
+	padding:1.85vh 0;
+	height:auto;
+}
+
+section#main-s02 div.inner ul li.news{
+	float:left;
+	display:inline;
+	width:15vw;
+	background-color:#f52121;
+	text-align:center;
+}
+
+section#main-s02 div.inner ul li.news a{
+	display:inline-block;
+	padding:0.48vh 0;
+	font-family: 'notokr-regular';
+	color:#fff;
+	font-size:3.33vw;
+}
+
+section#main-s02 div.inner ul li.news2{
+	float:left;
+	padding:0.5vh 0 0 10px;
+}
+
+section#main-s02 div.inner ul li.news2 a{
+	font-family: 'notokr-regular';
+	color:#000;
+	font-size:3.8vw;
+}
+
+}
+/*--------------------------공지사항 모바일끝--------------------------*/
+
+/*삼양 제품소개*/
+section#main-s03{
+	width:100%; height:1050px; background:#fff;
+	position:relative;
+}
+
+section#main-s03 div.inner{
+	width:1100px;
+	height:100%;
+	margin:0 auto;
+}
+
+section#main-s03 div.inner ul.title{
+	text-align:center;
+	background:url(../image/main/orange_line.png) no-repeat center 226px;
+}
+
+section#main-s03 div.inner ul.title li.text1{
+	font-family: 'notokr-regular';
+	font-size:52px;
+	color:#000;
+	padding-top:143px;
+	padding-bottom:52px;
+}
+
+section#main-s03 div.inner ul.title li.text2{
+	font-family: 'notokr-regular';
+	font-size:24px;
+	color:#000;
+	padding-bottom:9px;
+}
+
+section#main-s03 div.inner ul.title li.text3{
+	font-family: 'notokr-regular';
+	font-size:20px;
+	color:#878383;
+	padding-bottom:39px;
+}
+
+section#main-s03 div.inner ul.btn{
+	margin-left:305px;
+}
+
+section#main-s03 div.inner ul.btn li{
+	width:115px;
+	display:inline-block;
+	margin-right:10px;
+	text-align:center;
+	padding:13px 0;
+	border:0px solid blue;
+	
+	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#f69564+0,f47637+100 */
+	background: #f69564; /* Old browsers */
+	background: -moz-linear-gradient(top,  #f69564 0%, #f47637 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(top,  #f69564 0%,#f47637 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom,  #f69564 0%,#f47637 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f69564', endColorstr='#f47637',GradientType=0 ); /* IE6-9 */
+}
+
+section#main-s03 div.inner ul.btn li a{
+	font-family: 'notokr-regular';
+	font-size:22px;
+	color:#fff;
+}
+
+
+/*제품사진*/
+.swiper-container02 {
+    width: 100%;
+	padding-top:84px;
+	overflow:hidden;
+	position:relative;
+}
+	
+.swiper-slide {
+	text-align: center;
+	background: #fff;
+
+	/* Center slide text vertically */
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	-webkit-justify-content:center;
+	justify-content: center;
+
+	/* 세로정렬 */
+	-webkit-box-align: top;
+	-ms-flex-align: top;
+	-webkit-align-items: top;
+	align-items: top;
+}
+
+section#main-s03 div.inner .swiper-container02 .swiper-pagination{
+	bottom: 10px;
+    width: 100%;
+	position:absolute;
+}
+	
+section#main-s03 div.inner .swiper-slide dl{
+	border:1px solid #c2c2c2;
+	width:100%;
+	height:366px;
+	text-align:center;
+}
+
+section#main-s03 div.inner .swiper-slide dl dd{
+	width:100%;
+	font-family: 'notokr-regular';
+	font-size:20px;
+	color:#000;
+}
+
+section#main-s03 div.inner .swiper-slide dl dt {
+	width:100%;
+	font-family: 'notokr-regular';
+	font-size:16px;
+	color:#9d9999;
+	padding-bottom:10px;
+}
+
+section#main-s03 .swiper-button-prev{
+	position:absolute;
+	top:652px;
+	left:260px;
+}
+
+section#main-s03 .swiper-button-next{
+	position:absolute;
+	top:652px;
+	right:260px;
+}
+/*삼양 제품소개*/
+
+/*-----------------------------태블릿제품소개------------------------------*/
+@media all and (min-width: 600px) and (max-width: 1279px) {
+section#main-s03 ul.title{display:none;}
+
+section#main-s03{
+	border:0px solid skyblue;
+	width:100%; height:auto; background:#fff;}
+	
+section#main-s03 div.inner{
+		width:92.5%; height:auto; border:0px solid orange;
+		margin:0 auto;
+}
+section#main-s03 div.inner ul.btn{
+	margin-left:0;
+	padding-top:2.44vh;
+}
+
+section#main-s03 div.inner ul.btn li{
+	border:0px solid red;
+	width:48.6%;
+	margin-right:0px;
+	text-align:center;
+	padding:2.44vh 0;	
+	border:0px solid red;
+	margin-bottom:22px
+}
+
+section#main-s03 div.inner ul.btn li.btn1{
+	float:left;
+	
+}
+
+section#main-s03 div.inner ul.btn li.btn2{
+	float:right;
+	
+}
+
+section#main-s03 div.inner ul.btn li.btn3{
+	float:left;
+	margin-bottom:0;
+	
+}
+
+section#main-s03 div.inner ul.btn li.btn4{
+	float:right;
+	margin-bottom:0;
+}
+
+section#main-s03 div.inner ul.btn li a{
+	font-family: 'notokr-regular';
+	font-size:3.9vw;
+	color:#fff;
+}
+
+.swiper-container02 {
+    width: 100%;
+	padding:4.88vh 0 6.84vh 0;
+	overflow:hidden;
+	position:relative;
+}
+
+section#main-s03 .swiper-button-prev{
+	display:none;
+}
+
+section#main-s03 .swiper-button-next{
+	display:none;
+}
+
+}
+/*-----------------------------태블릿제품소개끝--------------------------*/
+/*-----------------------------모바일제품소개---------------------------*/
+
+@media all and (max-width: 600px){
+section#main-s03 ul.title{display:none;}
+
+section#main-s03{
+	border:0px solid skyblue;
+	width:100%; height:auto; background:#fff;}
+	
+section#main-s03 div.inner{
+	width:87.5%; height:auto; border:0px solid orange;
+	margin:0 auto;
+}
+section#main-s03 div.inner ul.btn{
+	margin-left:0;
+	padding-top:0;
+}
+
+section#main-s03 div.inner ul.btn li{
+	border:0px solid red;
+	width:48.8%;
+	margin-right:0px;
+	text-align:center;
+	padding:2.44vh 0;	
+	border:0px solid red;
+	margin-bottom:13px
+}
+
+section#main-s03 div.inner ul.btn li.btn1{
+	float:left;
+	
+}
+
+section#main-s03 div.inner ul.btn li.btn2{
+	float:right;
+	
+}
+
+section#main-s03 div.inner ul.btn li.btn3{
+	float:left;
+	margin-bottom:0px
+}
+
+section#main-s03 div.inner ul.btn li.btn4{
+	float:right;
+	margin-bottom:0px
+}
+
+section#main-s03 div.inner ul.btn li a{
+	font-family: 'notokr-regular';
+	font-size:4.76vw;
+	color:#fff;
+}
+
+.swiper-container02 {
+	border:0px solid red;
+    width: 100%;
+	padding:4.88vh 0 6.84vh 0;
+	overflow:hidden;
+	position:relative;
+}
+
+section#main-s03 .swiper-button-prev{
+	display:none;
+}
+
+section#main-s03 .swiper-button-next{
+	display:none;
+}
+
+}
+
+/*-----------------------------모바일제품소개끝--------------------------*/
+
+/*신제품*/
+section#main-s04{
+	width:100%; height:494px; background:#fc7a3a;
+}
+
+section#main-s04 div.inner{
+	width:1100px;
+	height:100%;
+	margin:0 auto;
+	position:relative;
+}
+
+section#main-s04 div.inner ul{
+	text-align:center;
+	background:url(../image/main/white_line.png) no-repeat center 166px;
+}
+
+section#main-s04 div.inner ul li.title{
+	font-family: 'notokr-regular';
+	font-size:52px;
+	color:#fff;
+	padding-top:83px;
+	padding-bottom:52px;
+}
+
+section#main-s04 div.inner ul li.text1{
+	font-family: 'notokr-regular';
+	font-size:24px;
+	color:#fff;
+}
+section#main-s04 div.inner div.img{
+	text-align:center;
+	position:absolute;
+	bottom:0;
+	left:129px;
+}
+
+/*신제품 끝*/
+/*----------------------------태블릿 신제품-------------------------------*/
+@media all and (min-width: 600px) and (max-width: 1279px) {
+	section#main-s04{display:none;}
+}
+/*----------------------------모바일 신제품-------------------------------*/
+@media all and (max-width: 600px){
+	section#main-s04{display:none;}
+}
+
+/*삼양 패밀리*/
+section#main-s05{
+	width:100%; height:926px; 
+	background: #f0e8e5;
+	background-image:url(../image/main/family-background.png);
+	background-repeat:no-repeat;
+	background-position:845px 704px;
+}
+
+section#main-s05 div.inner{
+	width:1100px;
+	height:100%;
+	margin:0 auto;
+}
+
+section#main-s05 div.inner ul.title{
+	text-align:center;
+	background:url(../image/main/orange_line.png) no-repeat center 227px;
+}
+
+section#main-s05 div.inner ul.title li.text1{
+	font-family: 'notokr-regular';
+	font-size:52px;
+	color:#000;
+	padding-top:143px;
+	padding-bottom:52px;
+}
+
+section#main-s05 div.inner ul.title li.text2{
+	font-family: 'notokr-regular';
+	font-size:24px;
+	color:#565151;
+	padding-bottom:68px;
+}
+
+section#main-s05 div.inner div.box{
+	text-align:center
+}
+
+section#main-s05 div.inner div.box dl dt{
+	font-family: 'notokr-regular';
+	font-size:24px;
+	color:#fff;
+	padding-top:46px;
+	padding-bottom:55px;
+}
+
+section#main-s05 div.inner div.box dl dd{
+	font-family: 'notokr-regular';
+	font-size:18px;
+	color:#fff;
+}
+
+section#main-s05 div.inner div.box dl.box1{
+	background-color:#16c378;
+	background-image:url(../image/main/windmil.png), url(../image/main/family_line.gif);
+	background-repeat:no-repeat,no-repeat;
+	background-position:126px 159px,center 87px;
+	background-attachment: scroll;
+	width:275px;
+	height:278px;
+	float:left;
+}
+
+section#main-s05 div.inner div.box dl.box2{
+	background-color:#e99f10;
+	background-image:url(../image/main/spoon.png), url(../image/main/family_line.gif);
+	background-repeat:no-repeat,no-repeat;
+	background-position: 186px 176px, center 87px;
+	background-attachment: scroll;
+	width:275px;
+	height:278px;
+	float:left;
+}
+
+section#main-s05 div.inner div.box dl.box3{
+	background-color:#f96047;
+	background-image:url(../image/main/noodle.png), url(../image/main/family_line.gif);
+	background-repeat:no-repeat,no-repeat;
+	background-position:150px 174px, center 87px;
+	background-attachment: scroll;
+	width:275px;
+	height:278px;
+	float:left;
+}
+
+section#main-s05 div.inner div.box dl.box4{
+	background-color:#54c0d0;
+	background-image:url(../image/main/milk.png), url(../image/main/family_line.gif);
+	background-repeat:no-repeat,no-repeat;
+	background-position:200px 161px, center 87px;
+	background-attachment: scroll;
+	width:275px;
+	height:278px;
+	float:left;
+}
+
+/*삼양 패밀리끝*/
+
+/*---------------------삼양패밀리태블릿----------------------*/
+@media all and (min-width: 600px) and (max-width: 1279px) {
+section#main-s05{
+	overflow:hidden;
+	width:100%; height:auto; 
+	background: #f0e8e5;
+	background-image:url(../image/main/family-background-t.png); 
+	background-repeat:no-repeat;
+	background-position:right 0px bottom 0px;
+	background-size:80%;
+}
+	
+section#main-s05 div.inner{
+	width:92.5%;
+	height:100%;
+	margin:0 auto;
+}
+	
+section#main-s05 div.inner ul.title{
+	text-align:center;
+	background:none;
+}
+
+section#main-s05 div.inner ul.title li.text1{
+	font-family: 'notokr-regular';
+	font-size:5.2vw;
+	color:#000;
+	padding-top:5.85vh;
+	padding-bottom:1.95vh;
+}
+
+section#main-s05 div.inner ul.title li.text2{
+	font-family: 'notokr-regular';
+	font-size:3vw;
+	color:#565151;
+	padding-bottom:5.85vh;
+}
+
+section#main-s05 div.inner div.box {
+	width:100%; height:auto; margin:0 auto; overflow:hidden;
+	border:0px solid red;
+	padding-bottom:15vh;
+}
+
+section#main-s05 div.inner div.box dl{
+	border:0px solid orange;
+}
+
+section#main-s05 div.inner div.box dl dt{
+	font-family: 'notokr-regular';
+	font-size:3.9vw;
+	color:#fff;
+	padding:7.32vh 0 3.4vh;
+}
+
+section#main-s05 div.inner div.box dl dd{
+	font-family: 'notokr-regular';
+	font-size:2.86vw;
+	color:#fff;
+	height:50px;
+	padding-bottom:15.6vh;
+}
+
+section#main-s05 div.inner div.box dl.box1{
+	background-color:#16c378;
+	background-image:url(../image/main/sam-f01.png);
+	background-repeat:no-repeat;
+	background-position:center top;
+	background-size:cover;
+	width:48.6%;height:34vh;
+	margin-bottom:25px;
+}
+
+section#main-s05 div.inner div.box dl.box2{
+	background-color:#e99f10;
+	background-image:url(../image/main/sam-f02.png);
+	background-repeat:no-repeat;
+	background-position:center top;
+	background-size:cover;
+	float:right;
+	width:48.6%; height:34vh;
+	margin-bottom:25px;
+}
+
+section#main-s05 div.inner div.box dl.box3{
+	background-color:#f96047;
+	background-image:url(../image/main/sam-f03.png);
+	background-repeat:no-repeat;
+	background-position:center top;
+	background-size:cover;
+	width:48.6%; height:34vh;
+}
+
+section#main-s05 div.inner div.box dl.box4{
+	background-color:#54c0d0;
+	background-image:url(../image/main/sam-f04.png);
+	background-repeat:no-repeat;
+	background-position:center top;
+	background-size:cover;
+	float:right; height:34vh;
+	width:48.6%;
+}
+
+}
+/*----------------------삼양패밀리 태블릿끝------------------------*/
+
+/*-----------------------삼양패밀리모바일--------------------------*/
+@media all and (max-width: 600px){
+section#main-s05{
+	overflow:hidden;
+	width:100%; height:auto; 
+	background: #f0e8e5;
+	background-image:url(../image/main/family-background-t.png); 
+	background-repeat:no-repeat;
+	background-position:right 0px bottom 0px;
+	background-size:80%;
+}
+	
+section#main-s05 div.inner{
+	width:87.5%;
+	height:100%;
+	margin:0 auto;
+}
+	
+section#main-s05 div.inner ul.title{
+	text-align:center;
+	background:none;
+}
+
+section#main-s05 div.inner ul.title li.text1{
+	font-family: 'notokr-regular';
+	font-size:5.8vw;
+	color:#000;
+	padding-top:5.85vh;
+	padding-bottom:1.95vh;
+}
+
+section#main-s05 div.inner ul.title li.text2{
+	font-family: 'notokr-regular';
+	font-size:3.1vw;
+	color:#565151;
+	padding-bottom:5.85vh;
+}
+
+section#main-s05 div.inner div.box {
+	width:100%; height:auto; margin:0 auto; overflow:hidden;
+	border:0px solid red;
+	padding-bottom:15vh;
+}
+
+section#main-s05 div.inner div.box dl{
+	border:0px solid orange;
+}
+
+section#main-s05 div.inner div.box dl dt{
+	font-family: 'notokr-regular';
+	font-size:4.28vw;
+	color:#fff;
+	padding:5.2vh 0 3vh;
+}
+
+section#main-s05 div.inner div.box dl dd{
+	font-family: 'notokr-regular';
+	font-size:3.09vw;
+	color:#fff;
+	padding-bottom:15.6vh;
+}
+
+section#main-s05 div.inner div.box dl.box1{
+	background-color:#16c378;
+	background-image:url(../image/main/sam-f01.png);
+	background-repeat:no-repeat;
+	background-position:center top;
+	background-size:cover;
+	width:48.6%;height:26vh;
+	margin-bottom:13px;
+}
+
+section#main-s05 div.inner div.box dl.box2{
+	background-color:#e99f10;
+	background-image:url(../image/main/sam-f02.png);
+	background-repeat:no-repeat;
+	background-position:center top;
+	background-size:cover;
+	float:right;
+	width:48.6%; height:26vh;
+	margin-bottom:13px;
+}
+
+section#main-s05 div.inner div.box dl.box3{
+	background-color:#f96047;
+	background-image:url(../image/main/sam-f03.png);
+	background-repeat:no-repeat;
+	background-position:center top;
+	background-size:cover;
+	width:48.6%; height:26vh;
+}
+
+section#main-s05 div.inner div.box dl.box4{
+	background-color:#54c0d0;
+	background-image:url(../image/main/sam-f04.png);
+	background-repeat:no-repeat;
+	background-position:center top;
+	background-size:cover;
+	float:right; height:26vh;
+	width:48.6%;
+}
+
+}
+/*--------------------삼양패밀리 모바일끝---------------------*/
+
+/*삼양 맛샵오픈*/
+section#main-s06{
+	width:100%; height:408px; 
+	background:url(../image/main/market.png)no-repeat center top;
+	background-size:cover;
+	background-attachment:fixed;
+}
+
+section#main-s06 div.inner{
+	width:1100px;
+	height:100%;
+	margin:0 auto;
+}
+
+section#main-s06 div.inner ul{
+	text-align:center;
+}
+
+section#main-s06 div.inner ul li.text1{
+	font-family: 'notokr-regular';
+	font-size:52px;
+	color:#fff;
+	padding-top:120px;
+	padding-bottom:24px;
+}
+
+section#main-s06 div.inner ul li.text2{
+	font-family: 'notokr-regular';
+	font-size:25px;
+	color:#fff;
+	padding-bottom:40px;
+}
+
+section#main-s06 div.inner ul li.btn{
+	border:1px solid #fff;
+	width:195px;
+	padding:11px 0;
+	display:inline-block;
+	-webkit-border-radius: 25px;
+	border-radius: 25px;
+}
+
+section#main-s06 div.inner ul li.btn:hover{
+	background-color: rgba(255,255,255,0.2);
+}
+
+section#main-s06 div.inner ul li.btn a{
+	font-family: 'notokr-regular';
+	font-size:18px;
+	color:#fff;
+}
+/*삼양 맛샵오픈끝*/
+
+/*------------------------맛샵오픈태블릿------------------------*/
+@media all and (min-width: 600px) and (max-width: 1279px) {
+section#main-s06{
+	width:100%; 
+	height:27.7vh; 
+	background:url(../image/main/market.png)no-repeat center top;
+	background:cover;
+}
+
+section#main-s06 div.inner{
+	width:92.5%;
+	margin:0 auto;
+}
+
+section#main-s06 div.inner ul li.text1{
+	font-family: 'notokr-regular';
+	font-size:5.2vw;
+	color:#fff;
+	/*padding-top:66px;*/
+	padding-top:6.44vh;
+	/*padding-bottom:19px;*/
+	padding-bottom:1.85vh
+}
+
+section#main-s06 div.inner ul li.text2{
+		font-family: 'notokr-regular';
+		font-size:3.25vw;
+		color:#fff;
+	}
+	
+section#main-s06 div.inner ul li.btn{
+		display:none;
+	}
+	
+}
+/*----------------------맛샵오픈태블릿끝---------------------*/
+
+
+/*삼양 커뮤니티*/
+section#main-s07{
+width:100%; height:1291px; }
+
+section#main-s07 div.inner{
+	width:1100px;
+	height:100%;
+	margin:0 auto;
+	position:relative;
+}
+
+section#main-s07 div.inner ul.title{
+	text-align:center;
+	background:url(../image/main/orange_line.png) no-repeat center 225px;
+}
+
+section#main-s07 div.inner ul.title li.text1{
+	font-family: 'notokr-regular';
+	font-size:52px;
+	color:#000;
+	padding-top:141px;
+	padding-bottom:51px;
+}
+
+section#main-s07 div.inner ul.title li.text2{
+	font-family: 'notokr-regular';
+	font-size:24px;
+	color:#565252;
+	padding-bottom:67px;
+}
+section#main-s07 div.inner .vedio iframe{
+	float:left;
+	padding-bottom:100px;
+}
+
+/*sns*/
+section#main-s07 div.inner div.sns{
+	float:left;
+	border:0px solid blue;
+	margin-left:37px;
+	box-sizing: border-box;
+}
+
+section#main-s07 div.inner div.sns h1{
+	display:none;
+}
+
+section#main-s07 div.inner div.sns ul{
+	padding-top:9px;
+	text-align:center;
+	padding-bottom:33px;
+}
+
+section#main-s07 div.inner div.sns ul li{
+	display:inline-block;
+	margin-right:5px;
+}
+
+section#main-s07 div.inner div.sns div.scroll{
+	border:0px solid red;
+	border-top:2px solid #3e59a5;
+}
+/*-----------------pc에서 태블릿페이스북 지움----------------*/
+section#main-s07 div.inner div.sns div.scroll-t{
+	display:none;
+}
+/*sns끝*/
+
+/*삼양사연*/
+section#main-s07 div.inner div.letter{
+	width:532px;
+	height:208px;
+	background-color:#89d6b8;
+	float:left;
+	margin-right:36px;
+	
+}
+section#main-s07 div.inner div.letter a ul{
+	border:1px solid #fff;
+	height:173px;
+	margin:17px;
+	background:url(../image/main/letter.png) no-repeat 391px 69px;
+}
+section#main-s07 div.inner div.letter a ul li.text1{
+	font-family: 'notokr-regular';
+	font-size:28px;
+	color:#fff;
+	margin-left:24px;
+	padding-top:3.8vh;
+	padding-bottom:1.17vh;
+	
+}
+section#main-s07 div.inner div.letter a ul li.text2{
+	font-family: 'notokr-regular';
+	font-size:20px;
+	color:#fff;
+	margin-left:24px;
+	height:50px;
+}
+/*삼양사연끝*/
+
+/*레시피*/
+section#main-s07 div.inner div.recipe{
+	width:532px;
+	height:208px;
+	background-color:#95c4e4;
+	float:left;
+}
+section#main-s07 div.inner div.recipe ul{
+	border:1px solid #fff;
+	height:173px;
+	margin:17px;
+	background:url(../image/main/recipe.png) no-repeat 386px 56px;
+}
+section#main-s07 div.inner div.recipe a ul li.text1{
+	font-family: 'notokr-regular';
+	font-size:28px;
+	color:#fff;
+	margin-left:24px;
+	padding-top:3.8vh;
+	padding-bottom:1.17vh;
+}
+
+section#main-s07 div.inner div.recipe a ul li.text2{
+	font-family: 'notokr-regular';
+	font-size:20px;
+	color:#fff;
+	margin-left:24px;
+	padding-bottom:1vh;
+}
+section#main-s07 div.inner div.recipe a ul li.text3{
+	font-family: 'notokr-regular';
+	font-size:14px;
+	color:#fff;
+	margin-left:24px;
+}
+/*레시피끝*/
+
+/*삼양 커뮤니티끝*/
+
+/*-------------------태블릿 삼양 커뮤니티--------------------*/
+@media all and (min-width: 600px) and (max-width: 1279px) {
+section#main-s07 div.inner ul.title,section#main-s07 div.inner div.sns div.scroll{
+	display:none;
+}
+	
+section#main-s07{
+	overflow:hidden;
+	width:100%; height:auto; 
+}
+
+section#main-s07 div.inner{
+	width:92.5%;
+	height:100%;
+	margin:0 auto;
+	position:relative;
+}
+
+section#main-s07 div.inner div.vedio iframe{
+	/*padding-top:70px;*/
+	padding-top:6.83vh;
+	/*padding-bottom:60px*/
+	padding-bottom:5.85vh;
+	width:100%; height:516px;
+}
+
+section#main-s07 div.inner div.sns{
+	border:0px solid red; 
+	float:none;
+	height:auto;
+	margin-left:0;
+	margin-bottom:6.8vh;
+}
+
+section#main-s07 div.inner div.sns ul.icon{
+	padding-top:0;
+	text-align:right;
+	padding-bottom:33px;
+}
+
+section#main-s07 div.inner div.sns ul.icon li{
+	display:inline-block;
+	margin-right:5px;
+}
+
+section#main-s07 div.inner div.sns h1{
+	display:block;
+	font-family: 'notokr-regular';
+	font-size:6.51vw;
+	color:#000;
+	float:left;
+}
+section#main-s07 div.inner div.sns div.scroll-t{
+	display:block;
+	width:100%; height:326px;
+	overflow-y:scroll;
+	border:1px solid #ccc;
+	border-top:2px solid #3e59a5;
+}
+
+section#main-s07 div.inner div.sns div.scroll-t ul li{
+	border-bottom:1px solid #ccc;
+}
+
+/*삼양사연 레시피*/
+section#main-s07 div.inner div.letter{
+	height:auto;
+	background-color:#89d6b8;
+	width:48.6%;
+	float:left;
+	margin-right:0px;
+	margin-bottom:9.17vh;
+}
+
+section#main-s07 div.inner div.letter a ul{
+	border:1px solid #fff;
+	height:23vh;
+	margin:15px;
+	background:url(../image/main/letter.png) no-repeat right 15px bottom 15px;
+}
+
+section#main-s07 div.inner div.letter a ul li.text1{
+	margin-left:15px;
+	font-size:3.64vw;
+}
+
+section#main-s07 div.inner div.letter a ul li.text2{
+	margin-left:15px;
+	font-size:2.6vw;
+}
+
+section#main-s07 div.inner div.recipe{
+	height:auto;
+	background-color:#95c4e4;
+	width:48.6%;
+	float:right;
+}
+
+section#main-s07 div.inner div.recipe ul{
+	border:1px solid #fff;
+	height:23vh;
+	margin:15px;
+	background:url(../image/main/recipe.png) no-repeat right 3px bottom 15px;
+}
+
+section#main-s07 div.inner div.recipe a ul li.text1{
+	font-family: 'notokr-regular';
+	font-size:3.64vw;
+	color:#fff;
+	margin-left:24px;
+	padding-top:3.8vh;
+	padding-bottom:1.17vh;
+}
+
+section#main-s07 div.inner div.recipe a ul li.text2{
+	font-family: 'notokr-regular';
+	font-size:2.6vw;
+	color:#fff;
+	margin-left:24px;
+	padding-bottom:1vh;
+}
+section#main-s07 div.inner div.recipe a ul li.text3{
+	font-family: 'notokr-regular';
+	font-size:1.82vw;
+	color:#fff;
+	margin-left:24px;
+}
+}
+
+/*-------------------모바일 삼양 커뮤니티--------------------*/
+@media all and (max-width: 600px){
+section#main-s07 div.inner ul.title,section#main-s07 div.inner div.sns div.scroll{
+	display:none;
+}
+	
+section#main-s07{
+	overflow:hidden;
+	width:100%; height:auto; 
+}
+
+section#main-s07 div.inner{
+	width:87.5%;
+	height:100%;
+	margin:0 auto;
+	position:relative;
+}
+
+
+section#main-s07 div.inner div.vedio iframe{
+	/*padding-top:70px;*/
+	padding-top:6.25vh;
+	/*padding-bottom:60px*/
+	padding-bottom:3vh;
+	width:100%; height:240px;
+}
+
+section#main-s07 div.inner div.sns{
+	border:0px solid red; 
+	float:none;
+	height:auto;
+	margin-left:0;
+	margin-bottom:5.85vh;
+}
+
+section#main-s07 div.inner div.sns ul.icon{
+	padding-top:0;
+	text-align:right;
+	padding-bottom:10px;
+}
+
+section#main-s07 div.inner div.sns ul.icon li{
+	display:inline-block;
+	margin-right:0px;
+}
+
+section#main-s07 div.inner div.sns ul.icon li img{
+	width:30px;height:50%;
+}
+
+section#main-s07 div.inner div.sns h1{
+	display:block;
+	font-family: 'notokr-regular';
+	font-size:3.64vh;
+	color:#000;
+	float:left;
+}
+section#main-s07 div.inner div.sns div.scroll-t{
+	display:block;
+	width:100%; height:184px;
+	overflow-y:scroll;
+	border:1px solid #ccc;
+	border-top:2px solid #3e59a5;
+}
+
+section#main-s07 div.inner div.sns div.scroll-t ul li{
+	border-bottom:1px solid #ccc;
+}
+
+/*삼양사연 레시피*/
+section#main-s07 div.inner div.letter{
+	height:auto;
+	background-color:#89d6b8;
+	width:100%;
+	float:left;
+	margin-right:0px;
+	margin-bottom:4.55vh;
+}
+
+section#main-s07 div.inner div.letter a ul{
+	border:1px solid #fff;
+	height:19.5vh;
+	margin:15px;
+	background:url(../image/main/letter.png) no-repeat right 5px bottom 10px;
+	background-size:20% 50%;
+}
+
+section#main-s07 div.inner div.letter a ul li.text1{
+	margin-left:3.33vw;
+	font-size:5.83vw;
+	padding-top:3.38vh;
+	padding-bottom:1.17vh;
+}
+
+section#main-s07 div.inner div.letter a ul li.text2{
+	margin-left:3.33vw;
+	font-size:3.95vw;
+}
+
+section#main-s07 div.inner div.recipe{
+	height:auto;
+	background-color:#95c4e4;
+	width:100%;
+	float:right;
+	margin-bottom:4.55vh;
+}
+
+section#main-s07 div.inner div.recipe ul{
+	border:1px solid #fff;
+	height:19.5vh;
+	margin:15px;
+	background:url(../image/main/recipe.png) no-repeat right 3px bottom 10px;
+	background-size:23% 55%;
+}
+
+section#main-s07 div.inner div.recipe a ul li.text1{
+	font-family: 'notokr-regular';
+	font-size:5.83vw;
+	color:#fff;
+	margin-left:3.33vw;
+	padding-top:3.38vh;
+	padding-bottom:1.17vh;
+}
+
+section#main-s07 div.inner div.recipe a ul li.text2{
+	font-family: 'notokr-regular';
+	font-size:3.95vw;
+	color:#fff;
+	margin-left:3.33vw;
+	padding-bottom:1vh;
+}
+section#main-s07 div.inner div.recipe a ul li.text3{
+	font-family: 'notokr-regular';
+	font-size:1.82vw;
+	color:#fff;
+	margin-left:3.33vw;
+}
+}
+
+
+/*------------------------맛샵오픈모바일------------------------*/
+@media all and (max-width: 600px){
+section#main-s06{
+	width:100%; 
+	height:16.92vh; 
+	background:url(../image/main/market.png)no-repeat center top;
+	background:cover;
+}
+
+section#main-s06 div.inner{
+	width:87.5%;
+	margin:0 auto;
+}
+
+section#main-s06 div.inner ul li.text1{
+	font-family: 'notokr-regular';
+	font-size:5.2vw;
+	color:#fff;
+	/*padding-top:66px;*/
+	padding-top:3.88vh;
+	/*padding-bottom:19px;*/
+	padding-bottom:1.3vh
+}
+
+section#main-s06 div.inner ul li.text2{
+		font-family: 'notokr-regular';
+		font-size:3.25vw;
+		color:#fff;
+	}
+	
+section#main-s06 div.inner ul li.btn{
+		display:none;
+	}
+	
+}
+
+}
+/*------------------------맛샵오픈모바일끝------------------------*/
+
+
+
+/*서브 브랜드*/
+/*서브브랜드 비쥬얼*/
+section#sub01-visual{
+	width:100%; height:305px; background:#fabd91;
+}
+
+section#sub01-visual div.inner{
+	width:1100px;
+	height:100%;
+	margin:0 auto;
+	position:relative;
+}
+
+section#sub01-visual div.inner ul{
+	padding-top:85px;
+}
+
+section#sub01-visual div.inner ul li.title{
+	font-family: 'notokr-regular';
+	font-size:52px;
+	color:#fff;
+	float:left;
+	margin-right:16px;
+}
+
+section#sub01-visual div.inner ul li.text1{
+	font-family: 'notokr-regular';
+	font-size:23px;
+	color:#fff;
+	margin-top:25px;
+	padding-bottom:23px;
+}
+
+section#sub01-visual div.inner ul li.text2{
+	font-family: 'notokr-regular';
+	font-size:23px;
+	color:#fff;
+}
+
+section#sub01-visual div.inner ul li.img{
+	position:absolute;
+	top:59px;
+	right:23px;
+}
+
+
+/*내리는 메뉴*/
+section#sub01-visual div.inner div.v-menu{
+	padding-top:73px;
+}
+
+section#sub01-visual div.inner div.v-menu select{
+	float:left;
+	width:50%;
+	padding:7px 38px;
+	font-size:20px;
+	color:#fff;
+	font-family: 'notokr-regular';
+}
+
+section#sub01-visual div.inner div.v-menu select.first{
+	background:#f5ae7a;
+}
+
+section#sub01-visual div.inner div.v-menu select.second{
+	background:#ed9b60;
+}
+
+/*서브브랜드 비쥬얼끝*/
+section#all .content{}
+
+section#all .content section {
+	display: none;
+	margin: 0 auto;
+}
+
+section#all .content section:before,
+section#all .content section:after {
+	content: '';
+	display: table;
+}
+
+section#all .content section:after {
+	clear: both;
+}
+
+/* Fallback example */
+
+section#all .content section.content-current {
+	display: block;
+}
+
+section#all .tabs ul.menu{
+	border:0px solid blue;
+	width:1100px;
+	height:118px;
+	margin:0 auto;
+	padding-top:45px;
+}
+section#all .tabs ul.menu li{
+	border:0px solid pink;
+	border-bottom:2px solid black;
+	float:left;
+	width:165px;
+	height:36px;
+	text-align:center;
+	margin-right:22px;
+	box-sizing:border-box;
+}
+
+section#all .tabs ul.menu li.tab-current{
+	border-bottom:2px solid #fb710f;
+	box-sizing:border-box;
+}
+
+section#all .tabs ul.menu li:last-child{
+	margin-right:0px;
+	
+}
+
+section#all .tabs ul.menu li a{
+	font-family: 'notokr-regular';
+	font-size:17px;
+	color:#000;
+}
+
+section#all .tabs ul.menu li.tab-current a{
+	color:#fb710f;
+}
+
+section#all .tabs li.tab-current:after {
+	right: auto;
+	left: 100%;
+	width: 1100px;
+}
+
+/*서브sub01-s01*/
+.sam01{
+	background:url(../image/sub01/bg.png) no-repeat 0 186px;
+}
+
+#sub01-s01{
+	width:100%; height:660px;
+	
+}
+
+#sub01-s01 div.inner{
+	width:1100px;
+	height:100%;
+	margin:0 auto;
+	position:relative;
+	border-bottom:1px solid #000;
+}
+
+#sub01-s01 div.inner div.s-text{
+	height:305px;
+	width:355px;
+}
+#sub01-s01 div.inner div.s-text h1{
+	padding-top:95px;
+	margin-left:22px;
+}
+
+#sub01-s01 div.inner div.s-text ul li.text1{
+	font-family: 'notokr-regular';
+	font-size:48px;
+	color:#fb710f;
+	margin-left:7px;
+	padding-top:40px;
+	text-align:center;
+}
+
+#sub01-s01 div.inner div.s-text ul li.text2{
+	padding-top:20px;
+	margin-left:8px;
+	font-family: 'notokr-regular';
+	font-size:24px;
+	color:#000;
+	text-align:center;
+}
+
+#sub01-s01 div.inner div.btn{
+	position:absolute;
+	top:518px;
+	right:309px;
+}
+
+#sub01-s01 div.inner div.btn ul{
+	float:left;
+	width:127px;
+	border:1px solid #b5b5b5;
+	text-align:center;
+	padding:9px 0;
+	margin-right:6px;
+}
+
+#sub01-s01 div.inner div.btn ul li{
+	font-family: 'notokr-regular';
+	font-size:14px;
+	color:#716c6c;
+}
+
+/*제품선택*/
+#sub01-s01 div.inner ul.s-text2{
+	position:absolute;
+	right:0;
+	top:0;
+	border:0px solid green;
+}
+
+#sub01-s01 div.inner ul.s-text2 li{
+	border:1px solid #bbb7b7;
+	width:150px;
+	height:150px;
+	margin-bottom:2px;
+}
+
+#sub01-s01 div.inner ul.s-text2 li:hover{
+	border:2px solid #f36621;
+}
+
+#sub01-s01 div.inner .productImg{
+	border:0px solid red;
+}
+#sub01-s01 div.inner .productImg div img{
+	position:absolute;
+	top:114px;
+	right:240px;
+}
+
+/*브랜드 이야기*/
+#sub01-s02{
+	width:100%; height:1453px;
+}
+
+#sub01-s02 div.inner{
+	width:1100px;
+	height:100%;
+	margin:0 auto;
+	background:url(../image/sub01/b-img4.png)no-repeat center 163px;
+	position:relative;
+	border-bottom:1px solid #000;
+}
+
+#sub01-s02 div.inner h1{
+	font-family: 'notokr-regular';
+	font-size:52px;
+	color:#000;
+	padding-top:27px;
+	margin-left:17px
+}
+
+#sub01-s02 div.inner dl.b-text{
+	float:right;
+}
+
+#sub01-s02 div.inner dl.b-text dd{
+	position:absolute;
+	left:65px;
+	top:194px;
+}
+
+#sub01-s02 div.inner dl.b-text dt.title{
+	border:0px solid yellow;
+	padding-top:145px;
+	padding-bottom:20px;
+	font-family: 'notokr-regular';
+	font-size:30px;
+	color:#000;
+	
+}
+
+#sub01-s02 div.inner dl.b-text dt.text1{
+	width:470px;
+	height:220px;
+	border:0px solid red;
+	font-family: 'notokr-regular';
+	font-size:17px;
+	color:#666666;
+	text-align:justify;
+	line-height:1.5em;
+}
+
+#sub01-s02 div.inner dl.b-text2{
+	float:left;
+}
+
+#sub01-s02 div.inner dl.b-text2 dd{
+	position:absolute;
+	right:70px;
+	top:609px;
+}
+
+#sub01-s02 div.inner dl.b-text2 dt.title{
+	font-family: 'notokr-regular';
+	font-size:30px;
+	color:#000;
+	padding-top:525px;
+	padding-bottom:20px;
+}
+
+#sub01-s02 div.inner dl.b-text2 dt.text1{
+	border:0px solid blue;
+	width:482px;
+	height:238px;
+	font-family: 'notokr-regular';
+	font-size:17px;
+	color:#666666;
+	text-align:justify;
+	letter-spacing:0.05em;
+	line-height:1.5em;
+}
+
+#sub01-s02 div.inner dl.b-text3{
+	float:right;
+}
+
+#sub01-s02 div.inner dl.b-text3 dd{
+	position:absolute;
+	left:83px;
+	bottom:179px;
+}
+
+#sub01-s02 div.inner dl.b-text3 dt.title{
+	padding-top:580px;
+	padding-bottom:20px;
+	font-family: 'notokr-regular';
+	font-size:30px;
+	color:#000;
+	
+}
+
+#sub01-s02 div.inner dl.b-text3 dt.text1{
+	border:0px solid red;
+	width:474px;
+	height:130px;
+	font-family: 'notokr-regular';
+	font-size:17px;
+	color:#666666;
+	text-align:justify;
+	letter-spacing:0.04em;
+	line-height:1.5em;
+}
+
+/*미디어*/
+#sub01-s03{
+	width:100%; height:870px;
+	background-image:url('../image/sub01/arrow.gif'),url('../image/sub01/arrow-line.gif');
+	background-repeat:no-repeat, no-repeat;
+	background-position: center 328px, center 722px;
+}
+
+#sub01-s03 div.inner{
+	width:1100px;
+	height:100%;
+	margin:0 auto;
+	border-bottom:1px solid #000;
+}
+
+#sub01-s03 div.inner h1{
+	font-family: 'notokr-regular';
+	font-size:52px;
+	color:#000;
+	padding-top:27px;
+	margin-left:17px
+}
+
+#sub01-s03 div.inner p.text1{
+	margin-left:17px;
+	padding-top:18px;
+	padding-bottom:40px;
+	font-family: 'notokr-regular';
+	font-size:15px;
+	color:#666666;
+}
+
+
+#sub01-s03 div.inner ul.m{
+	margin-left:89px;
+	height:117px;
+	width:100%;
+}
+
+#sub01-s03 div.inner ul li{
+	float:left;
+	position:relative;
+	margin-right:21px;
+}
+
+#sub01-s03 div.inner div.m-text{
+	border:0px solid red;
+	margin-left:89px;
+	width:100%;
+	height:48px;
+}
+
+#sub01-s03 div.inner div.m-text p{
+	margin-right:21px;
+	float:left;
+	border:0px solid blue;
+	width:214px;
+	padding:15px 0;
+	text-align:center;
+	font-family: 'notokr-regular';
+	font-size:14px;
+	color:#666666;
+}
+
+#sub01-s03 div.inner div.medio{
+	position:relative;
+	margin-left:89px;
+	border:0px solid red;
+	width:920px;
+	height:392px;
+	background:url(../image/sub01/m-img01.png) no-repeat center 79px;
+}
+#sub01-s03 div.inner div.medio p{
+	padding-top:32px;
+	margin-left:200px;
+	font-family: 'notokr-regular';
+	font-size:24px;
+	color:#000;
+	float:left;
+	margin-right:20px;
+}
+#sub01-s03 div.inner div.medio span.m1{
+	position:absolute;
+	top:36px;
+	background-color:#9b9c9e;
+	padding:4px 10px;
+	font-family: 'notokr-regular';
+	font-size:11px;
+	color:#fff;
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+}
+
+
+#sub01-s03 div.inner div.more{
+	padding-top:53px;
+}
+
+#sub01-s03 div.inner div.more p{
+	text-align:center;
+	border:1px solid #e86102;
+	width:134px;
+	padding:10px 0;
+	/*margin-left:481px;*/
+	margin:0 auto;
+	display:block;
+	-webkit-border-radius: 25px;
+	border-radius: 25px;
+}
+	
+#sub01-s03 div.inner div.more a{
+	font-family: 'notokr-regular';
+	font-size:20px;
+	color:#e86102;
+	
+}
+
+/*레시피*/
+#sub01-s04{
+	width:100%; height:645px;
+}
+
+#sub01-s04 div.inner{
+	width:1100px;
+	height:100%;
+	margin:0 auto;
+	
+}
+
+#sub01-s04 div.inner h1{
+	font-family: 'notokr-regular';
+	font-size:52px;
+	color:#000;
+	padding-top:27px;
+	margin-left:17px
+}
+
+#sub01-s04 div.inner p.text1{
+	margin-left:17px;
+	padding-top:18px;
+	padding-bottom:40px;
+	font-family: 'notokr-regular';
+	font-size:15px;
+	color:#666666;
+}
+
+#sub01-s04 div.inner dl{
+	border:0px solid red;
+	float:left;
+	width:258px;
+	height:348px;
+	margin-right:77px;
+	position:relative;
+}
+
+#sub01-s04 div.inner dl.r1{
+	width:258px;
+	height:348px;
+	margin-left:86px;
+	background-image:url('../image/sub01/click.png'),url('../image/sub01/like.png');
+	background-repeat:no-repeat, no-repeat;
+	background-position: 86px 333px, 140px 333px;
+}
+
+#sub01-s04 div.inner dl.r2{
+	background-image:url('../image/sub01/click.png'),url('../image/sub01/like.png');
+	background-repeat:no-repeat, no-repeat;
+	background-position: 86px 333px, 140px 333px;
+}
+
+#sub01-s04 div.inner dl.r3{
+	background-image:url('../image/sub01/click.png'),url('../image/sub01/like.png');
+	background-repeat:no-repeat, no-repeat;
+	background-position: 86px 333px, 140px 333px;
+}
+
+#sub01-s04 div.inner dt.r-text{
+	padding-top:20px;
+	padding-bottom:14px;
+	text-align:center;
+	font-family: 'notokr-regular';
+	font-size:18px;
+	color:#000;
+}
+#sub01-s04 div.inner dl.r1 dt.click{
+	float:left;
+	margin-right:30px;
+	margin-left:105px;
+}
+
+#sub01-s04 div.inner dl.r2 dt.click{
+	float:left;
+	margin-right:38px;
+	margin-left:100px;
+}
+
+#sub01-s04 div.inner dl.r3 dt.click{
+	float:left;
+	margin-right:25px;
+	margin-left:100px;
+}
+
+#sub01-s04 div.inner dt.click,dt.like{
+	font-family: 'notokr-regular';
+	font-size:14px;
+	color:#9c9c9c;
+}
+
+#sub01-s04 div.inner div.recipe{
+	width:100%;
+	height:348px;
+}
+#sub01-s04 div.inner div.r-more{
+	padding-top:40px;
+}
+#sub01-s04 div.inner div.r-more p{
+	margin:0 auto;
+	display:block;
+	text-align:center;
+	border:1px solid #e86102;
+	width:134px;
+	padding:10px 0;
+	/*margin-left:481px;*/
+	-webkit-border-radius: 25px;
+	border-radius: 25px;
+}
+
+#sub01-s04 div.inner div.r-more a{
+	font-family: 'notokr-regular';
+	font-size:20px;
+	color:#e86102;
+	
+}
+/*서브 브랜드끝*/
+
+/*서브 삼양패밀리*/
+/*삼양패밀리비쥬얼*/
+section#sub02-visual{
+	width:100%; height:305px; background:#8ec7ee;
+}
+
+section#sub02-visual div.inner{
+	width:1100px;
+	height:100%;
+	margin:0 auto;
+	position:relative;
+}
+
+section#sub02-visual div.inner ul{
+	padding-top:85px;
+}
+
+section#sub02-visual div.inner ul li.title{
+	font-family: 'notokr-regular';
+	font-size:52px;
+	color:#fff;
+	padding-bottom:23px;
+}
+section#sub02-visual div.inner ul li.text1{
+	font-family: 'notokr-regular';
+	font-size:23px;
+	color:#fff;
+}
+
+section#sub02-visual div.inner ul li.img{
+	position:absolute;
+	top:102px;
+	right:9px;
+}
+
+/*내리는 메뉴*/
+section#sub02-visual div.inner div.v-menu{
+	padding-top:63px;
+}
+
+section#sub02-visual div.inner div.v-menu select{
+	float:left;
+	width:50%;
+	padding:7px 38px;
+	font-size:20px;
+	color:#fff;
+	font-family: 'notokr-regular';
+}
+
+section#sub02-visual div.inner div.v-menu select.first{
+	background:#66b5e0;
+}
+
+section#sub02-visual div.inner div.v-menu select.second{
+	background:#53a9db;
+}
+/*삼양패밀리 비쥬얼끝*/
+
+/*봄여름가을겨울*/
+section#sub02-s01{
+	width:100%; height:750px;
+}
+
+section#sub02-s01 div.inner{
+	width:1440px;
+	height:100%;
+	margin:0 auto;
+	position:relative;
+	background-image:url('../image/sub02/season_line.png'),url('../image/sub02/season.png');
+	background-repeat:no-repeat, no-repeat;
+	background-position:center 368px,center bottom;
+}
+
+section#sub02-s01 div.inner div.spring-img{
+	position:absolute;
+	top:447px;
+	left:162px;
+}
+
+section#sub02-s01 div.inner div.spring-text{
+	border:0px solid orange;
+	width:200px;
+	position:absolute;
+	top:475px;
+	left:105px;
+}
+
+section#sub02-s01 div.inner div.spring-text p.text01{
+	font-family: 'notokr-thin';
+	font-size:36px;
+	color:#fff;
+	padding-bottom:10px;
+}	
+
+section#sub02-s01 div.inner div.spring-text p.text02{
+	font-family: 'notokr-thin';
+	font-size:16px;
+	color:#fff;
+	line-height:1.5em;
+}
+	
+section#sub02-s01 div.inner div.summer-img{
+	position:absolute;
+	top:373px;
+	left:525px;
+}
+
+section#sub02-s01 div.inner div.summer-text{
+	border:0px solid orange;
+	width:200px;
+	position:absolute;
+	top:260px;
+	left:463px;
+}
+
+section#sub02-s01 div.inner div.summer-text p.text01{
+	font-family: 'notokr-thin';
+	font-size:36px;
+	color:#fff;
+	padding-bottom:10px;
+}	
+
+section#sub02-s01 div.inner div.summer-text p.text02{
+	font-family: 'notokr-thin';
+	font-size:16px;
+	color:#fff;
+	line-height:1.5em;
+}
+
+section#sub02-s01 div.inner div.autumn-img{
+	position:absolute;
+	top:513px;
+	right:564px;
+}
+
+section#sub02-s01 div.inner div.autumn-text{
+	border:0px solid orange;
+	width:200px;
+	position:absolute;
+	bottom:105px;
+	right:445px;
+}
+
+section#sub02-s01 div.inner div.autumn-text p.text01{
+	font-family: 'notokr-thin';
+	font-size:36px;
+	color:#fff;
+	padding-bottom:10px;
+}	
+
+section#sub02-s01 div.inner div.autumn-text p.text02{
+	font-family: 'notokr-thin';
+	font-size:16px;
+	color:#fff;
+	line-height:1.5em;
+}
+
+section#sub02-s01 div.inner div.winter-img{
+	position:absolute;
+	top:357px;
+	right:165px;
+}
+
+section#sub02-s01 div.inner div.winter-text{
+	border:0px solid orange;
+	width:200px;
+	position:absolute;
+	top:240px;
+	right:45px;
+}
+
+section#sub02-s01 div.inner div.winter-text p.text01{
+	font-family: 'notokr-thin';
+	font-size:36px;
+	color:#fff;
+	padding-bottom:10px;
+}	
+
+section#sub02-s01 div.inner div.winter-text p.text02{
+	font-family: 'notokr-thin';
+	font-size:16px;
+	color:#fff;
+	line-height:1.5em;
+}
+
+/*대관령삼양목장*/
+section#sub02-s02{
+	width:100%; height:2420px;
+}
+
+section#sub02-s02 div.inner{
+	width:1200px;
+	height:100%;
+	margin:0 auto;
+	position:relative;
+	background-image:url('../image/sub02/leaf.png'),url('../image/sub02/green_line.gif');
+	background-repeat:no-repeat, no-repeat;
+	background-position:676px 185px,center 350px;
+}
+
+section#sub02-s02 div.inner div.title{
+	text-align:center;
+}
+
+section#sub02-s02 div.inner div.title p{
+	padding-top:185px;
+	padding-bottom:20px;
+	font-size:24px;
+	color:#000;
+	font-family: 'notokr-regular';
+}
+
+section#sub02-s02 div.inner div.title h1{
+	font-size:48px;
+	color:#000;
+	font-family: 'notokr-regular';
+}
+
+section#sub02-s02 div.inner dl.f-text01{
+	float:right;
+}
+
+section#sub02-s02 div.inner dl.f-text01 dd{
+	position:absolute;
+	top:478px;
+	left:0;
+}
+
+section#sub02-s02 div.inner dl.f-text01 dt{
+	border:0px solid skyblue;
+	width:545px;
+	margin-right:90px;
+}
+
+section#sub02-s02 div.inner dl.f-text01 dt.title{
+	font-size:24px;
+	color:#fa7a08;
+	font-family: 'notokr-regular';
+	padding-top:350px;
+	padding-bottom:25px;
+}
+
+section#sub02-s02 div.inner dl.f-text01 dt.text{
+	font-size:16px;
+	color:#000;
+	font-family: 'notokr-regular';
+	line-height:2em;
+}
+
+section#sub02-s02 div.inner dl.f-text02{
+	float:left;
+	border:0px solid red;
+}
+
+section#sub02-s02 div.inner dl.f-text02 dd{
+	position:absolute;
+	bottom:755px;
+	right:0;
+}
+
+section#sub02-s02 div.inner dl.f-text02 dt{
+	width:545px;
+}
+
+section#sub02-s02 div.inner dl.f-text02 dt.title{
+	font-size:44px;
+	color:#789a40;
+	font-family: 'notokr-regular';
+	padding-top:1050px;
+	padding-bottom:25px;
+}
+
+section#sub02-s02 div.inner dl.f-text02 dt.text{
+	font-size:16px;
+	color:#000;
+	font-family: 'notokr-regular';
+	line-height:2em;
+}
+
+section#sub02-s02 div.inner dl.f-text03{float:right;}
+
+section#sub02-s02 div.inner dl.f-text03 dd{
+	position:absolute;
+	bottom:113px;
+	left:0;
+}
+
+section#sub02-s02 div.inner dl.f-text03 dt{
+	width:610px;
+}
+
+section#sub02-s02 div.inner dl.f-text03 dt.title{
+	font-size:24px;
+	color:#000;
+	font-family: 'notokr-regular';
+	padding-top:920px;
+	padding-bottom:25px;
+}
+
+section#sub02-s02 div.inner dl.f-text03 dt.text{
+	font-size:16px;
+	color:#000;
+	font-family: 'notokr-regular';
+	line-height:2em;
+}
+
+/*갤러리&홍보영상*/
+section#sub02-s03{
+	width:100%; height:918px;
+}
+
+section#sub02-s03 div.inner{
+	width:1000px;
+	height:100%;
+	margin:0 auto;
+	position:relative;
+}
+
+section#sub02-s03 div.inner h1{
+	font-size:40px;
+	color:#000;
+	font-family: 'notokr-regular';
+	text-align:center;
+	padding-top:10px;
+	padding-bottom:70px;
+}
+
+section#sub02-s03 div.inner ul li{
+	float:left;
+	margin-right:37px;
+}
+
+section#sub02-s03 div.inner ul li:last-child{
+	margin-right:0;
+}
+
+section#sub02-s03 div.inner ul.gallery02{
+	border:0px solid red;
+	padding-top:375px;
+}
+/*지도*/
+section#sub02-s04{
+	width:100%; height:800px;
+}
+section#sub02-s04 div.g-map{
+	height:443px;
+	width:100%;
+}
+
+section#sub02-s04 div.inner{
+	width:960px;
+	height:359px;
+	margin:0 auto;
+}
+
+section#sub02-s04 div.maps{
+	height:114px;
+	border:0px solid pink;
+	background-image:url('../image/sub02/map-icon.png'),url('../image/sub02/call-icon.png'),url('../image/sub02/pax-icon.png');
+	background-repeat:no-repeat,no-repeat,no-repeat;
+	background-position:284px 46px,315px 89px,487px 87px;
+}
+
+section#sub02-s04 div.maps p.map{
+	margin-left:315px;
+	font-size:20px;
+	color:#000;
+	font-family: 'notokr-regular';
+	padding-bottom:20px;
+	padding-top:45px;
+}
+section#sub02-s04 div.maps p.call{
+	float:left;
+	margin-right:45px;
+	margin-left:345px;
+}
+section#sub02-s04 div.maps p.call,p.fax{
+	font-size:13px;
+	color:#000;
+	font-family: 'notokr-regular';
+	
+}
+
+section#sub02-s04 div.load{
+	width:960px;
+	margin:0 auto;
+	padding-top:56px;
+}
+
+section#sub02-s04 div.load p{
+	padding-bottom:8px;
+	margin-left:160px;
+	font-size:18px;
+	color:#000;
+	font-family: 'notokr-regular';
+}
+/*삼양패밀리 서브 끝*/
+
+/*서브 공지사항 시작*/
+/*공지사항비쥬얼*/
+section#sub03-visual{
+	width:100%; height:305px; background:#ee8ea0;
+}
+
+section#sub03-visual div.inner{
+	width:1100px;
+	height:100%;
+	margin:0 auto;
+	position:relative;
+}
+
+section#sub03-visual div.inner ul{
+	padding-top:85px;
+}
+
+section#sub03-visual div.inner ul li.title{
+	font-family: 'notokr-regular';
+	font-size:52px;
+	color:#fff;
+	padding-bottom:23px;
+}
+section#sub03-visual div.inner ul li.text1{
+	font-family: 'notokr-regular';
+	font-size:23px;
+	color:#fff;
+}
+
+section#sub03-visual div.inner ul li.img{
+	position:absolute;
+	top:75px;
+	right:54px;
+}
+
+/*내리는 메뉴*/
+section#sub03-visual div.inner div.v-menu{
+	padding-top:63px;
+}
+
+section#sub03-visual div.inner div.v-menu select{
+	float:left;
+	width:50%;
+	padding:7px 38px;
+	font-size:20px;
+	color:#fff;
+	font-family: 'notokr-regular';
+}
+
+section#sub03-visual div.inner div.v-menu select.first{
+	background:#ea7392;
+}
+
+section#sub03-visual div.inner div.v-menu select.second{
+	background:#e95a83;
+}
+/*공지사항 비쥬얼끝*/
+
+section#sub03-s01{
+	height:1052px;
+	width:100%;
+}
+
+section#sub03-s01 div.inner{
+	width:1100px;
+	height:100%;
+	margin:0 auto;
+}
+
+section#sub03-s01 div.inner h1{
+	font-size:48px;
+	color:#e86102;
+	font-family: 'notokr-regular';
+	padding-top:75px;
+	padding-bottom:35px;
+}
+
+section#sub03-s01 div.inner div.search-menu{
+	height:80px;
+	background:#e2e6e8;
+	position:relative;
+	margin-bottom:19px;
+}
+
+section#sub03-s01 div.inner .search-menu .notice-menu select{
+	border:1px solid #a9adaf;
+	float:left;
+	font-size:14px;
+	color:#686766;
+	font-family: 'notokr-regular';
+	width:122px;
+	padding:3.4px 0;
+}
+
+section#sub03-s01 div.inner .search-menu .notice-menu select.first{
+	position:absolute;
+	left:26px;
+	top:25px;
+}
+
+section#sub03-s01 div.inner .search-menu .notice-menu select.second{
+	position:absolute;
+	right:309px;
+	top:25px;
+}
+
+section#sub03-s01 div.inner .search-menu .search{
+	position:absolute;
+	right:94px;
+	top:25px;
+}
+
+section#sub03-s01 div.inner .search-menu .search input#search-box{
+	border:1px solid #a9adaf;
+	width:209px;
+	height:30px;
+}
+
+section#sub03-s01 div.inner .search-menu .search input{
+	text-indent:10px;
+}
+
+.search-menu > .btn01{
+	position:absolute;
+	right:36px;
+	top:25px;
+	background:#706d6d;
+	font-size:14px;
+	color:#fff;
+	font-family: 'notokr-regular';
+	width:54px;
+	height:30px;
+}
+
+/*공지테이블*/
+table{
+	width: 100%;
+    margin: 0;
+    padding: 0;
+    border-spacing: 0;
+    border: 0;
+    border-collapse: collapse;
+    word-break: break-all;
+}
+
+thead{
+	display: table-header-group;
+    vertical-align: middle;
+}
+
+tr{
+	display: table-row;
+    vertical-align: inherit;
+}
+
+th{
+	border-top:2px  solid #e86102;
+	padding: 17px 0 16px 0;
+}
+
+tbody{
+	display: table-row-group;
+    vertical-align: middle;
+}
+
+section#sub03-s01 .inner table td{
+	padding: 17px 0 16px 0;
+    color: #a19e9c;
+    font-family: 'notokr-regular';
+    font-size: 14px;
+	border-top: 1px solid #dcdcdc;
+	text-align: center;
+}
+
+section#sub03-s01 .inner table td.subject{
+    font-family: 'notokr-regular';
+	font-size:16px;
+	color:#fff;
+    text-align:left;
+	padding-left:20px;
+	
+}
+
+section#sub03-s01 .inner table tr:last-child{
+	border-bottom:1px solid #7b7674;
+}
+
+/*페이지 넘기기*/
+section#sub03-s01 .inner ul.pager{
+	height: 27px;
+    margin-top: 55px;
+    width: 100%;
+	text-align:center;
+}
+section#sub03-s01 .inner ul.pager li{
+	display:inline-block;
+	margin: 0 10px;
+}
+
+section#sub03-s01 .inner ul.pager li a{
+	font-family: 'notokr-regular';
+	font-size:14px;
+	color:#7a7674;
+}
+section#sub03-s01 .inner ul.pager li.active a{
+	font-weight: bold;
+    color: #e86102;
+    border-bottom: 1px solid #e86102;
+}
+/*서브 공지사항 끝*/
+
+/*서브캐릭터 소개*/
+section#sub04-visual{
+	width:100%; height:305px; background:#b195da;
+}
+
+section#sub04-visual div.inner{
+	width:1100px;
+	height:100%;
+	margin:0 auto;
+	position:relative;
+}
+
+section#sub04-visual div.inner ul{
+	padding-top:85px;
+}
+
+section#sub04-visual div.inner ul li.title{
+	font-family: 'notokr-regular';
+	font-size:52px;
+	color:#fff;
+	padding-bottom:23px;
+}
+section#sub04-visual div.inner ul li.text1{
+	font-family: 'notokr-regular';
+	font-size:23px;
+	color:#fff;
+}
+
+section#sub04-visual div.inner ul li.img{
+	position:absolute;
+	top:51px;
+	right:30px;
+}
+
+/*내리는 메뉴*/
+section#sub04-visual div.inner div.v-menu{
+	padding-top:63px;
+}
+
+section#sub04-visual div.inner div.v-menu select{
+	float:left;
+	width:50%;
+	padding:7px 38px;
+	font-size:20px;
+	color:#fff;
+	font-family: 'notokr-regular';
+}
+
+section#sub04-visual div.inner div.v-menu select.first{
+	background:#9570c7;
+}
+
+section#sub04-visual div.inner div.v-menu select.second{
+	background:#835dbd;
+}
+/*캐릭터소개 비쥬얼끝*/
+section#sub04-s01 .inner{
+	width:1200px;
+	height:100%;
+	margin:0 auto;
+	position:relative;
+}
+
+section#sub04-s01 .inner .title{
+	height:687px;
+	background:#e86102;
+	margin-top:80px;
+	margin-bottom:92px;
+	text-align:center;
+	background-image:url('../image/sub04/title-img.png');
+	background-repeat:no-repeat;
+	background-position:center 254px;
+}
+
+section#sub04-s01 .inner .title .text1{
+	position:absolute;
+	top:35px;
+	left:445px;
+	font-size:30px;
+	color:#fff;
+	font-family: 'notokr-regular';
+	border:2px solid #fff;
+	width:315px;
+	padding:10px 0;
+	border-radius:30px;
+}
+
+section#sub04-s01 .inner .title .text2{
+	padding-top:130px;
+	font-size:80px;
+	color:#fff;
+	font-family: 'notokr-regular';
+}
+
+section#sub04-s01 .inner .hochi{
+	background:#fa5959;
+	height:597px;
+	background-image:url('../image/sub04/hochi2.png'),url('../image/sub04/hochi.png');
+	background-repeat:no-repeat,no-repeat;
+	background-position:50px 120px,205px 56px;
+}
+
+section#sub04-s01 .inner .neng{
+	background:#58c1fb;
+	height:597px;
+	margin-top:33px;
+	margin-bottom:33px;
+	background-image:url('../image/sub04/neng2.png'),url('../image/sub04/neng.png');
+	background-repeat:no-repeat,no-repeat;
+	background-position:50px 120px,184px 93px;
+}
+
+section#sub04-s01 .inner .mozzi{
+	background:#f9924d;
+	height:597px;
+	margin-bottom:137px;
+	background-image:url('../image/sub04/mozzi2.png'),url('../image/sub04/mozzi.png');
+	background-repeat:no-repeat,no-repeat;
+	background-position:50px 120px,177px 51px;
+}
+section#sub04-s01 .inner dl{
+	float:right;
+	width:480px;
+	border:0px solid red;
+	margin-right:90px;
+}
+section#sub04-s01 .inner dl dt.c-text1{
+	font-size:48px;
+	color:#fff;
+	font-family: 'notokr-regular';
+	padding-top:140px;
+	float:left;
+	margin-right:18px;
+}
+
+section#sub04-s01 .inner dl dt.c-text2{
+	font-size:30px;
+	color:#fff;
+	font-family: 'notokr-regular';
+	padding-bottom:40px;
+	padding-top:160px;
+	
+}
+
+section#sub04-s01 .inner dl dt.c-text3{
+	font-size:20px;
+	color:#fff;
+	font-family: 'notokr-regular';
+	line-height:1.7em;
+}
+
+section#sub04-s01 .inner div.hochi dl dt.c-text3{
+	width:472px;
+	height:229px;
+}
+
+section#sub04-s01 .inner div.neng dl dt.c-text3{
+	width:470px;
+	height:229px;
+}
+
+section#sub04-s01 .inner div.mozzi dl dt.c-text3{
+	width:472px;
+	height:229px;
+}
+
+section#sub04-s01 .inner dl dd{
+	font-size:18px;
+	color:#000;
+	font-family: 'notokr-regular';
+}
+/*서브캐릭터 소개끝*/
+
+/*서브회사소개*/
+/*회사소개 비쥬얼*/
+section#sub05-visual{
+	width:100%; height:305px; background:#85dab6;
+}
+
+section#sub05-visual div.inner{
+	width:1100px;
+	height:100%;
+	margin:0 auto;
+	position:relative;
+}
+
+section#sub05-visual div.inner ul{
+	padding-top:85px;
+}
+
+section#sub05-visual div.inner ul li.title{
+	font-family: 'notokr-regular';
+	font-size:52px;
+	color:#fff;
+	padding-bottom:23px;
+}
+section#sub05-visual div.inner ul li.text1{
+	font-family: 'notokr-regular';
+	font-size:23px;
+	color:#fff;
+}
+
+section#sub05-visual div.inner ul li.img{
+	position:absolute;
+	top:0px;
+	right:25px;
+}
+
+/*내리는 메뉴*/
+section#sub05-visual div.inner div.v-menu{
+	padding-top:63px;
+}
+
+section#sub05-visual div.inner div.v-menu select{
+	float:left;
+	width:50%;
+	padding:7px 38px;
+	font-size:20px;
+	color:#fff;
+	font-family: 'notokr-regular';
+}
+
+section#sub05-visual div.inner div.v-menu select.first{
+	background:#70c7a0;
+}
+
+section#sub05-visual div.inner div.v-menu select.second{
+	background:#5dbd91;
+}
+/*회사소개 비쥬얼끝*/
+section#sub05-s01{
+}
+section#sub05-s01 div.inner{
+	width:1100px;
+	height:100%;
+	margin:0 auto;
+}
+
+section#sub05-s01 div.inner h1{
+	font-family: 'notokr-regular';
+	font-size:48px;
+	color:#000;
+	padding-top:75px;
+	padding-bottom:20px;
+}
+
+section#sub05-s01 .tabs ul.company-tab{
+	overflow: hidden;
+}
+section#sub05-s01 .tabs ul.company-tab li:first-child{
+	border-left:1px solid #ccc;
+	border-bottom: 1px solid #ff6a00;
+}
+
+section#sub05-s01 .tabs ul.company-tab li{
+	width:220px;
+	padding:20px 0;
+	text-align:center;
+	float:left;
+	border-right:1px solid #ccc;
+	border-top:1px solid #ccc;
+	border-bottom: 1px solid #ff6a00;
+	position:relative;
+	bottom:-1px;
+}
+
+section#sub05-s01 .tabs ul.company-tab li.tab-current{
+	border-bottom: none;
+	border-left:1px solid #ff6a00;
+	border-right:1px solid #ff6a00;
+	border-top:1px solid #ff6a00;
+	margin-left:-1px;
+	position:relative;
+	bottom:-1px;
+}
+
+section#sub05-s01 .tabs ul.company-tab li:first-child.tab-current{
+	margin-left:0px;
+}
+
+section#sub05-s01 .tabs li.tab-current:before,
+section#sub05-s01 .tabs li.tab-current:after {
+	content: '';
+	position: absolute;
+	height: 1px;
+	right: 100%;
+	bottom: 0;
+	width: 1100px;
+	background: #ff6a00;
+	}
+
+section#sub05-s01 .tabs li.tab-current:after {
+	right: auto;
+	left: 100%;
+	width: 1100px;
+}
+
+section#sub05-s01 .inner .tabs li a{
+	font-family: 'notokr-regular';
+	font-size:18px;
+	color:#000;
+}
+
+section#sub05-s01 .inner .tabs li.tab-current a{
+	color:#ff6a00;
+}
+
+section#sub05-s01 .content section {
+	display: none;
+	margin: 0 auto;
+}
+
+section#sub05-s01 .content section:before,
+section#sub05-s01 .content section:after {
+	content: '';
+	display: table;
+}
+
+section#sub05-s01 .content section:after {
+	clear: both;
+}
+
+section#sub05-s01 .content section.content-current {
+	display: block;
+}
+
+section#sub05-s01 .inner .all01{
+	margin-top:60px;
+	height:2082px;
+	background-image:url('../image/sub05/p-img1.png'),url('../image/sub05/p-img2.png')
+	,url('../image/sub05/p-img3.png'),url('../image/sub05/p-4.png'),url('../image/sub05/p-img4.png'),url('../image/sub05/p-map.png');
+	background-repeat:no-repeat,no-repeat,no-repeat,no-repeat,no-repeat,no-repeat;
+	background-position: 0 top,right 380px,80px 472px,center 1098px,left 40px bottom 85px,center bottom 38px;
+	position:relative;
+}
+section#sub05-s01 div.inner div.p01{
+	border:0px solid blue;
+	padding-top:15px;
+}
+
+section#sub05-s01 div.inner div.p01 p{
+	margin-left:585px;
+}
+
+section#sub05-s01 div.inner p.p-text1{
+	font-family: 'notokr-regular';
+	font-size:20px;
+	color:#ff6a00;
+	padding-bottom:10px;
+}
+
+section#sub05-s01 div.inner p.p-text3{
+	font-family: 'notokr-regular';
+	font-size:20px;
+	color:#ff6a00;
+	padding-top:18px;
+	padding-bottom:10px;
+}
+
+section#sub05-s01 div.inner p.p-text2{
+	font-family: 'notokr-regular';
+	font-size:16px;
+	color:#585857;
+	line-height:1.5em;
+}
+
+section#sub05-s01 div.inner p.p-text4{
+	font-family: 'notokr-regular';
+	font-size:16px;
+	color:#585857;
+	line-height:1.5em;
+}
+
+section#sub05-s01 div.inner div.p02{
+	margin-left:620px;
+	margin-top:385px;
+}
+
+section#sub05-s01 div.inner div.p03{
+	margin-left:95px;
+	margin-top:28px;
+}
+
+section#sub05-s01 div.inner div.p04{
+	margin-top:110px;
+	text-align:center;
+}
+
+section#sub05-s01 div.inner div.p04 p.p01{
+	font-family: 'notokr-regular';
+	font-size:28px;
+	color:#ff6a00;
+	padding-bottom:10px;
+}
+
+section#sub05-s01 div.inner div.p04 p.p02{
+	font-family: 'notokr-regular';
+	font-size:17px;
+	color:#000;
+	padding-bottom:10px;
+}
+
+section#sub05-s01 div.inner div.p04 p.p03{
+	font-family: 'notokr-regular';
+	font-size:16px;
+	color:#484a43;
+	line-height:1.5em;
+}
+
+section#sub05-s01 div.inner div.p05{
+	float:right;
+	padding-top:215px;
+}
+
+section#sub05-s01 div.inner div.p05 p.kfood{
+	font-family: 'notokr-regular';
+	font-size:16px;
+	color:#484a43;
+	line-height:1.5em;
+}

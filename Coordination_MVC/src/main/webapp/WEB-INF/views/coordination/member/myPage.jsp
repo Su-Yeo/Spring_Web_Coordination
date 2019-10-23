@@ -19,8 +19,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
 
   <!-- Link Swiper's CSS -->
-  <link rel="stylesheet" href="/resources/css/swiper.min.css">
-
+<link rel="stylesheet" href="/resources/css/swiper.min.css">
+<link rel="stylesheet" href="/resources/css/import.css" />
   <!-- Demo styles -->
   <style>
     html, body {
@@ -60,74 +60,95 @@
   </style>
 </head>
 <body>
-<%
-	String path = "C:\\img\\user\\";
-%>
-<!-- Nav -->
-<jsp:include page="../nav.jsp"></jsp:include>
-<!-- End Nav -->
+	<%
+		String path = "C:\\img\\user\\";
+	%>
+	<!-- Nav -->
+	<jsp:include page="../nav.jsp"></jsp:include>
+	<!-- End Nav -->
+	
+	<a href="imgUpload">나만의 옷장 등록</a>
+	
+	${sessionScope.userName}님의 옷장
+	<c:if test="${empty ClosetList}">
+		<h2>나만의 옷장이 비어있습니다.</h2>
+	</c:if>
+	<div class="container" style="text-align:center;">
+		<section id="all">
+			<div id="tabs" class="tabs">
+				<ul class="menu">
+					<li><a href=".mycloth">옷장</a></li>
+					<li><a href=".coordi">코디</a></li>
+				</ul>
+				<div class="content"><!--content전체-->
+				<section class="mycloth"><!--//옷장 섹션-->
+					<!-- Swiper -->
+					<div class="swiper-container">
+						<div class="swiper-wrapper">
+							<c:forEach items="${ClosetList}" var="closet">
+								<div class="swiper-slide">
+									<a href="updateClosetForm?num=${closet.num}">
+										<img style="border: 1px solid gray;width:300px;height:350px;" src="/displayImg?name=${closet.img}&folder=user"/>
+									</a>
+								</div>
+							</c:forEach>
+						</div>
+						<!-- Add Pagination -->
+						<div class="swiper-pagination"></div>
+						<!-- Add Arrows -->
+						<div class="swiper-button-next swiper-button-black" style="opacity:0.5;"></div>
+						<div class="swiper-button-prev swiper-button-black" style="opacity:0.5;"></div>
+					</div>
+				</section><!--//코디 섹션-->
+				<section class="coordi">
+					코디, 코디, 코디
+				</section>
+				</div><!-- /content -->
+			</div><!--//tabs-->
+		</section>
+	</div>	
+	<script src="/resources/js/cbpFWTabs.js"></script>
+	<script>
+		new CBPFWTabs( document.getElementById( 'tabs' ) );
+	</script>
 
-<a href="imgUpload">나만의 옷장 등록</a>
-
-<div></div>
-${sessionScope.userName}님의 옷장
-<c:if test="${empty ClosetList}">
-	<h2>나만의 옷장이 비어있습니다.</h2>
-</c:if>
-<div class="container" style="text-align:center;">
-<!-- Swiper -->
-  <div class="swiper-container">
-    <div class="swiper-wrapper">
-    <c:forEach items="${ClosetList}" var="closet">
-      <div class="swiper-slide"><a href="updateClosetForm?num=${closet.num}">
-            <img style="border: 1px solid gray;width:300px;height:350px;" src="/displayImg?name=${closet.img}&folder=user"/>
-		</a></div>
-		</c:forEach>
-    </div>
-    <!-- Add Pagination -->
-    <div class="swiper-pagination"></div>
-    <!-- Add Arrows -->
-    <div class="swiper-button-next swiper-button-black" style="opacity:0.5;"></div>
-    <div class="swiper-button-prev swiper-button-black" style="opacity:0.5;"></div>
-  </div>
-</div>
-  <!-- Swiper JS -->
-  <script src="/resources/js/swiper.min.js"></script>
-
-  <!-- Initialize Swiper -->
-  <script>
-    var swiper = new Swiper('.swiper-container', {
-      slidesPerView: 3,
-      spaceBetween: 20,
-      loop: true,
-      loopFillGroupWithBlank: true,
-      pagination: {
-        el: '.swiper-pagination',
-        clickable: true,
-      },
-      navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-      },
-      breakpoints: {
-			1024: {
-				slidesPerView: 3,
-				spaceBetween: 20
-			},
-			780: {
-				slidesPerView: 2,
-				spaceBetween: 18
-			},
-			640: {
-				slidesPerView: 2,
-				spaceBetween: 25
-			},
-			480: {
-				slidesPerView: 1,
-				spaceBetween: 0
-			}
-		}
-    });
-  </script>
+	<!-- Swiper JS -->
+	<script src="/resources/js/swiper.min.js"></script>
+	
+	<!-- Initialize Swiper -->
+	<script>
+	  var swiper = new Swiper('.swiper-container', {
+		    slidesPerView: 3,
+		    spaceBetween: 20,
+		    loop: true,
+		    loopFillGroupWithBlank: true,
+		    pagination: {
+		      el: '.swiper-pagination',
+		      clickable: true,
+		    },
+		    navigation: {
+		      nextEl: '.swiper-button-next',
+		      prevEl: '.swiper-button-prev',
+		    },
+		    breakpoints: {
+				1024: {
+					slidesPerView: 3,
+					spaceBetween: 20
+				},
+				780: {
+					slidesPerView: 2,
+					spaceBetween: 18
+				},
+				640: {
+					slidesPerView: 2,
+					spaceBetween: 25
+				},
+				480: {
+					slidesPerView: 1,
+					spaceBetween: 0
+				}
+		   }
+	  });
+	</script>
 </body>
 </html>
