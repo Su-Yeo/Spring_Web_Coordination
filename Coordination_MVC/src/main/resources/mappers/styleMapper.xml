@@ -63,12 +63,60 @@
   	
   	<!-- 관리자가 데이터 검증 또는 수정할 때 사용하기 위한 SQL문 -->
   	<select id="StyleOne" resultType="styleVO">
-  		SELECT 
+  		SELECT
   			*
-  		FROM 
+  		FROM
   			style
   		WHERE 
   			num=#{num}
+  	</select>
+  	
+  	<!-- 사용자가 나만의 옷장에서 옷 클릭 시, 해당 옷을 입은 코디룩 추천 -->
+  	<select id="StyleRecommendation" resultType="styleVO">
+  		SELECT
+  			*
+  		FROM
+  			style
+  		WHERE
+  			1=1
+  		AND
+  			identify='y'
+  		<if test="top != null">
+  		AND
+  			top=#{top}
+  		AND	
+  			top_color=#{top_color}
+  		</if>
+  		<if test="pants != null">
+  		AND
+  			pants=#{pants}
+  		AND
+  			pants_color=#{pants_color}
+  		</if>
+  		LIMIT
+  			#{startList}, #{listSize}
+  	</select>
+  	
+  	<!-- COUNT -->
+  	<select id="StyleRecommendationCount" resultType="int">
+  		SELECT 
+  			COUNT(*) as listCnt
+  		FROM 
+  			style
+  		WHERE
+  			identify='y'
+  		<if test="top != null">
+  		AND
+  			top=#{top}
+  		AND	
+  			top_color=#{top_color}
+  		</if>
+  		<if test="pants != null">
+  		AND
+  			pants=#{pants}
+  		AND
+  			pants_color=#{pants_color}
+  		</if>
   	</select>
   	
   	<!-- 관리자가 이미지 수정할 때 사용하기 위한 SQL문 -->

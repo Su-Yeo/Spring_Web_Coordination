@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.coordination.dao.StyleDAO;
 import com.coordination.dto.StyleVO;
-import com.coordination.main.Pagination;
+import com.coordination.main.AdminPagination;
 
 @Service
 public class StyleServiceImpl implements StyleService {
@@ -25,7 +25,7 @@ public class StyleServiceImpl implements StyleService {
 	
 	//관리자-이미지 불러오기
 	@Override
-	public List<StyleVO> StyleList(Pagination pagination) throws Exception {
+	public List<StyleVO> StyleList(AdminPagination pagination) throws Exception {
 		
 		return dao.StyleList(pagination);
 	}
@@ -39,7 +39,7 @@ public class StyleServiceImpl implements StyleService {
 	
 	//검증되지 않은 이미지 불러오기
 	@Override
-	public List<StyleVO> StyleListIdentify(Pagination pagination) throws Exception {
+	public List<StyleVO> StyleListIdentify(AdminPagination pagination) throws Exception {
 		
 		return dao.StyleListIdentify(pagination);
 	}
@@ -57,6 +57,20 @@ public class StyleServiceImpl implements StyleService {
 		
 		vo.setNum(num);
 		return dao.StyleOne(vo);
+	}
+	
+	//사용자가 나만의 옷장에서 옷 클릭 시, 해당 옷을 입은 코디룩 추천
+	@Override
+	public List<StyleVO> StyleRecommendation(StyleVO vo) throws Exception {
+		
+		return dao.StyleRecommendation(vo);
+	}
+	
+	//사용자가 나만의 옷장에서 옷 클릭 시, 해당 옷을 입은 코디룩 추천 이미지 갯수
+	@Override
+	public int StyleRecommendationCount() throws Exception {
+		
+		return dao.StyleRecommendationCount();
 	}
 
 	//이미지 업데이트

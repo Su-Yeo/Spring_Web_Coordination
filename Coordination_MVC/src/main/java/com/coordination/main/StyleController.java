@@ -125,11 +125,11 @@ public class StyleController {
 		int listCnt = service.StyleListIdentifyCount();
 		
 		//Pagination 객체생성
-		Pagination pagination = new Pagination();
-		pagination.pageInfo(page, range, listCnt);
+		AdminPagination adminPagination = new AdminPagination();
+		adminPagination.pageInfo(page, range, listCnt);
 		
-		model.addAttribute("pagination", pagination);
-		model.addAttribute("StyleIdentifyList", service.StyleListIdentify(pagination));
+		model.addAttribute("pagination", adminPagination);
+		model.addAttribute("StyleIdentifyList", service.StyleListIdentify(adminPagination));
 		
 		return "coordination/admin/style/Identify";
 	}	
@@ -185,11 +185,11 @@ public class StyleController {
 		int listCnt = service.StyleListCount();
 				
 		//Pagination 객체생성
-		Pagination pagination = new Pagination();
-		pagination.pageInfo(page, range, listCnt);
+		AdminPagination adminPagination = new AdminPagination();
+		adminPagination.pageInfo(page, range, listCnt);
 				
-		model.addAttribute("pagination", pagination);
-		model.addAttribute("StyleList", service.StyleList(pagination));
+		model.addAttribute("pagination", adminPagination);
+		model.addAttribute("StyleList", service.StyleList(adminPagination));
 				
 		return "coordination/admin/style/StyleList";
 	}
@@ -208,5 +208,33 @@ public class StyleController {
 		model.addAttribute("data", "updateStyle");
 		
 		return "coordination/admin/style/UpdateForm";
+	}
+	
+	//사용자가 나만의 옷장에서 옷 클릭 시, 해당 옷을 입은 코디룩 추천
+	@RequestMapping(value = "Recommendation", method = RequestMethod.GET)
+	public String Recommendation(StyleVO vo,
+			Model model,
+			HttpServletRequest request,
+			@RequestParam(required = false, defaultValue = "1") int page,
+			@RequestParam(required = false, defaultValue = "1") int range) 
+			throws Exception{
+		
+		//전체 페이지 갯수
+		int listCnt = service.StyleRecommendationCount();
+						
+		//Pagination 객체생성
+		//UserPagination userPagination = new UserPagination();
+		//userPagination.pageInfo(page, range, listCnt);
+		
+		StyleVO pagination = new StyleVO();
+		pagination.pageInfo(page, range, listCnt);
+		
+		vo.setTop("jacket");
+		vo.setTop_color("black");
+		
+		model.addAttribute("pagination", pagination);
+		model.addAttribute("StyleList", service.StyleRecommendation(vo));
+						
+		return "coordination/member/Recommendation";
 	}
 }

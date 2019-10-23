@@ -1,9 +1,9 @@
 package com.coordination.main;
 
-public class Pagination {
+public class AdminPagination {
 
-	private int listSize = 4;             //초기값으로 목록개수를 10으로 셋팅
-	private int rangeSize = 4;            //초기값으로 페이지범위를 10으로 셋팅
+	private int listSize = 4;             //초기값으로 목록개수를 4으로 셋팅
+	private int rangeSize = 4;            //초기값으로 페이지범위를 4으로 셋팅
 	private int page;
 	private int range;
 	private int listCnt;

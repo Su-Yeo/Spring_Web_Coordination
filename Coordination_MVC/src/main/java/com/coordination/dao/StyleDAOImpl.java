@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.coordination.dto.StyleVO;
-import com.coordination.main.Pagination;
+import com.coordination.main.AdminPagination;
 
 @Repository
 public class StyleDAOImpl implements StyleDAO {
@@ -30,7 +30,7 @@ public class StyleDAOImpl implements StyleDAO {
 	
 	//관리자-이미지 불러오기
 	@Override
-	public List<StyleVO> StyleList(Pagination pagination) throws Exception {
+	public List<StyleVO> StyleList(AdminPagination pagination) throws Exception {
 		
 		return sqlSession.selectList(Namespace+".StyleList", pagination);
 	}
@@ -44,7 +44,7 @@ public class StyleDAOImpl implements StyleDAO {
 	
 	//검증되지 않은 이미지 불러오기
 	@Override
-	public List<StyleVO> StyleListIdentify(Pagination pagination) throws Exception {
+	public List<StyleVO> StyleListIdentify(AdminPagination pagination) throws Exception {
 		
 		return sqlSession.selectList(Namespace+".StyleListIdentify", pagination);
 	}
@@ -57,11 +57,26 @@ public class StyleDAOImpl implements StyleDAO {
 	}
 	
 	//업데이트를 위한 이미지 정보 불러오기
+	@Override
 	public List<StyleVO> StyleOne(StyleVO vo) throws Exception {
 
 		//Test
 		//vo.setNum(1);
 		return sqlSession.selectList(Namespace+".StyleOne", vo);
+	}
+	
+	//사용자가 나만의 옷장에서 옷 클릭 시, 해당 옷을 입은 코디룩 추천
+	@Override
+	public List<StyleVO> StyleRecommendation(StyleVO vo) throws Exception {
+		
+		return sqlSession.selectList(Namespace+".StyleRecommendation", vo);
+	}
+	
+	//사용자가 나만의 옷장에서 옷 클릭 시, 해당 옷을 입은 코디룩 추천 이미지 갯수
+	@Override
+	public int StyleRecommendationCount() throws Exception {
+		
+		return sqlSession.selectOne(Namespace+".StyleRecommendationCount");
 	}
 
 	//이미지 업데이트
