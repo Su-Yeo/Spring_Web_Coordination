@@ -62,14 +62,15 @@ public class StyleController {
 		
 		//삭제된 정보의 이미지명을 받아 프로젝트 내에 존재하는 해당 이미지 파일 삭제
 		String img = request.getParameter("img");
-		imgPath += "\\admin\\" + img;
+		String Path = "C:\\img\\admin\\" + img;
 		
 		try {
 			
 			vo.setNum(num);
 			
 			//프로젝트 내에 이미지 파일을 삭제하기 위한 파일 객체 선언
-			File file = new File(imgPath);
+			File file = new File(Path);
+			System.out.println("**********파일 위치 : " + file + " *****************");
 			
 			//해당 파일이 존재한다면 DB정보 삭제 + 이미지 삭제
 			if(file.exists() == true)
@@ -85,7 +86,6 @@ public class StyleController {
 				//해당 imgPath에 이미지가 존재하지 않아 삭제불가능
 				logger.info("==========이미지가 존재하지않아 삭제에 실패했습니다.==========");
 			}
-			
 			model.addAttribute("url", "deleteStyle");
 			
 		}catch(Exception e) {

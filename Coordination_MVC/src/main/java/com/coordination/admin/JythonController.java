@@ -12,6 +12,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -28,8 +29,8 @@ public class JythonController {
 	private String imgPath;
 	
 	@RequestMapping(value="parsing")
-	public String Tensorflow(Model model, HttpServletRequest request) throws Exception  {
-			
+	public String Tensorflow(Model model, HttpServletRequest request, HttpSession session) throws Exception  {
+		
 		//이미지 분석 객체 생성
 		TensorflowImpl tf = new TensorflowImpl();
 		
@@ -41,7 +42,8 @@ public class JythonController {
 		ImageDown(request);
 		
 		//쇼핑몰 이름 업데이트
-		String shopName = request.getParameter("shopName");	
+		String shopName = request.getParameter("shopName");
+		//String shopName = "바이슬림";
 		
 		//이동할 폴더
 		File folder = new File("C:\\img\\tensorflow");
@@ -60,7 +62,7 @@ public class JythonController {
 		//DB에 등록되지않은 tensorflow폴더 안에 있는 이미지명 추출
 		File[] listOfFiles = folder.listFiles();
 		
-		for (int i = 0; i <= listOfFiles.length; i++)
+		for (int i = 1; i <= listOfFiles.length; i++)
 		{
 			if(listOfFiles[i].isFile())
 			{

@@ -125,14 +125,18 @@
 			<label>Top</label>
         	<select name="top" class="form-control">
         		<option value="${style.top}">${style.top}</option>
-				<option value="coat">코트</option>
 				<option value="padding">패딩</option>
-				<option value="jacket">자켓</option>
+				<option value="coat">코트</option>
+				<option value="trenchcoat">트렌치코트</option>
+				<option value="leatherjacket">가죽자켓</option>
+				<option value="jacket">자켓/블레이저</option>	
 				<option value="cardigan">가디건</option>
-				<option value="sweatshirt">맨투맨</option>	
-				<option value="tshirt">티셔츠</option>
+				<option value="hood">후드티/후드집업</option>
+				<option value="vest">조끼</option>
+				<option value="knitwear">니트</option>
+				<option value="sweatshirt">긴팔/맨투맨</option>
 				<option value="shirt">셔츠</option>
-				<option value="halftshirt">반팔</option>
+				<option value="halftshrit">반팔</option>
 				<option value="halfshirt">반팔셔츠</option>
 			</select>
         </div>
@@ -153,6 +157,8 @@
 				<option value="red">red</option>
 				<option value="white">white</option>
 				<option value="yellow">yellow</option>
+				<option value="ivory">ivory</option>
+				<option value="pattern">pattern</option>
 			</select>
         </div>
         
@@ -161,8 +167,8 @@
 			<label>Pants</label>
         	<select name="pants" class="form-control">
         		<option value="${style.pants}">${style.pants}</option>
-				<option value="long">긴 바지</option>
-				<option value="short">짧은 바지</option>
+				<option value="pants">바지</option>
+				<option value="jeans">청바지</option>
 			</select>
         </div>
         
@@ -182,6 +188,8 @@
 				<option value="red">red</option>
 				<option value="white">white</option>
 				<option value="yellow">yellow</option>
+				<option value="ivory">ivory</option>
+				<option value="pattern">pattern</option>
 			</select>
         </div>
         
@@ -228,14 +236,18 @@
 			<label>Top</label>
         	<select name="top" class="form-control">
         		<option value="${style.top}">${style.top}</option>
-				<option value="coat">코트</option>
 				<option value="padding">패딩</option>
-				<option value="jacket">자켓</option>
+				<option value="coat">코트</option>
+				<option value="trenchcoat">트렌치코트</option>
+				<option value="leatherjacket">가죽자켓</option>
+				<option value="jacket">자켓/블레이저</option>	
 				<option value="cardigan">가디건</option>
-				<option value="sweatshirt">맨투맨</option>	
-				<option value="tshirt">티셔츠</option>
+				<option value="hood">후드티/후드집업</option>
+				<option value="vest">조끼</option>
+				<option value="knitwear">니트</option>
+				<option value="sweatshirt">긴팔/맨투맨</option>
 				<option value="shirt">셔츠</option>
-				<option value="halftshirt">반팔</option>
+				<option value="halftshrit">반팔</option>
 				<option value="halfshirt">반팔셔츠</option>
 			</select>
         </div>
@@ -256,6 +268,8 @@
 				<option value="red">red</option>
 				<option value="white">white</option>
 				<option value="yellow">yellow</option>
+				<option value="ivory">ivory</option>
+				<option value="pattern">pattern</option>
 			</select>
         </div>
         
@@ -264,8 +278,8 @@
 			<label>Pants</label>
         	<select name="pants" class="form-control">
         		<option value="${style.pants}">${style.pants}</option>
-				<option value="long">긴 바지</option>
-				<option value="short">짧은 바지</option>
+				<option value="pants">바지</option>
+				<option value="jeans">청바지</option>
 			</select>
         </div>
         
@@ -285,6 +299,8 @@
 				<option value="red">red</option>
 				<option value="white">white</option>
 				<option value="yellow">yellow</option>
+				<option value="ivory">ivory</option>
+				<option value="pattern">pattern</option>
 			</select>
         </div>
         

@@ -112,7 +112,7 @@ public class ClosetController {
 		num = Integer.parseInt(request.getParameter("num"));
 		
 		String img = request.getParameter("img");
-		imgPath += "\\user\\" + img;
+		String Path = "C:\\img\\user\\" + img;
 		
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
@@ -120,7 +120,7 @@ public class ClosetController {
 		try {
 			
 			//프로젝트 내에 이미지 파일을 삭제하기 위한 파일 객체 선언
-			File file = new File(imgPath);
+			File file = new File(Path);
 			//해당 파일이 존재한다면 DB정보 삭제 + 이미지 삭제
 			if(file.exists() == true)
 			{
