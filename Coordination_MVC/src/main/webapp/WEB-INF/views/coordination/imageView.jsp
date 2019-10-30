@@ -26,14 +26,14 @@
 	<div id="div_include">
 		<c:forEach items="${TemperatureStyle}" var="style" begin="1" end="12" step="1"> 
 			<div class="img_polaroid">
-				<a href="#styleModal" data-toggle="modal">
+				<!-- <a href="#styleModal" data-toggle="modal"> -->
 					<img style="width:340px;" class="w3-border w3-hover-border-red" src="/displayImg?name=${style.img}&folder=admin" />
 					<div class="img_container">
 						<div><b>${style.shopname}</b></div>
 	
-						<div>좋아요 : #명 <span style="margin: 0 0 0 55%;">버튼</span></div>
+						<div>좋아요 : #명 ${style.img} <span style="margin: 0 0 0 55%;">버튼</span></div>
 					</div>
-				</a>
+				<!-- </a> -->
 			</div>
 			
 			<!-- Image Model -->
@@ -42,7 +42,7 @@
 					<div class="modal-content">
 						<div class="modal-header">
 							<div align="center">
-			                	<img class="img-fluid" src="/displayImg?name=${style.img}&folder=admin">
+			                	<img style="width: 100%; height: 100%;" class="img-fluid" src="/displayImg?name=${style.img}&folder=admin">
 			                </div>
 			                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 						</div>

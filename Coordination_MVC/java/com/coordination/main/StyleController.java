@@ -229,8 +229,23 @@ public class StyleController {
 		StyleVO pagination = new StyleVO();
 		pagination.pageInfo(page, range, listCnt);
 		
-		vo.setTop("jacket");
-		vo.setTop_color("black");
+		//vo.setTop("jacket");
+		//vo.setTop_color("black");
+		
+		//옷의 종류, 색상 받아오기
+		String category = request.getParameter("category");
+		String color = request.getParameter("color");
+		
+		if(category.equals("pants") || category.equals("jeans"))
+		{
+			vo.setPants(category);
+			vo.setPants_color(color);
+		}
+		else
+		{
+			vo.setTop(category);
+			vo.setTop_color(color);
+		}
 		
 		model.addAttribute("pagination", pagination);
 		model.addAttribute("StyleList", service.StyleRecommendation(vo));

@@ -87,7 +87,7 @@
 						<div class="swiper-wrapper">
 							<c:forEach items="${ClosetList}" var="closet">
 								<div class="swiper-slide">
-									<a href="updateClosetForm?num=${closet.num}">
+									<a href="Recommendation?category=${closet.category}&color=${closet.color}">
 										<img style="border: 1px solid gray;width:300px;height:350px;" src="/displayImg?name=${closet.img}&folder=user"/>
 									</a>
 								</div>
