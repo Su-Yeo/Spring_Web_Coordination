@@ -33,7 +33,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.coordination.dao.StyleDAO;
+import com.coordination.dto.ClosetVO;
 import com.coordination.dto.StyleVO;
+import com.coordination.service.ClosetService;
 import com.coordination.weather.ApiExplorerWeather;
 import com.coordination.weather.CoordFetcher;
 import com.google.gson.JsonArray;
@@ -57,12 +59,6 @@ public class HomeController {
 	 * Simply selects the home view to render by returning its name.
 	 * @throws Exception 
 	 */
-	
-	@RequestMapping("nav")
-	public String nav() {
-		
-		return "coordination/nav";
-	}
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(@ModelAttribute StyleVO vo, Model model, Locale locale) throws Exception {
