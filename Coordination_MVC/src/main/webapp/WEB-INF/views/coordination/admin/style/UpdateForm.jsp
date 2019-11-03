@@ -202,6 +202,8 @@
         <!-- Submit -->
 		<div class="form-group" align="center">
             <button type="submit" class="btn btn-primary btn-lg" style="background: #61C7C1;">수정하기</button>
+            <input type="button" value="삭제하기" class="btn btn-primary btn-lg" style="background: #FFB4FF;"
+            onClick="location.href='deleteStyle?num=${style.num}&img=${style.img}'" />
         </div>
     </form>
 </div>

@@ -51,6 +51,9 @@ public class HomeController {
 	@Autowired
 	private StyleDAO styleDAO;
 	
+	@Autowired
+	private ClosetService service;
+	
 	private String top="경기도";
 	private String mdl="부천시소사구";
 	private String leaf="괴안동";
@@ -94,12 +97,6 @@ public class HomeController {
 		model.addAttribute("StyleList", img);
 		
 		return "coordination/index";
-	}
-	
-	@RequestMapping("index2")
-	public String index2() {
-		
-		return "coordination/index2";
 	}
 	
 	// Ajax 지역선택 처리 매핑

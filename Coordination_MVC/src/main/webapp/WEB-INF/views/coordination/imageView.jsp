@@ -6,18 +6,47 @@
 <head>
 <meta charset="UTF-8">
 <title></title>
-</head>
 <style>
 	a:link {text-decoration: none; color: black;}
 	a:visited {text-decoration: none; color: black;}
 	a:active {text-decoration: none; color: black;}
 	a:hover {text-decoration: none; color: black;}
-	
+	.img_polaroid img{
+		width:340px;
+	}
+	.cropping{
+		max-height:370px;
+		overflow:hidden;
+	}
+	.cropping img{
+		max-height:initial;
+	}
 	.imgstyle{
 		max-width: 100%;
 		height: auto;
+	/*----------------------------태블릿----------------------------*/
+	@media all and (min-width: 600px) and (max-width: 1279px) {
+		
+		
+		.img_polaroid img{
+			width:320px;
+		}
 	}
+	/*----------------------------태블릿끝----------------------------*/
+	
+	/*----------------------------모바일----------------------------*/
+	@media all and (max-width: 600px){
+		
+		.img_polaroid img{
+			width:100%;
+		}
+		.img_polaroid{
+			width:90%;
+		}
+	}
+	/*----------------------------모바일끝----------------------------*/
 </style>
+<<<<<<< HEAD
 <!-- 
 <script type="text/javascript">
 	function dress_save() {
@@ -26,18 +55,33 @@
 	}
 </script>
  -->
+=======
+</head>
+>>>>>>> 9a474b47786459439a7b8ca5a24cf041fda1256f
 <body>
 	<!-- <div style="clear:left">
 		<p class="p2" style="font-size:24px">Today's Coordination</p>
 	</div> -->
-
 	<div id="div_include">
+<<<<<<< HEAD
 		<c:forEach items="${TemperatureStyle}" var="style" begin="1" end="12" step="1"> 
 			<div class="img_polaroid" style="cursor: pointer;" data-toggle="modal" data-target="#${ style.num }">
+=======
+		<c:forEach items="${TemperatureStyle}" var="style" begin="1" end="12" step="1">   
+			<div class="img_polaroid">
+				<!-- <a href="#styleModal" data-toggle="modal"> -->
+					<div class="cropping">
+>>>>>>> 9a474b47786459439a7b8ca5a24cf041fda1256f
 					<img style="width:340px;" class="w3-border w3-hover-border-red" src="/displayImg?name=${style.img}&folder=admin" />
+					</div>
 					<div class="img_container">
 						<div><b>${style.shopname}</b></div>
+<<<<<<< HEAD
 						<div>좋아요 : #명 ${style.img} <span style="margin: 0 0 0 55%;">버튼</span></div>
+=======
+	
+						<div>좋아요 : #명 <span style="margin: 0 0 0 55%;">버튼</span></div>
+>>>>>>> 9a474b47786459439a7b8ca5a24cf041fda1256f
 					</div>
 			</div>
 			

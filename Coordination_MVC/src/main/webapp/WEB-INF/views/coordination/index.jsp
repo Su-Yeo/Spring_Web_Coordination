@@ -21,7 +21,15 @@
 <title>오늘 뭐 입지?</title>
 </head>
 <style type="text/css">
-	
+	.weatherTable{
+		width:96%;
+		margin:0 auto;
+		margin-top:20px;"
+	}
+	.table1 td{
+		width:380px;
+		padding:20px 10px 40px 10px;
+	}
 	/* Image Polaroid */
 	div.img_polaroid {
 		display: inline-block;
@@ -62,6 +70,22 @@
     		font-size:0;
 
 		}
+		.table1 td{
+			width:100%;
+			height:150px;
+			float:left;
+			padding:10px;
+			margin:0 auto;
+		}
+		.table1{
+			height:450px;
+		}
+		.weatherTable{
+			width:90%;
+			margin:0 auto;
+			margin-top:20px;
+			text-align:center;
+		}
 	}
 	/*----------------------------모바일끝----------------------------*/
 </style>
@@ -74,7 +98,7 @@
 <div class="container" style="text-align:center;">
 	
 	<!-- weather select start -->
-   	<div style="width:96%;margin:0 auto;margin-top:20px;">
+   	<div class="weatherTable">
 	    <jsp:include page="weather.jsp" flush="true" />
     </div>
 
@@ -85,13 +109,13 @@
 	</div>
 	
 	<footer>
-		<table class="table">
-			<tr>
-				<td valign="top">
+		<table class="table1">
+			<tr style="border-top:2px solid #ddd;">
+				<td style="padding:20px 10px 40px 10px;" valign="top">
 					<img src="/resources/icon/icon.png" style="width:40px; height:40px"><br>
 					<span style="font-size: 25px; font-family: cursive; font-weight: bold;">오늘 뭐 입지 ?</span><br>
 					<span style="font-size: 13px; font-weight: bold;">실제 옷장의 옷을 담다</span><br>
-					<span style="font-size: 8px;">
+					<span style="font-size: 10px;">
 						기계학습 된 모델이 실제 사진의 색상을 분석합니다.<br>
 						모든 패션 사진은 협력 쇼핑몰에서 제공되는 사진입니다.<br>
 						여러분에 옷장에 있는 다양한 사진을 등록하여 체험해보세요.<br>
@@ -102,7 +126,7 @@
 					<br>
 					<span style="font-size: 25px; font-family: cursive; font-weight: bold;">CS CENTER</span><br>
 					<span style="font-size: 13px; font-weight: bold;">010-9935-7482</span><br>
-					<span style="font-size: 8px;">
+					<span style="font-size: 10px;">
 						월-금 10:00AM ~ 18:00PM<br>
 						Lunch 13:00PM ~ 14:00PM
 					</span>

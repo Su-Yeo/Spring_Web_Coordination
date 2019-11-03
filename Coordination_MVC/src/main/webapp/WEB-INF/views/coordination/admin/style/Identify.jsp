@@ -191,7 +191,7 @@
 <div class="container">
 	<div class="row">
 		<div class="col-md-12">
-			<h2>관리자 Web Parsing <b>Identify</b></h2>
+			<h2>관리자 Web Parsing Data <b>Identify</b></h2>
 			<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="0">
   
 			<!-- Wrapper for carousel items -->

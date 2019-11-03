@@ -183,7 +183,7 @@ h2::after {
 <div class="container">
 	<div class="row">
 		<div class="col-md-12">
-			<h2>관리자 - 웹 파싱 데이터 <b>검증</b></h2>
+			<h2>관리자 - 오늘 뭐 입지? <b>추천 코디룩</b></h2>
 			<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="0">
 
 			<!-- Wrapper for carousel items -->
