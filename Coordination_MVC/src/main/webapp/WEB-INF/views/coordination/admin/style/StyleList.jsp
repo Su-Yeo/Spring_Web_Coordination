@@ -189,7 +189,7 @@
 <div class="container">
 	<div class="row">
 		<div class="col-md-12">
-			<h2>관리자 Web Parsing <b>Identify</b></h2>
+			<h2>관리자 Web Parsing Data <b>Update & Delete</b></h2>
 			<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="0">
   
 			<!-- Wrapper for carousel items -->
@@ -210,7 +210,7 @@
 									<div class="star-rating">
 
 									</div>
-									<a href="IdentifyUpdateForm?num=${style.num}" class="btn btn-primary" style="text-align: center; vertical-align: middle;">상세보기</a>
+									<a href="adminUpdateForm?num=${style.num}" class="btn btn-primary" style="text-align: center; vertical-align: middle;">상세보기</a>
 								</div>						
 							</div>
 						</div>

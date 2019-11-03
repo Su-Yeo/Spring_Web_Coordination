@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -100,16 +101,30 @@ public class StyleController {
 	
 	//관리자 메인Page
 	@RequestMapping("adminPage")
-	public String adminPage() {
+	public String adminPage(HttpSession session) {
 		
-		return "coordination/admin/style/admin";
+		if(! session.getAttribute("userId").equals("admin"))
+		{
+			return "redirect:/";
+		}
+		else
+		{
+			return "coordination/admin/style/admin";
+		}
 	}
 	
 	//관리자 - 데이터 등록1 → JythonController
 	@RequestMapping(value = "adminParsingList", method = RequestMethod.GET)
-	public String parsingList() {
+	public String parsingList(HttpSession session) {
 		
-		return "coordination/admin/style/ImageParsingList";
+		if(! session.getAttribute("userId").equals("admin"))
+		{
+			return "redirect:/";
+		}
+		else
+		{
+			return "coordination/admin/style/ImageParsingList";
+		}
 	}
 	
 	//관리자 - 데이터 검증1
@@ -117,97 +132,134 @@ public class StyleController {
 	public String goIdentify(StyleVO vo,
 			Model model,
 			HttpServletRequest request,
+			HttpSession session,
 			@RequestParam(required = false, defaultValue = "1") int page,
 			@RequestParam(required = false, defaultValue = "1") int range
 			) throws Exception {
 			
-		//전체 페이지 갯수
-		int listCnt = service.StyleListIdentifyCount();
-		
-		//Pagination 객체생성
-		AdminPagination adminPagination = new AdminPagination();
-		adminPagination.pageInfo(page, range, listCnt);
-		
-		model.addAttribute("pagination", adminPagination);
-		model.addAttribute("StyleIdentifyList", service.StyleListIdentify(adminPagination));
-		
-		return "coordination/admin/style/Identify";
+		if(! session.getAttribute("userId").equals("admin"))
+		{
+			return "redirect:/";
+		}
+		else
+		{
+			//전체 페이지 갯수
+			int listCnt = service.StyleListIdentifyCount();
+			
+			//Pagination 객체생성
+			AdminPagination adminPagination = new AdminPagination();
+			adminPagination.pageInfo(page, range, listCnt);
+			
+			model.addAttribute("pagination", adminPagination);
+			model.addAttribute("StyleIdentifyList", service.StyleListIdentify(adminPagination));
+			
+			return "coordination/admin/style/Identify";
+		}
 	}	
 	
 	//관리자 - 데이터 검증2
 	@RequestMapping(value = "IdentifyUpdateForm", method = RequestMethod.GET)
-	public String IdentifyUpdateForm(StyleVO vo, Model model, HttpServletRequest request) throws Exception {
+	public String IdentifyUpdateForm(StyleVO vo, Model model, HttpServletRequest request, HttpSession session) throws Exception {
 		
-		int num = 0;
-		num = Integer.parseInt(request.getParameter("num"));
-		
-		//데이터 검증을 위해 이동 될 Page
-		//data라는 이름에 IdentifyUpdate값을 준다
-		List<StyleVO> StyleOne = service.StyleOne(vo, num);
-		model.addAttribute("StyleOne", StyleOne);
-		model.addAttribute("data", "IdentifyUpdate");
-		
-		return "coordination/admin/style/UpdateForm";
+		if(! session.getAttribute("userId").equals("admin"))
+		{
+			return "redirect:/";
+		}
+		else
+		{
+			int num = 0;
+			num = Integer.parseInt(request.getParameter("num"));
+			
+			//데이터 검증을 위해 이동 될 Page
+			//data라는 이름에 IdentifyUpdate값을 준다
+			List<StyleVO> StyleOne = service.StyleOne(vo, num);
+			model.addAttribute("StyleOne", StyleOne);
+			model.addAttribute("data", "IdentifyUpdate");
+			
+			return "coordination/admin/style/UpdateForm";
+		}
 	}
 	
 	//관리자 - 데이터 검증3
 	@RequestMapping(value = "IdentifyUpdate", method = RequestMethod.POST)
-	public String IdentifyUpdate(StyleVO vo, Model model, HttpServletRequest request) {
+	public String IdentifyUpdate(StyleVO vo, Model model, HttpServletRequest request, HttpSession session) {
 			
-		try {
-				
-			vo.setNum(vo.getNum());
-			service.updateIndentify(vo);
-				
-			logger.info("==========관리자 이미지 검증 완료!==========");
-				
-			model.addAttribute("url", "IdentifyUpdate");
-				
-		}catch(Exception e) {
-			e.printStackTrace();
-				
-			logger.info("==========Error!!!==========");
-			model.addAttribute("url", "error");
+		if(! session.getAttribute("userId").equals("admin"))
+		{
+			return "redirect:/";
 		}
-			
-		return "movePage";
+		else
+		{
+			try {
+					
+				vo.setNum(vo.getNum());
+				service.updateIndentify(vo);
+					
+				logger.info("==========관리자 이미지 검증 완료!==========");
+					
+				model.addAttribute("url", "IdentifyUpdate");
+					
+			}catch(Exception e) {
+				e.printStackTrace();
+					
+				logger.info("==========Error!!!==========");
+				model.addAttribute("url", "error");
+			}
+				
+			return "movePage";
+		}
 	}	
 	
 	//관리자 - 데이터 수정/삭제 리스트
 	@RequestMapping(value = "adminStyleList", method = RequestMethod.GET)
 	public String goStyleList(Model model,
 			HttpServletRequest request,
+			HttpSession session,
 			@RequestParam(required = false, defaultValue = "1") int page,
 			@RequestParam(required = false, defaultValue = "1") int range)
 			throws Exception {
 		
-		//전체 페이지 갯수
-		int listCnt = service.StyleListCount();
-				
-		//Pagination 객체생성
-		AdminPagination adminPagination = new AdminPagination();
-		adminPagination.pageInfo(page, range, listCnt);
-				
-		model.addAttribute("pagination", adminPagination);
-		model.addAttribute("StyleList", service.StyleList(adminPagination));
-				
-		return "coordination/admin/style/StyleList";
+		if(! session.getAttribute("userId").equals("admin"))
+		{
+			return "redirect:/";
+		}
+		else
+		{
+			//전체 페이지 갯수
+			int listCnt = service.StyleListCount();
+
+			//Pagination 객체생성
+			AdminPagination adminPagination = new AdminPagination();
+			adminPagination.pageInfo(page, range, listCnt);
+
+			model.addAttribute("pagination", adminPagination);
+			model.addAttribute("StyleList", service.StyleList(adminPagination));
+
+			return "coordination/admin/style/StyleList";
+		}
 	}
 
 	//관리자 - 데이터 수정/삭제 폼
 	@RequestMapping(value = "adminUpdateForm", method = RequestMethod.GET)
-	public String goUpdateStyle(StyleVO vo, Model model, HttpServletRequest request) throws Exception {
+	public String goUpdateStyle(StyleVO vo, Model model, HttpServletRequest request, HttpSession session) throws Exception {
 		
-		int num = 0;
-		num = Integer.parseInt(request.getParameter("num"));
-		
-		//관리자가 이미지를 수정할 경우 이동 될 Page
-		//Data라는 이름으로 updateStyle값을 넘겨준다.
-		List<StyleVO> StyleOne = service.StyleOne(vo, num);
-		model.addAttribute("StyleOne", StyleOne);
-		model.addAttribute("data", "updateStyle");
-		
-		return "coordination/admin/style/UpdateForm";
+		if(! session.getAttribute("userId").equals("admin"))
+		{
+			return "redirect:/";
+		}
+		else
+		{		
+			int num = 0;
+			num = Integer.parseInt(request.getParameter("num"));
+
+			//관리자가 이미지를 수정할 경우 이동 될 Page
+			//Data라는 이름으로 updateStyle값을 넘겨준다.
+			List<StyleVO> StyleOne = service.StyleOne(vo, num);
+			model.addAttribute("StyleOne", StyleOne);
+			model.addAttribute("data", "updateStyle");
+
+			return "coordination/admin/style/UpdateForm";
+		}
 	}
 	
 	//사용자가 나만의 옷장에서 옷 클릭 시, 해당 옷을 입은 코디룩 추천
@@ -215,41 +267,49 @@ public class StyleController {
 	public String Recommendation(StyleVO vo,
 			Model model,
 			HttpServletRequest request,
+			HttpSession session,
 			@RequestParam(required = false, defaultValue = "1") int page,
 			@RequestParam(required = false, defaultValue = "1") int range) 
 			throws Exception{
 		
-		//전체 페이지 갯수
-		int listCnt = service.StyleRecommendationCount();
-						
-		//Pagination 객체생성
-		//UserPagination userPagination = new UserPagination();
-		//userPagination.pageInfo(page, range, listCnt);
-		
-		StyleVO pagination = new StyleVO();
-		pagination.pageInfo(page, range, listCnt);
-		
-		//vo.setTop("jacket");
-		//vo.setTop_color("black");
-		
-		//옷의 종류, 색상 받아오기
-		String category = request.getParameter("category");
-		String color = request.getParameter("color");
-		
-		if(category.equals("pants") || category.equals("jeans"))
+		if(session.getAttribute("userId") == null)
 		{
-			vo.setPants(category);
-			vo.setPants_color(color);
+			return "redirect:/";
 		}
 		else
 		{
-			vo.setTop(category);
-			vo.setTop_color(color);
+			//전체 페이지 갯수
+			int listCnt = service.StyleRecommendationCount();
+
+			//Pagination 객체생성
+			//UserPagination userPagination = new UserPagination();
+			//userPagination.pageInfo(page, range, listCnt);
+
+			StyleVO pagination = new StyleVO();
+			pagination.pageInfo(page, range, listCnt);
+
+			//vo.setTop("jacket");
+			//vo.setTop_color("black");
+
+			//옷의 종류, 색상 받아오기
+			String category = request.getParameter("category");
+			String color = request.getParameter("color");
+
+			if(category.equals("pants") || category.equals("jeans"))
+			{
+				vo.setPants(category);
+				vo.setPants_color(color);
+			}
+			else
+			{
+				vo.setTop(category);
+				vo.setTop_color(color);
+			}
+
+			model.addAttribute("pagination", pagination);
+			model.addAttribute("StyleList", service.StyleRecommendation(vo));
+
+			return "coordination/member/Recommendation";
 		}
-		
-		model.addAttribute("pagination", pagination);
-		model.addAttribute("StyleList", service.StyleRecommendation(vo));
-						
-		return "coordination/member/Recommendation";
 	}
 }

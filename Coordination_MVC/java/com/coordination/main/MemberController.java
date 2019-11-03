@@ -212,6 +212,7 @@ public class MemberController {
 		return "coordination/member/login";
 	}
 	
+	//회원전용 페이지
 	@RequestMapping("isMyPage")
 	public String myPage(ClosetVO vo, Model model, HttpSession session) throws Exception {
 		
@@ -231,6 +232,7 @@ public class MemberController {
 		}
 	}
 
+	//회원정보 수정.삭제
 	@RequestMapping("infoUpdatePage")
 	public String infoUpdate(MemberVO vo, Model model, HttpSession session) throws Exception {
 		if(session.getAttribute("userId") == null)
