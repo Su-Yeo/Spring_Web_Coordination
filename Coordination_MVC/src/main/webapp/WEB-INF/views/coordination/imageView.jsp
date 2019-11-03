@@ -14,7 +14,13 @@
 	.img_polaroid img{
 		width:340px;
 	}
-	
+	.cropping{
+		max-height:370px;
+		overflow:hidden;
+	}
+	.cropping img{
+		max-height:initial;
+	}
 	.imgstyle{
 		max-width: 100%;
 		height: auto;
@@ -49,11 +55,13 @@
 		<c:forEach items="${TemperatureStyle}" var="style" begin="1" end="12" step="1">   
 			<div class="img_polaroid">
 				<!-- <a href="#styleModal" data-toggle="modal"> -->
+					<div class="cropping">
 					<img style="width:340px;" class="w3-border w3-hover-border-red" src="/displayImg?name=${style.img}&folder=admin" />
+					</div>
 					<div class="img_container">
 						<div><b>${style.shopname}</b></div>
 	
-						<div>좋아요 : #명 ${style.img} <span style="margin: 0 0 0 55%;">버튼</span></div>
+						<div>좋아요 : #명 <span style="margin: 0 0 0 55%;">버튼</span></div>
 					</div>
 				<!-- </a> -->
 			</div>

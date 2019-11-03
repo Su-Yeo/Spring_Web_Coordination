@@ -208,6 +208,10 @@
 		    spaceBetween: 0,
 		    loop: true,
 		    loopFillGroupWithBlank: true,
+		    autoplay: {
+		        delay: 7000,
+		        disableOnInteraction: false,
+		      },
 		    pagination: {
 		      el: '.swiper-pagination',
 		      clickable: true,
