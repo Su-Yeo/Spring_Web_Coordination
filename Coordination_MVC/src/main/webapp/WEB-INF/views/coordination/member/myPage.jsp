@@ -57,6 +57,83 @@
       -webkit-align-items: center;
       align-items: center;
     }
+    *{
+	  margin:0; padding:0;
+	  font-size:15px; 
+	  line-height:1.3;
+	}
+	ul{list-style:none;}
+	
+	.tabmenu{ 
+	  margin: 0 auto; 
+	  position:relative; 
+	}
+	.tabmenu ul li{
+	  display:  inline-block;
+	  width:15%;
+	  float:left;  
+	  text-align:center; 
+	  background :#f9f9f9;
+	  line-height:40px;
+	}
+	.swiper-img{
+		width:270px;
+		height:330px;
+	}
+	
+	/*----------------------------태블릿----------------------------*/
+	@media all and (min-width: 600px) and (max-width: 1279px) {
+		
+		.swiper-img{
+			width:270px;
+			height:320px;
+		}
+		
+		.swiper-button-next,.swiper-button-prev{
+			margin-top:2px;
+			height:20px;
+		}
+	}
+	/*----------------------------태블릿끝----------------------------*/
+	
+	/*----------------------------모바일----------------------------*/
+	@media all and (max-width: 600px){
+		.tabmenu ul li{
+		  width:50%;
+		}
+		.swiper-button-next,.swiper-button-prev{
+			height:20px;
+		}
+		.swiper-img{
+			width:240px;
+			height:300px;
+		}
+	}
+	/*------------------------------------------------------------*/
+	
+	.tabmenu label{
+	  display:block;
+	  width:100%; 
+	  height:40px;
+	  line-height:40px;
+	}
+	.tabmenu input{display:none;}
+	.tabCon{
+	width:100%;
+	  display:none; 
+	  text-align:center; 
+	  padding: 20px;
+	  position:absolute; 
+	  left:0; top:40px; 
+	  box-sizing: border-box; 
+	  border : 5px solid #f9f9f9;
+	}
+	.tabmenu input:checked ~ label{
+	  background:#ccc;
+	}
+	.tabmenu input:checked ~ .tabCon{
+	  display:block;
+	}
   </style>
 </head>
 <body>
@@ -66,52 +143,61 @@
 	<!-- Nav -->
 	<jsp:include page="../nav.jsp"></jsp:include>
 	<!-- End Nav -->
-	
-	<a href="imgUpload">나만의 옷장 등록</a>
-	
-	${sessionScope.userName}님의 옷장
-	<c:if test="${empty ClosetList}">
-		<h2>나만의 옷장이 비어있습니다.</h2>
-	</c:if>
 	<div class="container" style="text-align:center;">
-		<section id="all">
-			<div id="tabs" class="tabs">
-				<ul class="menu">
-					<li><a href=".mycloth">옷장</a></li>
-					<li><a href=".coordi">코디</a></li>
-				</ul>
-				<div class="content"><!--content전체-->
-				<section class="mycloth"><!--//옷장 섹션-->
+	
+		${sessionScope.userName}님의 옷장
+		<c:if test="${empty ClosetList}">
+			<h2>나만의 옷장이 비어있습니다.</h2>
+		</c:if>
+		<br/>
+		<a class="imgUploadBtn"href="imgUpload">나만의 옷장 등록</a>
+					
+		<div class="tabmenu">
+		  <ul>
+		    <li id="tab1" class="btnCon"> <input type="radio" checked name="tabmenu" id="tabmenu1">
+		      <label for="tabmenu1">옷장</label>
+		      <div class="tabCon" >
+	      			<!-- Swiper -->
+					<div class="swiper-container">
+						<div class="swiper-wrapper">
+							<c:forEach items="${ClosetList}" var="closet">
+								<div class="swiper-slide">
+									<a href="updateClosetForm?num=${closet.num}">
+										<img class="swiper-img" style="border: 1px solid gray;" src="/displayImg?name=${closet.img}&folder=user"/>
+									</a>
+								</div>
+							</c:forEach>
+						</div>
+						<!-- Add Arrows -->
+						<div class="swiper-button-next swiper-button-black" style="opacity:0.5;"></div>
+						<div class="swiper-button-prev swiper-button-black" style="opacity:0.5;"></div>
+					</div>
+					<br/>
 					<!-- Swiper -->
 					<div class="swiper-container">
 						<div class="swiper-wrapper">
 							<c:forEach items="${ClosetList}" var="closet">
 								<div class="swiper-slide">
-									<a href="Recommendation?category=${closet.category}&color=${closet.color}">
-										<img style="border: 1px solid gray;width:300px;height:350px;" src="/displayImg?name=${closet.img}&folder=user"/>
+									<a href="updateClosetForm?num=${closet.num}">
+										<img class="swiper-img" style="border: 1px solid gray;" src="/displayImg?name=${closet.img}&folder=user"/>
 									</a>
 								</div>
 							</c:forEach>
 						</div>
-						<!-- Add Pagination -->
-						<div class="swiper-pagination"></div>
 						<!-- Add Arrows -->
 						<div class="swiper-button-next swiper-button-black" style="opacity:0.5;"></div>
 						<div class="swiper-button-prev swiper-button-black" style="opacity:0.5;"></div>
 					</div>
-				</section><!--//코디 섹션-->
-				<section class="coordi">
-					코디, 코디, 코디
-				</section>
-				</div><!-- /content -->
-			</div><!--//tabs-->
-		</section>
-	</div>	
-	<script src="/resources/js/cbpFWTabs.js"></script>
-	<script>
-		new CBPFWTabs( document.getElementById( 'tabs' ) );
-	</script>
-
+		      </div>
+		    </li>
+		    <li id="tab2" class="btnCon"><input type="radio" name="tabmenu" id="tabmenu2">
+		      <label for="tabmenu2">코디</label>
+		      <div class="tabCon" >코디코디</div>
+		    </li>
+		  </ul>
+		</div>
+	</div>
+	
 	<!-- Swiper JS -->
 	<script src="/resources/js/swiper.min.js"></script>
 	
@@ -119,7 +205,7 @@
 	<script>
 	  var swiper = new Swiper('.swiper-container', {
 		    slidesPerView: 3,
-		    spaceBetween: 20,
+		    spaceBetween: 0,
 		    loop: true,
 		    loopFillGroupWithBlank: true,
 		    pagination: {
@@ -133,15 +219,15 @@
 		    breakpoints: {
 				1024: {
 					slidesPerView: 3,
-					spaceBetween: 20
+					spaceBetween: 0
 				},
 				780: {
 					slidesPerView: 2,
-					spaceBetween: 18
+					spaceBetween: 30
 				},
 				640: {
-					slidesPerView: 2,
-					spaceBetween: 25
+					slidesPerView: 1,
+					spaceBetween: 0
 				},
 				480: {
 					slidesPerView: 1,
