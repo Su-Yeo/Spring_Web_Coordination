@@ -18,6 +18,14 @@
 		height: auto;
 	}
 </style>
+<!-- 
+<script type="text/javascript">
+	function dress_save() {
+		var frm = document.getElementById('dressInsertForm');
+		frm.submit();
+	}
+</script>
+ -->
 <body>
 	<!-- <div style="clear:left">
 		<p class="p2" style="font-size:24px">Today's Coordination</p>
@@ -25,19 +33,16 @@
 
 	<div id="div_include">
 		<c:forEach items="${TemperatureStyle}" var="style" begin="1" end="12" step="1"> 
-			<div class="img_polaroid">
-				<!-- <a href="#styleModal" data-toggle="modal"> -->
+			<div class="img_polaroid" style="cursor: pointer;" data-toggle="modal" data-target="#${ style.num }">
 					<img style="width:340px;" class="w3-border w3-hover-border-red" src="/displayImg?name=${style.img}&folder=admin" />
 					<div class="img_container">
 						<div><b>${style.shopname}</b></div>
-	
 						<div>좋아요 : #명 ${style.img} <span style="margin: 0 0 0 55%;">버튼</span></div>
 					</div>
-				<!-- </a> -->
 			</div>
 			
 			<!-- Image Model -->
-			<div id="styleModal" class="modal fade">
+			<div id="${ style.num }" class="modal fade">
 				<div class="modal-dialog modal-login">
 					<div class="modal-content">
 						<div class="modal-header">
@@ -50,6 +55,12 @@
 							<p>
 							</p>
 							<div class="form-group">
+								<c:if test="${!empty sessionScope.userId}">
+									<form id="dressInsertForm" method="get" action="dressInsert">
+										<input type="hidden" name="img" value="${ style.img }"/>
+										<input type="submit" class="btn btn-primary btn-block btn-lg" value="저장하기">
+									</form>
+								</c:if><br/>
 								<button type="button" class="btn btn-primary btn-block btn-lg" data-dismiss="modal">돌아가기</button>
 							</div>			
 						</div>
@@ -57,8 +68,6 @@
 				</div>
 			</div>
 			<!-- End Image Model -->
-			
-			
 		</c:forEach>
 	</div>
 	<!-- <a href="#noticeModal" data-toggle="modal"></a> -->

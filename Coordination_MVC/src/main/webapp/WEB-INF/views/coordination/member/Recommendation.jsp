@@ -191,7 +191,7 @@ h2::after {
 				<div class="item carousel-item active">
 					<div class="row">
 						<c:forEach items="${StyleList}" var="style">
-						<div class="col-sm-3">
+						<div class="col-sm-3" style="cursor: pointer;" style="cursor: pointer;" data-toggle="modal" data-target="#styleModal">
 							<div class="thumb-wrapper">
 								<div class="img-box">
 									<img src="/displayImg?name=${style.img}&folder=admin" class="img-responsive img-fluid" alt="">									
@@ -208,6 +208,29 @@ h2::after {
 								</div>						
 							</div>
 						</div>
+						
+						<!-- Image Model -->
+						<div id="styleModal" class="modal fade">
+							<div class="modal-dialog modal-login">
+								<div class="modal-content">
+									<div class="modal-header">
+										<div align="center">
+						                	<img style="width: 100%; height: 100%;" class="img-fluid" src="/displayImg?name=${style.img}&folder=admin">
+						                </div>
+						                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+									</div>
+									<div class="modal-body">
+										<p>
+										</p>
+										<div class="form-group">
+											<button type="button" class="btn btn-primary btn-block btn-lg">Example</button>
+											<button type="button" class="btn btn-primary btn-block btn-lg" data-dismiss="modal">돌아가기</button>
+										</div>			
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- End Image Model -->
 						</c:forEach>
 					</div>
 				</div>

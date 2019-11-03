@@ -68,11 +68,7 @@
 	<!-- End Nav -->
 	
 	<a href="imgUpload">나만의 옷장 등록</a>
-	
 	${sessionScope.userName}님의 옷장
-	<c:if test="${empty ClosetList}">
-		<h2>나만의 옷장이 비어있습니다.</h2>
-	</c:if>
 	<div class="container" style="text-align:center;">
 		<section id="all">
 			<div id="tabs" class="tabs">
@@ -82,9 +78,13 @@
 				</ul>
 				<div class="content"><!--content전체-->
 				<section class="mycloth"><!--//옷장 섹션-->
+				<c:if test="${empty ClosetList}">
+					<h2>나만의 옷장이 비어있습니다.</h2>
+				</c:if>
 					<!-- Swiper -->
 					<div class="swiper-container">
 						<div class="swiper-wrapper">
+						<c:if test="${!empty ClosetList}">
 							<c:forEach items="${ClosetList}" var="closet">
 								<div class="swiper-slide">
 									<a href="Recommendation?category=${closet.category}&color=${closet.color}">
@@ -92,6 +92,7 @@
 									</a>
 								</div>
 							</c:forEach>
+						</c:if>
 						</div>
 						<!-- Add Pagination -->
 						<div class="swiper-pagination"></div>
@@ -101,7 +102,7 @@
 					</div>
 				</section><!--//코디 섹션-->
 				<section class="coordi">
-					코디, 코디, 코디
+					
 				</section>
 				</div><!-- /content -->
 			</div><!--//tabs-->

@@ -135,7 +135,7 @@
 		var frm = document.getElementById('deleteForm');
 		
 		if(confirm('정말로 탈퇴하시겠습니까?')) {
-			frm.submit();	
+			frm.submit();
 		} else {
 			
 		}
