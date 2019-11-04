@@ -151,14 +151,18 @@ function selCancel(str) {
 			<label>Category</label>
         	<select name="category" class="form-control" onchange="selCancel(this.value)">
         		<option value="null">상의를 선택해주세요</option>
-				<option value="coat">코트</option>
 				<option value="padding">패딩</option>
-				<option value="jacket">자켓</option>
+				<option value="coat">코트</option>
+				<option value="trenchcoat">트렌치코트</option>
+				<option value="leatherjacket">가죽자켓</option>
+				<option value="jacket">자켓/블레이저</option>	
 				<option value="cardigan">가디건</option>
-				<option value="sweatshirt">맨투맨</option>	
-				<option value="tshirt">티셔츠</option>
+				<option value="hood">후드티/후드집업</option>
+				<option value="vest">조끼</option>
+				<option value="knitwear">니트</option>
+				<option value="sweatshirt">긴팔/맨투맨</option>
 				<option value="shirt">셔츠</option>
-				<option value="halftshirt">반팔</option>
+				<option value="halftshrit">반팔</option>
 				<option value="halfshirt">반팔셔츠</option>
         		<option value="back">뒤로가기</option>
 			</select>
@@ -187,6 +191,8 @@ function selCancel(str) {
 				<option value="red">red</option>
 				<option value="white">white</option>
 				<option value="yellow">yellow</option>
+				<option value="ivory">ivory</option>
+				<option value="pattern">pattern</option>
 			</select>
         </div>
 		<div class="form-group" align="center">

@@ -204,9 +204,7 @@
 						<div class="swiper-wrapper">
 							<c:forEach items="${ClosetList}" var="closet">
 								<div class="swiper-slide">
-<<<<<<< HEAD
 									<a href="Recommendation?category=${closet.category}&color=${closet.color}">
-=======
 									<div class="swiper-countA">
 									<a href="updateClosetForm?num=${closet.num}">
 										<img class="swiper-img" style="border: 1px solid gray;" src="/displayImg?name=${closet.img}&folder=user"/>
@@ -226,7 +224,6 @@
 								<div class="swiper-slide">
 									<div class="swiper-countB">
 									<a href="updateClosetForm?num=${closet.num}">
->>>>>>> c171d89bea8b26b25c259a64cd047a6fdd716a3c
 										<img class="swiper-img" style="border: 1px solid gray;" src="/displayImg?name=${closet.img}&folder=user"/>
 									</a>
 									</div>
