@@ -124,9 +124,7 @@
 	  text-align:center; 
 	  padding: 20px;
 	  position:absolute; 
-	  left:0; top:40px; 
-	  box-sizing: border-box; 
-	  border : 5px solid #f9f9f9;
+	  left:0; top:40px;
 	}
 	.tabmenu input:checked ~ label{
 	  background:#ccc;
@@ -134,6 +132,45 @@
 	.tabmenu input:checked ~ .tabCon{
 	  display:block;
 	}
+	
+	/*----------------------------img upload button----------------------------*/
+	.button-7{
+	  float:right;
+	  width:140px;
+	  height:40px;
+	  border:2px solid #777;
+	  text-align:center;
+	  cursor:pointer;
+	  position:relative;
+	  box-sizing:border-box;
+	  overflow:hidden;
+	}
+	.button-7 a{
+	  text-decoration:none;
+	  color:#777;
+	  text-decoration:none;
+	  line-height:40px;
+	  transition:all .5s ease;
+	  z-index:2;
+	  position:relative;
+	}
+	.eff-7{
+	  width:100%;
+	  height:40px;
+	  border:0px solid #777;
+	  position:absolute;
+	  transition:all .5s ease;
+	  z-index:1;
+	  box-sizing:border-box;
+	}
+	.button-7:hover .eff-7{
+	  border:70px solid #777;
+	}
+	.button-7:hover a{
+	  color:#f9f9f9;
+	  text-decoration:none
+	}
+	
   </style>
 </head>
 <body>
@@ -144,26 +181,51 @@
 	<jsp:include page="../nav.jsp"></jsp:include>
 	<!-- End Nav -->
 	<div class="container" style="text-align:center;">
-	
-
-		<a class="imgUploadBtn"href="imgUpload">나만의 옷장 등록</a>
-					
-		<div class="tabmenu">
+	<c:if test="${!empty ClosetList}">
+		<div class="button-7" style="cursor: pointer;" onclick="location.href='imgUpload'">
+			<div class="eff-7"></div>
+			<a href="imgUpload">옷 등록</a>
+		</div>
+	</c:if>
+		<div class="tabmenu" style="clear:both;">
 		  <ul>
 		    <li id="tab1" class="btnCon"> <input type="radio" checked name="tabmenu" id="tabmenu1">
 		      <label for="tabmenu1">옷장</label>
-		      <div class="tabCon" >
+		      <div class="tabCon">
 	      		<c:if test="${empty ClosetList}">
-					<h2>나만의 옷장이 비어있습니다.</h2>
+					<img src="/resources/icon/closetIcon.jpg">
+					<div class="button-7" style="margin:0 auto;cursor: pointer;" onclick="location.href='imgUpload'">
+						<div class="eff-7"></div>
+						<a href="imgUpload">옷 등록</a>
+					</div>
 				</c:if>
 	      			<!-- Swiper -->
 					<div class="swiper-container">
 						<div class="swiper-wrapper">
 							<c:forEach items="${ClosetList}" var="closet">
 								<div class="swiper-slide">
+									<div class="swiper-countA">
 									<a href="updateClosetForm?num=${closet.num}">
 										<img class="swiper-img" style="border: 1px solid gray;" src="/displayImg?name=${closet.img}&folder=user"/>
 									</a>
+									</div>
+								</div>
+							</c:forEach>
+						</div>
+						<!-- Add Arrows -->
+						<div class="swiper-button-next swiper-button-black" style="opacity:0.5;"></div>
+						<div class="swiper-button-prev swiper-button-black" style="opacity:0.5;"></div>
+					</div><br/>
+					<!-- Swiper -->
+					<div class="swiper-container">
+						<div class="swiper-wrapper">
+							<c:forEach items="${ClosetList}" var="closet">
+								<div class="swiper-slide">
+									<div class="swiper-countB">
+									<a href="updateClosetForm?num=${closet.num}">
+										<img class="swiper-img" style="border: 1px solid gray;" src="/displayImg?name=${closet.img}&folder=user"/>
+									</a>
+									</div>
 								</div>
 							</c:forEach>
 						</div>
@@ -171,7 +233,6 @@
 						<div class="swiper-button-next swiper-button-black" style="opacity:0.5;"></div>
 						<div class="swiper-button-prev swiper-button-black" style="opacity:0.5;"></div>
 					</div>
-					<br/>
 		      </div>
 		    </li>
 		    <li id="tab2" class="btnCon"><input type="radio" name="tabmenu" id="tabmenu2">
@@ -188,11 +249,18 @@
 	<!-- Initialize Swiper -->
 	<script>
 	var n = 0;
-	if($('.swiper-slide').length==1){
+	var a = true;
+	if($('.swiper-countA').length==1){
 		n = 1;
+		a = false;
 	}
-	else if($('.swiper-slide').length==2){
+	else if($('.swiper-countA').length==2){
 		n = 2;
+		a = false;
+	}
+	else if($('.swiper-countA').length==3){
+		n = 3;
+		a = false;
 	}
 	else{
 		n = 3;
@@ -200,7 +268,61 @@
 	  var swiper = new Swiper('.swiper-container', {
 		    slidesPerView: n,
 		    spaceBetween: 0,
-		    loop: true,
+		    loop: a,
+		    loopFillGroupWithBlank: true,
+		    autoplay: {
+		        delay: 10000,
+		        disableOnInteraction: false,
+		      },
+		    pagination: {
+		      el: '.swiper-pagination',
+		      clickable: true,
+		    },
+		    navigation: {
+		      nextEl: '.swiper-button-next',
+		      prevEl: '.swiper-button-prev',
+		    },
+		    breakpoints: {
+				1024: {
+					slidesPerView: 3,
+					spaceBetween: 0
+				},
+				780: {
+					slidesPerView: 2,
+					spaceBetween: 30
+				},
+				640: {
+					slidesPerView: 1,
+					spaceBetween: 0
+				},
+				480: {
+					slidesPerView: 1,
+					spaceBetween: 0
+				}
+		   }
+	  });
+	  
+	var n = 0;
+	var a = true;
+	if($('.swiper-countB').length==1){
+		n = 1;
+		a = false;
+	}
+	else if($('.swiper-countB').length==2){
+		n = 2;
+		a = false;
+	}
+	else if($('.swiper-countB').length==3){
+		n = 3;
+		a = false;
+	}
+	else{
+		n = 3;
+	}
+	  var swiper = new Swiper('.swiper-container', {
+		    slidesPerView: n,
+		    spaceBetween: 0,
+		    loop: a,
 		    loopFillGroupWithBlank: true,
 		    autoplay: {
 		        delay: 10000,
