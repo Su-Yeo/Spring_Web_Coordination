@@ -39,7 +39,7 @@ public class JythonController {
 		String image = null;
 		
 		//파싱해서 온 이미지를 C:\img\tensorflow 폴더에 저장
-		//ImageDown(request);
+		ImageDown(request);
 		
 		//쇼핑몰 이름 업데이트
 		String shopName = request.getParameter("shopName");
@@ -84,7 +84,7 @@ public class JythonController {
 				//이미지 복구
 				tf.admin_restore(image);
 				
-				System.out.println("현재 :" + i + "/" + listOfFiles.length);
+				System.out.println("현재 :" + (i+1) + "/" + listOfFiles.length);
 			}
 			else
 			{
