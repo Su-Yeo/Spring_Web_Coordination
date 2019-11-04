@@ -76,7 +76,7 @@ public class StyleVO {
 	//본래 다른 클래스를 이용하려했으나 Mapper에서 두개의 객체 주입이 불가능하므로
 	//VO객체에 담기로 결정
 	private int listSize = 12;             //초기값으로 목록개수를 12으로 셋팅
-	private int rangeSize = 12;            //초기값으로 페이지범위를 4으로 셋팅
+	private int rangeSize = 4;            //초기값으로 페이지범위를 4으로 셋팅
 	private int page;
 	private int range;
 	private int listCnt;

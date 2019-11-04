@@ -6,306 +6,233 @@
 <html>
 <head>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Open+Sans">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta charset="UTF-8">
 <title>Recommendation</title>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
-<style type="text/css">
-body {
-	background: #e2eaef;
-	font-family: "Open Sans", sans-serif;
-}
-h2 {
-	color: #000;
-	font-size: 26px;
-	font-weight: 300;
-	text-align: center;
-	text-transform: uppercase;
-	position: relative;
-	margin: 30px 0 60px;
-}
-h2::after {
-	content: "";
-	width: 100px;
-	position: absolute;
-	margin: 0 auto;
-	height: 4px;
-	border-radius: 1px;
-	background: #7ac400;
-	left: 0;
-	right: 0;
-	bottom: -20px;
-}
-.carousel {
-	margin: 50px auto;
-	padding: 0 70px;
-}
-.carousel .item {
-	color: #747d89;
-	min-height: 325px;
-    text-align: center;
-	overflow: hidden;
-}
-.carousel .thumb-wrapper {
-	padding: 25px 15px;
-	background: #fff;
-	border-radius: 6px;
-	text-align: center;
-	position: relative;
-	box-shadow: 0 2px 3px rgba(0,0,0,0.2);
-}
-.carousel .item .img-box {
-	height: 120px;
-	margin-bottom: 20px;
-	width: 100%;
-	position: relative;
-}
-.carousel .item img {	
-	max-width: 100%;
-	max-height: 100%;
-	display: inline-block;
-	position: absolute;
-	bottom: 0;
-	margin: 0 auto;
-	left: 0;
-	right: 0;
-}
-.carousel .item h4 {
-	font-size: 18px;
-}
-.carousel .item h4, .carousel .item p, .carousel .item ul {
-	margin-bottom: 5px;
-}
-.carousel .thumb-content .btn {
-	color: #7ac400;
-    font-size: 11px;
-    text-transform: uppercase;
-    font-weight: bold;
-    background: none;
-    border: 1px solid #7ac400;
-    padding: 6px 14px;
-    margin-top: 5px;
-    line-height: 16px;
-    border-radius: 20px;
-}
-.carousel .thumb-content .btn:hover, .carousel .thumb-content .btn:focus {
-	color: #fff;
-	background: #7ac400;
-	box-shadow: none;
-}
-.carousel .thumb-content .btn i {
-	font-size: 14px;
-    font-weight: bold;
-    margin-left: 5px;
-}
-.carousel .carousel-control {
-	height: 44px;
-	width: 40px;
-	background: #7ac400;	
-    margin: auto 0;
-    border-radius: 4px;
-	opacity: 0.8;
-}
-.carousel .carousel-control:hover {
-	background: #78bf00;
-	opacity: 1;
-}
-.carousel .carousel-control i {
-    font-size: 36px;
-    position: absolute;
-    top: 50%;
-    display: inline-block;
-    margin: -19px 0 0 0;
-    z-index: 5;
-    left: 0;
-    right: 0;
-    color: #fff;
-	text-shadow: none;
-    font-weight: bold;
-}
-.carousel .item-price {
-	font-size: 13px;
-	padding: 2px 0;
-}
-.carousel .item-price strike {
-	opacity: 0.7;
-	margin-right: 5px;
-}
-.carousel .carousel-control.left i {
-	margin-left: -2px;
-}
-.carousel .carousel-control.right i {
-	margin-right: -4px;
-}
-.carousel .carousel-indicators {
-	bottom: -50px;
-}
-.carousel-indicators li, .carousel-indicators li.active {
-	width: 10px;
-	height: 10px;
-	margin: 4px;
-	border-radius: 50%;
-	border: none;
-}
-.carousel-indicators li {	
-	background: rgba(0, 0, 0, 0.2);
-}
-.carousel-indicators li.active {	
-	background: rgba(0, 0, 0, 0.6);
-}
-.carousel .wish-icon {
-	position: absolute;
-	right: 10px;
-	top: 10px;
-	z-index: 99;
-	cursor: pointer;
-	font-size: 16px;
-	color: #abb0b8;
-}
-.carousel .wish-icon .fa-heart {
-	color: #ff6161;
-}
-.star-rating li {
-	padding: 0;
-}
-.star-rating i {
-	font-size: 14px;
-	color: #ffc000;
-}
+<style>
+	h2 {
+		color: #000;
+		font-size: 26px;
+		font-weight: 300;
+		text-align: center;
+		text-transform: uppercase;
+		position: relative;
+		margin: 30px 0 80px;
+	}
+	a:link {text-decoration: none; color: black;}
+	a:visited {text-decoration: none; color: black;}
+	a:active {text-decoration: none; color: black;}
+	a:hover {text-decoration: none; color: black;}
+	.img_polaroid img{
+		width:340px;
+	}
+	.cropping{
+		max-height:370px;
+		overflow:hidden;
+	}
+	.cropping img{
+		max-height:initial;
+	}
+	.imgstyle{
+		max-width: 100%;
+		height: auto;
+	}
+	/* Image Polaroid */
+	div.img_polaroid {
+		display: inline-block;
+		background-color: white;
+		margin: 10px 15px;
+		border: 1px solid gray;
+	}
+	div.img_polaroid:hover {
+		border: 1px solid red;
+	}
+	
+	div.img_container {
+		text-align: left;
+		padding: 10px 20px;
+	}
+	div.img_container div {
+		margin-top: 5px;
+	}
+	.title{
+		margin:1%;
+		font-size:30pt;
+	}
+	/*----------------------------태블릿----------------------------*/
+	@media all and (min-width: 600px) and (max-width: 1279px) {
+		
+		.title{
+			margin:1%;
+			font-size:25pt;
+		}
+	}
+	/*----------------------------태블릿끝----------------------------*/
+
+	/*----------------------------모바일----------------------------*/
+	@media all and (max-width: 600px){
+		.title{
+			position:absolute;
+    		overflow:hidden;
+    		font-size:0;
+
+		}
+		.table1 td{
+			width:100%;
+			height:150px;
+			float:left;
+			padding:10px;
+			margin:0 auto;
+		}
+		.table1{
+			height:450px;
+		}
+		.weatherTable{
+			width:90%;
+			margin:0 auto;
+			margin-top:20px;
+			text-align:center;
+		}
+	}
+	/*----------------------------모바일끝----------------------------*/
+		.card-img-top {
+            width: 100%;
+            height: 380px;
+            object-fit: cover;
+        }
 </style>
 <body>
-
-<div class="container">
-	<div class="row">
-		<div class="col-md-12">
-			<h2>관리자 - 오늘 뭐 입지? <b>추천 코디룩</b></h2>
-			<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="0">
-
-			<!-- Wrapper for carousel items -->
-			<div class="carousel-inner">
-				<div class="item carousel-item active">
-					<div class="row">
-						<c:forEach items="${StyleList}" var="style">
-						<div class="col-sm-3" style="cursor: pointer;" style="cursor: pointer;" data-toggle="modal" data-target="#styleModal">
-							<div class="thumb-wrapper">
-								<div class="img-box">
-									<img src="/displayImg?name=${style.img}&folder=admin" class="img-responsive img-fluid" alt="">									
-								</div>
-								<div class="thumb-content">
-									<h4>${style.shopname}</h4>									
-									<div class="star-rating">
-										<p>
-											<br>
-										</p>
-									</div>
-									<p class="item-price"></p>
-									<a href="IdentifyUpdateForm?num=${style.num}" class="btn btn-primary">상세보기</a>
-								</div>						
-							</div>
+	<!-- Nav -->
+	<jsp:include page="../nav.jsp" />
+	<!-- End Nav -->
+	
+	<!-- Image Recommendation -->
+	<div id="div_include" align="center">
+		<c:if test="${empty StyleList}" >
+			<h2>해당 코디에 대한 정보가 없습니다.</h2>
+			<br>
+			<button class="btn btn-primary btn-block btn-lg" style="background: #61C7C1; width: 140px; height: 50px;" onclick="history.back();">돌아가기</button>
+		</c:if>
+		<!-- 사용자가 선택한 의상과 색상의 옷을 입은 코디룩만을 추천 -->
+		<c:forEach items="${StyleList}" var="style" begin="1" end="12" step="1">
+			<div class="img_polaroid" style="cursor: pointer;" data-toggle="modal" data-target="#${style.num}">
+				<img style="width:340px;" class="w3-border w3-hover-border-red card-img-top" src="/displayImg?name=${style.img}&folder=admin" />
+				
+				<div class="img_container">
+					<div><b>${style.shopname}</b></div>
+				</div>
+			</div>
+			
+			<!-- Image Model -->
+			<div id="${style.num}" class="modal fade">
+				<div class="modal-dialog modal-login">
+					<div class="modal-content">
+						<div class="modal-header">
+							<div align="center">
+			                	<img style="width: 100%; height: 100%;" class="img-fluid" src="/displayImg?name=${style.img}&folder=admin">
+			                </div>
+			                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 						</div>
-						
-						<!-- Image Model -->
-						<div id="styleModal" class="modal fade">
-							<div class="modal-dialog modal-login">
-								<div class="modal-content">
-									<div class="modal-header">
-										<div align="center">
-						                	<img style="width: 100%; height: 100%;" class="img-fluid" src="/displayImg?name=${style.img}&folder=admin">
-						                </div>
-						                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-									</div>
-									<div class="modal-body">
-										<p>
-										</p>
-										<div class="form-group">
-											<button type="button" class="btn btn-primary btn-block btn-lg">Example</button>
-											<button type="button" class="btn btn-primary btn-block btn-lg" data-dismiss="modal">돌아가기</button>
-										</div>			
-									</div>
-								</div>
-							</div>
+						<div class="modal-body">
+							<p>
+							</p>
+							<div class="form-group">
+								<c:if test="${!empty sessionScope.userId}">
+									<form id="dressInsertForm" method="get" action="dressInsert">
+										<input type="hidden" name="img" value="${ style.img }"/>
+										<input type="submit" class="btn btn-primary btn-block btn-lg" style="background: #61C7C1;" value="저장하기">
+									</form>
+								</c:if>
+								<br/>
+								
+								<button type="button" class="btn btn-primary btn-block btn-lg" style="background: #EBFFEB; color: black;" data-dismiss="modal">돌아가기</button>
+							</div>			
 						</div>
-						<!-- End Image Model -->
-						</c:forEach>
 					</div>
 				</div>
 			</div>
-		</div>
-		</div>
-	</div>
-</div>
-
-
-<!-- pagination{s} -->
-<div id="paginationBox" align="center">
-	<ul class="pagination">
-		<c:if test="${pagination.prev}">
-			<li class="page-item"><a class="page-link" href="#" onClick="fn_prev('${pagination.page}', '${pagination.range}', '${pagination.rangeSize}')">Previous</a>
-			</li>
-		</c:if>
-		
-		<c:forEach begin="${pagination.startPage}" end="${pagination.endPage}" var="idx">
-			<li class="page-item <c:out value="${pagination.page == idx ? 'active' : ''}"/> "><a class="page-link" href="#" onClick="fn_pagination('${idx}', '${pagination.range}', '${pagination.rangeSize}')"> ${idx} </a>
-			</li>
+			<!-- End Image Model -->
 		</c:forEach>
-
-		<c:if test="${pagination.next}">
-			<li class="page-item"><a class="page-link" href="#" onClick="fn_next('${pagination.range}', '${pagination.range}', '${pagination.rangeSize}')" >Next</a>
-			</li>
-		</c:if>
-	</ul>
-</div>
-
-<c:url var="getBoardListURL" value="adminIdentify">
-	<c:param name="page" value="${pagination.page}"/>
-	<c:param name="range" value="${pagination.range}"/>
-</c:url>
-
-<script>
-
-	//이전 버튼 클릭
-	function fn_prev(page, range, rangeSize) {
-		
-		var page = ((range - 2) * rangeSize) + 1;
-		var range = range - 1;
-		
-		var url = "Recommendation";
-		
-		url = url + "?page=" + page;
-		url = url + "&range=" + range;
-		
-		location.href = url;
-	}
+	</div>
+	<!-- End Image Recommendation -->
 	
-	//페이지 번호 클릭
-	function fn_pagination(page, range, rangeSize, searchType, keyword) {
-		
-		var url = "Recommendation";
-		
-		url = url + "?page=" + page;
-		url = url + "&range=" + range;
-		
-		location.href = url;
-	}
+	<c:if test="${not empty StyleList}" >
+		<!-- Pagination -->
+		<div id="paginationBox" align="center">
+			<ul class="pagination">
+				<c:if test="${pagination.prev}">
+					<li class="page-item"><a class="page-link" href="#"
+						onClick="fn_prev('${pagination.page}', '${pagination.range}', '${pagination.rangeSize}')">Previous</a>
+					</li>
+				</c:if>
+
+				<c:forEach begin="${pagination.startPage}"
+					end="${pagination.endPage}" var="idx">
+					<li
+						class="page-item <c:out value="${pagination.page == idx ? 'active' : ''}"/> "><a
+						class="page-link" href="#"
+						onClick="fn_pagination('${idx}', '${pagination.range}', '${pagination.rangeSize}')">
+							${idx} </a></li>
+				</c:forEach>
+
+				<c:if test="${pagination.next}">
+					<li class="page-item"><a class="page-link" href="#"
+						onClick="fn_next('${pagination.range}', '${pagination.range}', '${pagination.rangeSize}')">Next</a>
+					</li>
+				</c:if>
+			</ul>
+		</div>
+		<!-- End Pagination -->
+
+		<c:url var="getBoardListURL" value="adminIdentify">
+			<c:param name="page" value="${pagination.page}" />
+			<c:param name="range" value="${pagination.range}" />
+		</c:url>
+	</c:if>
+
 	
-	//다음 버튼 클릭
-	function fn_next(page, range, rangeSize) {
 
-		var page = parseInt((range * rangeSize)) + 1;
-		var range = parseInt(range) + 1;
+	<script>
+		//이전 버튼 클릭
+		function fn_prev(page, range, rangeSize) {
 
-		var url = "Recommendation";
-		
-		url = url + "?page=" + page;
-		url = url + "&range=" + range;
+			var page = ((range - 2) * rangeSize) + 1;
+			var range = range - 1;
 
-		location.href = url;	
-	}
-</script>
+			var url = "Recommendation";
+
+			url = url + "?page=" + page;
+			url = url + "&range=" + range;
+
+			location.href = url;
+		}
+
+		//페이지 번호 클릭
+		function fn_pagination(page, range, rangeSize, searchType, keyword) {
+
+			var url = "Recommendation";
+
+			url = url + "?page=" + page;
+			url = url + "&range=" + range;
+
+			location.href = url;
+		}
+
+		//다음 버튼 클릭
+		function fn_next(page, range, rangeSize) {
+
+			var page = parseInt((range * rangeSize)) + 1;
+			var range = parseInt(range) + 1;
+
+			var url = "Recommendation";
+
+			url = url + "?page=" + page;
+			url = url + "&range=" + range;
+
+			location.href = url;
+		}
+	</script>
 </body>
 </html>
