@@ -45,7 +45,7 @@
 				<input type="radio" id="shopName1" name="shopName" value="언더70" class="form-control">언더70
 			</td>
 			<td colspan="2" align="center">
-				<input type="radio" id="shopName2" name="shopName" value="바이슬림" class="form-control">바이슬림
+				<input type="radio" id="shopName2" name="shopName" value="고피플" class="form-control">고피플
 			</td>
 		</tr>
 		<tr>

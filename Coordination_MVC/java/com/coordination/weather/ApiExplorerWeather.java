@@ -32,8 +32,10 @@ public class ApiExplorerWeather {
         	baseDate=date.format(today);
         }
        
+        //인증키1 : qenZlJjZb6XaqFBDSk%2B6BE6hSgp4HMzlVHjuZV%2FN07OXNyH4dHxyXjyH3qtq8LyC6EC%2Bd1gOg0Tm2gR%2FusFSWQ%3D%3D
+        //인증키2 : KaI%2FcewqprPhkm8XnSeaZV5lfBAZAiQSe0RCCjYJG7UDgj5a5ChYmXLG5GObAWG%2BxoBQC0HESNXkd88FtcAR1A%3D%3D
         StringBuilder urlBuilder = new StringBuilder("http://newsky2.kma.go.kr/service/SecndSrtpdFrcstInfoService2/ForecastSpaceData"); /*URL*/
-        urlBuilder.append("?" + URLEncoder.encode("ServiceKey","UTF-8") + "=qenZlJjZb6XaqFBDSk%2B6BE6hSgp4HMzlVHjuZV%2FN07OXNyH4dHxyXjyH3qtq8LyC6EC%2Bd1gOg0Tm2gR%2FusFSWQ%3D%3D"); /*Service Key*/
+        urlBuilder.append("?" + URLEncoder.encode("ServiceKey","UTF-8") + "=KaI%2FcewqprPhkm8XnSeaZV5lfBAZAiQSe0RCCjYJG7UDgj5a5ChYmXLG5GObAWG%2BxoBQC0HESNXkd88FtcAR1A%3D%3D"); /*Service Key*/
         urlBuilder.append("&" + URLEncoder.encode("ServiceKey","UTF-8") + "=" + URLEncoder.encode("TEST_SERVICE_KEY", "UTF-8")); /*서비스 인증*/
         urlBuilder.append("&" + URLEncoder.encode("base_date","UTF-8") + "=" + URLEncoder.encode(baseDate, "UTF-8")); /*‘15년 12월 1일발표*/
         urlBuilder.append("&" + URLEncoder.encode("base_time","UTF-8") + "=" + URLEncoder.encode("0200", "UTF-8")); /*02시 발표 * 기술문서 참조*/

@@ -39,7 +39,7 @@ public class JythonController {
 		String image = null;
 		
 		//파싱해서 온 이미지를 C:\img\tensorflow 폴더에 저장
-		//ImageDown(request);
+		ImageDown(request);
 		
 		//쇼핑몰 이름 업데이트
 		String shopName = request.getParameter("shopName");
@@ -70,21 +70,21 @@ public class JythonController {
 				image = path + listOfFiles[i].getName();
 				
 				//전신 이미지 분리
-				//tf.Cut(image);
+				tf.Cut(image);
 				
 				//상의 이미지 분석
 				tf.admin_Upper(image);
 				
 				//하의 이미지 분석
-				//tf.admin_Lower(image);
+				tf.admin_Lower(image);
 				
 				//쇼핑몰 이름 업데이트
-				//tf.admin_ShopName(shopName);
+				tf.admin_ShopName(shopName);
 				
 				//이미지 복구
-				//tf.admin_restore(image);
+				tf.admin_restore(image);
 				
-				System.out.println("현재 :" + i + "/" + listOfFiles.length);
+				System.out.println("현재 :" + (i+1) + "/" + listOfFiles.length);
 			}
 			else
 			{
@@ -211,25 +211,25 @@ public class JythonController {
 					img[n] = "http:"+imgs.get(n).attr("src");
 				}
 			}
-			else if(shopName.equals("바이슬림"))
+			else if(shopName.equals("고피플"))
 			{
 				switch(category) 
 				{
 					//outer
 					case 1:
-						url = "https://www.byslim.com/category/outer/5/";
+						url = "http://gopeople.co.kr/category/outer/24/";
 						break;
 					//t-shirt
 					case 2:
-						url = "https://www.byslim.com/category/%EA%B8%B4%ED%8C%94-%ED%8B%B0%EC%85%94%EC%B8%A0/444/";
+						url = "http://gopeople.co.kr/category/%EA%B8%B4%ED%8C%94%ED%8B%B0/68/";
 						break;
 					//half-tshirt
 					case 3:
-						url = "https://www.byslim.com/category/%EB%B0%98%ED%8C%94/171/";
+						url = "http://gopeople.co.kr/category/%EB%B0%98%ED%8C%94%ED%8B%B0/69/";
 						break;
 					//Hood
 					case 4:
-						url = "https://www.byslim.com/category/%EB%A7%A8%ED%88%AC%EB%A7%A8%ED%9B%84%EB%93%9C/72/";
+						url = "http://gopeople.co.kr/category/%ED%9B%84%EB%93%9C%EB%A7%A8%ED%88%AC%EB%A7%A8/67/";
 						break;
 					default:
 						url = "null";

@@ -24,6 +24,27 @@
 <!-- JS -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
+<script type="text/javascript">
+function sel(str) {
+	if(str=="top"){
+		$('#select_category').css("display", "none");
+		$('#top').css("display", "block");
+		$("#top option:eq(0)").prop("selected", true);
+	}else{
+		$('#select_category').css("display", "none");
+		$('#bottom').css("display", "block");
+		$("#bottom option:eq(0)").prop("selected", true);
+	}
+}
+function selCancel(str) {
+	if(str=="back"){
+		$('#select_category').css("display", "block");
+		$('#top').css("display", "none");
+		$('#bottom').css("display", "none");
+		$("#select_category option:eq(0)").prop("selected", true);
+	}
+}
+</script>
 </head>
 <style type="text/css">
 	body {
@@ -95,6 +116,15 @@
     .signup-form form a:hover {
 		text-decoration: underline;
 	}
+	div#select_category{
+		display:block;
+	}
+	div#top{
+		display:none;
+	}
+	div#bottom{
+		display:none;
+	}
 </style>
 <body>
 
@@ -109,19 +139,41 @@
         	<input type="hidden" name="num" value="${closet.num}" />
 			<img style="border: 1px solid gray;width:300px;height:350px;" src="/displayImg?name=${closet.img}&folder=user"/>
         </div>
-        <div class="form-group">
+        <div id="select_category" class="form-group">
 			<label>Category</label>
-        	<select name="category" class="form-control">
+        	<select name="select_category" class="form-control" onchange="sel(this.value)">
         		<option value="null">선택해주세요</option>
-				<option value="coat">코트</option>
+				<option value="top">상의</option>
+				<option value="bottom">하의</option>
+			</select>
+        </div>
+        <div id="top" class="form-group">
+			<label>Category</label>
+        	<select name="category" class="form-control" onchange="selCancel(this.value)">
+        		<option value="null">상의를 선택해주세요</option>
 				<option value="padding">패딩</option>
-				<option value="jacket">자켓</option>
+				<option value="coat">코트</option>
+				<option value="trenchcoat">트렌치코트</option>
+				<option value="leatherjacket">가죽자켓</option>
+				<option value="jacket">자켓/블레이저</option>	
 				<option value="cardigan">가디건</option>
-				<option value="sweatshirt">맨투맨</option>	
-				<option value="tshirt">티셔츠</option>
+				<option value="hood">후드티/후드집업</option>
+				<option value="vest">조끼</option>
+				<option value="knitwear">니트</option>
+				<option value="sweatshirt">긴팔/맨투맨</option>
 				<option value="shirt">셔츠</option>
-				<option value="halftshirt">반팔</option>
+				<option value="halftshrit">반팔</option>
 				<option value="halfshirt">반팔셔츠</option>
+        		<option value="back">뒤로가기</option>
+			</select>
+        </div>
+        <div id="bottom" class="form-group">
+			<label>Category</label>
+        	<select name="category" class="form-control" onchange="selCancel(this.value)">
+        		<option value="null">하의를  선택해주세요</option>
+				<option value="pants">바지</option>
+				<option value="jeans">청바지</option>
+        		<option value="back">뒤로가기</option>
 			</select>
         </div>
 		<div class="form-group">
@@ -139,6 +191,8 @@
 				<option value="red">red</option>
 				<option value="white">white</option>
 				<option value="yellow">yellow</option>
+				<option value="ivory">ivory</option>
+				<option value="pattern">pattern</option>
 			</select>
         </div>
 		<div class="form-group" align="center">

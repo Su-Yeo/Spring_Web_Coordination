@@ -79,10 +79,10 @@
 								<c:if test="${!empty sessionScope.userId}">
 									<form id="dressInsertForm" method="get" action="dressInsert">
 										<input type="hidden" name="img" value="${ style.img }"/>
-										<input type="submit" class="btn btn-primary btn-block btn-lg" value="저장하기">
+										<input type="submit" class="btn btn-primary btn-block btn-lg" style="background: #61C7C1;" value="저장하기">
 									</form>
 								</c:if><br/>
-								<button type="button" class="btn btn-primary btn-block btn-lg" data-dismiss="modal">돌아가기</button>
+								<button type="button" class="btn btn-primary btn-block btn-lg" style="background: #EBFFEB; data-dismiss="modal">돌아가기</button>
 							</div>			
 						</div>
 					</div>
