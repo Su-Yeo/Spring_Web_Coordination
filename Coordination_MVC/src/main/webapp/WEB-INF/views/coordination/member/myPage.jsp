@@ -135,7 +135,6 @@
 	
 	/*----------------------------img upload button----------------------------*/
 	.button-7{
-	  float:right;
 	  width:140px;
 	  height:40px;
 	  border:2px solid #777;
@@ -182,7 +181,7 @@
 	<!-- End Nav -->
 	<div class="container" style="text-align:center;">
 	<c:if test="${!empty ClosetList}">
-		<div class="button-7" style="cursor: pointer;" onclick="location.href='imgUpload'">
+		<div class="button-7" style="float:right;cursor: pointer;" onclick="location.href='imgUpload'">
 			<div class="eff-7"></div>
 			<a href="imgUpload">옷 등록</a>
 		</div>
@@ -265,6 +264,7 @@
 	}
 	else{
 		n = 3;
+		a = true;
 	}
 	  var swiper = new Swiper('.swiper-container', {
 		    slidesPerView: n,
