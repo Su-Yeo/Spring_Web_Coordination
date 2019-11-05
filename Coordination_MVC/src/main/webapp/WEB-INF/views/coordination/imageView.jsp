@@ -11,25 +11,26 @@
 	a:visited {text-decoration: none; color: black;}
 	a:active {text-decoration: none; color: black;}
 	a:hover {text-decoration: none; color: black;}
-	.img_polaroid img{
+
+
+	.img_copping{
 		width:340px;
-	}
-	.cropping{
-		max-height:370px;
+		max-height:340px;
 		overflow:hidden;
 	}
-	.cropping img{
+	.img_polaroid img{
+		width:100%;
 		max-height:initial;
 	}
-	.imgstyle{
-		max-width: 100%;
-		height: auto;
+  
+    
 	/*----------------------------태블릿----------------------------*/
 	@media all and (min-width: 600px) and (max-width: 1279px) {
-		
-		
-		.img_polaroid img{
+	
+		.img_copping{
 			width:320px;
+			max-height:320px;
+			overflow:hidden;
 		}
 	}
 	/*----------------------------태블릿끝----------------------------*/
@@ -37,7 +38,7 @@
 	/*----------------------------모바일----------------------------*/
 	@media all and (max-width: 600px){
 		
-		.img_polaroid img{
+		.img_copping{
 			width:100%;
 		}
 		.img_polaroid{
@@ -54,16 +55,16 @@
 	<div id="div_include">
 		<c:forEach items="${TemperatureStyle}" var="style" begin="1" end="12" step="1"> 
 			<div class="img_polaroid" style="cursor: pointer;" data-toggle="modal" data-target="#${ style.num }">
-					<div class="cropping">
-					<img style="width:340px;" class="w3-border w3-hover-border-red" src="/displayImg?name=${style.img}&folder=admin" />
-					</div>
-					<div class="img_container">
-						<div><b>${style.shopname}</b></div>
-						<div>좋아요 : #명 <span style="margin: 0 0 0 55%;">버튼</span></div>
-					</div>
+				<div class="img_copping">
+				<img class="w3-border w3-hover-border-red" src="/displayImg?name=${style.img}&folder=admin" />
+				</div>
+				<div class="img_container">
+					<div><b>${style.shopname}</b></div>
+					<div>좋아요 : #명 <span style="margin: 0 0 0 55%;">버튼</span></div>
+				</div>
 			</div>
 			<!-- Image Model -->
-			<div id="${ style.num }" class="modal fade">
+			<div id="${ style.num }" class="modal fade" align="center">
 				<div class="modal-dialog modal-login">
 					<div class="modal-content">
 						<div class="modal-header">
@@ -79,10 +80,11 @@
 								<c:if test="${!empty sessionScope.userId}">
 									<form id="dressInsertForm" method="get" action="dressInsert">
 										<input type="hidden" name="img" value="${ style.img }"/>
-										<input type="submit" class="btn btn-primary btn-block btn-lg" style="background: #61C7C1;" value="저장하기">
+										<input type="submit" class="btn btn-primary btn-block btn-lg" value="저장하기">
 									</form>
 								</c:if><br/>
 								<button type="button" class="btn btn-primary btn-block btn-lg" style="background: #FFF0F5; color: black;" data-dismiss="modal">돌아가기</button>
+								<button type="button" class="btn btn-primary btn-block btn-lg" data-dismiss="modal">돌아가기</button>
 							</div>			
 						</div>
 					</div>

@@ -41,7 +41,13 @@
 		height: 50px;
 		font-size: 1vm;
 		border-bottom: 1px solid rgba(204, 204 ,204 , .4);
+		text-align: left;
 	}
+	/*
+	.info_table phone_area td, .info_table password_area td{
+		width: 40%;
+	}
+	*/
 	.modify_btn{
 		width: 125px;
 		height: 30px;
@@ -101,6 +107,14 @@
 		
 		pwdA.style.display = 'none';
 		pwdCA.style.display = '';
+		
+		var phoneA = document.getElementById('phone_area');
+		var phoneCA = document.getElementById('phone_change_area');
+		var phoneI = document.getElementById('newPhone');
+		
+		phoneA.style.display = '';
+		phoneCA.style.display = 'none';
+		phoneI.value = "";
 	}
 	/* 비밀번호 변경 취소 클릭 */
 	function pwd_modify_close(){
@@ -115,10 +129,15 @@
 	function phone_modify_open(){
 		var phoneA = document.getElementById('phone_area');
 		var phoneCA = document.getElementById('phone_change_area');
+		var pwdA = document.getElementById('password_area');
+		var pwdCA = document.getElementById('password_change_area');
 		
 		phoneA.style.display = 'none';
 		phoneCA.style.display = '';
+		pwdA.style.display = '';
+		pwdCA.style.display = 'none';
 	}
+		
 	/* 휴대전화 변경 취소 클릭 */
 	function phone_modify_close(){
 		var phoneA = document.getElementById('phone_area');
@@ -136,8 +155,6 @@
 		
 		if(confirm('정말로 탈퇴하시겠습니까?')) {
 			frm.submit();
-		} else {
-			
 		}
 	}
 	
@@ -174,7 +191,7 @@
 						<strong>${sessionScope.userId}</strong>
 					</td>
 				</tr>
-				<tr id="password_area">
+				<tr class="passwrod_area" id="password_area">
 					<th>
 						비밀번호
 					</th>
@@ -214,7 +231,7 @@
 						<strong>${sessionScope.userName}</strong>
 					</td>
 				</tr>
-				<tr id="phone_area">
+				<tr class="phone_area" id="phone_area">
 					<th>
 						휴대전화
 					</th>
