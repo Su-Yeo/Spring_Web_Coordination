@@ -193,9 +193,10 @@ public class HomeController {
 
     	String host = "smtp.naver.com";
     	
-    	//보내는 사람 정보
-    	final String user = "sunrns126@naver.com";
-    	final String password = "javamail123";
+    	//보내는 사람 정보 
+    	//ID@naver.com
+    	final String user = "";
+    	final String password = "";
     	
     	// SMTP 서버 정보를 설정
     	Properties props = new Properties();

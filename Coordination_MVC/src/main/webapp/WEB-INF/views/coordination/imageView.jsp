@@ -82,7 +82,7 @@
 										<input type="submit" class="btn btn-primary btn-block btn-lg" style="background: #61C7C1;" value="저장하기">
 									</form>
 								</c:if><br/>
-								<button type="button" class="btn btn-primary btn-block btn-lg" style="background: #EBFFEB; data-dismiss="modal">돌아가기</button>
+								<button type="button" class="btn btn-primary btn-block btn-lg" style="background: #FFF0F5; color: black;" data-dismiss="modal">돌아가기</button>
 							</div>			
 						</div>
 					</div>

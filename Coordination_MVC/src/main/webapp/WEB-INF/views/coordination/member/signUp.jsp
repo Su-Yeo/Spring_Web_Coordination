@@ -56,7 +56,7 @@
 			<!-- ID -->
 			<div class="wrap-input100 validate-input" data-validate="Id is required">
 				<span class="label-input100">ID</span>
-				<input class="input100" type="text" name="id" placeholder="이름을 입력해주세요.">
+				<input class="input100" type="text" name="id" placeholder="아이디를 입력해주세요.">
 				<span class="focus-input100"></span>
 			</div>
 	
