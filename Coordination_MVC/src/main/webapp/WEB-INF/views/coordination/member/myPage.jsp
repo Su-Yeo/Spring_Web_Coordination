@@ -20,6 +20,7 @@
 
   <!-- Link Swiper's CSS -->
 <link rel="stylesheet" href="/resources/css/swiper.min.css">
+<link rel="stylesheet" href="/resources/css/swiper.min2.css">
 <link rel="stylesheet" href="/resources/css/import.css" />
   <!-- Demo styles -->
   <style>
@@ -198,16 +199,16 @@
 						<a href="imgUpload">옷 등록</a>
 					</div>
 				</c:if>
+					<c:if test="${empty ClosetListTop && !empty ClosetListBottom}">
+						<img src="/resources/icon/closettopIcon.jpg">
+					</c:if>
 	      			<!-- Swiper -->
 					<div class="swiper-container">
 						<div class="swiper-wrapper">
 							<c:forEach items="${ClosetListTop}" var="closet">
 								<div class="swiper-slide">
 									<div class="swiper-countA">
-									<%-- <a href="Recommendation?category=${closet.category}&color=${closet.color}">										
-										<img class="swiper-img" style="border: 1px solid gray;" src="/displayImg?name=${closet.img}&folder=user"/>
-									</a> --%>
-									<img class="swiper-img" style="border: 1px solid gray;" src="/displayImg?name=${closet.img}&folder=user" onclick="category_top('${closet.category}','${closet.color}')"/>
+									<img class="swiper-img" style="border: 1px solid gray;" src="/displayImg?name=${closet.img}&folder=user" onclick="category_top('${closet.category}')"/>
 									</div>
 								</div>
 							</c:forEach>
@@ -216,21 +217,24 @@
 						<div class="swiper-button-next swiper-button-black" style="opacity:0.5;"></div>
 						<div class="swiper-button-prev swiper-button-black" style="opacity:0.5;"></div>
 					</div><br/>
+					<c:if test="${!empty ClosetListTop && empty ClosetListBottom}">
+						<img src="/resources/icon/closetbottomIcon.jpg">
+					</c:if>
 					<!-- Swiper -->
-					<div class="swiper-container">
+					<div class="swiper-container2">
 						<div class="swiper-wrapper">
 							<c:forEach items="${ClosetListBottom}" var="closet2">
 								<div class="swiper-slide">
 									<div class="swiper-countB">
-										<img class="swiper-img" style="border: 1px solid gray;" src="/displayImg?name=${closet2.img}&folder=user" onclick="category_bottom('${closet2.category}','${closet2.color}')"/>
+										<img class="swiper-img" style="border: 1px solid gray;" src="/displayImg?name=${closet2.img}&folder=user" onclick="category_bottom('${closet2.category}')"/>
 									</div>
 								</div>
 							</c:forEach>
 						</div>
 						<!-- Add Arrows -->
-						<div class="swiper-button-next swiper-button-black" style="opacity:0.5;"></div>
-						<div class="swiper-button-prev swiper-button-black" style="opacity:0.5;"></div>
-					</div>					
+						<div class="swiper-button-next2 swiper-button-black" style="opacity:0.5;"></div>
+						<div class="swiper-button-prev2 swiper-button-black" style="opacity:0.5;"></div>
+					</div>
 		      </div>
 		    </li>
 		    <li id="tab2" class="btnCon"><input type="radio" name="tabmenu" id="tabmenu2">
@@ -239,9 +243,10 @@
 		    </li>
 		  </ul>
 		</div>
-		      <input type="button" onclick="category_submit()" value="앙">
 	</div>
-	
+	<c:if test="${!empty ClosetListTop || !empty ClosetListBottom}">
+		<input style="width:200px;height:30px;" type="button" onclick="category_submit()" value="코디보기">
+	</c:if>	
 	<script>
 		var top2='';
 		var bottom='';
@@ -284,7 +289,7 @@
 		n = 3;
 		a = false;
 	}
-	else{
+	else if($('.swiper-countA').length>=4){
 		n = 3;
 		a = true;
 	}
@@ -325,27 +330,28 @@
 		   }
 	  });
 	  
-	var n = 0;
-	var a = true;
+	var m = 0;
+	var b = true;
 	if($('.swiper-countB').length==1){
-		n = 1;
-		a = false;
+		m = 1;
+		b = false;
 	}
 	else if($('.swiper-countB').length==2){
-		n = 2;
-		a = false;
+		m = 2;
+		b = false;
 	}
 	else if($('.swiper-countB').length==3){
-		n = 3;
-		a = false;
+		m = 3;
+		b = false;
 	}
-	else{
-		n = 3;
+	else if($('.swiper-countB').length>=4){
+		m = 3;
+		b = true;
 	}
-	  var swiper = new Swiper('.swiper-container', {
-		    slidesPerView: n,
+	  var swiper = new Swiper('.swiper-container2', {
+		    slidesPerView: m,
 		    spaceBetween: 0,
-		    loop: a,
+		    loop: b,
 		    loopFillGroupWithBlank: true,
 		    autoplay: {
 		        delay: 10000,
@@ -356,8 +362,8 @@
 		      clickable: true,
 		    },
 		    navigation: {
-		      nextEl: '.swiper-button-next',
-		      prevEl: '.swiper-button-prev',
+		      nextEl: '.swiper-button-next2',
+		      prevEl: '.swiper-button-prev2',
 		    },
 		    breakpoints: {
 				1024: {
