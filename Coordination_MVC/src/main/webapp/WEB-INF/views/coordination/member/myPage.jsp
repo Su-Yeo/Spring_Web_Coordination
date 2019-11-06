@@ -207,7 +207,7 @@
 									<%-- <a href="Recommendation?category=${closet.category}&color=${closet.color}">										
 										<img class="swiper-img" style="border: 1px solid gray;" src="/displayImg?name=${closet.img}&folder=user"/>
 									</a> --%>
-									<img class="swiper-img" style="border: 1px solid gray;" src="/displayImg?name=${closet.img}&folder=user" onclick="category_top('${closet.category}')"/>
+									<img class="swiper-img" style="border: 1px solid gray;" src="/displayImg?name=${closet.img}&folder=user" onclick="category_top('${closet.category}','${closet.color}')"/>
 									</div>
 								</div>
 							</c:forEach>
@@ -222,7 +222,7 @@
 							<c:forEach items="${ClosetListBottom}" var="closet2">
 								<div class="swiper-slide">
 									<div class="swiper-countB">
-										<img class="swiper-img" style="border: 1px solid gray;" src="/displayImg?name=${closet2.img}&folder=user" onclick="category_bottom('${closet2.category}')"/>
+										<img class="swiper-img" style="border: 1px solid gray;" src="/displayImg?name=${closet2.img}&folder=user" onclick="category_bottom('${closet2.category}','${closet2.color}')"/>
 									</div>
 								</div>
 							</c:forEach>
@@ -245,20 +245,24 @@
 	<script>
 		var top2='';
 		var bottom='';
+		var topColor='';
+		var bottomColor='';
 		
-		function category_top(top2){
+		function category_top(top2,topColor){
 			this.top2=top2;
-			alert(top2);
+			this.topColor=topColor;
+			alert(top2+topColor);
 		}
 		
-		function category_bottom(bottom){
+		function category_bottom(bottom,bottomColor){
 			this.bottom=bottom;
-			alert(bottom);
+			this.bottomColor=bottomColor;
+			alert(bottom+bottomColor);
 		}
 		
 		function category_submit(){
-			alert(top2 + bottom);
-			//Recommendation?category=${closet.category}&color=${closet.color}
+			alert(top2 + bottom +topColor +bottomColor);
+			location.href=encodeURI("Recommendation?top="+top2+"&bottom="+bottom+"&topColor="+topColor+"&bottomColor="+bottomColor);
 		}
 	</script>
 	<!-- Swiper JS -->

@@ -49,8 +49,7 @@
 		FROM 
 			closet
 		WHERE 1=1
-		AND category = 'pants'
-		OR category = 'jeans'
+		AND (category = 'pants'	OR category = 'jeans')
 		<if test="id != null">
 			AND id=#{id}
 		</if>

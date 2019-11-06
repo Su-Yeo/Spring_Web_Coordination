@@ -281,6 +281,8 @@ public class StyleController {
 			//전체 페이지 갯수
 			int listCnt = service.StyleRecommendationCount();
 
+			System.out.println("#######################################");
+			System.out.println(listCnt);
 			//Pagination 객체생성
 			//UserPagination userPagination = new UserPagination();
 			//userPagination.pageInfo(page, range, listCnt);
@@ -296,17 +298,23 @@ public class StyleController {
 			String bottom = request.getParameter("bottom");
 			String topColor = request.getParameter("topColor");
 			String bottomColor = request.getParameter("bottomColor");
-
-			if(top!=null || topColor!=null)
+			
+			if(top!="" && topColor!="")
 			{
 				vo.setTop(top);
 				vo.setTop_color(topColor);
+			}else {
+				vo.setTop(null);
+				vo.setTop_color(null);
 			}
 			
-			if(bottom!=null || bottomColor!=null)
+			if(bottom!="" && bottomColor!="")
 			{
 				vo.setPants(bottom);
 				vo.setPants_color(bottomColor);
+			}else {
+				vo.setPants(null);
+				vo.setPants_color(null);
 			}
 			
 			model.addAttribute("pagination", pagination);
