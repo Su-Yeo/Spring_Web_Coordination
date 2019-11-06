@@ -292,20 +292,23 @@ public class StyleController {
 			//vo.setTop_color("black");
 
 			//옷의 종류, 색상 받아오기
-			String category = request.getParameter("category");
-			String color = request.getParameter("color");
+			String top = request.getParameter("top");
+			String bottom = request.getParameter("bottom");
+			String topColor = request.getParameter("topColor");
+			String bottomColor = request.getParameter("bottomColor");
 
-			if(category.equals("pants") || category.equals("jeans"))
+			if(top!=null || topColor!=null)
 			{
-				vo.setPants(category);
-				vo.setPants_color(color);
+				vo.setTop(top);
+				vo.setTop_color(topColor);
 			}
-			else
+			
+			if(bottom!=null || bottomColor!=null)
 			{
-				vo.setTop(category);
-				vo.setTop_color(color);
+				vo.setPants(bottom);
+				vo.setPants_color(bottomColor);
 			}
-
+			
 			model.addAttribute("pagination", pagination);
 			model.addAttribute("StyleList", service.StyleRecommendation(vo));
 

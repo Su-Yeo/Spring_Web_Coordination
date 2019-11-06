@@ -180,7 +180,7 @@
 	<jsp:include page="../nav.jsp"></jsp:include>
 	<!-- End Nav -->
 	<div class="container" style="text-align:center;">
-	<c:if test="${!empty ClosetList}">
+	<c:if test="${!empty ClosetListTop || !empty ClosetListBottom}">
 		<div class="button-7" style="float:right;cursor: pointer;" onclick="location.href='imgUpload'">
 			<div class="eff-7"></div>
 			<a href="imgUpload">옷 등록</a>
@@ -191,7 +191,7 @@
 		    <li id="tab1" class="btnCon"> <input type="radio" checked name="tabmenu" id="tabmenu1">
 		      <label for="tabmenu1">옷장</label>
 		      <div class="tabCon">
-	      		<c:if test="${empty ClosetList}">
+	      		<c:if test="${empty ClosetListTop && empty ClosetListBottom}">
 					<img src="/resources/icon/closetIcon.jpg">
 					<div class="button-7" style="margin:0 auto;cursor: pointer;" onclick="location.href='imgUpload'">
 						<div class="eff-7"></div>
@@ -201,16 +201,15 @@
 	      			<!-- Swiper -->
 					<div class="swiper-container">
 						<div class="swiper-wrapper">
-							<c:forEach items="${ClosetList}" var="closet">
-								<c:if test="${closet.category=='pants'}">
+							<c:forEach items="${ClosetListTop}" var="closet">
 								<div class="swiper-slide">
 									<div class="swiper-countA">
-									<a href="Recommendation?category=${closet.category}&color=${closet.color}">										
+									<%-- <a href="Recommendation?category=${closet.category}&color=${closet.color}">										
 										<img class="swiper-img" style="border: 1px solid gray;" src="/displayImg?name=${closet.img}&folder=user"/>
-									</a>
+									</a> --%>
+									<img class="swiper-img" style="border: 1px solid gray;" src="/displayImg?name=${closet.img}&folder=user" onclick="category_top('${closet.category}')"/>
 									</div>
 								</div>
-								</c:if>
 							</c:forEach>
 						</div>
 						<!-- Add Arrows -->
@@ -220,12 +219,10 @@
 					<!-- Swiper -->
 					<div class="swiper-container">
 						<div class="swiper-wrapper">
-							<c:forEach items="${ClosetList}" var="closet">
+							<c:forEach items="${ClosetListBottom}" var="closet2">
 								<div class="swiper-slide">
 									<div class="swiper-countB">
-									<a href="updateClosetForm?num=${closet.num}">
-										<img class="swiper-img" style="border: 1px solid gray;" src="/displayImg?name=${closet.img}&folder=user"/>
-									</a>
+										<img class="swiper-img" style="border: 1px solid gray;" src="/displayImg?name=${closet2.img}&folder=user" onclick="category_bottom('${closet2.category}')"/>
 									</div>
 								</div>
 							</c:forEach>
@@ -233,7 +230,7 @@
 						<!-- Add Arrows -->
 						<div class="swiper-button-next swiper-button-black" style="opacity:0.5;"></div>
 						<div class="swiper-button-prev swiper-button-black" style="opacity:0.5;"></div>
-					</div>
+					</div>					
 		      </div>
 		    </li>
 		    <li id="tab2" class="btnCon"><input type="radio" name="tabmenu" id="tabmenu2">
@@ -242,8 +239,28 @@
 		    </li>
 		  </ul>
 		</div>
+		      <input type="button" onclick="category_submit()" value="앙">
 	</div>
 	
+	<script>
+		var top2='';
+		var bottom='';
+		
+		function category_top(top2){
+			this.top2=top2;
+			alert(top2);
+		}
+		
+		function category_bottom(bottom){
+			this.bottom=bottom;
+			alert(bottom);
+		}
+		
+		function category_submit(){
+			alert(top2 + bottom);
+			//Recommendation?category=${closet.category}&color=${closet.color}
+		}
+	</script>
 	<!-- Swiper JS -->
 	<script src="/resources/js/swiper.min.js"></script>
 	

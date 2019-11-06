@@ -57,8 +57,10 @@ public class ClosetController {
             //Setter
             vo.setImg(img);
             //Getter
-            List<ClosetVO> closetList = service.closetList(vo);
-            model.addAttribute("closetList", closetList);
+            List<ClosetVO> ClosetListTop = service.closetListTop(vo);
+            model.addAttribute("ClosetListTop", ClosetListTop);
+            List<ClosetVO> ClosetListBottom = service.closetListBottom(vo);
+            model.addAttribute("ClosetListBottom", ClosetListBottom);
 			
 		}catch(Exception e) {
 			e.printStackTrace();
