@@ -202,14 +202,15 @@
 					<div class="swiper-container">
 						<div class="swiper-wrapper">
 							<c:forEach items="${ClosetList}" var="closet">
+								<c:if test="${closet.category=='pants'}">
 								<div class="swiper-slide">
-									<a href="Recommendation?category=${closet.category}&color=${closet.color}">
 									<div class="swiper-countA">
-									<a href="updateClosetForm?num=${closet.num}">
+									<a href="Recommendation?category=${closet.category}&color=${closet.color}">										
 										<img class="swiper-img" style="border: 1px solid gray;" src="/displayImg?name=${closet.img}&folder=user"/>
 									</a>
 									</div>
 								</div>
+								</c:if>
 							</c:forEach>
 						</div>
 						<!-- Add Arrows -->
