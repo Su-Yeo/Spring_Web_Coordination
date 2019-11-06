@@ -6,6 +6,9 @@ import com.coordination.dto.ClosetVO;
 
 public interface ClosetService {
 
+	//각 회원의 옷장 출력
+	public List<ClosetVO> closetList(ClosetVO vo) throws Exception;
+	
 	//각 회원의 옷장 출력 top
 	public List<ClosetVO> closetListTop(ClosetVO vo) throws Exception;
 	

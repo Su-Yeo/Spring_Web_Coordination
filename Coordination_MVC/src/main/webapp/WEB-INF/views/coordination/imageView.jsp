@@ -84,7 +84,6 @@
 									</form>
 								</c:if><br/>
 								<button type="button" class="btn btn-primary btn-block btn-lg" style="background: #FFF0F5; color: black;" data-dismiss="modal">돌아가기</button>
-								<button type="button" class="btn btn-primary btn-block btn-lg" data-dismiss="modal">돌아가기</button>
 							</div>			
 						</div>
 					</div>
