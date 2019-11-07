@@ -44,8 +44,11 @@
 			<td colspan="2" align="center">
 				<input type="radio" id="shopName1" name="shopName" value="언더70" class="form-control">언더70
 			</td>
-			<td colspan="2" align="center">
-				<input type="radio" id="shopName2" name="shopName" value="고피플" class="form-control">고피플
+			<td align="center">
+				<input type="radio" id="shopName2" name="shopName" value="바이슬림" class="form-control">바이슬림
+			</td>
+			<td align="center">
+				<input type="radio" id="shopName3" name="shopName" value="고피플" class="form-control">고피플
 			</td>
 		</tr>
 		<tr>
@@ -90,7 +93,8 @@
     function submit2(){
     	
     	if( document.getElementById("shopName1").checked != true &&
-    	    document.getElementById("shopName2").checked != true)
+    	    document.getElementById("shopName2").checked != true &&
+    	    document.getElementById("shopName3").checked != true)
     	{
     		alert('데이터 등록할 쇼핑몰을 선택해주세요.');
     		document.getElementById("shopName1").focus();

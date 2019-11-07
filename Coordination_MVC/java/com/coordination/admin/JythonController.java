@@ -16,6 +16,7 @@ import javax.servlet.http.HttpSession;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,7 +29,7 @@ public class JythonController {
 	@Resource(name="imgPath")
 	private String imgPath;
 	
-	@RequestMapping(value="parsing")
+	/* @RequestMapping(value="parsing") */
 	public String Tensorflow(Model model, HttpServletRequest request, HttpSession session) throws Exception  {
 		
 		//이미지 분석 객체 생성
@@ -43,7 +44,6 @@ public class JythonController {
 		
 		//쇼핑몰 이름 업데이트
 		String shopName = request.getParameter("shopName");
-		//String shopName = "바이슬림";
 		
 		//이동할 폴더
 		File folder = new File("C:\\img\\tensorflow");
@@ -107,7 +107,7 @@ public class JythonController {
 		return "movePage";
 	}
 
-	
+	@RequestMapping(value="parsing")
 	public void ImageDown(HttpServletRequest request) {
 		
 		//1 : Outer
@@ -122,11 +122,14 @@ public class JythonController {
         int n=0;
         byte[] buf = null;
         byte[] response=null;
-        String shopName = request.getParameter("shopName");
-        int category = Integer.parseInt(request.getParameter("Category"));
+        //String shopName = request.getParameter("shopName");
+        //int category = Integer.parseInt(request.getParameter("Category"));
+        String shopName = "코디북";
+      	int category = 2;
 
 		//파싱해서 가져온 이미지를 배열로 받는다.
-		Parsing(shopName, category);
+		//Parsing(shopName, category);
+      	Parsing();
 
         //폴더 생성
   		File fileDir = new File(imgPath, "tensorflow");
@@ -168,8 +171,13 @@ public class JythonController {
 		}	
 	}
 
-	//이미지 파싱 
-	public void Parsing(String shopName, int category) {
+	//이미지 파싱
+	public void Parsing(/* String shopName, int category */) {
+		
+		//String shopName = request.getParameter("shopName");
+		//int category = Integer.parseInt(request.getParameter("Category"));
+		String shopName = "코디북";
+		int category = 1;
 		
 		//파싱할 웹 페이지
 		String url = null;
@@ -211,30 +219,31 @@ public class JythonController {
 					img[n] = "http:"+imgs.get(n).attr("src");
 				}
 			}
-			else if(shopName.equals("고피플"))
+			else if(shopName.equals("바이슬림"))
 			{
 				switch(category) 
 				{
 					//outer
 					case 1:
-						url = "http://gopeople.co.kr/category/outer/24/";
+						url = "https://www.byslim.com/category/outer/5/";
 						break;
 					//t-shirt
 					case 2:
-						url = "http://gopeople.co.kr/category/%EA%B8%B4%ED%8C%94%ED%8B%B0/68/";
+						url = "https://www.byslim.com/category/%EA%B8%B4%ED%8C%94-%ED%8B%B0%EC%85%94%EC%B8%A0/444/";
 						break;
 					//half-tshirt
 					case 3:
-						url = "http://gopeople.co.kr/category/%EB%B0%98%ED%8C%94%ED%8B%B0/69/";
+						url = "https://www.byslim.com/category/%EA%B8%B4%ED%8C%94-%ED%8B%B0%EC%85%94%EC%B8%A0/444/";
 						break;
 					//Hood
 					case 4:
-						url = "http://gopeople.co.kr/category/%ED%9B%84%EB%93%9C%EB%A7%A8%ED%88%AC%EB%A7%A8/67/";
+						url = "https://www.byslim.com/category/%EB%A7%A8%ED%88%AC%EB%A7%A8%ED%9B%84%EB%93%9C/72/";
 						break;
 					default:
 						url = "null";
 						break;
 				}
+			
 				//Connect
 				Document doc = Jsoup.connect(url).get();
 				
@@ -264,6 +273,103 @@ public class JythonController {
 					img[i] = length.get(i);
 				}
 			}
+			else if(shopName.equals("고피플"))
+			{
+				switch(category) 
+				{
+					//outer
+					case 1:
+						url = "http://gopeople.co.kr/category/outer/24/";
+						break;
+					//t-shirt
+					case 2:
+						url = "http://gopeople.co.kr/category/%EA%B8%B4%ED%8C%94%ED%8B%B0/68/";
+						break;
+					//half-tshirt
+					case 3:
+						url = "http://gopeople.co.kr/category/%EB%B0%98%ED%8C%94%ED%8B%B0/69/";
+						break;
+					//Hood
+					case 4:
+						url = "http://gopeople.co.kr/category/%ED%9B%84%EB%93%9C%EB%A7%A8%ED%88%AC%EB%A7%A8/67/";
+						break;
+					default:
+						url = "null";
+						break;
+				}
+				
+				//Connect
+				Document doc = Jsoup.connect(url).get();
+				
+				//상품리스트의 상품사진 class명 (수정O)	
+				Elements imgs = doc.select("ul.prdList.grid3 li img");
+				String[] str = new String[imgs.size()];
+				List<String> array = new ArrayList<String>();
+				
+				for(int n=0; n<str.length; n++)
+				{
+					str[n] = "http:" + imgs.get(n).attr("src");
+					
+					if(str[n].substring(str[n].length()-4, str[n].length()).equals(".jpg") ||
+							str[n].substring(str[n].length()-4, str[n].length()).equals("jpeg"))
+					{
+						//jpg, jpeg파일만 ArrayList에 할당
+						array.add(str[n]);
+					}
+				}
+				
+				img = new String[array.size()];
+				for(int i=0; i<array.size(); i++)
+				{
+					img[i] = array.get(i);
+				}
+			}
+			else if(shopName.equals("코디북"))
+			{
+				/*
+				switch(category) 
+				{
+					//outer
+					case 1:
+						url = "https://ko.codibook.net/items/?pc=136&color=e9c2a9&view=productDetail";
+						break;
+					case 2:
+						url = "https://ko.codibook.net/items/?pc=136&color=e61432&view=productDetail";
+					default:
+						url = "null";
+						break;
+				}
+				*/
+				url = "https://ko.codibook.net/items/?pc=144&color=e9c2a9&view=productDetail&page=14";
+				
+				//Connect
+				Document doc = Jsoup.connect(url).get();
+				
+				//상품리스트의 상품사진 class명 (수정O)	
+				Elements imgs = doc.select("div.thumb_wrapper img");
+				String[] str = new String[imgs.size()];	
+				List<String> array = new ArrayList<String>();
+			
+
+				for(int n=0; n<str.length; n++) 
+				{
+					str[n] = imgs.get(n).attr("src");
+					
+					if(str[n].substring(str[n].length()-3, str[n].length()).equals("png"))
+					{
+						array.add(str[n]);
+					}
+				}
+				img = new String[array.size()];
+				for(int n=0; n<array.size(); n++)
+				{
+					img[n] = array.get(n);
+					System.out.println(img[n]);
+				}
+
+			}
+			//End Else If
+			System.out.println("==================parsing==================");
 		
 		}catch(Exception e) {
 			System.out.println("**********Error!! (Parsing())**********");

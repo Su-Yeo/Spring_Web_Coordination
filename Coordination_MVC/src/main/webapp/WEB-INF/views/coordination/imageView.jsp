@@ -60,7 +60,8 @@
 				</div>
 				<div class="img_container">
 					<div><b>${style.shopname}</b></div>
-					<div>좋아요 : #명 <span style="margin: 0 0 0 55%;">버튼</span></div>
+					<p>
+					</p>
 				</div>
 			</div>
 			<!-- Image Model -->
@@ -82,9 +83,9 @@
 										<input type="hidden" name="img" value="${ style.img }"/>
 										<input type="submit" class="btn btn-primary btn-block btn-lg" value="저장하기">
 									</form>
-								</c:if><br/>
+								</c:if>
+								<br/>
 								<button type="button" class="btn btn-primary btn-block btn-lg" style="background: #FFF0F5; color: black;" data-dismiss="modal">돌아가기</button>
-								<button type="button" class="btn btn-primary btn-block btn-lg" data-dismiss="modal">돌아가기</button>
 							</div>			
 						</div>
 					</div>
