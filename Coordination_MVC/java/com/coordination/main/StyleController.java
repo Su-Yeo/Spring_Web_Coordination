@@ -281,6 +281,8 @@ public class StyleController {
 			//전체 페이지 갯수
 			int listCnt = service.StyleRecommendationCount();
 
+			System.out.println("#######################################");
+			System.out.println(listCnt);
 			//Pagination 객체생성
 			//UserPagination userPagination = new UserPagination();
 			//userPagination.pageInfo(page, range, listCnt);
@@ -292,20 +294,29 @@ public class StyleController {
 			//vo.setTop_color("black");
 
 			//옷의 종류, 색상 받아오기
-			String category = request.getParameter("category");
-			String color = request.getParameter("color");
-
-			if(category.equals("pants") || category.equals("jeans"))
+			String top = request.getParameter("top");
+			String bottom = request.getParameter("bottom");
+			String topColor = request.getParameter("topColor");
+			String bottomColor = request.getParameter("bottomColor");
+			
+			if(top!="" && topColor!="")
 			{
-				vo.setPants(category);
-				vo.setPants_color(color);
+				vo.setTop(top);
+				vo.setTop_color(topColor);
+			}else {
+				vo.setTop(null);
+				vo.setTop_color(null);
 			}
-			else
+			
+			if(bottom!="" && bottomColor!="")
 			{
-				vo.setTop(category);
-				vo.setTop_color(color);
+				vo.setPants(bottom);
+				vo.setPants_color(bottomColor);
+			}else {
+				vo.setPants(null);
+				vo.setPants_color(null);
 			}
-
+			
 			model.addAttribute("pagination", pagination);
 			model.addAttribute("StyleList", service.StyleRecommendation(vo));
 

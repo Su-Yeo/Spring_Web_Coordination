@@ -225,8 +225,10 @@ public class MemberController {
 			String id = session.getAttribute("userId").toString();
 			vo.setId(id);
 			
-			List<ClosetVO> ClosetList = closetService.closetList(vo);
-			model.addAttribute("ClosetList", ClosetList);
+			List<ClosetVO> ClosetListTop = closetService.closetListTop(vo);
+			model.addAttribute("ClosetListTop", ClosetListTop);
+			List<ClosetVO> ClosetListBottom = closetService.closetListBottom(vo);
+			model.addAttribute("ClosetListBottom", ClosetListBottom);
 			
 			return "coordination/member/myPage";
 		}

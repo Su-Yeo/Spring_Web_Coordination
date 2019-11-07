@@ -13,12 +13,24 @@ public class ClosetServiceImpl implements ClosetService {
 
 	@Autowired
 	private ClosetDAO dao;
-	
+
 	//각 회원의 옷장 출력
 	@Override
 	public List<ClosetVO> closetList(ClosetVO vo) throws Exception {
 		
 		return dao.closetList(vo);
+	}
+	
+	@Override
+	public List<ClosetVO> closetListTop(ClosetVO vo) throws Exception {
+		
+		return dao.closetListTop(vo);
+	}
+	
+	@Override
+	public List<ClosetVO> closetListBottom(ClosetVO vo) throws Exception {
+		
+		return dao.closetListBottom(vo);
 	}
 
 	//회원이 나만의 옷장에 사진 저장

@@ -21,7 +21,21 @@ public class ClosetDAOImpl implements ClosetDAO {
 	public List<ClosetVO> closetList(ClosetVO vo) throws Exception {
 		
 		return sqlSession.selectList(Namespace+".closetList", vo);
+	}	
+	
+	//각 회원의 옷장 출력 top
+	@Override
+	public List<ClosetVO> closetListTop(ClosetVO vo) throws Exception {
+		
+		return sqlSession.selectList(Namespace+".closetListTop", vo);
 	}
+	
+	//각 회원의 옷장 출력 bottom
+		@Override
+		public List<ClosetVO> closetListBottom(ClosetVO vo) throws Exception {
+			
+			return sqlSession.selectList(Namespace+".closetListBottom", vo);
+		}
 
 	//회원이 나만의 옷장에 사진 저장
 	@Override

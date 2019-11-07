@@ -24,6 +24,44 @@
 		</if>
 	</select>
 	
+	<select id="closetListTop" resultType="closetVO">
+		SELECT 
+			*
+		FROM 
+			closet
+		WHERE 1=1
+		AND category !='null'
+		AND category !='pants'
+		AND category !='jeans'
+		<if test="id != null">
+			AND id=#{id}
+		</if>
+		<if test="num != 0">
+			AND num=#{num}
+		</if>
+		<if test="img != null">
+			AND img=#{img}
+		</if>
+	</select>
+	
+	<select id="closetListBottom" resultType="closetVO">
+		SELECT 
+			*
+		FROM 
+			closet
+		WHERE 1=1
+		AND (category = 'pants' OR category = 'jeans')
+		<if test="id != null">
+			AND id=#{id}
+		</if>
+		<if test="num != 0">
+			AND num=#{num}
+		</if>
+		<if test="img != null">
+			AND img=#{img}
+		</if>
+	</select>
+	
 	<insert id="insertCloset">
 		INSERT INTO closet(
 			id,

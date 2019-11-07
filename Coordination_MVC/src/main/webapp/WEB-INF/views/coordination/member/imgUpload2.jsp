@@ -30,10 +30,12 @@ function sel(str) {
 		$('#select_category').css("display", "none");
 		$('#top').css("display", "block");
 		$("#top option:eq(0)").prop("selected", true);
+		$("select[name=top]").attr("name", "category"); 
 	}else{
 		$('#select_category').css("display", "none");
 		$('#bottom').css("display", "block");
 		$("#bottom option:eq(0)").prop("selected", true);
+		$("select[name=bottom]").attr("name", "category"); 
 	}
 }
 function selCancel(str) {
@@ -149,7 +151,7 @@ function selCancel(str) {
         </div>
         <div id="top" class="form-group">
 			<label>Category</label>
-        	<select name="category" class="form-control" onchange="selCancel(this.value)">
+        	<select name="top" class="form-control" onchange="selCancel(this.value)">
         		<option value="null">상의를 선택해주세요</option>
 				<option value="padding">패딩</option>
 				<option value="coat">코트</option>
@@ -169,7 +171,7 @@ function selCancel(str) {
         </div>
         <div id="bottom" class="form-group">
 			<label>Category</label>
-        	<select name="category" class="form-control" onchange="selCancel(this.value)">
+        	<select name="bottom" class="form-control" onchange="selCancel(this.value)">
         		<option value="null">하의를  선택해주세요</option>
 				<option value="pants">바지</option>
 				<option value="jeans">청바지</option>

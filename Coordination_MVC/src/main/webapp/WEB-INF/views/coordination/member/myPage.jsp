@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@page session="true"%>
@@ -20,6 +20,7 @@
 
   <!-- Link Swiper's CSS -->
 <link rel="stylesheet" href="/resources/css/swiper.min.css">
+<link rel="stylesheet" href="/resources/css/swiper.min2.css">
 <link rel="stylesheet" href="/resources/css/import.css" />
   <!-- Demo styles -->
   <style>
@@ -180,7 +181,7 @@
 	<jsp:include page="../nav.jsp"></jsp:include>
 	<!-- End Nav -->
 	<div class="container" style="text-align:center;">
-	<c:if test="${!empty ClosetList}">
+	<c:if test="${!empty ClosetListTop || !empty ClosetListBottom}">
 		<div class="button-7" style="float:right;cursor: pointer;" onclick="location.href='imgUpload'">
 			<div class="eff-7"></div>
 			<a href="imgUpload">옷 등록</a>
@@ -191,23 +192,23 @@
 		    <li id="tab1" class="btnCon"> <input type="radio" checked name="tabmenu" id="tabmenu1">
 		      <label for="tabmenu1">옷장</label>
 		      <div class="tabCon">
-	      		<c:if test="${empty ClosetList}">
+	      		<c:if test="${empty ClosetListTop && empty ClosetListBottom}">
 					<img src="/resources/icon/closetIcon.jpg">
 					<div class="button-7" style="margin:0 auto;cursor: pointer;" onclick="location.href='imgUpload'">
 						<div class="eff-7"></div>
 						<a href="imgUpload">옷 등록</a>
 					</div>
 				</c:if>
+					<c:if test="${empty ClosetListTop && !empty ClosetListBottom}">
+						<img src="/resources/icon/closettopIcon.jpg">
+					</c:if>
 	      			<!-- Swiper -->
 					<div class="swiper-container">
 						<div class="swiper-wrapper">
-							<c:forEach items="${ClosetList}" var="closet">
+							<c:forEach items="${ClosetListTop}" var="closet">
 								<div class="swiper-slide">
-									<a href="Recommendation?category=${closet.category}&color=${closet.color}">
 									<div class="swiper-countA">
-									<a href="updateClosetForm?num=${closet.num}">
-										<img class="swiper-img" style="border: 1px solid gray;" src="/displayImg?name=${closet.img}&folder=user"/>
-									</a>
+									<img class="swiper-img" style="border: 1px solid gray;" src="/displayImg?name=${closet.img}&folder=user" onclick="category_top('${closet.category}','${closet.color}')"/>
 									</div>
 								</div>
 							</c:forEach>
@@ -216,22 +217,23 @@
 						<div class="swiper-button-next swiper-button-black" style="opacity:0.5;"></div>
 						<div class="swiper-button-prev swiper-button-black" style="opacity:0.5;"></div>
 					</div><br/>
+					<c:if test="${!empty ClosetListTop && empty ClosetListBottom}">
+						<img src="/resources/icon/closetbottomIcon.jpg">
+					</c:if>
 					<!-- Swiper -->
-					<div class="swiper-container">
+					<div class="swiper-container2">
 						<div class="swiper-wrapper">
-							<c:forEach items="${ClosetList}" var="closet">
+							<c:forEach items="${ClosetListBottom}" var="closet2">
 								<div class="swiper-slide">
 									<div class="swiper-countB">
-									<a href="updateClosetForm?num=${closet.num}">
-										<img class="swiper-img" style="border: 1px solid gray;" src="/displayImg?name=${closet.img}&folder=user"/>
-									</a>
+										<img class="swiper-img" style="border: 1px solid gray;" src="/displayImg?name=${closet2.img}&folder=user" onclick="category_bottom('${closet2.category}','${closet2.color}')"/>
 									</div>
 								</div>
 							</c:forEach>
 						</div>
 						<!-- Add Arrows -->
-						<div class="swiper-button-next swiper-button-black" style="opacity:0.5;"></div>
-						<div class="swiper-button-prev swiper-button-black" style="opacity:0.5;"></div>
+						<div class="swiper-button-next2 swiper-button-black" style="opacity:0.5;"></div>
+						<div class="swiper-button-prev2 swiper-button-black" style="opacity:0.5;"></div>
 					</div>
 		      </div>
 		    </li>
@@ -242,7 +244,32 @@
 		  </ul>
 		</div>
 	</div>
-	
+	<c:if test="${!empty ClosetListTop || !empty ClosetListBottom}">
+		<input style="width:200px;height:30px;" type="button" onclick="category_submit()" value="코디보기">
+	</c:if>	
+	<script>
+		var top2='';
+		var bottom='';
+		var topColor='';
+		var bottomColor='';
+		
+		function category_top(top2,topColor){
+			this.top2=top2;
+			this.topColor=topColor;
+			alert(top2+topColor);
+		}
+		
+		function category_bottom(bottom,bottomColor){
+			this.bottom=bottom;
+			this.bottomColor=bottomColor;
+			alert(bottom+bottomColor);
+		}
+		
+		function category_submit(){
+			alert(top2 + bottom +topColor +bottomColor);
+			location.href=encodeURI("Recommendation?top="+top2+"&bottom="+bottom+"&topColor="+topColor+"&bottomColor="+bottomColor);
+		}
+	</script>
 	<!-- Swiper JS -->
 	<script src="/resources/js/swiper.min.js"></script>
 	
@@ -262,7 +289,7 @@
 		n = 3;
 		a = false;
 	}
-	else{
+	else if($('.swiper-countA').length>=4){
 		n = 3;
 		a = true;
 	}
@@ -303,27 +330,28 @@
 		   }
 	  });
 	  
-	var n = 0;
-	var a = true;
+	var m = 0;
+	var b = true;
 	if($('.swiper-countB').length==1){
-		n = 1;
-		a = false;
+		m = 1;
+		b = false;
 	}
 	else if($('.swiper-countB').length==2){
-		n = 2;
-		a = false;
+		m = 2;
+		b = false;
 	}
 	else if($('.swiper-countB').length==3){
-		n = 3;
-		a = false;
+		m = 3;
+		b = false;
 	}
-	else{
-		n = 3;
+	else if($('.swiper-countB').length>=4){
+		m = 3;
+		b = true;
 	}
-	  var swiper = new Swiper('.swiper-container', {
-		    slidesPerView: n,
+	  var swiper = new Swiper('.swiper-container2', {
+		    slidesPerView: m,
 		    spaceBetween: 0,
-		    loop: a,
+		    loop: b,
 		    loopFillGroupWithBlank: true,
 		    autoplay: {
 		        delay: 10000,
@@ -334,8 +362,8 @@
 		      clickable: true,
 		    },
 		    navigation: {
-		      nextEl: '.swiper-button-next',
-		      prevEl: '.swiper-button-prev',
+		      nextEl: '.swiper-button-next2',
+		      prevEl: '.swiper-button-prev2',
 		    },
 		    breakpoints: {
 				1024: {
