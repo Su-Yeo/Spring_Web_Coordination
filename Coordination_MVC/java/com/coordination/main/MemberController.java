@@ -18,8 +18,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.coordination.dto.ClosetVO;
+import com.coordination.dto.DressroomVO;
 import com.coordination.dto.MemberVO;
 import com.coordination.service.ClosetService;
+import com.coordination.service.DressroomService;
 import com.coordination.service.MemberService;
 
 @Controller
@@ -30,6 +32,9 @@ public class MemberController {
 	
 	@Autowired
 	private ClosetService closetService;
+	
+	@Autowired
+	private DressroomService dressroomService;
 	
 	private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
 	
@@ -214,7 +219,7 @@ public class MemberController {
 	
 	//회원전용 페이지
 	@RequestMapping("isMyPage")
-	public String myPage(ClosetVO vo, Model model, HttpSession session) throws Exception {
+	public String myPage(ClosetVO vo, DressroomVO dvo, Model model, HttpSession session) throws Exception {
 		
 		if(session.getAttribute("userId") == null)
 		{
@@ -224,11 +229,15 @@ public class MemberController {
 		{
 			String id = session.getAttribute("userId").toString();
 			vo.setId(id);
+			dvo.setId(id);
 			
 			List<ClosetVO> ClosetListTop = closetService.closetListTop(vo);
 			model.addAttribute("ClosetListTop", ClosetListTop);
 			List<ClosetVO> ClosetListBottom = closetService.closetListBottom(vo);
 			model.addAttribute("ClosetListBottom", ClosetListBottom);
+			
+			List<DressroomVO> dressroomList = dressroomService.dressroomList(dvo);
+	        model.addAttribute("dressroomList", dressroomList);
 			
 			return "coordination/member/myPage";
 		}

@@ -100,15 +100,15 @@
   	<!-- COUNT -->
   	<select id="StyleRecommendationCount" resultType="int">
   		SELECT 
-  			COUNT(*)
-  		FROM
+  			COUNT(*) as listCnt
+  		FROM 
   			style
   		WHERE
   			identify='y'
   		<if test="top != null">
   		AND
   			top=#{top}
-  		AND
+  		AND	
   			top_color=#{top_color}
   		</if>
   		<if test="pants != null">
