@@ -74,9 +74,9 @@ public class StyleDAOImpl implements StyleDAO {
 	
 	//사용자가 나만의 옷장에서 옷 클릭 시, 해당 옷을 입은 코디룩 추천 이미지 갯수
 	@Override
-	public int StyleRecommendationCount() throws Exception {
+	public int StyleRecommendationCount(StyleVO vo) throws Exception {
 		
-		return sqlSession.selectOne(Namespace+".StyleRecommendationCount");
+		return sqlSession.selectOne(Namespace+".StyleRecommendationCount", vo);
 	}
 
 	//이미지 업데이트

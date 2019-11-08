@@ -278,48 +278,43 @@ public class StyleController {
 		}
 		else
 		{
-			//전체 페이지 갯수
-			int listCnt = service.StyleRecommendationCount();
-
-			System.out.println("#######################################");
-			System.out.println(listCnt);
-			//Pagination 객체생성
-			//UserPagination userPagination = new UserPagination();
-			//userPagination.pageInfo(page, range, listCnt);
-
-			StyleVO pagination = new StyleVO();
-			pagination.pageInfo(page, range, listCnt);
-
-			//vo.setTop("jacket");
-			//vo.setTop_color("black");
-
+			
 			//옷의 종류, 색상 받아오기
 			String top = request.getParameter("top");
 			String bottom = request.getParameter("bottom");
 			String topColor = request.getParameter("topColor");
 			String bottomColor = request.getParameter("bottomColor");
 			
-			if(top!="" && topColor!="")
+			//상의만 골랐을 경우
+			if(top != null && topColor != null)
 			{
 				vo.setTop(top);
 				vo.setTop_color(topColor);
-			}else {
-				vo.setTop(null);
-				vo.setTop_color(null);
 			}
-			
-			if(bottom!="" && bottomColor!="")
+			//하의만 골랐을 경우
+			else if(bottom != null && bottom != null)
 			{
 				vo.setPants(bottom);
 				vo.setPants_color(bottomColor);
-			}else {
-				vo.setPants(null);
-				vo.setPants_color(null);
+			}
+			//상, 하의 둘다 골랐을 경우
+			else
+			{
+				vo.setTop(top);
+				vo.setTop_color(topColor);
+				vo.setPants(bottom);
+				vo.setPants_color(bottomColor);
 			}
 			
+			int listCnt = service.StyleRecommendationCount(vo);
+
+			//Pagination 객체생성
+			StyleVO pagination = new StyleVO();
+			pagination.pageInfo(page, range, listCnt);
+
 			model.addAttribute("pagination", pagination);
 			model.addAttribute("StyleList", service.StyleRecommendation(vo));
-
+			
 			return "coordination/member/Recommendation";
 		}
 	}

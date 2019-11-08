@@ -30,7 +30,7 @@ public interface StyleService {
 	public List<StyleVO> StyleRecommendation(StyleVO vo) throws Exception;
 	
 	//사용자가 나만의 옷장에서 옷 클릭 시, 해당 옷을 입은 코디룩 추천 이미지 갯수
-	public int StyleRecommendationCount() throws Exception;
+	public int StyleRecommendationCount(StyleVO vo) throws Exception;
 	
 	//이미지 업데이트
 	public void updateStyle(StyleVO vo);
