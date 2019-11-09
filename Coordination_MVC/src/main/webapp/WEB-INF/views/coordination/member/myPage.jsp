@@ -239,7 +239,15 @@
 		    </li>
 		    <li id="tab2" class="btnCon"><input type="radio" name="tabmenu" id="tabmenu2">
 		      <label for="tabmenu2">코디</label>
-		      <div class="tabCon" >코디코디코디코디코디코디</div>
+		      <div class="tabCon" >
+		      	<c:forEach items="${dressroomList}" var="dressroom"> 
+					<div class="swiper-slide">
+						<div class="swiper-count">
+							<img class="swiper-img" style="border: 1px solid gray;" src="/displayImg?name=${dressroom.img}&folder=admin"/>
+						</div>
+					</div>
+				</c:forEach>
+		      </div>
 		    </li>
 		  </ul>
 		</div>

@@ -38,14 +38,42 @@ function sel(str) {
 		$("select[name=bottom]").attr("name", "category"); 
 	}
 }
-function selCancel(str) {
+
+function selCancelTop(str) {
 	if(str=="back"){
+		$("select[name=category]").attr("name", "top");
 		$('#select_category').css("display", "block");
 		$('#top').css("display", "none");
+		$("#select_category option:eq(0)").prop("selected", true);
+	}
+}
+
+function selCancelBottom(str) {
+	if(str=="back"){
+		$("select[name=category]").attr("name", "bottom");
+		$('#select_category').css("display", "block");
 		$('#bottom').css("display", "none");
 		$("#select_category option:eq(0)").prop("selected", true);
 	}
 }
+
+$(document).ready(function() {   
+    $('#submit').click(function(event){
+        var count=$("#select_category option:selected").val();
+        var countTop=$('#top option:selected').val();
+        var countBottom=$('#bottom option:selected').val();
+        if(count=="null"){
+        	alert("카테고리를 선택해주세요");
+        }else if(count=="top"&&countTop=="null"){
+        	alert("상의를 선택해주세요");
+        }else if(count=="bottom"&&countBottom=="null"){
+        	alert("하의를 선택해주세요");
+        }else{
+        	document.getElementById('frm').submit();
+        }
+        event.preventDefault();
+    });
+});
 </script>
 </head>
 <style type="text/css">
@@ -133,7 +161,7 @@ function selCancel(str) {
 <!-- Form -->
 <c:forEach items="${closetList}" var="closet">
 <div class="signup-form">
-    <form action="updateCloset" method="post">
+    <form id="frm" action="updateCloset" method="post">
 		<h2>Image Identify</h2>
 		<p>등록하신 정보를 확인합니다. 틀릴 수 있습니다!</p>
 		<hr>
@@ -151,7 +179,7 @@ function selCancel(str) {
         </div>
         <div id="top" class="form-group">
 			<label>Category</label>
-        	<select name="top" class="form-control" onchange="selCancel(this.value)">
+        	<select name="top" class="form-control" onchange="selCancelTop(this.value)">
         		<option value="null">상의를 선택해주세요</option>
 				<option value="padding">패딩</option>
 				<option value="coat">코트</option>
@@ -171,7 +199,7 @@ function selCancel(str) {
         </div>
         <div id="bottom" class="form-group">
 			<label>Category</label>
-        	<select name="bottom" class="form-control" onchange="selCancel(this.value)">
+        	<select name="bottom" class="form-control" onchange="selCancelBottom(this.value)">
         		<option value="null">하의를  선택해주세요</option>
 				<option value="pants">바지</option>
 				<option value="jeans">청바지</option>
@@ -198,7 +226,7 @@ function selCancel(str) {
 			</select>
         </div>
 		<div class="form-group" align="center">
-            <button type="submit" class="btn btn-primary btn-lg" style="background: #61C7C1;">등록하기</button>
+            <button id="submit" type="submit" class="btn btn-primary btn-lg" style="background: #61C7C1;">등록하기</button>
         </div>
     </form>
 </div>
