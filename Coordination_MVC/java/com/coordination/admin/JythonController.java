@@ -345,7 +345,7 @@ public class JythonController {
 				//Connect
 				Document doc = Jsoup.connect(url).get();
 				
-				//상품리스트의 상품사진 class명 (수정O)	
+				//상품리스트의 상품사진 class명 (수정O)
 				Elements imgs = doc.select("div.thumb_wrapper img");
 				String[] str = new String[imgs.size()];	
 				List<String> array = new ArrayList<String>();
