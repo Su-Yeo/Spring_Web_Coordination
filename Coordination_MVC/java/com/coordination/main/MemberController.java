@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang3.RandomStringUtils;
-import org.apache.ibatis.annotations.Insert;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -104,7 +103,7 @@ public class MemberController {
 	
 	//member 정보삭제
 	@RequestMapping(value = "deleteMember", method = RequestMethod.GET)
-	public String delete(MemberVO vo, Model model, HttpServletResponse response)throws Exception {
+	public String delete(MemberVO vo, Model model, HttpServletResponse response, HttpSession session)throws Exception {
 		
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
@@ -121,6 +120,10 @@ public class MemberController {
 			vo.setGhost("y");
 			
 			memberService.deleteMember(vo);
+			
+			//세션 삭제
+			session.removeAttribute("userId");
+			session.removeAttribute("userName");
 			
 			out.println("<script>"
 					+ "alert('회원정보가 정상적으로 삭제되었습니다.');"

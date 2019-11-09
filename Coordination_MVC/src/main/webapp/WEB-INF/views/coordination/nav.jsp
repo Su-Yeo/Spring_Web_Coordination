@@ -456,41 +456,6 @@
 	</div>
 </nav>
 
-<!-- Mail Modal -->
-<div id="MailModal" class="modal fade">
-	<div class="modal-dialog modal-newsletter">
-		<div class="modal-content">
-			<form action="mail" method="post">
-				<div class="modal-header">
-					<div class="icon-box">						
-						<i class="fa fa-envelope-open-o"></i>
-					</div>
-					<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span>&times;</span></button>
-				</div>
-				<div class="modal-body text-center">
-					<h4>고객의 소리</h4>	
-					<p>
-						저희 웹 사이트와 관련된 궁금한 사항이 있으시면 문의를 남겨주세요.<br/>
-						가능한 빨리 답변을 드리겠습니다.
-					</p>
-					<div class="input-group">
-						<div style="padding-bottom: 70px;">
-						<textarea name="mail" rows="3" cols="100" class="form-control" required></textarea>
-						</div>
-						<!--<input type="email" class="form-control" placeholder="Enter your email" required>-->
-						<footer>
-						<span class="input-group-btn">
-							<input type="submit" class="btn btn-primary" value="보내기">
-						</span>
-						</footer>
-					</div>
-				</div>
-			</form>			
-		</div>
-	</div>
-</div>
-<!-- End Mail Modal -->
-
 <!-- Developer Model -->
 <div id="developerModal" class="modal fade">
 	<div class="modal-dialog modal-confirm">
@@ -564,7 +529,8 @@
 				<p align="left">
 					1. 사용자가 지정한 지역의 온도에 맞는 다양한 코디룩을 제공! <br/>
 					2. 회원분들에게는 나만의 옷장 서비스 도입! <br/>
-					3. 기계학습 된 신경망이 실제 옷장에 옷을 촬영하여 등록하면 옷의 색상을 분석하여 알려줍니다.
+					3. 실제 의상을 촬영하여 등록하면 13가지의 색상을 학습한 신경망이 이미지를 추론하여 옷의 색상을 읽어오고
+					등록한 의상을 입고 있는 다양한 패션 코디룩 정보를 제공합니다. 
 				</p>
 			</div>
 			<div class="modal-footer">
@@ -596,5 +562,40 @@
 	</div>
 </div>
 <!-- End Notice Model -->
+
+<!-- Mail Modal -->
+<div id="MailModal" class="modal fade">
+	<div class="modal-dialog modal-newsletter">
+		<div class="modal-content">
+			<form action="mail" method="post">
+				<div class="modal-header">
+					<div class="icon-box">						
+						<i class="fa fa-envelope-open-o"></i>
+					</div>
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span>&times;</span></button>
+				</div>
+				<div class="modal-body text-center">
+					<h4>고객의 소리</h4>	
+					<p>
+						저희 웹 사이트와 관련된 궁금한 사항이 있으시면 문의를 남겨주세요.<br/>
+						가능한 빨리 답변을 드리겠습니다.
+					</p>
+					<div class="input-group" align="center">
+						<div style="padding-bottom: 70px;">
+							<textarea name="mail" rows="3" cols="100" class="form-control" required></textarea>
+						</div>
+						<br>
+						<footer>
+							<span class="input-group-btn"> 
+								<input type="submit" class="btn btn-primary" value="보내기">
+							</span>
+						</footer>
+					</div>
+				</div>
+			</form>			
+		</div>
+	</div>
+</div>
+<!-- End Mail Modal -->
 </body>
 </html>

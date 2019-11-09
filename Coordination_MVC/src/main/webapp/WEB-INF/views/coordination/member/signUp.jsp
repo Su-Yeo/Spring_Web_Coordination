@@ -48,7 +48,7 @@
 		<div class="login100-more"></div>
 	
 		<div class="wrap-login100 p-l-50 p-r-50 p-t-72 p-b-50">
-			<form class="login100-form validate-form" action="insertMember" method="POST">
+			<form id="frm" class="login100-form validate-form" action="insertMember" method="POST" onsubmit="return signUp();">
 			<span class="login100-form-title p-b-59">
 				Sign UP
 			</span>
@@ -56,28 +56,28 @@
 			<!-- ID -->
 			<div class="wrap-input100 validate-input" data-validate="Id is required">
 				<span class="label-input100">ID</span>
-				<input class="input100" type="text" name="id" placeholder="아이디를 입력해주세요.">
+				<input class="input100" type="text" name="id" id="id" placeholder="아이디를 입력해주세요.">
 				<span class="focus-input100"></span>
 			</div>
 	
 			<!-- PASSWORD -->
 			<div class="wrap-input100 validate-input" data-validate="Password is required">
 				<span class="label-input100">Password</span>
-				<input class="input100" type="password" name="password" placeholder="비밀번호를 입력해주세요.">
+				<input class="input100" type="password" name="password" id="password" placeholder="비밀번호를 입력해주세요.">
 				<span class="focus-input100"></span>
 			</div>
 	
 			<!-- NAME -->
 			<div class="wrap-input100 validate-input" data-validate="Name is required">
 				<span class="label-input100">Name</span>
-				<input class="input100" type="text" name="name" placeholder="이름을 입력해주세요.">
+				<input class="input100" type="text" name="name" id="name" placeholder="이름을 입력해주세요.">
 				<span class="focus-input100"></span>
 			</div>
 			
 			<!-- PHONE -->
 			<div class="wrap-input100 validate-input" data-validate="Phone is required">
 				<span class="label-input100">Phone</span>
-				<input class="input100" type="text" name="phone" placeholder="전화번호 '-'를 제외하고 입력해주세요.">
+				<input class="input100" type="text" name="phone" id="phone" placeholder="전화번호 '-'를 제외하고 입력해주세요.">
 				<span class="focus-input100"></span>
 			</div>
 	
@@ -98,6 +98,20 @@
 			</form>
 		</div>
 	</div>
+	
+	<script type="text/javascript">
+		function signUp(){
+			
+			if(document.getElementById("id").value == '' ||
+				document.getElementById("password").value == '' ||
+				document.getElementById("name").value == '' ||
+				document.getElementById("phone").value == '')
+			{
+				alert("회원정보를 입력해주세요.!");
+				return false;
+			}
+		}
+	</script>
 </div>
 </body>
 </html>
