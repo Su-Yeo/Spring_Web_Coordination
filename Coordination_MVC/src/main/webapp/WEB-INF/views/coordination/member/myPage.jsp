@@ -87,8 +87,8 @@
 		height:330px;
 	}	
 	.swiper-img3{
-		width:270px;
-		height:330px;
+		width:310px;
+		height:380px;
 	}	
 	.tabmenu label{
 	  display:block;
@@ -166,8 +166,8 @@
 			height:320px;
 		}
 		.swiper-img3{
-			width:270px;
-			height:320px;
+			width:300px;
+			height:350px;
 		}
 		
 		.swiper-button-next,.swiper-button-prev{
@@ -213,8 +213,8 @@
 			height:300px;
 		}
 		.swiper-img3{
-			width:240px;
-			height:300px;
+			width:100%;
+			height:100%;
 		}
 		.button-group{
 			width:95%;
@@ -309,21 +309,9 @@
 	      		<c:if test="${empty dressroomList}">
 					<img src="/resources/icon/dressroomIcon.jpg">
 				</c:if>
-		      <!-- Swiper -->
-					<div class="swiper-container3">
-						<div class="swiper-wrapper">
-		      				<c:forEach items="${dressroomList}" var="dressroom">
-								<div class="swiper-slide">
-									<div class="swiper-countC">
-										<img class="swiper-img3" style="border: 1px solid gray;" src="/displayImg?name=${dressroom.img}&folder=admin"/>
-									</div>
-								</div>
-							</c:forEach>
-						</div>
-						<!-- Add Arrows -->
-						<div class="swiper-button-next3 swiper-button-black" style="opacity:0.5;"></div>
-						<div class="swiper-button-prev3 swiper-button-black" style="opacity:0.5;"></div>
-					</div>
+   				<c:forEach items="${dressroomList}" var="dressroom">
+					<img class="swiper-img3" style="border: 1px solid gray;margin:5px;" src="/displayImg?name=${dressroom.img}&folder=admin"/>
+				</c:forEach>
 		      </div>
 		    </li>
 		  </ul>
@@ -334,7 +322,6 @@
 		var bottom='';
 		var topColor='';
 		var bottomColor='';
-		
 		$('.swiper-img').click(function() {
 			$('.swiper-img').css("border", "1px solid gray");
 		    $(this).css("border", "2px solid red");
@@ -458,61 +445,6 @@
 			    navigation: {
 			      nextEl: '.swiper-button-next2',
 			      prevEl: '.swiper-button-prev2',
-			    },
-			    breakpoints: {
-					1024: {
-						slidesPerView: 3,
-						spaceBetween: 0
-					},
-					780: {
-						slidesPerView: 2,
-						spaceBetween: 30
-					},
-					640: {
-						slidesPerView: 1,
-						spaceBetween: 0
-					},
-					480: {
-						slidesPerView: 1,
-						spaceBetween: 0
-					}
-			   }
-		  });
-		  
-		var p = 0;
-		var q = true;
-		if($('.swiper-countC').length==1){
-			p = 1;
-			q = false;
-		}
-		else if($('.swiper-countC').length==2){
-			p = 2;
-			q = false;
-		}
-		else if($('.swiper-countC').length==3){
-			p = 3;
-			q = false;
-		}
-		else if($('.swiper-countC').length>=4){
-			p = 3;
-			q = true;
-		}
-		  var swiper = new Swiper('.swiper-container3', {
-			    slidesPerView: p,
-			    spaceBetween: 0,
-			    loop: q,
-			    loopFillGroupWithBlank: true,
-			    autoplay: {
-			        delay: 10000,
-			        disableOnInteraction: false,
-			      },
-			    pagination: {
-			      el: '.swiper-pagination',
-			      clickable: true,
-			    },
-			    navigation: {
-			      nextEl: '.swiper-button-next3',
-			      prevEl: '.swiper-button-prev3',
 			    },
 			    breakpoints: {
 					1024: {
