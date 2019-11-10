@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.coordination.dto.ClosetVO;
 import com.coordination.dto.DressroomVO;
@@ -145,6 +146,7 @@ public class MemberController {
 		
 		return "movePage";
 	}
+	
 	//로그인 처리
 	@RequestMapping(value="loginCheck", method=RequestMethod.POST)
 	public String loginCheck(MemberVO vo, Model model, HttpSession session, HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -190,6 +192,7 @@ public class MemberController {
 		return url;
 	}
 	
+	//로그아웃
 	@RequestMapping("logout")
 	public String logout(HttpSession session) {
 		
@@ -216,8 +219,14 @@ public class MemberController {
 	}
 	
 	//회원전용 페이지
-	@RequestMapping("isMyPage")
-	public String myPage(ClosetVO vo, DressroomVO dvo, Model model, HttpSession session) throws Exception {
+	@RequestMapping(value="isMyPage", method=RequestMethod.GET)
+	public String myPage(ClosetVO closetVO, DressroomVO dressroomVO,
+			Model model,
+			HttpServletRequest request,
+			HttpSession session,
+			@RequestParam(required = false, defaultValue = "1") int page,
+			@RequestParam(required = false, defaultValue = "1") int range) 
+			throws Exception{
 		
 		if(session.getAttribute("userId") == null)
 		{
@@ -226,17 +235,25 @@ public class MemberController {
 		else
 		{
 			String id = session.getAttribute("userId").toString();
-			vo.setId(id);
-			dvo.setId(id);
+			closetVO.setId(id);
+			dressroomVO.setId(id);
 			
-			model.addAttribute("ClosetListTop", closetService.closetListTop(vo));
-			model.addAttribute("ClosetListBottom", closetService.closetListBottom(vo));
-	        model.addAttribute("dressroomList", dressroomService.dressroomList(dvo));
+			//전체 페이지 갯수
+			int listCnt = dressroomService.dressroomListCount(dressroomVO);
 			
-			return "coordination/member/myPage";
+			//Pagination 객체생성
+			DressroomVO pagination = new DressroomVO();
+			pagination.pageInfo(page, range, listCnt);
+			
+			model.addAttribute("pagination", pagination);
+			model.addAttribute("ClosetListTop", closetService.closetListTop(closetVO));
+			model.addAttribute("ClosetListBottom", closetService.closetListBottom(closetVO));
+	        model.addAttribute("dressroomList", dressroomService.dressroomList(dressroomVO));
+	        
+	        return "coordination/member/myPage";
 		}
 	}
-
+	
 	//회원정보 수정.삭제
 	@RequestMapping("infoUpdatePage")
 	public String infoUpdate(MemberVO vo, Model model, HttpSession session) throws Exception {

@@ -5,6 +5,9 @@ import java.util.List;
 import com.coordination.dto.DressroomVO;
 
 public interface DressroomService {
+	
+	//코디사진 페이징
+	public int dressroomListCount(DressroomVO vo);
 
 	//한 회원마다 보여질 저장된 코디사진 출력
 	public List<DressroomVO> dressroomList(DressroomVO vo) throws Exception;

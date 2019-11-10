@@ -5,6 +5,16 @@
 
 <mapper namespace="com.coordination.mapper.dressroomMapper">
 	
+	<!-- 코디사진 페이징 -->
+	<select id="dressroomListCount" resultType="int">
+		SELECT
+			COUNT(*)
+		FROM
+			dressroom
+		WHERE
+			id=#{id}
+	</select>
+	
 	<!-- 한 회원마다 보여질 저장된 코디사진 출력 -->
 	<select id="dressroomList" resultType="dressroomVO">
 		SELECT 
@@ -13,6 +23,8 @@
 			dressroom
 		WHERE
 			id=#{id}
+		LIMIT 
+  			#{startList}, #{listSize}
 	</select>
 	
 	<!-- 회원이 똑같은 사진을 저장할 경우를 처리 -->

@@ -16,6 +16,12 @@ public class DressroomDAOImpl implements DressroomDAO {
 	
 	private static final String Namespace = "com.coordination.mapper.dressroomMapper";
 	
+	//코디사진 페이징
+	public int dressroomListCount(DressroomVO vo) {
+		
+		return sqlSession.selectOne(Namespace+".dressroomListCount", vo);
+	}
+	
 	//한 회원마다 보여질 저장된 코디사진 출력
 	@Override
 	public List<DressroomVO> dressroomList(DressroomVO vo) throws Exception {
