@@ -12,10 +12,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.coordination.dto.AdminPagination;
 import com.coordination.dto.StyleVO;
 import com.coordination.service.StyleService;
 
@@ -293,6 +295,14 @@ public class StyleController {
 			String bottom = request.getParameter("bottom");
 			String topColor = request.getParameter("topColor");
 			String bottomColor = request.getParameter("bottomColor");
+			System.out.println("=====================================================");
+			System.out.println("상의 : " + top);
+			System.out.println("상의 색상 : " + topColor);
+			System.out.println("하의 : " + bottom);
+			System.out.println("하의 색상 : " + bottomColor);
+			System.out.println("페이지 : " + page);
+			System.out.println("범위 : " + range);
+			System.out.println("=====================================================");
 			
 			if(top!="" && topColor!="")
 			{
@@ -315,12 +325,17 @@ public class StyleController {
 			int listCnt = service.StyleRecommendationCount(vo);
 			System.out.println("###################################");
 			System.out.println(listCnt+":"+page+":"+range);
+			
 			//Pagination 객체생성
 			StyleVO pagination = new StyleVO();
 			pagination.pageInfo(page, range, listCnt);
 			
 			model.addAttribute("pagination", pagination);
 			model.addAttribute("StyleList", service.StyleRecommendation(vo));
+			model.addAttribute("top", top);
+			model.addAttribute("bottom", bottom);
+			model.addAttribute("topColor", topColor);
+			model.addAttribute("bottomColor", bottomColor);
 
 			return "coordination/member/Recommendation";
 		}

@@ -192,9 +192,8 @@
 		</c:url>
 	</c:if>
 
-	
-
 	<script>
+	
 		//이전 버튼 클릭
 		function fn_prev(page, range, rangeSize) {
 

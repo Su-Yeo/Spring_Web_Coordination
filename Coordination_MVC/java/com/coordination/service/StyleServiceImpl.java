@@ -7,8 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.coordination.dao.StyleDAO;
+import com.coordination.dto.AdminPagination;
 import com.coordination.dto.StyleVO;
-import com.coordination.main.AdminPagination;
 
 @Service
 public class StyleServiceImpl implements StyleService {

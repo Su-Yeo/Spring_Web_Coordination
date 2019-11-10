@@ -1,4 +1,4 @@
-package com.coordination.main;
+package com.coordination.dto;
 
 public class AdminPagination {
 

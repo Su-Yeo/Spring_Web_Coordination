@@ -3,8 +3,8 @@ package com.coordination.service;
 import java.util.HashMap;
 import java.util.List;
 
+import com.coordination.dto.AdminPagination;
 import com.coordination.dto.StyleVO;
-import com.coordination.main.AdminPagination;
 
 public interface StyleService {
 

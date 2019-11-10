@@ -9,8 +9,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.coordination.dto.AdminPagination;
 import com.coordination.dto.StyleVO;
-import com.coordination.main.AdminPagination;
 
 @Repository
 public class StyleDAOImpl implements StyleDAO {
