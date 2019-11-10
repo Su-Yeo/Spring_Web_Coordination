@@ -204,6 +204,10 @@
 
 			url = url + "?page=" + page;
 			url = url + "&range=" + range;
+			url = url + "&top=" + "${top}";
+			url = url + "&bottom=" + "${bottom}";
+			url = url + "&topColor=" + "${topColor}";
+			url = url + "&bottomColor=" + "${bottomColor}";
 
 			location.href = url;
 		}
@@ -215,7 +219,11 @@
 
 			url = url + "?page=" + page;
 			url = url + "&range=" + range;
-
+			url = url + "&top=" + "${top}";
+			url = url + "&bottom=" + "${bottom}";
+			url = url + "&topColor=" + "${topColor}";
+			url = url + "&bottomColor=" + "${bottomColor}";
+			
 			location.href = url;
 		}
 
@@ -229,7 +237,11 @@
 
 			url = url + "?page=" + page;
 			url = url + "&range=" + range;
-
+			url = url + "&top=" + "${top}";
+			url = url + "&bottom=" + "${bottom}";
+			url = url + "&topColor=" + "${topColor}";
+			url = url + "&bottomColor=" + "${bottomColor}";
+			
 			location.href = url;
 		}
 	</script>
