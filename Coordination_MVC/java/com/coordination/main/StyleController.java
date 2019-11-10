@@ -33,7 +33,12 @@ public class StyleController {
 	
 	//관리자 - style 변경
 	@RequestMapping(value = "updateStyle", method = RequestMethod.POST)
-	public String update(StyleVO vo, Model model) throws Exception {
+	public String update(StyleVO vo, Model model, HttpSession session) throws Exception {
+		
+		if(! session.getAttribute("userId").equals("admin"))
+		{
+			return "coordination/index";
+		}
 		
 		try {
 			
@@ -55,7 +60,12 @@ public class StyleController {
 	
 	//관리자 - style 삭제
 	@RequestMapping(value = "deleteStyle", method = RequestMethod.GET)
-	public String delete(StyleVO vo, Model model, HttpServletRequest request) throws Exception {
+	public String delete(StyleVO vo, Model model, HttpServletRequest request, HttpSession session) throws Exception {
+		
+		if(! session.getAttribute("userId").equals("admin"))
+		{
+			return "coordination/index";
+		}
 		
 		//삭제하기 위한 Num 초기화 후 할당
 		int num = 0;

@@ -47,6 +47,11 @@ public class UploadController {
     @RequestMapping(value="/uploadImg", method=RequestMethod.POST)
     public String uploadImg(MultipartFile file, HttpSession session, RedirectAttributes redirectAttributes, HttpServletRequest request) throws Exception {//session.getId(); 수정
     	
+    	if(session.getAttribute("userId") == null)
+		{
+			return "redirect:/";
+		}
+    	
     	//id 
     	String userId = session.getAttribute("userId").toString();
     	

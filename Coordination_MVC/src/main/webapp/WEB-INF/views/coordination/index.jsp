@@ -19,6 +19,15 @@
 <!-- End favicon -->
 <meta charset="UTF-8">
 <title>오늘 뭐 입지?</title>
+<script type="text/javascript">
+	function mailSuccess(){
+		alert("건의사항이 전송되었습니다.");
+	}
+	
+	function mailFail(){
+		alert("전송에 실패했습니다. 잠시 후 이용해주세요.");
+	}
+</script>
 </head>
 <style type="text/css">
 	.weatherTable{
@@ -90,6 +99,20 @@
 	/*----------------------------모바일끝----------------------------*/
 </style>
 <body>
+<!-- Java Mail Success -->
+<c:if test="${mail eq 'success'}">
+	<script type="text/javascript">
+		mailSuccess();
+	</script>
+</c:if>
+<!-- Java Mail Fail -->
+<c:if test="${mail eq 'fail'}">
+	<script type="text/javascript">
+		mailFail();
+	</script>
+</c:if>
+<!-- End Java Mail -->
+
 <!-- Nav -->
 <jsp:include page="nav.jsp" />
 <!-- End Nav -->

@@ -1,7 +1,6 @@
 package com.coordination.main;
 
 import java.io.PrintWriter;
-import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -150,16 +149,12 @@ public class MemberController {
 	@RequestMapping(value="loginCheck", method=RequestMethod.POST)
 	public String loginCheck(MemberVO vo, Model model, HttpSession session, HttpServletRequest request, HttpServletResponse response) throws Exception {
 			
-		
-		String url = null;
-		
 		response.setContentType("text/html; charset=UTF-8"); PrintWriter out =
 		response.getWriter();
 		 
-		
+		String url = null;
 		try {
 			String result = memberService.loginCheck(vo, session, request);
-			
 						
 			//로그인 성공
 			if(result.equals("success"))
@@ -234,13 +229,9 @@ public class MemberController {
 			vo.setId(id);
 			dvo.setId(id);
 			
-			List<ClosetVO> ClosetListTop = closetService.closetListTop(vo);
-			model.addAttribute("ClosetListTop", ClosetListTop);
-			List<ClosetVO> ClosetListBottom = closetService.closetListBottom(vo);
-			model.addAttribute("ClosetListBottom", ClosetListBottom);
-			
-			List<DressroomVO> dressroomList = dressroomService.dressroomList(dvo);
-	        model.addAttribute("dressroomList", dressroomList);
+			model.addAttribute("ClosetListTop", closetService.closetListTop(vo));
+			model.addAttribute("ClosetListBottom", closetService.closetListBottom(vo));
+	        model.addAttribute("dressroomList", dressroomService.dressroomList(dvo));
 			
 			return "coordination/member/myPage";
 		}
@@ -258,8 +249,7 @@ public class MemberController {
 			String id = session.getAttribute("userId").toString();
 			vo.setId(id);
 			
-			List<MemberVO> MemberList = memberService.memberList(vo);
-			model.addAttribute("MemberList", MemberList);
+			model.addAttribute("MemberList", memberService.memberList(vo));
 			
 			return "coordination/member/infoUpdate";
 		}

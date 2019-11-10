@@ -9,12 +9,18 @@
   	
   	<!-- 날씨 온도에 따른 이미지 출력 -->
     <select id="TemperatureStyle" resultType="styleVO" parameterType="hashmap">
-    	SELECT * 
-    	FROM STYLE
-    	where identify='y' and
+    	SELECT 
+    		* 
+    	FROM 
+    		STYLE
+    	WHERE
+    		identify='y'
+    	AND
         <foreach collection="data" item="item" index="index" separator="or">
-            top = #{item}
+            top=#{item}
         </foreach>
+        ORDER BY
+        	RAND()
 	</select>
   	
   	<!-- 관리자의 검증이 완료된 이미지만 출력(메인화면, 관리자-수정,삭제) -->
@@ -121,7 +127,9 @@
   	
   	<!-- 관리자가 이미지 수정할 때 사용하기 위한 SQL문 -->
   	<update id="updateStyle">
-  		UPDATE style SET
+  		UPDATE 
+  			style
+  		SET
   			top=#{top},
   			top_color=#{top_color},
   			pants=#{pants},
@@ -134,7 +142,9 @@
   	
   	<!-- 관리자가 이미지 검증을 할 때 사용하기 위한 SQL문 -->
   	<update id="updateIndentify">
-  		UPDATE style SET
+  		UPDATE 
+  			style
+  		SET
   			top=#{top},
   			top_color=#{top_color},
   			pants=#{pants},

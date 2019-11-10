@@ -29,18 +29,25 @@
 			*
 		FROM 
 			closet
-		WHERE 1=1
-		AND category !='null'
-		AND category !='pants'
-		AND category !='jeans'
+		WHERE
+			1=1
+		AND
+			category !='null'
+		AND 
+			category !='pants'
+		AND
+			category !='jeans'
 		<if test="id != null">
-			AND id=#{id}
+			AND 
+				id=#{id}
 		</if>
 		<if test="num != 0">
-			AND num=#{num}
+			AND
+				num=#{num}
 		</if>
 		<if test="img != null">
-			AND img=#{img}
+			AND
+				img=#{img}
 		</if>
 	</select>
 	
@@ -49,16 +56,21 @@
 			*
 		FROM 
 			closet
-		WHERE 1=1
-		AND (category = 'pants' OR category = 'jeans')
+		WHERE 
+			1=1
+		AND
+			(category = 'pants' OR category = 'jeans')
 		<if test="id != null">
-			AND id=#{id}
+			AND
+				id=#{id}
 		</if>
 		<if test="num != 0">
-			AND num=#{num}
+			AND
+				num=#{num}
 		</if>
 		<if test="img != null">
-			AND img=#{img}
+			AND
+				img=#{img}
 		</if>
 	</select>
 	
@@ -68,16 +80,19 @@
 			category,
 			color,
 			img
-		)VALUES(
+			)
+			VALUES(
 			#{id},
 			#{category},
 			#{color},
 			#{img}
-		)
+			)
 	</insert>
 	
 	<update id="updateCloset">
-		UPDATE closet SET
+		UPDATE
+			closet
+		SET
 			category=#{category},
 			color=#{color}
 		WHERE

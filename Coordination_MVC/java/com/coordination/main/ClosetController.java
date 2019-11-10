@@ -2,7 +2,6 @@ package com.coordination.main;
 
 import java.io.File;
 import java.io.PrintWriter;
-import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -14,7 +13,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.support.RequestContextUtils;
 
 import com.coordination.admin.TensorflowImpl;
@@ -51,14 +49,9 @@ public class ClosetController {
 					+ "alert('이미지의 색상이 분석되었습니다.');"
         			+ "</script>");
             out.flush();
-			
-	    	//model.addAttribute("url", "identifyCloset");
             
-            //Setter
             vo.setImg(img);
-            //Getter
-            List<ClosetVO> ClosetList = service.closetList(vo);
-            model.addAttribute("closetList", ClosetList);
+            model.addAttribute("closetList", service.closetList(vo));
 			
 		}catch(Exception e) {
 			e.printStackTrace();

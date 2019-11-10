@@ -29,7 +29,7 @@ public class JythonController {
 	@Resource(name="imgPath")
 	private String imgPath;
 	
-	/* @RequestMapping(value="parsing") */
+	@RequestMapping(value="parsing")
 	public String Tensorflow(Model model, HttpServletRequest request, HttpSession session) throws Exception  {
 		
 		//이미지 분석 객체 생성
@@ -107,7 +107,6 @@ public class JythonController {
 		return "movePage";
 	}
 
-	@RequestMapping(value="parsing")
 	public void ImageDown(HttpServletRequest request) {
 		
 		//1 : Outer
@@ -122,14 +121,11 @@ public class JythonController {
         int n=0;
         byte[] buf = null;
         byte[] response=null;
-        //String shopName = request.getParameter("shopName");
-        //int category = Integer.parseInt(request.getParameter("Category"));
-        String shopName = "코디북";
-      	int category = 2;
+        String shopName = request.getParameter("shopName");
+        int category = Integer.parseInt(request.getParameter("Category"));
 
 		//파싱해서 가져온 이미지를 배열로 받는다.
-		//Parsing(shopName, category);
-      	Parsing();
+		Parsing(shopName, category);
 
         //폴더 생성
   		File fileDir = new File(imgPath, "tensorflow");
@@ -172,12 +168,7 @@ public class JythonController {
 	}
 
 	//이미지 파싱
-	public void Parsing(/* String shopName, int category */) {
-		
-		//String shopName = request.getParameter("shopName");
-		//int category = Integer.parseInt(request.getParameter("Category"));
-		String shopName = "코디북";
-		int category = 1;
+	public void Parsing(String shopName, int category) {
 		
 		//파싱할 웹 페이지
 		String url = null;
@@ -249,6 +240,7 @@ public class JythonController {
 				
 				//상품리스트의 상품사진 class명 (수정O)	
 				Elements imgs = doc.select("div.-thumb img");
+				
 				//1차적으로 src를 할당하기 위한 배열
 				String[] str = new String[imgs.size()];
 				//src에서 jpg또는 jpeg만을 할당하기 위한 List
@@ -258,6 +250,7 @@ public class JythonController {
 				for(int n = 0; n < str.length; n++)
 				{
 					str[n] = "https:"+imgs.get(n).attr("src");
+					
 					if(str[n].substring(str[n].length()-4, str[n].length()).equals(".jpg") ||
 							str[n].substring(str[n].length()-4, str[n].length()).equals("jpeg"))
 					{
@@ -302,71 +295,31 @@ public class JythonController {
 				Document doc = Jsoup.connect(url).get();
 				
 				//상품리스트의 상품사진 class명 (수정O)	
-				Elements imgs = doc.select("ul.prdList.grid3 li img");
-				String[] str = new String[imgs.size()];
-				List<String> array = new ArrayList<String>();
+				Elements imgs = doc.select("div.thumbnail div.prdImg img");
 				
-				for(int n=0; n<str.length; n++)
+				//1차적으로 src를 할당하기 위한 배열
+				String[] str = new String[imgs.size()];
+
+				//src에서 jpg또는 jpeg만을 할당하기 위한 List
+				//jpg또는 jpeg만 할당한 후, 맨 위에 선언된 img[]에 리턴
+				List<String> length = new ArrayList<String>();
+				
+				for(int n=0; n<imgs.size(); n++)
 				{
-					str[n] = "http:" + imgs.get(n).attr("src");
-					
+					str[n] = "https:" + imgs.get(n).attr("src");
+
 					if(str[n].substring(str[n].length()-4, str[n].length()).equals(".jpg") ||
 							str[n].substring(str[n].length()-4, str[n].length()).equals("jpeg"))
 					{
-						//jpg, jpeg파일만 ArrayList에 할당
-						array.add(str[n]);
+						length.add(str[n]);
 					}
 				}
 				
-				img = new String[array.size()];
-				for(int i=0; i<array.size(); i++)
+				img = new String[length.size()];
+				for(int n=0; n<length.size(); n++)
 				{
-					img[i] = array.get(i);
+					img[n] = length.get(n);
 				}
-			}
-			else if(shopName.equals("코디북"))
-			{
-				/*
-				switch(category) 
-				{
-					//outer
-					case 1:
-						url = "https://ko.codibook.net/items/?pc=136&color=e9c2a9&view=productDetail";
-						break;
-					case 2:
-						url = "https://ko.codibook.net/items/?pc=136&color=e61432&view=productDetail";
-					default:
-						url = "null";
-						break;
-				}
-				*/
-				url = "https://ko.codibook.net/items/?pc=144&color=e9c2a9&view=productDetail&page=14";
-				
-				//Connect
-				Document doc = Jsoup.connect(url).get();
-				
-				//상품리스트의 상품사진 class명 (수정O)
-				Elements imgs = doc.select("div.thumb_wrapper img");
-				String[] str = new String[imgs.size()];	
-				List<String> array = new ArrayList<String>();
-			
-
-				for(int n=0; n<str.length; n++) 
-				{
-					str[n] = imgs.get(n).attr("src");
-					
-					if(str[n].substring(str[n].length()-3, str[n].length()).equals("png"))
-					{
-						array.add(str[n]);
-					}
-				}
-				img = new String[array.size()];
-				for(int n=0; n<array.size(); n++)
-				{
-					img[n] = array.get(n);
-					System.out.println(img[n]);
-				}
-
 			}
 			//End Else If
 			System.out.println("==================parsing==================");

@@ -1,7 +1,6 @@
 package com.coordination.main;
 
 import java.io.PrintWriter;
-import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -68,8 +67,7 @@ public class DressroomController {
 		
 		vo.setId(userId);
 		
-		List<DressroomVO> dressroomList = service.dressroomList(vo);
-        model.addAttribute("dressroomList", dressroomList);
+        model.addAttribute("dressroomList", service.dressroomList(vo));
  		
 		return "coordination/member/myPage";
 	}

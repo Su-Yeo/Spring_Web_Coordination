@@ -21,11 +21,12 @@
 			num,
 			id,
 			img
-		)VALUES(
+			)
+			VALUES(
 			(SELECT IFNULL(MAX(num)+1, 1) FROM dressroom a),
 			#{id},
 			#{img}
-		)
+			)
 	</insert>
 	
 	<!-- 한 회원이 저장된 코디 사진을 삭제 -->

@@ -189,9 +189,11 @@ public class HomeController {
     
     //고객의 소리 - Java Mail API
     @RequestMapping(value = "mail", method = RequestMethod.POST)
-    public String mail(HttpServletRequest request, HttpSession memberSession)throws AddressException, MessagingException {
+    public String mail(Model model, HttpServletRequest request, HttpSession memberSession)throws AddressException, MessagingException {
 
-    	String host = "smtp.naver.com";
+    	
+    	//String host = "smtp.naver.com";
+    	String host = "smtp.gmail.com";
     	
     	//보내는 사람 정보 
     	//ID@naver.com
@@ -200,6 +202,7 @@ public class HomeController {
     	
     	// SMTP 서버 정보를 설정
     	Properties props = new Properties();
+    	props.put("mail.smtp.starttls.enable", "true");
     	props.put("mail.smtp.host", host);
     	props.put("mail.smtp.port", 587);
     	props.put("mail.smtp.auth", "true");
@@ -227,10 +230,16 @@ public class HomeController {
     		
     		// send the message 
     		Transport.send(message);
-    		System.out.println("Success Message Send"); 
+    		
+    		logger.info("*********************************************");
+    		logger.info(memberSession.getAttribute("userName").toString() + " Success Message Send");
+    		logger.info("*********************************************");
+    		
+    		model.addAttribute("mail", "success");
     		
     	}catch(MessagingException e) {
-    		e.printStackTrace(); 
+    		e.printStackTrace();
+    		model.addAttribute("mail", "fail");
     	}
 
     	return "redirect:/";

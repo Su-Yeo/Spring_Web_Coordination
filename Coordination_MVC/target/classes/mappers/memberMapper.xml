@@ -39,8 +39,9 @@
     
     <!-- 회원정보 수정 -->
     <update id="updateMember">
-    	UPDATE member
-    		SET
+    	UPDATE
+    		member
+    	SET
     		password=PASSWORD(#{password}),
     		phone=#{phone}
     	WHERE
@@ -51,8 +52,9 @@
     <!-- member + closet Foreign Key로 인해 삭제가 불가능하므로 -->
     <!-- 삭제를 원하는 회원의 비밀번호를 랜덤으로 암호화하여 접속이 불가능하게끔 변경 -->
     <delete id="deleteMember">
-    	UPDATE member
-    		SET
+    	UPDATE
+    		member
+    	SET
     		name=#{name},
     		phone=#{phone},
     		ghost=#{ghost}
@@ -62,8 +64,10 @@
     
     <!-- 로그인 처리 -->
     <select id="loginCheck" resultType="memberVO">
-    	SELECT * 
-    	FROM member
+    	SELECT
+    		* 
+    	FROM
+    		member
     	WHERE 
     		id=#{id} AND password=PASSWORD(#{password})
     </select>
