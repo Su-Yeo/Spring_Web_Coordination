@@ -37,12 +37,24 @@ public class DressroomController {
 			//id, img
 			vo.setId(userId);
 			vo.setImg(img);
-			service.insertDressroom(vo);
 			
-			out.println("<script>"
-					+ "alert('코디룩을 저장합니다.');"
-        			+ "</script>");
-            out.flush();
+			int result = service.selectImg(vo);
+			if(result > 0)
+			{
+				out.println("<script>"
+						+ "alert('해당 코디룩이 이미 존재합니다.');"
+	        			+ "</script>");
+	            out.flush();
+			}
+			else
+			{
+				service.insertDressroom(vo);
+				
+				out.println("<script>"
+						+ "alert('코디룩을 저장합니다.');"
+	        			+ "</script>");
+	            out.flush();
+			}
 			
             model.addAttribute("url", "insertDressroom");
             
@@ -53,8 +65,7 @@ public class DressroomController {
 					+ "alert('Error!!!');"
 					+ "history.back();"
         			+ "</script>");
-            out.flush();
-            
+            out.flush();    
 		}
 		
 		return "movePage";

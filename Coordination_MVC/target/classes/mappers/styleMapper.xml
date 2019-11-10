@@ -99,6 +99,8 @@
   		AND
   			pants_color=#{pants_color}
   		</if>
+  		ORDER BY
+  			RAND()
   		LIMIT
   			#{startList}, #{listSize}
   	</select>

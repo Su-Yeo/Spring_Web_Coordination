@@ -15,6 +15,18 @@
 			id=#{id}
 	</select>
 	
+	<!-- 회원이 똑같은 사진을 저장할 경우를 처리 -->
+	<select id="selectImg" resultType="int">
+		SELECT
+			COUNT(img)
+		FROM
+			dressroom
+		WHERE
+			id=#{id}
+		AND
+			img=#{img}
+	</select>
+	
 	<!-- 한 회원이 마음에 드는 코디사진을 저장 -->
 	<insert id="insertDressroom">
 		INSERT INTO dressroom(

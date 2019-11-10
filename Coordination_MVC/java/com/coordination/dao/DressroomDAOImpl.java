@@ -22,6 +22,13 @@ public class DressroomDAOImpl implements DressroomDAO {
 		
 		return sqlSession.selectList(Namespace+".dressroomList", vo);
 	}
+	
+	//회원이 똑같은 사진을 저장할 경우를 처리
+	@Override
+	public int selectImg(DressroomVO vo) {
+		
+		return sqlSession.selectOne(Namespace+".selectImg", vo);
+	}
 
 	//한 회원이 마음에 드는 코디사진을 저장
 	@Override

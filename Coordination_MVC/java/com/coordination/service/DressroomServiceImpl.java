@@ -20,6 +20,13 @@ public class DressroomServiceImpl implements DressroomService {
 		
 		return dao.dressroomList(vo);
 	}
+	
+	//회원이 똑같은 사진을 저장할 경우를 처리
+	@Override
+	public int selectImg(DressroomVO vo) {
+			
+		return	dao.selectImg(vo);
+	}	
 
 	//한 회원이 마음에 드는 코디사진을 저장
 	@Override
