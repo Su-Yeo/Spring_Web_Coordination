@@ -21,6 +21,7 @@
   <!-- Link Swiper's CSS -->
 <link rel="stylesheet" href="/resources/css/swiper.min.css">
 <link rel="stylesheet" href="/resources/css/swiper.min2.css">
+<link rel="stylesheet" href="/resources/css/swiper.min3.css">
 <link rel="stylesheet" href="/resources/css/import.css" />
   <!-- Demo styles -->
   <style>
@@ -80,38 +81,15 @@
 	.swiper-img{
 		width:270px;
 		height:330px;
-	}
-	
-	/*----------------------------태블릿----------------------------*/
-	@media all and (min-width: 600px) and (max-width: 1279px) {
-		
-		.swiper-img{
-			width:270px;
-			height:320px;
-		}
-		
-		.swiper-button-next,.swiper-button-prev{
-			margin-top:2px;
-			height:20px;
-		}
-	}
-	/*----------------------------태블릿끝----------------------------*/
-	
-	/*----------------------------모바일----------------------------*/
-	@media all and (max-width: 600px){
-		.tabmenu ul li{
-		  width:50%;
-		}
-		.swiper-button-next,.swiper-button-prev{
-			height:20px;
-		}
-		.swiper-img{
-			width:240px;
-			height:300px;
-		}
-	}
-	/*------------------------------------------------------------*/
-	
+	}	
+	.swiper-img2{
+		width:270px;
+		height:330px;
+	}	
+	.swiper-img3{
+		width:270px;
+		height:330px;
+	}	
 	.tabmenu label{
 	  display:block;
 	  width:100%; 
@@ -145,6 +123,10 @@
 	  box-sizing:border-box;
 	  overflow:hidden;
 	}
+	.button-7-margin{
+		margin:-55px 10px 20px 10px;
+		float:right;
+	}
 	.button-7 a{
 	  text-decoration:none;
 	  color:#777;
@@ -171,6 +153,79 @@
 	  text-decoration:none
 	}
 	
+	
+	/*----------------------------태블릿----------------------------*/
+	@media all and (min-width: 600px) and (max-width: 1279px) {
+		
+		.swiper-img{
+			width:270px;
+			height:320px;
+		}
+		.swiper-img2{
+			width:270px;
+			height:320px;
+		}
+		.swiper-img3{
+			width:270px;
+			height:320px;
+		}
+		
+		.swiper-button-next,.swiper-button-prev{
+			margin-top:2px;
+			height:20px;
+		}
+		
+		.swiper-button-next2,.swiper-button-prev2{
+			margin-top:2px;
+			height:20px;
+		}
+		
+		.swiper-button-next3,.swiper-button-prev3{
+			margin-top:2px;
+			height:20px;
+		}
+	}
+	/*----------------------------태블릿끝----------------------------*/
+	
+	/*----------------------------모바일----------------------------*/
+	@media all and (max-width: 600px){
+		.tabmenu ul li{
+		  width:50%;
+		}
+		.swiper-button-next,.swiper-button-prev{
+			height:20px;
+		}
+		
+		.swiper-button-next2,.swiper-button-prev2{
+			height:20px;
+		}
+		
+		.swiper-button-next3,.swiper-button-prev3{
+			height:20px;
+		}
+		
+		.swiper-img{
+			width:240px;
+			height:300px;
+		}
+		.swiper-img2{
+			width:240px;
+			height:300px;
+		}
+		.swiper-img3{
+			width:240px;
+			height:300px;
+		}
+		.button-group{
+			width:95%;
+			align:center;
+		}
+		.button-7-margin{
+			margin:5px;
+			width:45%;
+		}
+	}
+	/*------------------------------------------------------------*/
   </style>
 </head>
 <body>
@@ -181,17 +236,25 @@
 	<jsp:include page="../nav.jsp"></jsp:include>
 	<!-- End Nav -->
 	<div class="container" style="text-align:center;">
-	<c:if test="${!empty ClosetListTop || !empty ClosetListBottom}">
-		<div class="button-7" style="float:right;cursor: pointer;" onclick="location.href='imgUpload'">
-			<div class="eff-7"></div>
-			<a href="imgUpload">옷 등록</a>
-		</div>
-	</c:if>
 		<div class="tabmenu" style="clear:both;">
 		  <ul>
 		    <li id="tab1" class="btnCon"> <input type="radio" checked name="tabmenu" id="tabmenu1">
 		      <label for="tabmenu1">옷장</label>
 		      <div class="tabCon">
+		      <!-- 옷장에 옷이 하나 이상 있을 때 -->
+				<c:if test="${!empty ClosetListTop || !empty ClosetListBottom}">
+					<div class="button-group">
+						<div class="button-7 button-7-margin" style="cursor: pointer;" onclick="location.href='imgUpload'">
+							<div class="eff-7"></div>
+							<a href="imgUpload">옷 등록</a>
+						</div>
+						<div class="button-7 button-7-margin" style="cursor: pointer;" onclick="category_submit()">
+							<div class="eff-7"></div>
+							<a href="#">코디보기</a>
+						</div>
+					</div>
+				</c:if>
+		      <!-- 옷장이 텅 비었을 때 -->
 	      		<c:if test="${empty ClosetListTop && empty ClosetListBottom}">
 					<img src="/resources/icon/closetIcon.jpg">
 					<div class="button-7" style="margin:0 auto;cursor: pointer;" onclick="location.href='imgUpload'">
@@ -199,6 +262,7 @@
 						<a href="imgUpload">옷 등록</a>
 					</div>
 				</c:if>
+				<!-- 상의가 비었을 때 이미지 -->
 					<c:if test="${empty ClosetListTop && !empty ClosetListBottom}">
 						<img src="/resources/icon/closettopIcon.jpg">
 					</c:if>
@@ -217,6 +281,7 @@
 						<div class="swiper-button-next swiper-button-black" style="opacity:0.5;"></div>
 						<div class="swiper-button-prev swiper-button-black" style="opacity:0.5;"></div>
 					</div><br/>
+					<!-- 하의가 비었을 때 이미지 -->
 					<c:if test="${!empty ClosetListTop && empty ClosetListBottom}">
 						<img src="/resources/icon/closetbottomIcon.jpg">
 					</c:if>
@@ -226,7 +291,7 @@
 							<c:forEach items="${ClosetListBottom}" var="closet2">
 								<div class="swiper-slide">
 									<div class="swiper-countB">
-										<img class="swiper-img" style="border: 1px solid gray;" src="/displayImg?name=${closet2.img}&folder=user" onclick="category_bottom('${closet2.category}','${closet2.color}')"/>
+										<img class="swiper-img2" style="border: 1px solid gray;" src="/displayImg?name=${closet2.img}&folder=user" onclick="category_bottom('${closet2.category}','${closet2.color}')"/>
 									</div>
 								</div>
 							</c:forEach>
@@ -240,42 +305,63 @@
 		    <li id="tab2" class="btnCon"><input type="radio" name="tabmenu" id="tabmenu2">
 		      <label for="tabmenu2">코디</label>
 		      <div class="tabCon" >
-		      	<c:forEach items="${dressroomList}" var="dressroom"> 
-					<div class="swiper-slide">
-						<div class="swiper-count">
-							<img class="swiper-img" style="border: 1px solid gray;" src="/displayImg?name=${dressroom.img}&folder=admin"/>
+		      <!-- 드레스룸이 텅 비었을 때 -->
+	      		<c:if test="${empty dressroomList}">
+					<img src="/resources/icon/dressroomIcon.jpg">
+				</c:if>
+		      <!-- Swiper -->
+					<div class="swiper-container3">
+						<div class="swiper-wrapper">
+		      				<c:forEach items="${dressroomList}" var="dressroom">
+								<div class="swiper-slide">
+									<div class="swiper-countC">
+										<img class="swiper-img3" style="border: 1px solid gray;" src="/displayImg?name=${dressroom.img}&folder=admin"/>
+									</div>
+								</div>
+							</c:forEach>
 						</div>
+						<!-- Add Arrows -->
+						<div class="swiper-button-next3 swiper-button-black" style="opacity:0.5;"></div>
+						<div class="swiper-button-prev3 swiper-button-black" style="opacity:0.5;"></div>
 					</div>
-				</c:forEach>
 		      </div>
 		    </li>
 		  </ul>
 		</div>
 	</div>
-	<c:if test="${!empty ClosetListTop || !empty ClosetListBottom}">
-		<input style="width:200px;height:30px;" type="button" onclick="category_submit()" value="코디보기">
-	</c:if>	
 	<script>
 		var top2='';
 		var bottom='';
 		var topColor='';
 		var bottomColor='';
 		
+		$('.swiper-img').click(function() {
+			$('.swiper-img').css("border", "1px solid gray");
+		    $(this).css("border", "2px solid red");
+	   	});
+		$('.swiper-img2').click(function() {
+			$('.swiper-img2').css("border", "1px solid gray");
+			$(this).css("border", "2px solid red");
+	   	});
+		
 		function category_top(top2,topColor){
+			
 			this.top2=top2;
 			this.topColor=topColor;
-			alert(top2+topColor);
 		}
 		
 		function category_bottom(bottom,bottomColor){
+			
 			this.bottom=bottom;
 			this.bottomColor=bottomColor;
-			alert(bottom+bottomColor);
 		}
 		
 		function category_submit(){
-			alert(top2 + bottom +topColor +bottomColor);
-			location.href=encodeURI("Recommendation?top="+top2+"&bottom="+bottom+"&topColor="+topColor+"&bottomColor="+bottomColor);
+			if(top2=="" && bottom==""){
+				alert("옷을 선택해주세요");	
+			}else{
+				location.href=encodeURI("Recommendation?top="+top2+"&bottom="+bottom+"&topColor="+topColor+"&bottomColor="+bottomColor);
+			}
 		}
 	</script>
 	<!-- Swiper JS -->
@@ -338,60 +424,115 @@
 		   }
 	  });
 	  
-	var m = 0;
-	var b = true;
-	if($('.swiper-countB').length==1){
-		m = 1;
-		b = false;
-	}
-	else if($('.swiper-countB').length==2){
-		m = 2;
-		b = false;
-	}
-	else if($('.swiper-countB').length==3){
-		m = 3;
-		b = false;
-	}
-	else if($('.swiper-countB').length>=4){
-		m = 3;
-		b = true;
-	}
-	  var swiper = new Swiper('.swiper-container2', {
-		    slidesPerView: m,
-		    spaceBetween: 0,
-		    loop: b,
-		    loopFillGroupWithBlank: true,
-		    autoplay: {
-		        delay: 10000,
-		        disableOnInteraction: false,
-		      },
-		    pagination: {
-		      el: '.swiper-pagination',
-		      clickable: true,
-		    },
-		    navigation: {
-		      nextEl: '.swiper-button-next2',
-		      prevEl: '.swiper-button-prev2',
-		    },
-		    breakpoints: {
-				1024: {
-					slidesPerView: 3,
-					spaceBetween: 0
-				},
-				780: {
-					slidesPerView: 2,
-					spaceBetween: 30
-				},
-				640: {
-					slidesPerView: 1,
-					spaceBetween: 0
-				},
-				480: {
-					slidesPerView: 1,
-					spaceBetween: 0
-				}
-		   }
-	  });
+		var m = 0;
+		var b = true;
+		if($('.swiper-countB').length==1){
+			m = 1;
+			b = false;
+		}
+		else if($('.swiper-countB').length==2){
+			m = 2;
+			b = false;
+		}
+		else if($('.swiper-countB').length==3){
+			m = 3;
+			b = false;
+		}
+		else if($('.swiper-countB').length>=4){
+			m = 3;
+			b = true;
+		}
+		  var swiper = new Swiper('.swiper-container2', {
+			    slidesPerView: m,
+			    spaceBetween: 0,
+			    loop: b,
+			    loopFillGroupWithBlank: true,
+			    autoplay: {
+			        delay: 10000,
+			        disableOnInteraction: false,
+			      },
+			    pagination: {
+			      el: '.swiper-pagination',
+			      clickable: true,
+			    },
+			    navigation: {
+			      nextEl: '.swiper-button-next2',
+			      prevEl: '.swiper-button-prev2',
+			    },
+			    breakpoints: {
+					1024: {
+						slidesPerView: 3,
+						spaceBetween: 0
+					},
+					780: {
+						slidesPerView: 2,
+						spaceBetween: 30
+					},
+					640: {
+						slidesPerView: 1,
+						spaceBetween: 0
+					},
+					480: {
+						slidesPerView: 1,
+						spaceBetween: 0
+					}
+			   }
+		  });
+		  
+		var p = 0;
+		var q = true;
+		if($('.swiper-countC').length==1){
+			p = 1;
+			q = false;
+		}
+		else if($('.swiper-countC').length==2){
+			p = 2;
+			q = false;
+		}
+		else if($('.swiper-countC').length==3){
+			p = 3;
+			q = false;
+		}
+		else if($('.swiper-countC').length>=4){
+			p = 3;
+			q = true;
+		}
+		  var swiper = new Swiper('.swiper-container3', {
+			    slidesPerView: p,
+			    spaceBetween: 0,
+			    loop: q,
+			    loopFillGroupWithBlank: true,
+			    autoplay: {
+			        delay: 10000,
+			        disableOnInteraction: false,
+			      },
+			    pagination: {
+			      el: '.swiper-pagination',
+			      clickable: true,
+			    },
+			    navigation: {
+			      nextEl: '.swiper-button-next3',
+			      prevEl: '.swiper-button-prev3',
+			    },
+			    breakpoints: {
+					1024: {
+						slidesPerView: 3,
+						spaceBetween: 0
+					},
+					780: {
+						slidesPerView: 2,
+						spaceBetween: 30
+					},
+					640: {
+						slidesPerView: 1,
+						spaceBetween: 0
+					},
+					480: {
+						slidesPerView: 1,
+						spaceBetween: 0
+					}
+			   }
+		  });
 	</script>
 </body>
 </html>
