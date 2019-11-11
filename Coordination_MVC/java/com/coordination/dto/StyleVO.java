@@ -161,9 +161,9 @@ public class StyleVO {
 		this.page = page;
 		this.range = range;
 		this.listCnt = listCnt;
-
+		
 		//전체 페이지수 
-		this.pageCnt = (int) Math.ceil(listCnt/listSize);
+		this.pageCnt = (int) Math.ceil(listCnt/(double)listSize);
 
 		//시작 페이지
 		this.startPage = (range - 1) * rangeSize + 1 ;	
@@ -172,7 +172,7 @@ public class StyleVO {
 		this.endPage = range * rangeSize;
 				
 		//게시판 시작번호
-		this.startList = (page - 1) * listSize;		
+		this.startList = (page - 1) * listSize;
 
 		//이전 버튼 상태
 		this.prev = range == 1 ? false : true;

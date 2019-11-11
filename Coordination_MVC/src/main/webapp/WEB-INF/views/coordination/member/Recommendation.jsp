@@ -118,7 +118,7 @@
 			<button class="btn btn-primary btn-block btn-lg" style="background: #61C7C1; width: 140px; height: 50px;" onclick="history.back();">돌아가기</button>
 		</c:if>
 		<!-- 사용자가 선택한 의상과 색상의 옷을 입은 코디룩만을 추천 -->
-		<c:forEach items="${StyleList}" var="style" begin="1" end="12" step="1">
+		<c:forEach items="${StyleList}" var="style" begin="0" end="11" step="1">
 			<div class="img_polaroid" style="cursor: pointer;" data-toggle="modal" data-target="#${style.num}">
 				<img style="width:340px;" class="w3-border w3-hover-border-red card-img-top" src="/displayImg?name=${style.img}&folder=admin" />
 				
@@ -170,11 +170,10 @@
 					</li>
 				</c:if>
 
-				<c:forEach begin="${pagination.startPage}"
-					end="${pagination.endPage}" var="idx">
+				<c:forEach begin="${pagination.startPage}" end="${pagination.pageCnt}" var="idx">
 					<li
-						class="page-item <c:out value="${pagination.page == idx ? 'active' : ''}"/> "><a
-						class="page-link" href="#"
+						class="page-item <c:out value="${pagination.page == idx ? 'active' : ''}"/> ">
+						<a class="page-link" href="#"
 						onClick="fn_pagination('${idx}', '${pagination.range}', '${pagination.rangeSize}')">
 							${idx} </a></li>
 				</c:forEach>
@@ -215,7 +214,7 @@
 		}
 
 		//페이지 번호 클릭
-		function fn_pagination(page, range, rangeSize, searchType, keyword) {
+		function fn_pagination(page, range, rangeSize) {
 
 			var url = "Recommendation";
 

@@ -323,8 +323,6 @@ public class StyleController {
 			}
 			//전체 페이지 갯수
 			int listCnt = service.StyleRecommendationCount(vo);
-			System.out.println("###################################");
-			System.out.println(listCnt+":"+page+":"+range);
 			
 			if(listCnt==0) {
 				model.addAttribute("TopUrl", "Recommendation?top="+top+"&topColor="+topColor);
@@ -332,16 +330,14 @@ public class StyleController {
 			}
 			
 			//Pagination 객체생성
-			StyleVO pagination = new StyleVO();
-			pagination.pageInfo(page, range, listCnt);
-			
-			model.addAttribute("pagination", pagination);
+			vo.pageInfo(page, range, listCnt);
+			model.addAttribute("pagination", vo);
 			model.addAttribute("StyleList", service.StyleRecommendation(vo));
 			model.addAttribute("top", top);
 			model.addAttribute("bottom", bottom);
 			model.addAttribute("topColor", topColor);
 			model.addAttribute("bottomColor", bottomColor);
-
+			
 			return "coordination/member/Recommendation";
 		}
 	}
