@@ -326,6 +326,11 @@ public class StyleController {
 			System.out.println("###################################");
 			System.out.println(listCnt+":"+page+":"+range);
 			
+			if(listCnt==0) {
+				model.addAttribute("TopUrl", "Recommendation?top="+top+"&topColor="+topColor);
+				model.addAttribute("BottomUrl", "Recommendation?bottom="+bottom+"&bottomColor="+bottomColor);
+			}
+			
 			//Pagination 객체생성
 			StyleVO pagination = new StyleVO();
 			pagination.pageInfo(page, range, listCnt);
