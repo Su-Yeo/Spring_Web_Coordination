@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.coordination.dto.AdminPagination;
 import com.coordination.dto.ClosetVO;
 import com.coordination.dto.DressroomVO;
 import com.coordination.dto.MemberVO;
@@ -220,13 +221,13 @@ public class MemberController {
 	
 	//회원전용 페이지
 	@RequestMapping(value="isMyPage", method=RequestMethod.GET)
-	public String myPage(ClosetVO closetVO, DressroomVO dressroomVO,
+	public String isMyPage(ClosetVO closetVO, DressroomVO dressroomVO,
 			Model model,
 			HttpServletRequest request,
 			HttpSession session,
 			@RequestParam(required = false, defaultValue = "1") int page,
-			@RequestParam(required = false, defaultValue = "1") int range) 
-			throws Exception{
+			@RequestParam(required = false, defaultValue = "1") int range)
+			throws Exception {
 		
 		if(session.getAttribute("userId") == null)
 		{
@@ -234,25 +235,22 @@ public class MemberController {
 		}
 		else
 		{
-			String id = session.getAttribute("userId").toString();
-			closetVO.setId(id);
-			dressroomVO.setId(id);
+			String userId = session.getAttribute("userId").toString();
+			dressroomVO.setId(userId);
 			
 			//전체 페이지 갯수
 			int listCnt = dressroomService.dressroomListCount(dressroomVO);
 			
-			//Pagination 객체생성
-			DressroomVO pagination = new DressroomVO();
-			pagination.pageInfo(page, range, listCnt);
-			
-			model.addAttribute("pagination", pagination);
+			dressroomVO.pageInfo(page, range, listCnt);
+			model.addAttribute("pagination", dressroomVO);
+			model.addAttribute("dressroomList", dressroomService.dressroomList(dressroomVO));
 			model.addAttribute("ClosetListTop", closetService.closetListTop(closetVO));
 			model.addAttribute("ClosetListBottom", closetService.closetListBottom(closetVO));
-	        model.addAttribute("dressroomList", dressroomService.dressroomList(dressroomVO));
-	        
-	        return "coordination/member/myPage";
+			
+			 return "coordination/member/myPage";
 		}
 	}
+	
 	
 	//회원정보 수정.삭제
 	@RequestMapping("infoUpdatePage")

@@ -71,18 +71,6 @@ public class DressroomController {
 		return "movePage";
 	}
 	
-	//회원 - 나만의 코디룸 가져옴
-	@RequestMapping(value = "dressSelect", method = RequestMethod.GET)
-	public String select(DressroomVO vo, Model model, HttpSession session) throws Exception {
-		String userId = session.getAttribute("userId").toString();
-		
-		vo.setId(userId);
-		
-        model.addAttribute("dressroomList", service.dressroomList(vo));
- 		
-		return "coordination/member/myPage";
-	}
-	
 	//회원 - 나만의 코디룸에서 원하는 사진을 삭제
 	@RequestMapping(value = "dressDelete", method = RequestMethod.GET)
 	public String delete(DressroomVO vo, Model model, HttpServletRequest request, HttpServletResponse response) throws Exception {

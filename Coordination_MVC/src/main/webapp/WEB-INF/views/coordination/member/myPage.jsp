@@ -14,11 +14,10 @@
 <meta name="msapplication-TileColor" content="#da532c">
 <meta name="theme-color" content="#ffffff">
 <!-- End favicon -->
-  <meta charset="utf-8">
+<meta charset="utf-8">
 	<title>myPage</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
-
-  <!-- Link Swiper's CSS -->
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+<!-- Link Swiper's CSS -->
 <link rel="stylesheet" href="/resources/css/swiper.min.css">
 <link rel="stylesheet" href="/resources/css/swiper.min2.css">
 <link rel="stylesheet" href="/resources/css/swiper.min3.css">
@@ -302,6 +301,7 @@
 					</div>
 		      </div>
 		    </li>
+		    
 		    <li id="tab2" class="btnCon"><input type="radio" name="tabmenu" id="tabmenu2">
 		      <label for="tabmenu2">코디</label>
 		      <div class="tabCon" >

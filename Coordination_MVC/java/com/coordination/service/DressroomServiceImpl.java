@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.coordination.dao.DressroomDAO;
+import com.coordination.dto.AdminPagination;
 import com.coordination.dto.DressroomVO;
 
 @Service

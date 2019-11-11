@@ -2,6 +2,7 @@ package com.coordination.dao;
 
 import java.util.List;
 
+import com.coordination.dto.AdminPagination;
 import com.coordination.dto.DressroomVO;
 
 public interface DressroomDAO {
