@@ -312,6 +312,31 @@
    				<c:forEach items="${dressroomList}" var="dressroom">
 					<img class="swiper-img3" style="border: 1px solid gray;margin:5px;" src="/displayImg?name=${dressroom.img}&folder=admin"/>
 				</c:forEach>
+				<c:if test="${!empty dressroomList}">
+					<!-- pagination{s} -->
+					<div id="paginationBox" align="center">
+						<ul class="pagination">
+							<c:if test="${pagination.prev}">
+								<li class="page-item"><a class="page-link" href="#" onClick="fn_prev('${pagination.page}', '${pagination.range}', '${pagination.rangeSize}')">Previous</a>
+								</li>
+							</c:if>
+							
+							<c:forEach begin="${pagination.startPage}" end="${pagination.endPage}" var="idx">
+								<li class="page-item <c:out value="${pagination.page == idx ? 'active' : ''}"/> "><a class="page-link" href="#" onClick="fn_pagination('${idx}', '${pagination.range}', '${pagination.rangeSize}')"> ${idx} </a>
+								</li>
+							</c:forEach>
+					
+							<c:if test="${pagination.next}">
+								<li class="page-item"><a class="page-link" href="#" onClick="fn_next('${pagination.range}', '${pagination.range}', '${pagination.rangeSize}')" >Next</a>
+								</li>
+							</c:if>
+						</ul>
+					</div>
+					<c:url var="getBoardListURL" value="adminIdentify">
+						<c:param name="page" value="${pagination.page}"/>
+						<c:param name="range" value="${pagination.range}"/>
+					</c:url>
+				</c:if>
 		      </div>
 		    </li>
 		  </ul>
