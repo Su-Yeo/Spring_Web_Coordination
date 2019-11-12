@@ -75,7 +75,7 @@ public class JythonController {
 				//상의 이미지 분석
 				tf.admin_Upper(image);
 				
-				//하의 이미지 분석
+				//하의 이미지 분석	
 				tf.admin_Lower(image);
 				
 				//쇼핑몰 이름 업데이트
@@ -180,7 +180,7 @@ public class JythonController {
 				{
 					//outer
 					case 1:
-						url = "http://under70.kr/product/list.html?cate_no=24&page=1";
+						url = "http://under70.kr/product/list.html?cate_no=24&page=6";
 						break;
 					//t-shirt
 					case 2:
