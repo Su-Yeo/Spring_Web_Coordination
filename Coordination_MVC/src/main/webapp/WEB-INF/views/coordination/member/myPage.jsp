@@ -65,18 +65,6 @@
 	}
 	ul{list-style:none;}
 	
-	.tabmenu{ 
-	  margin: 0 auto; 
-	  position:relative; 
-	}
-	.tabmenu ul li{
-	  display:  inline-block;
-	  width:15%;
-	  float:left;  
-	  text-align:center; 
-	  background :#f9f9f9;
-	  line-height:40px;
-	}
 	.swiper-img{
 		width:270px;
 		height:330px;
@@ -89,26 +77,40 @@
 		width:310px;
 		height:380px;
 	}	
-	.tabmenu label{
-	  display:block;
-	  width:100%; 
-	  height:40px;
-	  line-height:40px;
+
+	.tab {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		overflow: hidden;
 	}
-	.tabmenu input{display:none;}
-	.tabCon{
-	  width:100%;
-	  display:none; 
-	  text-align:center; 
-	  padding: 20px;
-	  position:absolute; 
-	  left:0; top:40px;
+	/* Float the list items side by side */
+	.tab li {
+		float: left;
+  		background :#F7F7F7;
+		width:15%;
 	}
-	.tabmenu input:checked ~ label{
-	  background:#ccc;
+	/* Style the links inside the list items */
+	.tab li a {
+		display: inline-block;
+		color: #000;
+		text-align: center;
+		text-decoration: none;
+		padding: 10px;
+		font-size: 17px;
+		transition:0.3s;
 	}
-	.tabmenu input:checked ~ .tabCon{
-	  display:block;
+	/* Style the tab content */
+	.tabcontent {
+		display: none;
+		padding: 6px 12px;
+	}
+	ul.tab li.current{
+		background-color: #ccc;
+		color: #000;
+	}
+	.tabcontent.current {
+		display: block;
 	}
 	
 	/*----------------------------img upload button----------------------------*/
@@ -123,7 +125,7 @@
 	  overflow:hidden;
 	}
 	.button-7-margin{
-		margin:-55px 10px 20px 10px;
+		margin:-45px 10px 20px 10px;
 		float:right;
 	}
 	.button-7 a{
@@ -188,9 +190,9 @@
 	
 	/*----------------------------모바일----------------------------*/
 	@media all and (max-width: 600px){
-		.tabmenu ul li{
-		  width:50%;
-		}
+		.tab li {
+				width:50%;
+			}
 		.swiper-button-next,.swiper-button-prev{
 			height:20px;
 		}
@@ -235,77 +237,76 @@
 	<jsp:include page="../nav.jsp"></jsp:include>
 	<!-- End Nav -->
 	<div class="container" style="text-align:center;">
-		<div class="tabmenu" style="clear:both;">
-		  <ul>
-		    <li id="tab1" class="btnCon"> <input type="radio" checked name="tabmenu" id="tabmenu1">
-		      <label for="tabmenu1">옷장</label>
-		      <div class="tabCon">
-		      <!-- 옷장에 옷이 하나 이상 있을 때 -->
-				<c:if test="${!empty ClosetListTop || !empty ClosetListBottom}">
-					<div class="button-group">
-						<div class="button-7 button-7-margin" style="cursor: pointer;" onclick="location.href='imgUpload'">
-							<div class="eff-7"></div>
-							<a href="imgUpload">옷 등록</a>
-						</div>
-						<div class="button-7 button-7-margin" style="cursor: pointer;" onclick="category_submit()">
-							<div class="eff-7"></div>
-							<a href="#">코디보기</a>
-						</div>
-					</div>
-				</c:if>
-		      <!-- 옷장이 텅 비었을 때 -->
-	      		<c:if test="${empty ClosetListTop && empty ClosetListBottom}">
-					<img src="/resources/icon/closetIcon.jpg">
-					<div class="button-7" style="margin:0 auto;cursor: pointer;" onclick="location.href='imgUpload'">
+		<div id="TabMenu">
+		<ul class="tab">
+			<li class="current" data-tab="tab1"><a href="#">옷장</a></li>
+			<li data-tab="tab2"><a href="#">코디</a></li>
+		</ul>
+
+		<div id="tab1" class="tabcontent current">
+	      <!-- 옷장에 옷이 하나 이상 있을 때 -->
+			<c:if test="${!empty ClosetListTop || !empty ClosetListBottom}">
+				<div class="button-group">
+					<div class="button-7 button-7-margin" style="cursor: pointer;" onclick="location.href='imgUpload'">
 						<div class="eff-7"></div>
 						<a href="imgUpload">옷 등록</a>
 					</div>
-				</c:if>
-				<!-- 상의가 비었을 때 이미지 -->
-					<c:if test="${empty ClosetListTop && !empty ClosetListBottom}">
-						<img src="/resources/icon/closettopIcon.jpg">
-					</c:if>
-	      			<!-- Swiper -->
-					<div class="swiper-container">
-						<div class="swiper-wrapper">
-							<c:forEach items="${ClosetListTop}" var="closet">
-								<div class="swiper-slide">
-									<div class="swiper-countA">
-									<img class="swiper-img" style="border: 1px solid gray;" src="/displayImg?name=${closet.img}&folder=user" onclick="category_top('${closet.category}','${closet.color}')"/>
-									</div>
-								</div>
-							</c:forEach>
-						</div>
-						<!-- Add Arrows -->
-						<div class="swiper-button-next swiper-button-black" style="opacity:0.5;"></div>
-						<div class="swiper-button-prev swiper-button-black" style="opacity:0.5;"></div>
-					</div><br/>
-					<!-- 하의가 비었을 때 이미지 -->
-					<c:if test="${!empty ClosetListTop && empty ClosetListBottom}">
-						<img src="/resources/icon/closetbottomIcon.jpg">
-					</c:if>
-					<!-- Swiper -->
-					<div class="swiper-container2">
-						<div class="swiper-wrapper">
-							<c:forEach items="${ClosetListBottom}" var="closet2">
-								<div class="swiper-slide">
-									<div class="swiper-countB">
-										<img class="swiper-img2" style="border: 1px solid gray;" src="/displayImg?name=${closet2.img}&folder=user" onclick="category_bottom('${closet2.category}','${closet2.color}')"/>
-									</div>
-								</div>
-							</c:forEach>
-						</div>
-						<!-- Add Arrows -->
-						<div class="swiper-button-next2 swiper-button-black" style="opacity:0.5;"></div>
-						<div class="swiper-button-prev2 swiper-button-black" style="opacity:0.5;"></div>
+					<div class="button-7 button-7-margin" style="cursor: pointer;" onclick="category_submit()">
+						<div class="eff-7"></div>
+						<a href="#">코디보기</a>
 					</div>
-		      </div>
-		    </li>
-		    
-		    <li id="tab2" class="btnCon"><input type="radio" name="tabmenu" id="tabmenu2">
-		      <label for="tabmenu2">코디</label>
-		      <div class="tabCon" >
-		      <!-- 드레스룸이 텅 비었을 때 -->
+				</div>
+			</c:if>
+	      <!-- 옷장이 텅 비었을 때 -->
+      		<c:if test="${empty ClosetListTop && empty ClosetListBottom}">
+				<img src="/resources/icon/closetIcon.jpg">
+				<div class="button-7" style="margin:0 auto;cursor: pointer;" onclick="location.href='imgUpload'">
+					<div class="eff-7"></div>
+					<a href="imgUpload">옷 등록</a>
+				</div>
+			</c:if>
+			<!-- 상의가 비었을 때 이미지 -->
+				<c:if test="${empty ClosetListTop && !empty ClosetListBottom}">
+					<img src="/resources/icon/closettopIcon.jpg">
+				</c:if>
+      			<!-- Swiper -->
+				<div class="swiper-container">
+					<div class="swiper-wrapper">
+						<c:forEach items="${ClosetListTop}" var="closet">
+							<div class="swiper-slide">
+								<div class="swiper-countA">
+								<img class="swiper-img" style="border: 1px solid gray;" src="/displayImg?name=${closet.img}&folder=user" onclick="category_top('${closet.category}','${closet.color}')"/>
+								</div>
+							</div>
+						</c:forEach>
+					</div>
+					<!-- Add Arrows -->
+					<div class="swiper-button-next swiper-button-black" style="opacity:0.5;"></div>
+					<div class="swiper-button-prev swiper-button-black" style="opacity:0.5;"></div>
+				</div><br/>
+				<!-- 하의가 비었을 때 이미지 -->
+				<c:if test="${!empty ClosetListTop && empty ClosetListBottom}">
+					<img src="/resources/icon/closetbottomIcon.jpg">
+				</c:if>
+				<!-- Swiper -->
+				<div class="swiper-container2">
+					<div class="swiper-wrapper">
+						<c:forEach items="${ClosetListBottom}" var="closet2">
+							<div class="swiper-slide">
+								<div class="swiper-countB">
+									<img class="swiper-img2" style="border: 1px solid gray;" src="/displayImg?name=${closet2.img}&folder=user" onclick="category_bottom('${closet2.category}','${closet2.color}')"/>
+								</div>
+							</div>
+						</c:forEach>
+					</div>
+					<!-- Add Arrows -->
+					<div class="swiper-button-next2 swiper-button-black" style="opacity:0.5;"></div>
+					<div class="swiper-button-prev2 swiper-button-black" style="opacity:0.5;"></div>
+				</div>
+		</div>
+
+		<div id="tab2" class="tabcontent">
+		<!-- 드레스룸이 텅 비었을 때 -->
 	      		<c:if test="${empty dressroomList}">
 					<img src="/resources/icon/dressroomIcon.jpg">
 				</c:if>
@@ -337,12 +338,20 @@
 						<c:param name="range" value="${pagination.range}"/>
 					</c:url>
 				</c:if>
-		      </div>
-		    </li>
-		  </ul>
+		</div>
 		</div>
 	</div>
-	
+	<script>
+		$(function() {
+			$('ul.tab li').click(function() {
+				var activeTab = $(this).attr('data-tab');
+				$('ul.tab li').removeClass('current');
+				$('.tabcontent').removeClass('current');
+				$(this).addClass('current');
+				$('#' + activeTab).addClass('current');
+			})
+		});
+	</script>
 	<!-- pagination{s} -->
 	<script>
 		//이전 버튼 클릭
@@ -355,7 +364,7 @@
 
 			url = url + "?page=" + page;
 			url = url + "&range=" + range;
-
+			
 			location.href = url;
 		}
 

@@ -111,10 +111,10 @@
 	<!-- Image Recommendation -->
 	<div id="div_include" align="center">
 		<c:if test="${empty StyleList}" >
-			<h2>해당 코디에 대한 정보가 없습니다.</h2>
+			<h1>해당 코디에 대한 정보가 없습니다.</h1>
 			<br>
-			<h2><a href="${TopUrl}">상의 추천</a></h2><br>
-			<h2><a href="${BottomUrl}">하의 추천</a></h2>
+			<h2><a href="${TopUrl}" style="text-decoration: underline;"><c:out value="${topColor} ${top}에 대한 코디 더보기 ▶"/></a></h2><br>
+			<h2><a href="${BottomUrl}" style="text-decoration: underline;"><c:out value="${bottomColor} ${bottom}에 대한 코디 더보기 →"/></a></h2>
 			<button class="btn btn-primary btn-block btn-lg" style="background: #61C7C1; width: 140px; height: 50px;" onclick="history.back();">돌아가기</button>
 		</c:if>
 		<!-- 사용자가 선택한 의상과 색상의 옷을 입은 코디룩만을 추천 -->
