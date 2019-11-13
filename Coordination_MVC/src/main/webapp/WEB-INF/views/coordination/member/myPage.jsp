@@ -318,17 +318,17 @@
 					<div id="paginationBox" align="center">
 						<ul class="pagination">
 							<c:if test="${pagination.prev}">
-								<li class="page-item"><a class="page-link" href="#" onClick="fn_prev('${pagination.page}', '${pagination.range}', '${pagination.rangeSize}')">Previous</a>
+								<li class="page-item"><a class="page-link" href="#" onClick="fn_prev('${pagination.page}', '${pagination.range}', '${pagination.rangeSize}','1')">Previous</a>
 								</li>
 							</c:if>
 							
 							<c:forEach begin="${pagination.startPage}" end="${pagination.endPage}" var="idx">
-								<li class="page-item <c:out value="${pagination.page == idx ? 'active' : ''}"/> "><a class="page-link" href="#" onClick="fn_pagination('${idx}', '${pagination.range}', '${pagination.rangeSize}')"> ${idx} </a>
+								<li class="page-item <c:out value="${pagination.page == idx ? 'active' : ''}"/> "><a class="page-link" href="#" onClick="fn_pagination('${idx}', '${pagination.range}', '${pagination.rangeSize}', '1')"> ${idx} </a>
 								</li>
 							</c:forEach>
 					
 							<c:if test="${pagination.next}">
-								<li class="page-item"><a class="page-link" href="#" onClick="fn_next('${pagination.range}', '${pagination.range}', '${pagination.rangeSize}')" >Next</a>
+								<li class="page-item"><a class="page-link" href="#" onClick="fn_next('${pagination.range}', '${pagination.range}', '${pagination.rangeSize}','1')" >Next</a>
 								</li>
 							</c:if>
 						</ul>
@@ -342,6 +342,16 @@
 		</div>
 	</div>
 	<script>
+		$(document).ready(function(){
+			var i = "${flag}";
+			if(i=='1'){
+				$('ul.tab li').removeClass('current');
+				$('.tabcontent').removeClass('current');
+				$('ul.tab li').eq(1).addClass('current');
+				$('#tab2').addClass('current');
+			}
+		});
+		
 		$(function() {
 			$('ul.tab li').click(function() {
 				var activeTab = $(this).attr('data-tab');
@@ -355,8 +365,8 @@
 	<!-- pagination{s} -->
 	<script>
 		//이전 버튼 클릭
-		function fn_prev(page, range, rangeSize) {
-
+		function fn_prev(page, range, rangeSize,flag) {
+			
 			var page = ((range - 2) * rangeSize) + 1;
 			var range = range - 1;
 
@@ -364,23 +374,25 @@
 
 			url = url + "?page=" + page;
 			url = url + "&range=" + range;
+			url = url + "&flag=" + flag;
 			
 			location.href = url;
 		}
 
 		//페이지 번호 클릭
-		function fn_pagination(page, range, rangeSize, searchType, keyword) {
+		function fn_pagination(page, range, rangeSize, flag) {
 
 			var url = "isMyPage";
 
 			url = url + "?page=" + page;
 			url = url + "&range=" + range;
+			url = url + "&flag=" + flag;
 
 			location.href = url;
 		}
 
 		//다음 버튼 클릭
-		function fn_next(page, range, rangeSize) {
+		function fn_next(page, range, rangeSize,flag) {
 
 			var page = parseInt((range * rangeSize)) + 1;
 			var range = parseInt(range) + 1;
@@ -389,6 +401,7 @@
 
 			url = url + "?page=" + page;
 			url = url + "&range=" + range;
+			url = url + "&flag=" + flag;
 
 			location.href = url;
 		}
