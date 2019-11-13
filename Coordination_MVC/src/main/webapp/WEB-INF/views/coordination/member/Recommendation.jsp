@@ -184,7 +184,7 @@
 					</li>
 				</c:if>
 			</ul>
-			<button class="btn btn-primary btn-block btn-lg" style="background: #61C7C1; width: 140px; height: 50px;" onclick="history.back();">돌아가기</button>
+			<button class="btn btn-primary btn-block btn-lg" style="background: #61C7C1; width: 140px; height: 50px;" onclick="location.href='isMyPage';">돌아가기</button>
 		</div>
 		<!-- End Pagination -->
 

@@ -355,6 +355,10 @@
 		$(function() {
 			$('ul.tab li').click(function() {
 				var activeTab = $(this).attr('data-tab');
+				var page = "${pagination.page}";
+				if(activeTab=="tab1"){
+					location.href = "isMyPage?page=" + page;
+				}
 				$('ul.tab li').removeClass('current');
 				$('.tabcontent').removeClass('current');
 				$(this).addClass('current');
