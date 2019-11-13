@@ -32,10 +32,10 @@ public class JythonController {
 	@RequestMapping(value="parsing")
 	public String Tensorflow(Model model, HttpServletRequest request, HttpSession session) throws Exception  {
 		
-		//이미지 분석 객체 생성
+		//이미지 추론 객체 생성
 		TensorflowImpl tf = new TensorflowImpl();
 		
-		//이미지 분석 Path && 분석할 이미지명
+		//이미지 추론 Path && 추론할 이미지명
 		String path = "C:\\img\\tensorflow\\";
 		String image = null;
 		
@@ -59,6 +59,10 @@ public class JythonController {
 			folder2.mkdirs();
   		}
 		
+		//Tensorflow에서 admin폴더로 이미지 복사
+		copy(folder, folder2);
+		System.out.println("======이미지 복사 완료======");
+		
 		//DB에 등록되지않은 tensorflow폴더 안에 있는 이미지명 추출
 		File[] listOfFiles = folder.listFiles();
 		
@@ -70,6 +74,9 @@ public class JythonController {
 				image = path + listOfFiles[i].getName();
 				
 				//전신 이미지 분리
+				//원본파일 → 상의 파일
+				//하의파일 → -1.jpg
+				//카피파일 → -2.jpg
 				tf.Cut(image);
 				
 				//상의 이미지 분석
@@ -93,10 +100,6 @@ public class JythonController {
 				System.out.println("\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\");
 			}
 		}
-		
-		//Tensorflow에서 admin폴더로 이미지 복사
-		copy(folder, folder2);
-		System.out.println("======이미지 복사 완료======");
 				
 		//Tensorflow폴더 안에 이미지 삭제
 		delete(folder.toString());
@@ -180,7 +183,7 @@ public class JythonController {
 				{
 					//outer
 					case 1:
-						url = "http://under70.kr/product/list.html?cate_no=24&page=6";
+						url = "http://under70.kr/product/list.html?cate_no=24&page=1";
 						break;
 					//t-shirt
 					case 2:

@@ -90,7 +90,7 @@ public class AdminPagination {
 		this.listCnt = listCnt;
 
 		//전체 페이지수 
-		this.pageCnt = (int) Math.ceil(listCnt/listSize);
+		this.pageCnt = (int) Math.ceil((double)listCnt/listSize);
 
 		//시작 페이지
 		this.startPage = (range - 1) * rangeSize + 1 ;	

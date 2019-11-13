@@ -35,11 +35,11 @@
 <jsp:include page="../../nav.jsp" />
 <!-- End Nav -->
 
-<div class="container" align="center" style="margin-top: 50px;">
+<div class="container" align="center" style="margin-top: 150px;">
 	<div style="float:left"></div>
 	<div style="float:left">
 	<div class="item button-jittery" style="background: #f1c40f; width: 300px; height: 300px; text-align: center;
-	padding-top: 50px; border-radius: 10px; margin-right: 20px;">
+	padding-top: 50px; border-radius: 10px; margin-right: 20px; margin-left: 100px;">
 		<button class="btnStyle" onClick="location.href='adminParsingList'">
 			<p class="fontStyle">관리자<br>데이터 등록</p>
 		</button>

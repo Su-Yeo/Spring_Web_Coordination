@@ -41,13 +41,9 @@
 <form id="frm" method="GET" action="parsing">
 	<table>
 		<tr>
-			<td colspan="2" align="center">
+			<td colspan="4" align="center">
 				<input type="radio" id="shopName1" name="shopName" value="언더70" class="form-control">언더70
-			</td>
-			<td align="center">
 				<input type="radio" id="shopName2" name="shopName" value="바이슬림" class="form-control">바이슬림
-			</td>
-			<td align="center">
 				<input type="radio" id="shopName3" name="shopName" value="고피플" class="form-control">고피플
 			</td>
 		</tr>
