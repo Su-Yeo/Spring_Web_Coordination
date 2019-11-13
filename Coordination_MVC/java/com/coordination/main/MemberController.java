@@ -226,7 +226,8 @@ public class MemberController {
 			HttpServletRequest request,
 			HttpSession session,
 			@RequestParam(required = false, defaultValue = "1") int page,
-			@RequestParam(required = false, defaultValue = "1") int range)
+			@RequestParam(required = false, defaultValue = "1") int range,
+			@RequestParam(required = false, defaultValue = "0") int flag)
 			throws Exception {
 		
 		if(session.getAttribute("userId") == null)
@@ -237,6 +238,7 @@ public class MemberController {
 		{
 			String userId = session.getAttribute("userId").toString();
 			dressroomVO.setId(userId);
+			closetVO.setId(userId);
 			
 			//전체 페이지 갯수
 			int listCnt = dressroomService.dressroomListCount(dressroomVO);
@@ -246,7 +248,7 @@ public class MemberController {
 			model.addAttribute("dressroomList", dressroomService.dressroomList(dressroomVO));
 			model.addAttribute("ClosetListTop", closetService.closetListTop(closetVO));
 			model.addAttribute("ClosetListBottom", closetService.closetListBottom(closetVO));
-			
+			model.addAttribute("flag", flag);
 			 return "coordination/member/myPage";
 		}
 	}
