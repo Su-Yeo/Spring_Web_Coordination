@@ -143,6 +143,7 @@
   		WHERE
   			num=#{num}
   	</update>
+
   	
   	<!-- 관리자가 이미지 검증을 할 때 사용하기 위한 SQL문 -->
   	<update id="updateIndentify">

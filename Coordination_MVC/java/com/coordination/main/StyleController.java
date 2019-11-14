@@ -41,24 +41,27 @@ public class StyleController {
 		{
 			return "coordination/index";
 		}
-		
-		try {
+		else
+		{
+			try {
+				
+				service.updateStyle(vo);
+				logger.info("==========이미지 수정 완료==========");
+	            
+	            //업데이트 완료 후, StyleList로 이동
+	            model.addAttribute("url", "updateStyle");
+				
+			}catch(Exception e) {
+				e.printStackTrace();
+				
+				logger.info("==========Error!!!==========");
+				model.addAttribute("url", "error");
+			}
 			
-			service.updateStyle(vo);
-			logger.info("==========이미지 수정 완료==========");
-            
-            //업데이트 완료 후, StyleList로 이동
-            model.addAttribute("url", "updateStyle");
-			
-		}catch(Exception e) {
-			e.printStackTrace();
-			
-			logger.info("==========Error!!!==========");
-			model.addAttribute("url", "error");
+			return "movePage";
 		}
-		
-		return "movePage";
 	}
+
 	
 	//관리자 - style 삭제
 	@RequestMapping(value = "deleteStyle", method = RequestMethod.GET)
