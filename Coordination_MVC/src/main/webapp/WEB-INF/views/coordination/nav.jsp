@@ -420,7 +420,7 @@
 		<!-- 로그인하면 보여질 화면 -->
 		<c:if test="${sessionScope.userId eq 'admin'}">
 		<ul class="nav navbar-nav navbar-right ml-auto">
-			<li class="nav-item"><a href="#noticeModal" data-toggle="modal" class="nav-link notifications"><i class="fa fa-bell-o"></i><span class="badge"></span></a></li>
+			<!-- <li class="nav-item"><a href="#noticeModal" data-toggle="modal" class="nav-link notifications"><i class="fa fa-bell-o"></i><span class="badge"></span></a></li> -->
 			<li class="nav-item"><a href="#MailModal" data-toggle="modal" class="nav-link messages"><i class="fa fa-envelope-o"></i><span class="badge"></span></a></li>
 			<li class="nav-item dropdown">
 				<a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle user-action">
@@ -438,7 +438,7 @@
 		<!-- 로그인하면 보여질 화면 -->
 		<c:if test="${not empty sessionScope.userId && sessionScope.userId ne 'admin'}">
 		<ul class="nav navbar-nav navbar-right ml-auto">
-			<li class="nav-item"><a href="#noticeModal" data-toggle="modal" class="nav-link notifications"><i class="fa fa-bell-o"></i><span class="badge"></span></a></li>
+			<!-- <li class="nav-item"><a href="#noticeModal" data-toggle="modal" class="nav-link notifications"><i class="fa fa-bell-o"></i><span class="badge"></span></a></li> -->
 			<li class="nav-item"><a href="#MailModal" data-toggle="modal" class="nav-link messages"><i class="fa fa-envelope-o"></i><span class="badge"></span></a></li>
 			<li class="nav-item dropdown">
 				<a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle user-action">

@@ -33,7 +33,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.coordination.dao.StyleDAO;
-import com.coordination.dto.ClosetVO;
 import com.coordination.dto.StyleVO;
 import com.coordination.service.ClosetService;
 import com.coordination.weather.ApiExplorerWeather;
@@ -192,8 +191,8 @@ public class HomeController {
     public String mail(Model model, HttpServletRequest request, HttpSession memberSession)throws AddressException, MessagingException {
 
     	
-    	//String host = "smtp.naver.com";
-    	String host = "smtp.gmail.com";
+    	String host = "smtp.naver.com";
+    	//String host = "smtp.gmail.com";
     	
     	//보내는 사람 정보 
     	//ID@naver.com

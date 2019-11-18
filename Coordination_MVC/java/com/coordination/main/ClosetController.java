@@ -101,10 +101,12 @@ public class ClosetController {
 	@RequestMapping(value = "deleteCloset", method = RequestMethod.GET)
 	public String delete(ClosetVO vo, Model model, HttpServletResponse response, HttpServletRequest request) throws Exception {
 		
-		int num = 0;
-		num = Integer.parseInt(request.getParameter("num"));
+		int topNum = 0;
+		topNum = Integer.parseInt(request.getParameter("topNum"));
+		int bottomNum = 0;
+		bottomNum = Integer.parseInt(request.getParameter("bottomNum"));
 		
-		String img = request.getParameter("img");
+		String img = request.getParameter("topImg");
 		String Path = "C:\\img\\user\\" + img;
 		
 		response.setContentType("text/html; charset=UTF-8");
@@ -117,7 +119,7 @@ public class ClosetController {
 			//해당 파일이 존재한다면 DB정보 삭제 + 이미지 삭제
 			if(file.exists() == true)
 			{
-				vo.setNum(num);
+				vo.setNum(topNum);
 				service.deleteCloset(vo);
 				file.delete();
 				

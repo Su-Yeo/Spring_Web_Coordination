@@ -255,6 +255,10 @@
 						<div class="eff-7"></div>
 						<a href="#">코디보기</a>
 					</div>
+					<!-- <div class="button-7 button-7-margin" style="cursor: pointer;" onclick="closet_delete()">
+						<div class="eff-7"></div>
+						<a href="#">삭제하기</a>
+					</div> -->
 				</div>
 			</c:if>
 	      <!-- 옷장이 텅 비었을 때 -->
@@ -275,7 +279,7 @@
 						<c:forEach items="${ClosetListTop}" var="closet">
 							<div class="swiper-slide">
 								<div class="swiper-countA">
-								<img class="swiper-img" style="border: 1px solid gray;" src="/displayImg?name=${closet.img}&folder=user" onclick="category_top('${closet.category}','${closet.color}')"/>
+								<img class="swiper-img" style="border: 1px solid gray;" src="/displayImg?name=${closet.img}&folder=user" onclick="category_top('${closet.category}','${closet.color}','${closet.num}','${closet.img}')"/>
 								</div>
 							</div>
 						</c:forEach>
@@ -294,7 +298,7 @@
 						<c:forEach items="${ClosetListBottom}" var="closet2">
 							<div class="swiper-slide">
 								<div class="swiper-countB">
-									<img class="swiper-img2" style="border: 1px solid gray;" src="/displayImg?name=${closet2.img}&folder=user" onclick="category_bottom('${closet2.category}','${closet2.color}')"/>
+									<img class="swiper-img2" style="border: 1px solid gray;" src="/displayImg?name=${closet2.img}&folder=user" onclick="category_bottom('${closet2.category}','${closet2.color}','${closet2.num}','${closet2.img}')"/>
 								</div>
 							</div>
 						</c:forEach>
@@ -417,6 +421,10 @@
 		var bottom='';
 		var topColor='';
 		var bottomColor='';
+		var topNum='';
+		var bottomNum='';
+		var topImg='';
+		var bottomImg='';
 		$('.swiper-img').click(function() {
 			$('.swiper-img').css("border", "1px solid gray");
 		    $(this).css("border", "2px solid red");
@@ -426,16 +434,20 @@
 			$(this).css("border", "2px solid red");
 	   	});
 		
-		function category_top(top2,topColor){
+		function category_top(top2,topColor,topNum,topImg){
 			
 			this.top2=top2;
 			this.topColor=topColor;
+			this.topNum=topNum;
+			this.topImg=topImg;
 		}
 		
-		function category_bottom(bottom,bottomColor){
+		function category_bottom(bottom,bottomColor,bottomNum,bottomImg){
 			
 			this.bottom=bottom;
 			this.bottomColor=bottomColor;
+			this.bottomNum=bottomNum;
+			this.bottomImg=bottomImg;
 		}
 		
 		function category_submit(){
@@ -443,6 +455,14 @@
 				alert("옷을 선택해주세요");	
 			}else{
 				location.href=encodeURI("Recommendation?top="+top2+"&bottom="+bottom+"&topColor="+topColor+"&bottomColor="+bottomColor);
+			}
+		}
+		
+		function closet_delete(){
+			if(topNum=="" && bottomNum==""){
+				alert("옷을 선택해주세요");	
+			}else{
+				location.href=encodeURI("deleteCloset?topNum="+topNum+"&bottomNum="+bottomNum+"&topImg="+topImg+"&bottomImg="+bottomImg);
 			}
 		}
 	</script>
