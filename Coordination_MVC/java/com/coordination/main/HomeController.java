@@ -218,7 +218,7 @@ public class HomeController {
     		message.setFrom(new InternetAddress(user));
     		
     		//받는 사람 정보
-    		message.addRecipient(Message.RecipientType.TO, new InternetAddress("이메일주소"));
+    		message.addRecipient(Message.RecipientType.TO, new InternetAddress("이메일주소 "));
     		
     		//메일 제목
     		String subject = "오늘 뭐 입지?? >>" + memberSession.getAttribute("userName").toString() + "님의 건의사항 입니다.";
