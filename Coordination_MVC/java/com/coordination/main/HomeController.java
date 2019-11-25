@@ -1,4 +1,4 @@
-package com.coordination.main;
+﻿package com.coordination.main;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -196,8 +196,8 @@ public class HomeController {
     	
     	//보내는 사람 정보 
     	//ID@naver.com
-    	final String user = "";
-    	final String password = "";
+    	final String user = "아이디";
+    	final String password = "비밀번호";
     	
     	// SMTP 서버 정보를 설정
     	Properties props = new Properties();
@@ -218,7 +218,7 @@ public class HomeController {
     		message.setFrom(new InternetAddress(user));
     		
     		//받는 사람 정보
-    		message.addRecipient(Message.RecipientType.TO, new InternetAddress("sangwon7482@naver.com"));
+    		message.addRecipient(Message.RecipientType.TO, new InternetAddress("이메일주소"));
     		
     		//메일 제목
     		String subject = "오늘 뭐 입지?? >>" + memberSession.getAttribute("userName").toString() + "님의 건의사항 입니다.";
