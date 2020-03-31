@@ -20,15 +20,18 @@ URL : https://seonsangwon.dev/coordination
  - 형상 관리 : Github
  - 사이트 URL : http://13.125.207.51:8080 → https://seonsangwon.dev/coordination [전환예정]
  
+ 
 #Background
  - 매일 옷을 어떻게 입어야 할지 고민을 하는 사람들에게 다양한 코디 정보를 제공하기 위한 시스템 구축
  - 패션 코디룩에 대한 정보를 제공함으로써 효율적인 맞춤 코디를 지원
  - 제 4차 산업혁명 시대의 기술을 다루기 위해 기계학습 라이브러리(Tensorflow)를 사용
  
+ 
 #Objectives
  - 사용자가 매일 옷을 어떻게 매칭할지에 대한 걱정을 최소화 시켜주는 것이 최종 목표
  - 협력 쇼핑몰의 코디 정보를 제공함으로써 간접적인 쇼핑몰 홍보 효과
  - 동적 웹 페이지의 특성을 살려 PC뿐만 아니라 모바일, 태블릿 환경에서도 최적화된 서비스 제공
+ 
  
 #Scope
  - 기계학습 알고리즘을 통한 Tensorflow Inception-V3 Model Retaining
@@ -37,12 +40,14 @@ URL : https://seonsangwon.dev/coordination
  - 회원 관리(Member Management)
  - 기상청 Open API - (신)동네예보정보조회서비스
  
+ 
 #Approach
  - Spring Tool Suite(STS)
  - Apache Tomcat 8.5
  - Python
  - MySQL 5.5
  - Tensorflow
+  
   
 #Workplan
  - 분석 : 방법론 추론 & API 학습
@@ -60,6 +65,7 @@ URL : https://seonsangwon.dev/coordination
  - 배포
     - 11.15(금)
   
+  
 #Cost/Benefit
  - 제 4차 산업혁명을 대비하여 머신 러닝을 위한 End - TO - End 오픈 소스 플랫폼인 Tensorflow 기술을   
    학습해 비즈니스 모델설계 프로젝트에 참여한 구성원들의 학습 능력을 향상시킬 수 있을 것으로 기대함
@@ -75,6 +81,7 @@ URL : https://seonsangwon.dev/coordination
  - 모든 의상정보는 협력 쇼핑몰을 통해 가져온 이미지를 보여준다
  - 코디룩 이미지를 선택하면 모달창이 띄워지며 회원은 해당 코디룩 이미지를 저장할 수 있다
  
+ 
 #회원전용 홈페이지
  - 회원에게는 나만의 옷장이라는 기능을 제공한다
  - 나만의 옷장에는 실제 의상을 촬영하여 등록하는 공간과 사용자 취향의 의상정보를 영구 저장할 수 있는 공간으로 나뉜다
@@ -84,6 +91,7 @@ URL : https://seonsangwon.dev/coordination
  - 사용자 취향의 의상정보를 영구 저장할 수 있는 공간에서는 메인 홈페이지 및 등록한 의상의 코디정보를 확인하며
    마음에 드는 의상정보를 저장하면 확인할 수 있다
 
+
 #코디보기 기능
  - 나만의 옷장에서 사용자가 실제 의상을 촬영하여 등록하면 의상에 대한 패션정보를 제공한다
  - 사용자는 상의 또는 하의를 선택하여 패션정보를 제공받을 수 있으며 추가적으로 상의와 하의를 동시에 선택할 수 있다
@@ -91,6 +99,7 @@ URL : https://seonsangwon.dev/coordination
    제공되는 이미지를 통해 보여진다
  - 사용자는 패션 스타일, 연출법 등을 참고할 수 있으며 쇼핑몰의 이름을 노출시킴으로써
    간접적인 쇼핑몰 홍보 효과를 불러온다
+   
    
 #Tensorflow 를 통한 Inception-V3 Model Retraining
  - Tensorflow 라이브러리를 통해 Inception-V3 모델을 학습시킨다
@@ -101,6 +110,7 @@ URL : https://seonsangwon.dev/coordination
  - 각 라벨당 학습되는 사진은 1400 ~ 5000장으로 구성된다
  - 학습하는 횟수는 총 100,000번으로 지정한다
  - 빠른 학습을 위해 Tensorflow-cpu 버전이 아닌 Tensorflow-gpu 버전을 사용한다
+ 
  
 #학습된 신경망을 통한 이미지 추론
  - 이미지 추론은 관리자와 사용자로 구분한다
@@ -114,10 +124,12 @@ URL : https://seonsangwon.dev/coordination
  - 잘못된 결과값이 저장될 경우를 대비하여 사용자에게 해당 색상이 맞는지에 대한 유효성 검사를 진행시킨 뒤,
    최종 결과값을 데이터베이스에 저장한다
    
+   
 #협력 쇼핑몰 웹 파싱(ShoppingMall Web Parsing)
  - 협력 쇼핑몰의 이미지를 파싱한다.
  - 이미지는 확장자가 JPG / JPEG 인 이미지만을 파싱하여 저장한다
  - 옷의 종류는 아우터, 긴팔/셔츠, 반팔/반팔셔츠, 맨투맨/후드 로 구분된다
+ 
  
 #기상청 Open API - (신)동네예보정보조회서비스
  - 공공데이터포털의 (신)동네예보정보조회서비스를 사용한다
@@ -125,8 +137,10 @@ URL : https://seonsangwon.dev/coordination
  - 기상정보에서 최저온도, 최고온도, 3시간 온도를 불러와 사용한다
  - 최저온도와 최고온도, 3시간 온도를 인자로 계산하는 알고리즘을 사용해서 계산된 온도에 맞는 의상정로를 
  
+ 
 #회원가입
  - 회원에게 아이디, 비밀번호, 이름, 전화번호를 입력받는다
+ 
  
 #로그인
  - 로그인 페이지를 통해 로그인을 진행한다
