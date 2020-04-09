@@ -4,7 +4,7 @@
 By. Sangwon Seon, SuHyang Yeo, Hoon Seol, GwanYong Park   
 
 IDE : Eclipse   
-Language : Spring Tool Suite 3.9.12.RELEASE, Python 3.7.3   
+Language : Spring 3.9.12, Python 3.7.3   
 Database : MySQL 5.5  
 
 URL : https://seonsangwon.dev/coordination
