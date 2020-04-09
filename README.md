@@ -18,7 +18,7 @@ URL : https://seonsangwon.dev/coordination
  - 프로젝트 개발 기간 : 2019.09.04 ~ 2019.11.14
  - 프로젝트 구성 인원 : 4명
  - 형상 관리 : Github
- - 사이트 URL : http://13.125.207.51:8080 → https://seonsangwon.dev/coordination [전환예정]
+ - 사이트 URL : http://13.125.207.51 → https://seonsangwon.dev/coordination [전환예정]
  
  
 ## Background
